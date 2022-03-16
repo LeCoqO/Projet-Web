@@ -9,14 +9,26 @@
   <meta charset="utf-8" />
   <meta name="author" content="TORRES Diego" />
   <meta name="content" content="Fruits VS Légumes" />
-  <title>Fruits VS Légumes</title>   
+  <title>Fruits VS Légumes</title>
   <link rel="stylesheet" type="text/css" href="style.css" />
 </head>
 
 <body>
+  <header>
+    <div class="sidebar" id="mySidebar">
+      <button class="bar-item button" onclick="sidebar_close()">Close &times;</button><br>
+      <a href="index.php" class="bar-item button">Accueil</a><br>
+      <a href="commande.php" class="bar-item button">Livreur</a><br>
+      <a href="mentionLegale.html" class="bar-item button">Mention légale</a><br>
+    </div>
+    <button class="button left hide-large" onclick="sidebar_open()">&#9776;</button>
+    <h1 class="text-center ">
+      <img src="./img/logo.png" class="logo" alt="" />
+    </h1>
+  </header>
   <div id="wrapper">
     <header id="banniere">
-    <br/>
+      <br />
       <h1 class="gras text-center">L'Hom'burger</h1>
       <br />
     </header>
@@ -31,37 +43,42 @@
         <h2>Edition du site Internet </h2>
         Responsable de la publication : Service Communication du ministère de la santé<br /><br />
         Réalisation du site Internet et maintenance : TAIS Hébergement <br />
-      
+
         </p>
       </article>
 
       <article class="vignettePresentation">
         <img src="./img/liliPet.gif" width="150px" heigth="150px" class="logo" alt="" /><br>
-        <p><bold>Lilian Page</bold><br>
+        <p>
+          <bold>Lilian Page</bold><br>
           Bon toutou (chef)
         </p>
       </article>
       <article class="vignettePresentation">
         <img src="./img/Eddy.jpg" width="150px" heigth="150px" class="logo" alt="" /><br>
-        <p><bold>Eddy</bold><br>
-        (licencié)
+        <p>
+          <bold>Eddy</bold><br>
+          (licencié)
         </p>
       </article>
       <article class="vignettePresentation">
         <img src="./img/pikazo.JPG" width="150px" heigth="150px" class="logo" alt="" /><br>
-        <p><bold>Corentin</bold><br>
-         (Pikazo)
+        <p>
+          <bold>Corentin</bold><br>
+          (Pikazo)
         </p>
       </article>
       <article class="vignettePresentation">
         <img src="./img/noopy.png" width="150px" heigth="150px" class="logo" alt="" /><br>
-        <p><bold>Quentin</bold><br>
+        <p>
+          <bold>Quentin</bold><br>
           (Impostor)
         </p>
       </article>
       <article class="vignettePresentation">
         <img src="./img/liliPet.gif" width="150px" heigth="150px" class="logo" alt="" /><br>
-        <p><bold>Lilian Page</bold><br>
+        <p>
+          <bold>Lilian Page</bold><br>
           Bon toutou (chef)
         </p>
       </article>

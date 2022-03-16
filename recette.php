@@ -7,14 +7,14 @@
     <meta name="author" content="Diego TORRES" />
     <link rel="stylesheet" href="style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <title>BulgarKing</title>
+    <title>Hom'burger</title>
 </head>
 <header>
     <div class="sidebar" id="mySidebar">
-        <button class="bar-item button" onclick="sidebar_close()">Close &times;</button>
-        <a href="commande.php" class="bar-item button">Commande</a><br>
-        <a href="#" class="bar-item button">Link 2</a><br>
-        <a href="#" class="bar-item button">Link 3</a>
+        <button class="bar-item button" onclick="sidebar_close()">Close &times;</button><br>
+        <br /><a href="index.php" class="bar-item button">Accueil</a><br>
+        <br /><a href="commande.php" class="bar-item button">Livreur</a><br>
+        <br /><a href="mentionLegale.html" class="bar-item button">Mention légale</a><br>
     </div>
     <button class="button left hide-large" onclick="sidebar_open()">&#9776;</button>
     <h1 class="text-center ">
@@ -30,6 +30,54 @@
     </div>
     <div class="container content-container">
         <main role="main">
+            <?php
+            //require_once '../connexion.php';
+            try {
+                $connex = new PDO(
+                    'mysql:host=' . 'localhost' . ';dbname='
+                        . 'clicom',
+                    'root',
+                    'cqfd14sAfe',
+                    array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION)
+                );
+            } catch (PDOException $e) {
+                echo 'Erreur : ' . $e->getMessage() . '<br />';
+                echo 'N° : ' . $e->getCode();
+                die();
+            }
+            $connex->setAttribute(PDO::ATTR_AUTOCOMMIT, 0);
+            $connex->beginTransaction(); //début
+            $rq = "Select * from commande";
+            $result = $connex->query($rq);
+
+            echo '<FONT face="arial">';
+            echo '<div class="container">';
+            echo '<CENTER>';
+            echo '<div class="table">';
+            echo "<div class='table-header' bgcolor='grey' align='center'>";
+            printf(
+                "<div class='header__item'> <a id='ncom' class='filter__link' href='#'>Numéro Commande</a></div>
+        <div class='header__item'> <a id='ncli'  class='filter__link' href='#'>Numéro Client</a></div>
+        <div class='header__item'> <a id='date' class='filter__link' href='#'>Date</a></div>
+        <div class='header__item'> <a id='iti' class='filter__link' href='#'>Adresse</a></div>"
+            );
+            echo '</div>';
+            echo '<div class="table-content">';
+            foreach ($result as $element) {
+                printf('<div class="table-row">'
+                    . "<div class='table-data'>" . $element['NCOM'] . "</div>"
+                    . "<div class='table-data'>" . $element['NCLI'] . "</div>"
+                    . "<div class='table-data'>" . $element['DATECOM'] . "</div>"
+                    . "<div class='table-data buttonItineraire'>26 rue de mirande Dijon</div>"
+                    . '</div>');
+            }
+            echo '</div>';
+            echo '</CENTER>';
+            echo '</div>';
+            echo '</FONT>';
+            ?>
+        </main>
+        <main role="main2">
             <h2 class="text-center">Création d'un menu:</h2>
             <h2>Nom du menu</h2>
             <input class="text-center" type="text" id="name" name="name" required size="10">
@@ -113,109 +161,8 @@
                     </h3>
                 </article>
             </section>
-            <div class="clear"><br><br><br></div>
 
 
-            <section class="left">
-                <article class="col-md-6 d-flex flex-column justify-content-center">
-                    <h1 class="text-center">Suppléments</h1>
-                    <h3 class="text-center tacos-supplement" id="Emmental">
-                        Emmental
-                    </h3>
-                    <h3 class="text-center tacos-supplement" id="Gouda">
-                        Gouda
-                    </h3>
-                    <h3 class="text-center tacos-supplement" id="Cheddar">
-                        Cheddar
-                    </h3>
-                    <h3 class="text-center tacos-supplement" id="Raclette">
-                        Raclette
-                    </h3>
-                    <h3 class="text-center tacos-supplement" id="Boursin">
-                        Boursin ®
-                    </h3>
-                    <h3 class="text-center tacos-supplement" id="Chevre">
-                        Chevre
-                    </h3>
-                    <h3 class="text-center tacos-supplement" id="Mozzarella">
-                        Mozzarella
-                    </h3>
-                    <h3 class="text-center tacos-supplement" id="Vache qui rit">
-                        Vache qui rit ®
-                    </h3>
-                    <h3 class="text-center tacos-supplement" id="POIVRONNADE">
-                        POIVRONNADE
-                    </h3>
-                    <h3 class="text-center tacos-supplement" id="POULET">
-                        POULET
-                    </h3>
-                    <h3 class="text-center tacos-supplement" id="BOEUF FACON BACON FUME">
-                        BOEUF FACON BACON FUME
-                    </h3>
-                    <h3 class="text-center tacos-supplement" id="JALAPENO &amp; CHEESE NUGGETS">
-                        JALAPENO &amp; CHEESE NUGGETS
-                    </h3>
-                    <h3 class="text-center tacos-supplement" id="OIGNONS CARAMELISES">
-                        OIGNONS CARAMELISES
-                    </h3>
-                    <h3 class="text-center tacos-supplement" id="LARDONS DE VOLAILLE">
-                        LARDONS DE VOLAILLE
-                    </h3>
-                </article>
-            </section>
-
-            <section class="left">
-                <article class="col-md-6 d-flex flex-column justify-content-center">
-                    <h1 class="text-center">Boissons</h1>
-                    <h3 class="text-center tacos-boisson" id="Coca Cola">
-                        Coca Cola®
-                    </h3>
-                    <h3 class="text-center tacos-boisson" id="Coca Cola Zero">
-                        Coca Cola Zero®
-                    </h3>
-                    <h3 class="text-center tacos-boisson" id="Coca Cola Cherry">
-                        Coca Cola Cherry®
-                    </h3>
-                    <h3 class="text-center tacos-boisson" id="Oasis Tropical">
-                        Oasis Tropical®
-                    </h3>
-                    <h3 class="text-center tacos-boisson" id="Oasis Pomme cassis framboise">
-                        Oasis® Pomme cassis framboise
-                    </h3>
-                    <h3 class="text-center tacos-boisson" id="Cristaline Fraise">
-                        Cristaline® Fraise
-                    </h3>
-                    <h3 class="text-center tacos-boisson" id="Perrier">
-                        Perrier®
-                    </h3>
-                    <h3 class="text-center tacos-boisson" id="Seven up mojito">
-                        Seven up® mojito
-                    </h3>
-                    <h3 class="text-center tacos-boisson" id="Lipton Ice Tea Peche">
-                        Lipton Ice Tea® Peche
-                    </h3>
-                    <h3 class="text-center tacos-boisson" id="Tropico">
-                        Tropico®
-                    </h3>
-                    <h3 class="text-center tacos-boisson" id="Fanta Orange">
-                        Fanta Orange®
-                    </h3>
-                    <h3 class="text-center tacos-boisson" id="Caprisun Multivitamine">
-                        Caprisun® Multivitamine
-                    </h3>
-                    <h3 class="text-center tacos-boisson" id="MONSTER">
-                        MONSTER®
-                    </h3>
-                    <h3 class="text-center tacos-boisson" id="Ice Tea Green Citron Vert">
-                        Ice Tea® Green Citron Vert
-                    </h3>
-                    <h3 class="text-center tacos-boisson" id="FUZE TEA">
-                        FUZE TEA®
-                    </h3>
-                    <h3 class="text-center tacos-boisson" id="Eau minerale">
-                        Eau minerale
-                    </h3>
-                </article>
         </main>
         <div class="clear"><br><br><br></div>
 

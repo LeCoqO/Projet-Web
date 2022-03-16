@@ -2,7 +2,7 @@
 <html lang="fr">
 
 <head>
-    <link rel="stylesheet" href="./style_commande.css" type="text/css">
+    <link rel="stylesheet" href="./style.css" type="text/css">
     <meta charset="utf-8">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!--
@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
     <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"></script>
     <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
-    <title>Commande - Sham'os</title>
+    <title>Livreur - Hom'burger</title>
     <script src="https://cdn.polyfill.io/v3/polyfill.min.js?features=fetch,requestAnimationFrame,Element.prototype.classList,TextDecoder"></script>
 
     <script src="https://unpkg.com/esri-leaflet@3.0.4/dist/esri-leaflet.js" integrity="sha512-oUArlxr7VpoY7f/dd3ZdUL7FGOvS79nXVVQhxlg6ij4Fhdc4QID43LUFRs7abwHNJ0EYWijiN5LP2ZRR2PY4hQ==" crossorigin=""></script>
@@ -41,7 +41,7 @@
     </div>
     <button class="button left hide-large" onclick="sidebar_open()">&#9776;</button>
     <h1 class="text-center ">
-        <img src="./img/logo.jpg" class="logo" alt="" />
+        <img src="./img/logo.png" class="logo" alt="" />
     </h1>
 </header>
 
