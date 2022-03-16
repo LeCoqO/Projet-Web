@@ -1,0 +1,40 @@
+<!DOCTYPE html">
+<html lang="fr">
+
+<head>
+    <title>Statistique</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <meta name="author" content="PAGE Lilian" />
+    <meta name="description" content="Statistique" />
+
+</head>
+
+<body>
+    <header>
+        <div class="sidebar" id="mySidebar">
+            <button class="bar-item button" onclick="sidebar_close()">Close &times;</button>
+            <a href="commande.php" class="bar-item button">Commande</a><br>
+            <a href="recette.php" class="bar-item button">Link 2</a><br>
+            <a href="#" class="bar-item button">Link 3</a>
+        </div>
+        <button class="button left hide-large" onclick="sidebar_open()">&#9776;</button>
+        <div>
+            <h1 id="TitreDuSite" class="gras text-center">Statistiques</h1>
+        </div>
+        <div class="gauche">
+            <img src="./img/logo.jpg" class="logo text-center" alt="" />s
+        </div>
+    </header>
+    <script>
+        function sidebar_open() {
+            document.getElementById("mySidebar").style.display = "block";
+        }
+
+        function sidebar_close() {
+            document.getElementById("mySidebar").style.display = "none";
+        }
+    </script>
+</body>
+
+</html>
