@@ -18,7 +18,7 @@
     </div>
     <button class="button left hide-large" onclick="sidebar_open()">&#9776;</button>
     <h1 class="text-center ">
-        <img src="logo.png" class="logo" alt="" />
+        <img src="img/logo.png" class="logo" alt="" />
     </h1>
 
 </header>
