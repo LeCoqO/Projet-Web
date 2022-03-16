@@ -5,8 +5,8 @@
     <meta charset="UTF-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <meta name="author" content="Diego TORRES" />
-    <link rel="stylesheet" href="Diegz/style.css">
-    <script     src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>BulgarKing</title>
 </head>
 <header>
@@ -18,25 +18,26 @@
     </div>
     <button class="button left hide-large" onclick="sidebar_open()">&#9776;</button>
     <h1 class="text-center ">
-        <img src="diegz/img/logo.jpg" class="logo" alt="" />
+        <img src="logo.png" class="logo" alt="" />
     </h1>
 
 </header>
 
 <body>
+    <hr>
+    <div>
+        <br>
+        <button class="boutonMenuGerant">Statistiques</button>
 
-            <button>Suivi Livraisons</button>
+        <button class="boutonMenuGerant">Stocks</button>
 
-            <button>Emmetre bon de commande</button>
-    
-            <button>Voir bons de commandes</button>
-    
-            <hr>
-    
-    
+        <button class="boutonMenuGerant">Recettes</button>
+    </div>
 
 
-    
+
+
+
 </body>
 
 </html>
