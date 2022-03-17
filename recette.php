@@ -5,7 +5,8 @@
     <meta charset="UTF-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <meta name="author" content="Diego TORRES" />
-    <link rel="stylesheet" href="style.css">
+    <link href="style.css" rel="stylesheet">
+    <script src="script_bdd.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>Hom'burger</title>
 </head>
@@ -17,19 +18,26 @@
         <br /><a href="mentionLegale.html" class="bar-item button">Mention légale</a><br>
     </div>
     <button class="button left hide-large" onclick="sidebar_open()">&#9776;</button>
-    <h1 class="text-center ">
+    <h1 class="text-center">
         <img src="./img/logo.jpg" class="logo" alt="" />
     </h1>
 </header>
 
 <body>
+    <p class="text-center">
+        <button onclick="liste_open()">Liste des recettes</button>
+        <button onclick="creation_open()">Ajout d'une recette</button>
+    </p>
     <div id="panier" class="panier_fermee" onclick="showPanier()">
         <p id="content" class="text-center">
             <small>R<br>E<br>C<br>E<br>T<br>T<br>E</small>
         </p>
     </div>
+
+
+
     <div class="container content-container">
-        <main role="main">
+        <main id="main">
             <?php
             //require_once '../connexion.php';
             try {
@@ -77,12 +85,14 @@
             echo '</FONT>';
             ?>
         </main>
-        <main role="main2">
+        <main id="main2" style="display: none; width: 100%">
             <h2 class="text-center">Création d'un menu:</h2>
-            <h2>Nom du menu</h2>
-            <input class="text-center" type="text" id="name" name="name" required size="10">
-            <div class="clear"><br><br><br></div>
-            <div class="half">
+            <div class="left" style="margin-left: 18%;">
+                <h2>Nom du menu</h2>
+                <input class="text-center" type="text" id="name" name="name" required pain="10">
+            </div>
+
+            <div class="half left" style="margin-left: 15%;">
                 <h2>Choisir une image</h2>
                 <label for="mon_fichier">Sélectionnez le fichier à
                     télécharger <br>(extensions valides :'jpg' , 'jpeg' , 'gif' , 'png' -- max 1
@@ -96,39 +106,37 @@
 
             <section class="left">
                 <article role="article center">
-                    <h1 class="text-center">ÉTAPE 1</h1>
                     <h2 class="small text-center">Choisissez le pain</h2>
-                    <h3 class="text-center tacos-size" id="L">
+                    <h3 class="text-center burger_pain" id="Pain Sésame">
                         Pain Sésame
                     </h3>
-                    <h3 class="text-center tacos-size" id="XL">
+                    <h3 class="text-center burger_pain" id="Pain Blé">
                         Pain Blé
                     </h3>
                 </article>
             </section>
             <section class="left">
                 <article class="left">
-                    <h1 class="text-center">ÉTAPE 2</h1>
-                    <h2 class="small text-center">Choisissez votre viande</h2>
-                    <h3 class="text-center tacos-viande" id="Filet de poulet nature ou mariné">
+                    <h2 class="small text-center">Choisissez vos ingrédients <br /> principaux</h2>
+                    <h3 class="text-center burger-viande" id="Filet de poulet nature ou mariné">
                         Filet de poulet nature ou mariné
                     </h3>
-                    <h3 class="text-center tacos-viande" id="Viande hachée">
+                    <h3 class="text-center burger-viande" id="Viande hachée">
                         Viande hachée
                     </h3>
-                    <h3 class="text-center tacos-viande" id="Cordon Bleu">
+                    <h3 class="text-center burger-viande" id="Cordon Bleu">
                         Cordon Bleu
                     </h3>
-                    <h3 class="text-center tacos-viande" id="Nuggets">
+                    <h3 class="text-center burger-viande" id="Nuggets">
                         Nuggets
                     </h3>
-                    <h3 class="text-center tacos-viande" id="Merguez">
+                    <h3 class="text-center burger-viande" id="Merguez">
                         Merguez
                     </h3>
-                    <h3 class="text-center tacos-viande" id="Tenders">
+                    <h3 class="text-center burger-viande" id="Tenders">
                         Tenders
                     </h3>
-                    <h3 class="text-center tacos-viande" id="Falafels">
+                    <h3 class="text-center burger-viande" id="Falafels">
                         Falafels
                     </h3>
                 </article>
@@ -136,45 +144,41 @@
 
             <section class="left">
                 <article class="col-md-6 d-flex flex-column justify-content-center">
-                    <h1 class="text-center">ÉTAPE 3</h1>
-                    <h2 class="small text-center">Choississez votre sauce</h2>
-                    <h3 class="text-center tacos-sauce" id="Algerienne">
+                    <h2 class="small text-center">Choisissez vos ingrédients <br />secondaires</h2>
+                    <h3 class="text-center burger-sauce" id="Algerienne">
                         Algerienne
                     </h3>
-                    <h3 class="text-center tacos-sauce" id="Barbecue">
+                    <h3 class="text-center burger-sauce" id="Barbecue">
                         Barbecue
                     </h3>
-                    <h3 class="text-center tacos-sauce" id="Burger">
+                    <h3 class="text-center burger-sauce" id="Burger">
                         Burger
                     </h3>
-                    <h3 class="text-center tacos-sauce" id="Chili thai">
+                    <h3 class="text-center burger-sauce" id="Chili thai">
                         Chili thai
                     </h3>
-                    <h3 class="text-center tacos-sauce" id="Ketchup">
+                    <h3 class="text-center burger-sauce" id="Ketchup">
                         Ketchup
                     </h3>
-                    <h3 class="text-center tacos-sauce" id="Mayonnaise">
+                    <h3 class="text-center burger-sauce" id="Mayonnaise">
                         Mayonnaise
                     </h3>
-                    <h3 class="text-center tacos-sauce" id="Fuego">
+                    <h3 class="text-center burger-sauce" id="Fuego">
                         Fuego
                     </h3>
                 </article>
             </section>
-
-
-        </main>
-        <div class="clear"><br><br><br></div>
-
-        <div id="preview" style="display: none;">
-            <h2>Prévisualisation</h2>
-            <div class="row text-center">
-                <div class="column previewMenu"></div>
-                <div class="column previewMenu"></div>
-                <div class="column previewMenu"></div>
+            <div class="clear"><br><br><br></div>
+            <div id="preview" style="display: none;">
+                <h2>Prévisualisation</h2>
+                <div class="row text-center">
+                    <div class="column previewMenu"></div>
+                    <div class="column previewMenu"></div>
+                    <div class="column previewMenu"></div>
+                </div>
             </div>
-        </div>
-        <button onclick="genererMenuJSON()">Générer</button>
+            <button onclick="genererMenuJSON()">Générer</button>
+        </main>
 
     </div>
 
@@ -182,129 +186,68 @@
 <script>
     var menu = {
         "name": "",
-        "size": "",
+        "pain": "",
         "viandes": {
             "viande1": "",
             "viande2": "",
             "viande3": ""
         },
         "sauce": "",
-        "supplements": {
-            "supplement1": "",
-            "supplement2": ""
-        },
-        "boisson": ""
     };
     var commande = [];
 
     for (var i = 0; i < $("h3").length; i++) {
         $("h3")[i].addEventListener('click', function(e) {
-            if ((this.className).includes("tacos-size")) {
-                tabtacosSize = document.getElementsByClassName("tacos-size");
-                for (let i = 0; i < tabtacosSize.length; i++) {
-                    tabtacosSize[i].classList.remove("size-selected");
+            if ((this.className).includes("burger_pain")) {
+                tabburgerpain = document.getElementsByClassName("burger_pain");
+                for (let i = 0; i < tabburgerpain.length; i++) {
+                    tabburgerpain[i].classList.remove("pain-selected");
                 }
-                this.classList.add("size-selected");
+                this.classList.add("pain-selected");
             }
-            if (document.getElementsByClassName("size-selected")[0]) {
-                if ((this.className).includes("tacos-viande")) {
-                    if (document.getElementsByClassName("size-selected")[0].id == "M") {
-                        if ((this.className).includes("tacos-viande-selected")) {
-                            this.classList.remove("tacos-viande-selected");
-                        } else {
-                            if ($(".tacos-viande-selected").length >= 1) {
-                                $(".tacos-viande-selected")[0].classList.remove("tacos-viande-selected");
-                            }
-                            this.classList.add("tacos-viande-selected");
-                        }
+            if (document.getElementsByClassName("pain-selected")[0]) {
+                if ((this.className).includes("burger-viande")) {
+                    if ((this.className).includes("burger-viande-selected")) {
+                        this.classList.remove("burger-viande-selected");
                     }
-                    if (document.getElementsByClassName("size-selected")[0].id == "L") {
-                        if ((this.className).includes("tacos-viande-selected")) {
-                            this.classList.remove("tacos-viande-selected");
+                    this.classList.add("burger-viande-selected");
+                }
+                if ((this.className).includes("burger-sauce")) {
+                    if (document.getElementsByClassName("burger-viande-selected")[0]) {
+                        if ((this.className).includes("burger-sauce-selected")) {
+                            this.classList.remove("burger-sauce-selected");
                         } else {
-                            if ($(".tacos-viande-selected").length < 1) {
-                                this.classList.add("tacos-viande-selected");
-                            } else if ($(".tacos-viande-selected").length == 1) {
-                                this.classList.add("tacos-viande-selected");
+                            let tabburgerSauce = document.getElementsByClassName("burger-sauce");
+                            for (let i = 0; i < tabburgerSauce.length; i++) {
+                                tabburgerSauce[i].classList.remove("burger-sauce-selected");
                             }
-                        }
-                    }
-                    if (document.getElementsByClassName("size-selected")[0].id == "XL") {
-                        if ((this.className).includes("tacos-viande-selected")) {
-                            this.classList.remove("tacos-viande-selected");
-                        } else {
-                            if ($(".tacos-viande-selected").length < 1) {
-                                this.classList.add("tacos-viande-selected");
-                            } else if ($(".tacos-viande-selected").length == 1) {
-                                this.classList.add("tacos-viande-selected");
-                            } else if ($(".tacos-viande-selected").length == 2) {
-                                this.classList.add("tacos-viande-selected");
-                            }
+                            this.classList.add("burger-sauce-selected");
                         }
                     }
                 }
-                if ((this.className).includes("tacos-sauce")) {
-                    if (document.getElementsByClassName("tacos-viande-selected")[0]) {
-                        if ((this.className).includes("tacos-sauce-selected")) {
-                            this.classList.remove("tacos-sauce-selected");
-                        } else {
-                            let tabTacosSauce = document.getElementsByClassName("tacos-sauce");
-                            for (let i = 0; i < tabTacosSauce.length; i++) {
-                                tabTacosSauce[i].classList.remove("tacos-sauce-selected");
-                            }
-                            this.classList.add("tacos-sauce-selected");
-                        }
-                    }
-                }
-                if ((this.className).includes("tacos-supplement")) {
-                    if (document.getElementsByClassName("tacos-sauce-selected")[0]) {
-                        if ((this.className).includes("tacos-supplement-selected")) {
-                            this.classList.remove("tacos-supplement-selected");
-                        } else {
-                            if ($(".tacos-supplement-selected").length < 1) {
-                                //menu["supplements"]["supplement1"] = this.id;
-                                this.classList.add("tacos-supplement-selected");
-                            } else if ($(".tacos-supplement-selected").length == 1) {
-                                // menu["supplements"]["supplement2"] = this.id;
-                                this.classList.add("tacos-supplement-selected");
-                            }
-                        }
-                    }
-                }
-                if ((this.className).includes("tacos-boisson")) {
-                    tabtacosBoisson = document.getElementsByClassName("tacos-boisson");
-                    for (let i = 0; i < tabtacosBoisson.length; i++) {
-                        tabtacosBoisson[i].classList.remove("boisson-selected");
-                    }
-                    this.classList.add("boisson-selected");
-                }
+
             }
 
         })
     }
 
     function genererMenuJSON() {
-        if (document.getElementsByClassName("size-selected")[0] &&
-            document.getElementsByClassName("tacos-viande-selected")[0] &&
-            document.getElementsByClassName("tacos-sauce-selected")[0] &&
-            document.getElementsByClassName("boisson-selected")[0]) {
+        if (document.getElementsByClassName("pain-selected")[0] &&
+            document.getElementsByClassName("burger-viande-selected")[0] &&
+            document.getElementsByClassName("burger-sauce-selected")[0]) {
             menu["name"] = document.getElementById("name").value;
-            menu["size"] = document.getElementsByClassName("size-selected")[0].id;
-            menu["viandes"]["viande1"] = document.getElementsByClassName("tacos-viande-selected")[0].id;
-            if (document.getElementsByClassName("tacos-viande-selected")[1]) {
-                menu["viandes"]["viande2"] = document.getElementsByClassName("tacos-viande-selected")[1].id;
+            menu["pain"] = document.getElementsByClassName("pain-selected")[0].id;
+            menu["viandes"]["viande1"] = document.getElementsByClassName("burger-viande-selected")[0].id;
+            if (document.getElementsByClassName("burger-viande-selected")[1]) {
+                menu["viandes"]["viande2"] = document.getElementsByClassName("burger-viande-selected")[1].id;
             }
-            if (document.getElementsByClassName("tacos-viande-selected")[2]) {
-                menu["viandes"]["viande3"] = document.getElementsByClassName("tacos-viande-selected")[2].id;
+            if (document.getElementsByClassName("burger-viande-selected")[2]) {
+                menu["viandes"]["viande3"] = document.getElementsByClassName("burger-viande-selected")[2].id;
             }
-            menu["sauce"] = document.getElementsByClassName("tacos-sauce-selected")[0].id;
-            if (document.getElementsByClassName("tacos-supplement-selected")[0]) {
-                menu["supplements"]["supplement1"] = document.getElementsByClassName("tacos-supplement-selected")[0].id;
+            menu["sauce"] = document.getElementsByClassName("burger-sauce-selected")[0].id;
+            if (document.getElementsByClassName("burger-supplement-selected")[0]) {
+                menu["supplements"]["supplement1"] = document.getElementsByClassName("burger-supplement-selected")[0].id;
             }
-            if (document.getElementsByClassName("tacos-supplement-selected")[1]) {
-                menu["supplements"]["supplement2"] = document.getElementsByClassName("tacos-supplement-selected")[1].id;
-            }
-            menu["boisson"] = document.getElementsByClassName("boisson-selected")[0].id
             console.log(menu);
             commande.push(menu);
             resetMenu();
@@ -323,37 +266,27 @@
     function resetMenu() {
         menu = {
             "name": "",
-            "size": "",
+            "pain": "",
             "viandes": {
                 "viande1": "",
                 "viande2": "",
                 "viande3": ""
             },
             "sauce": "",
-            "supplements": {
-                "supplement1": "",
-                "supplement2": ""
-            },
-            "boisson": ""
+
         };
-        let tabTacosSize = document.getElementsByClassName("tacos-size");
-        for (let i = 0; i < tabTacosSize.length; i++) {
-            tabTacosSize[i].classList.remove("size-selected");
+        let tabburgerpain = document.getElementsByClassName("burger_pain");
+        for (let i = 0; i < tabburgerpain.length; i++) {
+            tabburgerpain[i].classList.remove("pain-selected");
         }
-        let tabTacosViande = document.getElementsByClassName("tacos-viande");
-        for (let i = 0; i < tabTacosViande.length; i++) {
-            tabTacosViande[i].classList.remove("tacos-viande-selected");
+        let tabburgerViande = document.getElementsByClassName("burger-viande");
+        for (let i = 0; i < tabburgerViande.length; i++) {
+            tabburgerViande[i].classList.remove("burger-viande-selected");
         }
-        let tabTacosSauce = document.getElementsByClassName("tacos-sauce");
-        for (let i = 0; i < tabTacosSauce.length; i++) {
-            tabTacosSauce[i].classList.remove("tacos-sauce-selected");
+        let tabburgerSauce = document.getElementsByClassName("burger-sauce");
+        for (let i = 0; i < tabburgerSauce.length; i++) {
+            tabburgerSauce[i].classList.remove("burger-sauce-selected");
         }
-        let tabTacosSupplement = document.getElementsByClassName("tacos-supplement");
-        for (let i = 0; i < tabTacosSupplement.length; i++) {
-            tabTacosSupplement[i].classList.remove("tacos-supplement-selected");
-        }
-        let boisson = document.getElementsByClassName("boisson-selected");
-        boisson[0].classList.remove("boisson-selected");
     }
 
 
@@ -376,7 +309,7 @@
         var strgCommande = "";
         console.log(commande);
         /*commande = [{ //debug
-            "size": "M",
+            "pain": "M",
             "viandes": {
                 "viande1": "poulit",
                 "viande2": "",
@@ -391,19 +324,13 @@
         }];*/
         for (let i = 0; i < commande.length; i++) {
             strgCommande += "<strong>" + commande[i]["name"] + "</strong>" +
-                "<br>Size: " + commande[i]["size"] + "<br>Viandes: ";
+                "<br>pain: " + commande[i]["pain"] + "<br>Viandes: ";
             for (let j = 0; j < 2; j++) {
                 if (commande[i]["viandes"]["viande" + (j + 1)]) {
                     strgCommande += commande[i]["viandes"]["viande" + (j + 1)];
                 }
             };
-            strgCommande += "<br>Sauce: " + commande[i]["sauce"] + "<br>Supplements: ";
-            for (let h = 0; h < 1; h++) {
-                if (commande[i]["supplements"]["supplement" + (h + 1)]) {
-                    strgCommande += commande[i]["supplements"]["supplement" + (h + 1)];
-                }
-            };
-            strgCommande += "<br>Boisson: " + commande[i]["boisson"] + "<br><br>";
+            strgCommande += "<br>Sauce: " + commande[i]["sauce"];
         }
         return strgCommande;
     }
@@ -443,6 +370,17 @@
             reader.readAsDataURL(picture)
 
         }
+    }
+
+    function creation_open() {
+        document.getElementById("main").style.display = "none";
+        document.getElementById("main2").style.display = "block";
+
+    }
+
+    function liste_open() {
+        document.getElementById("main").style.display = "block";
+        document.getElementById("main2").style.display = "none";
     }
 </script>
 

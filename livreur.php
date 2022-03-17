@@ -2,7 +2,7 @@
 <html lang="fr">
 
 <head>
-    <link rel="stylesheet" href="./style.css" type="text/css">
+    <link rel="stylesheet" type="text/css" href="style.css" />
     <meta charset="utf-8">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!--
@@ -28,8 +28,9 @@
     <script src="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@0.74.0/dist/L.Control.Locate.min.js" charset="utf-8"></script>
     <link rel="stylesheet" href="style.css">
 
-
-
+    <script>
+        
+    </script>
 </head>
 <header>
     <div class="sidebar" id="mySidebar">
@@ -46,52 +47,7 @@
 </header>
 
 <body>
-    <?php
-    //require_once '../connexion.php';
-    try {
-        $connex = new PDO(
-            'mysql:host=' . 'localhost' . ';dbname='
-                . 'clicom',
-            'root',
-            'cqfd14sAfe',
-            array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION)
-        );
-    } catch (PDOException $e) {
-        echo 'Erreur : ' . $e->getMessage() . '<br />';
-        echo 'N° : ' . $e->getCode();
-        die();
-    }
-    $connex->setAttribute(PDO::ATTR_AUTOCOMMIT, 0);
-    $connex->beginTransaction(); //début
-    $rq = "Select * from commande";
-    $result = $connex->query($rq);
-
-    echo '<FONT face="arial">';
-    echo '<div class="container">';
-    echo '<CENTER>';
-    echo '<div class="table">';
-    echo "<div class='table-header' bgcolor='grey' align='center'>";
-    printf(
-        "<div class='header__item'> <a id='ncom' class='filter__link' href='#'>Numéro Commande</a></div>
-        <div class='header__item'> <a id='ncli'  class='filter__link' href='#'>Numéro Client</a></div>
-        <div class='header__item'> <a id='date' class='filter__link' href='#'>Date</a></div>
-        <div class='header__item'> <a id='iti' class='filter__link' href='#'>Adresse</a></div>"
-    );
-    echo '</div>';
-    echo '<div class="table-content">';
-    foreach ($result as $element) {
-        printf('<div class="table-row">'
-            . "<div class='table-data'>" . $element['NCOM'] . "</div>"
-            . "<div class='table-data'>" . $element['NCLI'] . "</div>"
-            . "<div class='table-data'>" . $element['DATECOM'] . "</div>"
-            . "<div class='table-data buttonItineraire'>26 rue de mirande Dijon</div>"
-            . '</div>');
-    }
-    echo '</div>';
-    echo '</CENTER>';
-    echo '</div>';
-    echo '</FONT>';
-    ?>
+    <div id="tableauCommande"></div>
     <div id="zoneMap">
         <div id="map" class="map"></div>
     </div>
@@ -99,17 +55,72 @@
     <a href="commande.php">Commande</a>
 </body>
 
-<script type="module" src="./script_commande.js"></script>
+<!---style a ajouter au .css-->
+<style>
+    .select_Statut {
+        width: 100%;
+        height: 100%;
+        outline: none;
+    }
+
+    .select_Statut_Libre {
+        background: rgba(42, 41, 39, 0);
+    }
+
+    .select_Statut_En_Cours {
+        background: rgb(228, 147, 26);
+    }
+
+    .select_Statut_Livree {
+        background: cyan;
+    }
+</style>
 
 <script>
-    function sidebar_open() {
-        document.getElementById("mySidebar").style.display = "block";
-    }
+   
+function sidebar_open() {
+    document.getElementById("mySidebar").style.display = "block";
+}
 
-    function sidebar_close() {
-        document.getElementById("mySidebar").style.display = "none";
-    }
+function sidebar_close() {
+    document.getElementById("mySidebar").style.display = "none";
+}
 
+function selectStatut(e) {
+    //value du select
+    let statut = e.value;
+    //changement de la couleur
+    e.className = "select_Statut select_Statut_" + statut;
+    //div contenant le select
+    let parentNode = e.parentNode
+    //div(row du tableau qui contient la div contenant le select)
+    let row = parentNode.parentNode
+    //premiere div contenue dans la row soit le ncom
+    let ncom = row.firstChild.innerHTML;
+    // update statut de la commande dans bdd
+    console.log(ncom);
+    $.ajax({
+        url: 'ajax_Bdd.php', //toujours la même page qui est appelée
+        type: 'POST',
+        data: {
+            fonction: 'updateBdd', //fonction à executer
+            base: 'clicom',
+            table: 'commande',
+            condition: 'NCOM LIKE ' + ncom, //where condition
+            champ: 'NCLI', // SET [nom du champ]   /Statut
+            data: 'C400' //data statut
+        },
+        success: function(data) {
+            refresh();
+        },
+        error: function(dataSQL, statut) {
+            alert("error sqlConnect.js : " + dataSQL.erreur);
+        }
+    });
+}
 </script>
+
+
+<script type="module" src="./script_livreur.js"></script>
 
 </html>

@@ -353,10 +353,10 @@ h6 {
 .clear {
   clear: both;
 }
-.tacos-viande-selected,
-.size-selected,
-.tacos-sauce-selected,
-.tacos-supplement-selected,
+.burger-viande-selected,
+.pain-selected,
+.burger-sauce-selected,
+.burger-supplement-selected,
 .boisson-selected {
   color: rgb(255, 255, 255);
   background-color: rgb(192, 68, 19);
