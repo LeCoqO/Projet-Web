@@ -344,7 +344,7 @@ h6 {
 .left {
   float: left;
 }
-.rigth {
+.right {
   float: right;
 }
 .noFloat {
@@ -429,6 +429,8 @@ a:focus span {
   margin: 25px;
   text-align: center;
   border: solid 4px whitesmoke; /*4 côtés*/
+  font-family: 'Shadows Into Light', cursive;
+  font-size: 50px;
 
 }
 
@@ -577,6 +579,11 @@ Couleur font: noir ou blanc*/
 
 .debug {
   border: 1px solid red;
+}
+
+.bonCompact{
+  border: 2px solid black;
+  background-color: white;
 }
 /* Fin IHM Gérant */ 
 
