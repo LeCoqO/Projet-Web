@@ -51,12 +51,11 @@
                     <div>
                         <h3><a href="">link text</a></h3>
                         <div class="bonCompact">
-                            <p class="left">Date d'émission : XX/XX/XXXX</p>
-                            <p class="right">Date livraison prévue : XX/XX/XXXX</p>
-                            <div class="clear"></div>
-                            <p class="left">Nom Ingrédient</p>
-                            <p class=right>Quantité Unité</p><br>
-                            <p class="clear">Fournisseur</p>
+                            <div class="left">Date d'émission : XX/XX/XXXX</div>
+                            <div class="right">Date livraison prévue : XX/XX/XXXX</div>
+                            <div class="clear left">Nom Ingrédient</div>
+                            <div class=right>Quantité Unité</div><br>
+                            <div class="clear">Fournisseur</div>
                             <label>PRIX TOTAL HT : </label> <label>XXX€</label>
                         </div>
                     </div>
