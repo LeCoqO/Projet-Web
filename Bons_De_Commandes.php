@@ -30,37 +30,36 @@
             <section>
                 <h2 class="text-center">Interface Gérant</h2>
                 <div class="row text-center">
-                    <div class="column4">
-                        <button class="button" onclick=window.location.href='Consult_Stocks.php'>Retour</button>
+                    <div class="column">
+                        <button class="button" onclick=window.location.href='commande_fournisseur.php'>Retour</button>
                     </div>
-                    <div class="column4">
-                        <button class="button" onclick=window.location.href='Ajout_ingredient.php'>Ajouter Ingrédient</button>
+                    <div class="column">
+                        <button class="button" onclick=window.location.href=''>Commander</button>
                     </div>
-                    <div class="column4">
-                        <button class="button" onclick=window.location.href='index.php'>Ajout Fournisseur</button>
-                    </div>
-                    <div class="column4">
-                        <button class="button">Mettre à jour Stocks</button>
+                    <div class="column">
+                        <button class="button" onclick=window.location.href=''>Supprimer</button>
                     </div>
                 </div>
             </section>
+            <div class='clear'></div>
+
+
+
             <br>
             <div>
-                <select>
-                    <option selected value="">--Ingrédient à mettre a jour--</option>
-                    <option>Aliment 1 </option>
-                    <option>Aliment 2 </option>
-                </select>
-            </div>
-            <div>
-                <label>Quantité théorique : </label>
-                <label>500</label>
-                <label>Grammes</label>
-            </div>
-            <div>
-                <label>Quantité réelle : </label>
-                <input type="number" value="200">
-                <label>Grammes</label>
+                <article>
+                    <div>
+                        <h3><a href="">link text</a></h3>
+
+                        <p>
+                            Date d'émission : XX/XX/XXXX Date livraison prévue : XX/XX/XXXX<br>
+                            Nom Ingrédient Quantité Unité<br>
+                            Fournisseur
+                        </p>
+                        <label>PRIX TOTAL HT : </label> <label>XXX€</label>
+                    </div>
+                    <input type="checkbox" checked>
+                </article>
             </div>
         </main>
     </div>

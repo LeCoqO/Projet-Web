@@ -25,33 +25,45 @@
 
 <body>
     <hr>
-    <div>
-        <label>Interface Gérant : Ajout Stocks</label>
-        <br>
-        <button class="boutonMenuGerant">Retour</button>
+    <div class="container content-container">
+        <main role="main">
+            <section>
+                <h2 class="text-center">Interface Gérant</h2>
+                <div class="row text-center">
+                    <div class="column4">
+                        <button class="button" onclick=window.location.href='Consult_Stocks.php'>Retour</button>
+                    </div>
+                    <div class="column4">
+                        <button class="button" onclick=window.location.href='Ajout_ingredient.php'>Ajouter Ingrédient</button>
+                    </div>
+                    <div class="column4">
+                        <button class="button" onclick=window.location.href='index.php'>Ajout Fournisseur</button>
+                    </div>
+                    <div class="column4">
+                        <button class="button">Mettre à jour Stocks</button>
+                    </div>
+                </div>
+            </section>
+            <div class="clear"></div>
 
-        <button class="boutonMenuGerant">Ajouter Ingrédient</button>
 
-        <button class="boutonMenuGerant">Ajouter Fournisseur</button>
+            <br>
+            <div class="clear">
+                <select>
+                    <option selected value="">--Ingrédient à mettre a jour--</option>
+                    <option>Aliment 1 </option>
+                    <option>Aliment 2 </option>
+                </select>
 
-        <button class="boutonMenuGerant">Mettre à jour Stock</button>
-    </div>
-
-    <br>
-    <div>
-        <select>
-            <option selected value="">--Ingrédient à mettre a jour--</option>
-            <option>Aliment 1 </option>
-            <option>Aliment 2 </option>
-        </select>
-
-        <label>500</label>
-        <label>Grammes</label>
-    </div>
-    <div>
-        <label>Quantité reçue : </label>
-        <input type="number" value="200">
-        <label>Grammes</label>
+                <label>500</label>
+                <label>Grammes</label>
+            </div>
+            <div>
+                <label>Quantité reçue : </label>
+                <input type="number" value="200">
+                <label>Grammes</label>
+            </div>
+        </main>
     </div>
 </body>
 

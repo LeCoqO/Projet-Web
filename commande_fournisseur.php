@@ -30,37 +30,33 @@
             <section>
                 <h2 class="text-center">Interface Gérant</h2>
                 <div class="row text-center">
-                    <div class="column4">
-                        <button class="button" onclick=window.location.href='Consult_Stocks.php'>Retour</button>
+                    <div class="column">
+                        <button class="button" onclick=window.location.href='consult_stocks.php'>Retour</button>
                     </div>
-                    <div class="column4">
-                        <button class="button" onclick=window.location.href='Ajout_ingredient.php'>Ajouter Ingrédient</button>
+                    <div class="column">
+                        <button class="button" onclick=window.location.href='bons_de_commandes.php'>Bons de commandes</button>
                     </div>
-                    <div class="column4">
-                        <button class="button" onclick=window.location.href='index.php'>Ajout Fournisseur</button>
-                    </div>
-                    <div class="column4">
-                        <button class="button">Mettre à jour Stocks</button>
+                    <div class="column">
+                        <button class="button" onclick=window.location.href=''>Emmetre un bon</button>
                     </div>
                 </div>
             </section>
-            <br>
+            <div class='clear'></div>
             <div>
                 <select>
-                    <option selected value="">--Ingrédient à mettre a jour--</option>
-                    <option>Aliment 1 </option>
-                    <option>Aliment 2 </option>
+                    <option selected value="">--Ingrédient à commander--</option>
+                    <option>Ingredient 1</option>
+                    <option>Ingredient 2</option>
                 </select>
-            </div>
-            <div>
-                <label>Quantité théorique : </label>
-                <label>500</label>
-                <label>Grammes</label>
-            </div>
-            <div>
-                <label>Quantité réelle : </label>
                 <input type="number" value="200">
                 <label>Grammes</label>
+            </div>
+            <div>
+                <label>Date de livraison souhaitée</label>
+                <input type="date">
+                <label for="frais">Prix Total HT</label>
+                <input type="number" value="200" disabled>
+                <label>€</label>
             </div>
         </main>
     </div>
