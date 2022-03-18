@@ -472,14 +472,21 @@ a:focus span {
 /*Fin IHM Stats*/
 
 /* IHM Gerant */
-.boutonMenuGerant {
+/*.menuGerant {
+    display: block;
     margin: 0 auto;
-    width: 500px;
+    width: 50%;
+    text-align: center;
+}*/
+
+.boutonMenuGerant {
+    width: 100px;
+    height: 50px;
 
 }
 
-.neutre {
-    float: none
+.debug {
+    border: 1px solid red;
 }
 
 /*Fin IHM Gerant*/

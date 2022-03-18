@@ -28,19 +28,19 @@
     <div>
         <label>Interface Gérant : Ajout Stocks</label>
         <br>
-        <div class="boutonMenuGerant">
-            <button>Retour</button>
+        <div class="menuGerant">
+            <button class="boutonMenuGerant">Retour</button>
 
-            <button>Ajouter Ingrédient</button>
+            <button class="boutonMenuGerant">Ajouter Ingrédient</button>
 
-            <button>Ajouter Fournisseur</button>
+            <button class="boutonMenuGerant">Ajouter Fournisseur</button>
 
-            <button>Mettre à jour Stock</button>
+            <button class="boutonMenuGerant">Mettre à jour Stock</button>
         </div>
     </div>
 
     <br>
-    <div>
+    <div class="clear">
         <select>
             <option selected value="">--Ingrédient à mettre a jour--</option>
             <option>Aliment 1 </option>
