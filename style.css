@@ -1,7 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700");
 
-
-
 /*
 Couleur fond(gris clair):  (229, 225, 222)
 Couleur fond2(noir-gris):  (40, 40, 40)
@@ -272,17 +270,14 @@ h6 {
 
 .table {
   width: 100%;
-
 }
 
 .table-header {
-
   display: flex;
   font-weight: bold;
   width: 100%;
   background: rgb(70, 70, 70);
   padding: (12px * 1.5) 0;
-
 }
 
 .table-row {
@@ -299,10 +294,10 @@ h6 {
 
 .table-data,
 .header__item {
-  flex:  1 1 20%;
+  flex: 1 1 20%;
   text-align: center;
 }
-.table-data{
+.table-data {
   border: #000000 solid 1px;
 }
 .header__item {
@@ -353,11 +348,9 @@ h6 {
 .clear {
   clear: both;
 }
-.burger-viande-selected,
+.ingr_principaux-selected,
 .pain-selected,
-.burger-sauce-selected,
-.burger-supplement-selected,
-.boisson-selected {
+.ingr_secondaire-selected {
   color: rgb(255, 255, 255);
   background-color: rgb(192, 68, 19);
   border-radius: 15%;
@@ -417,6 +410,39 @@ a:focus span {
   transform: scale(1) rotate(0);
   opacity: 1;
 }
+
+/*---------A modifier-------------*/
+
+.card {
+  border: #000000 solid 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  min-height: 250px;
+  float: left;
+  margin: 3%;
+}
+.imgFormatPdp {
+  width: 100%;
+  /*max-width: 250px;*/
+  min-width: 250px;
+  max-height: 250px;
+  min-height: 250px;
+
+}
+.large {
+  font-size: 25px;
+}
+.description {
+  width: 80%;
+  margin: 0% 10%;
+}
+.titre{
+  margin: 0% 10%;
+
+}
+
+
+/*-------------------------------*/
+
 @media (min-width: 576px) {
   .container {
     max-width: 540px;
