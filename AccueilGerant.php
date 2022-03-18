@@ -31,13 +31,13 @@
                 <h2 class="text-center">Interface Gérant</h2>
                 <div class="row text-center">
                     <div class="column">
-                        <button class="button">Statistiques</button>
+                        <button class="button" onclick=window.location.href=''>Statistiques</button>
                     </div>
                     <div class="column">
-                        <button class="button">Stocks</button>
+                        <button class="button" onclick=window.location.href='Consult_Stocks.php'>Stocks</button>
                     </div>
                     <div class="column">
-                        <button class="button">Recettes</button>
+                        <button class="button" onclick=window.location.href=''>Recettes</button>
                     </div>
                 </div>
             </section>

@@ -30,37 +30,32 @@
             <section>
                 <h2 class="text-center">Interface Gérant</h2>
                 <div class="row text-center">
-                    <div class="column2">
-                        <button class="button" onclick=window.location.href='Ajout_Stock.php'>Retour</button>
+                    <div class="column">
+                        <button class="button" onclick=window.location.href='consult_stocks.php'>Retour</button>
                     </div>
-                    <div class="column2">
-                        <button class="button" onclick=window.location.href=''>Confirmer l'ajout</button>
+                    <div class="column">
+                        <button class="button" onclick=window.location.href='bons_de_commandes.php'>Bons de commandes</button>
+                    </div>
+                    <div class="column">
+                        <button class="button" onclick=window.location.href=''>Emmetre un bon</button>
                     </div>
                 </div>
             </section>
-
-            <br>
+            <div class='clear'></div>
             <div>
-                <input type="text" value="Nom">
-                <label>Nom</label>
                 <select>
-                    <option selected value="">--Fournisseur--</option>
-                    <option>Fournisseur A</option>
-                    <option>Fournisseur B</option>
+                    <option selected value="">--Ingrédient à commander--</option>
+                    <option>Ingredient 1</option>
+                    <option>Ingredient 2</option>
                 </select>
-            </div>
-            <div>
-                <input type="checkbox" id="frais">
-                <label for="frais">Produit frais</label>
-            </div>
-            <div>
-                <label>Quantité min : </label>
                 <input type="number" value="200">
-                <select>
-                    <option selected value="">--Unite--</option>
-                    <option>Grammes</option>
-                    <option>Litres</option>
-                </select>
+                <label>Grammes</label>
+            </div>
+            <div>
+                <label>Date de livraison souhaitée</label>
+                <input type="date">
+                <label for="frais">Prix Total HT</label>
+                <input type="number" value="200" disabled>
                 <label>€</label>
             </div>
         </main>

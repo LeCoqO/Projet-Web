@@ -25,31 +25,43 @@
 
 <body>
     <hr>
-    <div>
-        <label>Interface Gérant : Bons de commandes</label>
-        <br>
-        <button class="boutonMenuGerant">Retour</button>
+    <div class="container content-container">
+        <main role="main">
+            <section>
+                <h2 class="text-center">Interface Gérant</h2>
+                <div class="row text-center">
+                    <div class="column">
+                        <button class="button" onclick=window.location.href='commande_fournisseur.php'>Retour</button>
+                    </div>
+                    <div class="column">
+                        <button class="button" onclick=window.location.href=''>Commander</button>
+                    </div>
+                    <div class="column">
+                        <button class="button" onclick=window.location.href=''>Supprimer</button>
+                    </div>
+                </div>
+            </section>
+            <div class='clear'></div>
 
-        <button class="boutonMenuGerant">Commander</button>
 
-        <button class="boutonMenuGerant">Supprimer</button>
-    </div>
 
-    
-    
-    
-    <br>
-    <div>
-        <a href="url">link text</a>
-        <article>
-            <p>
-            Date d'émission : XX/XX/XXXX Date livraison prévue : XX/XX/XXXX<br>
-            Nom Ingrédient Quantité Unité<br>
-            Fournisseur
-            </p>
-            <label>PRIX TOTAL HT : </label> <label>XXX€</label>
-            <input type="checkbox" checked>
-        </article>
+            <br>
+            <div>
+                <article>
+                    <div>
+                        <h3><a href="">link text</a></h3>
+
+                        <p>
+                            Date d'émission : XX/XX/XXXX Date livraison prévue : XX/XX/XXXX<br>
+                            Nom Ingrédient Quantité Unité<br>
+                            Fournisseur
+                        </p>
+                        <label>PRIX TOTAL HT : </label> <label>XXX€</label>
+                    </div>
+                    <input type="checkbox" checked>
+                </article>
+            </div>
+        </main>
     </div>
 </body>
 
