@@ -26,34 +26,30 @@
 <body>
     <hr>
     <div>
-        <label>Interface Gérant : Inventaire</label>
+        <label>Interface Gérant : Bons de commandes</label>
         <br>
         <button class="boutonMenuGerant">Retour</button>
 
-        <button class="boutonMenuGerant">Ajouter Ingrédient</button>
+        <button class="boutonMenuGerant">Commander</button>
 
-        <button class="boutonMenuGerant">Ajouter Fournisseur</button>
-
-        <button class="boutonMenuGerant">Mettre à jour Stock</button>
+        <button class="boutonMenuGerant">Supprimer</button>
     </div>
 
+    
+    
+    
     <br>
     <div>
-        <select>
-            <option selected value="">--Ingrédient à mettre a jour--</option>
-            <option>Aliment 1 </option>
-            <option>Aliment 2 </option>
-        </select>
-        </div>
-    <div>
-        <label>Quantité théorique : </label>
-        <label>500</label>
-        <label>Grammes</label>
-    </div>
-    <div>
-        <label>Quantité réelle : </label>
-        <input type="number" value="200">
-        <label>Grammes</label>
+        <a href="url">link text</a>
+        <article>
+            <p>
+            Date d'émission : XX/XX/XXXX Date livraison prévue : XX/XX/XXXX<br>
+            Nom Ingrédient Quantité Unité<br>
+            Fournisseur
+            </p>
+            <label>PRIX TOTAL HT : </label> <label>XXX€</label>
+            <input type="checkbox" checked>
+        </article>
     </div>
 </body>
 

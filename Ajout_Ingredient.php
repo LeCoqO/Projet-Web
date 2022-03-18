@@ -26,34 +26,36 @@
 <body>
     <hr>
     <div>
-        <label>Interface Gérant : Inventaire</label>
+        <label>Interface Gérant : Ajout Ingrédient</label>
         <br>
         <button class="boutonMenuGerant">Retour</button>
 
-        <button class="boutonMenuGerant">Ajouter Ingrédient</button>
-
-        <button class="boutonMenuGerant">Ajouter Fournisseur</button>
-
-        <button class="boutonMenuGerant">Mettre à jour Stock</button>
+        <button class="boutonMenuGerant">Confirmer l'ajout</button>
     </div>
 
     <br>
     <div>
+        <input type="text" value="Nom">
+        <label>Nom</label>
         <select>
-            <option selected value="">--Ingrédient à mettre a jour--</option>
-            <option>Aliment 1 </option>
-            <option>Aliment 2 </option>
+            <option selected value="">--Fournisseur--</option>
+            <option>Fournisseur A</option>
+            <option>Fournisseur B</option>
         </select>
-        </div>
-    <div>
-        <label>Quantité théorique : </label>
-        <label>500</label>
-        <label>Grammes</label>
     </div>
     <div>
-        <label>Quantité réelle : </label>
+        <input type="checkbox" id="frais">
+        <label for="frais">Produit frais</label>
+    </div>
+    <div>
+        <label>Quantité min : </label>
         <input type="number" value="200">
-        <label>Grammes</label>
+        <select>
+            <option selected value="">--Unite--</option>
+            <option>Grammes</option>
+            <option>Litres</option>
+        </select>
+        <label>€</label>
     </div>
 </body>
 

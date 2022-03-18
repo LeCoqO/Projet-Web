@@ -26,34 +26,31 @@
 <body>
     <hr>
     <div>
-        <label>Interface Gérant : Inventaire</label>
+        <label>Interface Gérant : Commande</label>
         <br>
         <button class="boutonMenuGerant">Retour</button>
 
-        <button class="boutonMenuGerant">Ajouter Ingrédient</button>
+        <button class="boutonMenuGerant">Bons de commande</button>
 
-        <button class="boutonMenuGerant">Ajouter Fournisseur</button>
-
-        <button class="boutonMenuGerant">Mettre à jour Stock</button>
+        <button class="boutonMenuGerant">Emmetre un bon de commande</button>
     </div>
 
     <br>
     <div>
         <select>
-            <option selected value="">--Ingrédient à mettre a jour--</option>
-            <option>Aliment 1 </option>
-            <option>Aliment 2 </option>
+            <option selected value="">--Ingrédient à commander--</option>
+            <option>Ingredient 1</option>
+            <option>Ingredient 2</option>
         </select>
-        </div>
-    <div>
-        <label>Quantité théorique : </label>
-        <label>500</label>
+        <input type="number" value="200">
         <label>Grammes</label>
     </div>
     <div>
-        <label>Quantité réelle : </label>
-        <input type="number" value="200">
-        <label>Grammes</label>
+        <label>Date de livraison souhaitée</label>
+        <input type="date">
+        <label for="frais">Prix Total HT</label>
+        <input type="number" value="200" disabled>
+        <label>€</label>
     </div>
 </body>
 
