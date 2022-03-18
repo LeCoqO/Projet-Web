@@ -1,4 +1,4 @@
-<!DOCTYPE html">
+<!DOCTYPE html>
 <html lang="fr">
 
 <head>
@@ -20,7 +20,7 @@
             <a href="#" class="bar-item button">Link 3</a>
         </div>
         <button class="button left hide-large" onclick="sidebar_open()">&#9776;</button>
-        <div class="rigth logo">
+        <div class="right logo">
             <img src="./img/logo.png" class="text-center" alt="" width="100px" height="100px" />
         </div>
         <div>
@@ -56,6 +56,10 @@
                 alert("error sqlConnect.js : " + dataSQL.erreur);
             }
         });
+
+        function modif() {
+            location.href = 'Modification Fournisseur.html'
+        }
     </script>
 
 </body>

@@ -209,9 +209,10 @@ function selectFournisseur($args)
                 . "<div class='table-data'>" . $element['Ville'] . "</div>"
                 . "<div class='table-data'>" . $element['Tel'] . "</div>"
                 . "<div class='table-data'> <input type='image' id='image'
-                src='img/engrenage.png' width='50px' height='50px'></input> </div>"
+                src='img/engrenage.png' width='45px' height='45px'  onclick= 'modif()'></input> </div>"
                 . "<div class='table-data'> <input type='image' id='image'
-                src='img/supprimer.png' width='50px' height='50px'></input> </div>"
+                src='img/supprimer.png' width='45px' height='45px'></input> </div>
+                </div>"
         );
     }
     echo '</div>';

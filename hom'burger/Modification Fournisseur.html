@@ -1,0 +1,73 @@
+<!DOCTYPE html">
+<html lang="fr">
+
+<head>
+    <title>Modification Fournisseur</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <meta name="author" content="PAGE Lilian" />
+    <meta name="description" content="Statistique" />
+    <script src="scriptCommun.js"></script>
+</head>
+
+<body>
+    <header>
+        <div class="sidebar" id="mySidebar">
+            <button class="bar-item button" onclick="sidebar_close()">Close &times;</button>
+            <a href="commande.php" class="bar-item button">Commande</a><br>
+            <a href="recette.php" class="bar-item button">Link 2</a><br>
+            <a href="#" class="bar-item button">Link 3</a>
+        </div>
+        <button class="button left hide-large" onclick="sidebar_open()">&#9776;</button>
+        <div class="right logo">
+            <img src="./img/logo.png" class="text-center" alt="" width="100px" height="100px" />
+        </div>
+        <div>
+            <br><br><br><br><br>
+            <h1 id="TitreDuSite" class="gras text-center">Modification Fournisseur</h1>
+        </div>
+
+    </header>
+    <fieldset class="left Choix">
+        <legend>
+            <h2>Fournisseur :</h2>
+        </legend>
+        <form action="./traitInfo.php" method="post">
+
+            <br>
+            <div>
+                <label for="nom">Nom : </label>
+                <input type="text" id="nom" name="nom" value="" size="20" maxlength="20" required>
+            </div>
+            <br>
+            <div>
+                <label for="nom">Adresse : </label>
+                <input type="text" id="Adresse" name="Adresse" value="" size="20" maxlength="20" required>
+            </div>
+            <br>
+            <div>
+                <label for="nom">CodePostal : </label>
+                <input type="text" id="CodePostal" name="CodePostal" value="" size="20" maxlength="20" required>
+            </div>
+            <br>
+            <div>
+                <label for="nom">Ville : </label>
+                <input type="text" id="Ville" name="Ville" value="" size="20" maxlength="20" required>
+            </div>
+            <br>
+            <div>
+                <label for="tel">Téléphone:</label>
+                <input type="tel" id="tel" name="tel" pattern="[0-9]{2}.[0-9]{2}.[0-9]{2}.[0-9]{2}.[0-9]{2}" required>
+                <small>Format: 12.34.56.78.90</small>
+            </div>
+            <br>
+            <div>
+                <button type="submit">Envoyer</button>
+                <button type="reset">Annuler</button>
+            </div>
+
+        </form>
+    </fieldset>
+</body>
+
+</html>
