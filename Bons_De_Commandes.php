@@ -48,7 +48,7 @@
             <br>
             <div>
                 <article>
-                    <div>
+                    <div class="left">
                         <h3><a href="">link text</a></h3>
                         <div class="bonCompact">
                             <div class="left">Date d'émission : XX/XX/XXXX</div>
@@ -56,10 +56,12 @@
                             <div class="clear left">Nom Ingrédient</div>
                             <div class=right>Quantité Unité</div><br>
                             <div class="clear">Fournisseur</div>
-                            <label>PRIX TOTAL HT : </label> <label>XXX€</label>
+                            <div class="text-center">
+                                PRIX TOTAL HT : XXX€
+                                </div>
                         </div>
                     </div>
-                    <input type="checkbox" checked>
+                    <input class="right" type="checkbox" checked>
                 </article>
             </div>
         </main>
