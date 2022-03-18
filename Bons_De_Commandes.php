@@ -50,13 +50,15 @@
                 <article>
                     <div>
                         <h3><a href="">link text</a></h3>
-
-                        <p>
-                            Date d'émission : XX/XX/XXXX Date livraison prévue : XX/XX/XXXX<br>
-                            Nom Ingrédient Quantité Unité<br>
-                            Fournisseur
-                        </p>
-                        <label>PRIX TOTAL HT : </label> <label>XXX€</label>
+                        <div class="bonCompact">
+                            <p class="left">Date d'émission : XX/XX/XXXX</p>
+                            <p class="right">Date livraison prévue : XX/XX/XXXX</p>
+                            <div class="clear"></div>
+                            <p class="left">Nom Ingrédient</p>
+                            <p class=right>Quantité Unité</p><br>
+                            <p class="clear">Fournisseur</p>
+                            <label>PRIX TOTAL HT : </label> <label>XXX€</label>
+                        </div>
                     </div>
                     <input type="checkbox" checked>
                 </article>
