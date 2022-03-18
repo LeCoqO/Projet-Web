@@ -26,14 +26,44 @@
 <body>
     <hr>
     <div>
-        <label>Interface Gérant</label>
+        <label>Interface Gérant : Stocks</label>
         <br>
-        <button class="boutonMenuGerant">Statistiques</button>
+        <button class="boutonMenuGerant">Retour</button>
 
-        <button class="boutonMenuGerant">Stocks</button>
+        <button class="boutonMenuGerant">Ajouter Stocks</button>
 
-        <button class="boutonMenuGerant">Recettes</button>
+        <button class="boutonMenuGerant">Invertaire</button>
+
+        <button class="boutonMenuGerant">Passer une commande</button>
     </div>
+
+    <br>
+    <table>
+        <tr>
+            <td>
+                Aliment
+            </td>
+            <td>
+                Quantité
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Alim 1
+            </td>
+            <td>
+                50g
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Alim 2
+            </td>
+            <td>
+                2qté
+            </td>
+        </tr>
+    </table>
 </body>
 
 </html>

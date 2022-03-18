@@ -26,13 +26,32 @@
 <body>
     <hr>
     <div>
-        <label>Interface Gérant</label>
+        <label>Interface Gérant : Ajout Stocks</label>
         <br>
-        <button class="boutonMenuGerant">Statistiques</button>
+        <button class="boutonMenuGerant">Retour</button>
 
-        <button class="boutonMenuGerant">Stocks</button>
+        <button class="boutonMenuGerant">Ajouter Ingrédient</button>
 
-        <button class="boutonMenuGerant">Recettes</button>
+        <button class="boutonMenuGerant">Ajouter Fournisseur</button>
+
+        <button class="boutonMenuGerant">Mettre à jour Stock</button>
+    </div>
+
+    <br>
+    <div>
+        <select>
+            <option selected value="">--Ingrédient à mettre a jour--</option>
+            <option>Aliment 1 </option>
+            <option>Aliment 2 </option>
+        </select>
+
+        <label>500</label>
+        <label>Grammes</label>
+    </div>
+    <div>
+        <label>Quantité reçue : </label>
+        <input type="number" value="200">
+        <label>Grammes</label>
     </div>
 </body>
 
