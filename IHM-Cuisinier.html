@@ -1,19 +1,86 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>IHM-Cuisinier</title>
-	<link rel="stylesheet" href="style.css"> 
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>IHM-Cuisinier</title>
+    <link rel="stylesheet" href="style.css">
+    <header>
+        <div class="sidebar" id="mySidebar">
+            <button class="bar-item button" onclick="sidebar_close()">Close &times;</button>
+            <a href="commande.php" class="bar-item button">Commande</a><br>
+            <a href="recette.php" class="bar-item button">Link 2</a><br>
+            <a href="#" class="bar-item button">Link 3</a>
+        </div>
+        <button class="button left hide-large" onclick="sidebar_open()">&#9776;</button>
+        <div class="rigth logo">
+            <img src="./img/logo.png" class="text-center" alt="" width="100px" height="100px" />
+        </div>
+        <div>
+            <br><br><br><br><br>
+            <h1 id="TitreDuSite" class="gras text-center">Cuisinier </h1>
+        </div>
+
+
+    </header>
+    <script>
+        function sidebar_open() {
+            document.getElementById("mySidebar").style.display = "block";
+        }
+
+        function sidebar_close() {
+            document.getElementById("mySidebar").style.display = "none";
+        }
+        function OnOff() {
+            if (document.getElementById("texte").style.visibility == "visible")
+                document.getElementById("texte").style.visibility = "hidden";
+            else
+                document.getElementById("texte").style.visibility = "visible";
+        }
+
+    </script>
 </head>
+
 <body id="acceuilCuisinier">
-	<div id="wrapperCuisinier">
-		<h1>Hom'Burger</h1>
-	</div>
-	<section>
-		<div class="commandeCuisine">
-			<p>Commande 1</p>
-		</div>
-	</section>
+
+    <h1>Hom'Burger</h1>
+
+    <section id="sectionCuisine">
+        <article class="articleCommande">
+            <p class="numCommande">Commande N°1</p>
+            <p class="heureLivraison">Doit être prête pour : 19H
+            <p class="contientBurger">Contient X Burgers</p>
+            </p>
+            <div class="menuBurger">
+                <p class="nomBurger">L'originel Burger</p>
+                <span id="texte" style="visibility: hidden;">Pain : 100g<br>
+                    Sauce burger<br>
+                    Tomate : 2 tranches<br>
+                    Salade : 2 feuilles<br>
+                    Steak : 100g<br>
+                    Cheddar : 1 tranche
+                </span><br/>
+                <input type="button" value="Liste des ingrédients" onclick="OnOff();" class="btnListeIngredients"> 
+                <img class="imgBurger" src="Image/burger1.jpg">
+                <input type="button" value="A préparer">
+            </div>
+            <div class="menuBurger">
+                <p class="nomBurger">Le chinois Burger</p>
+                <span id="texte" style="visibility: hidden;">Pain : 100g<br>
+                    Sauce burger<br>
+                    Tomate : 2 tranches<br>
+                    Salade : 2 feuilles<br>
+                    chat : 100g<br>
+                    Cheddar : 1 tranche
+                </span><br/>
+                <input type="button" value="Liste des ingrédients" onclick="OnOff();" class="btnListeIngredients"> 
+                <img class="imgBurger" src="Image/chinoisBurger.jpg">
+            </div>
+        </article>
+
+        </div>
+    </section>
 </body>
+
 </html>
