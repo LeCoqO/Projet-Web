@@ -58,10 +58,12 @@
                             <div class="clear">Fournisseur</div>
                             <div class="text-center">
                                 PRIX TOTAL HT : XXX€
-                                </div>
+                            </div>
                         </div>
                     </div>
-                    <input class="right" type="checkbox" checked>
+                    <div class="right vertical-center">
+                        <input class="" type="checkbox" checked>
+                    </div>
                 </article>
             </div>
         </main>

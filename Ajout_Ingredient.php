@@ -40,28 +40,30 @@
             </section>
 
             <br>
-            <div>
-                <input type="text" value="Nom">
-                <label>Nom</label>
-                <select>
-                    <option selected value="">--Fournisseur--</option>
-                    <option>Fournisseur A</option>
-                    <option>Fournisseur B</option>
-                </select>
-            </div>
-            <div>
-                <input type="checkbox" id="frais">
-                <label for="frais">Produit frais</label>
-            </div>
-            <div>
-                <label>Quantité min : </label>
-                <input type="number" value="200">
-                <select>
-                    <option selected value="">--Unite--</option>
-                    <option>Grammes</option>
-                    <option>Litres</option>
-                </select>
-                <label>€</label>
+            <div class="text-center debug">
+                <div>
+                    <input type="text" value="Nom">
+                    <label>Nom</label>
+                    <select>
+                        <option selected value="">--Fournisseur--</option>
+                        <option>Fournisseur A</option>
+                        <option>Fournisseur B</option>
+                    </select>
+                </div>
+                <div>
+                    <input type="checkbox" id="frais">
+                    <label for="frais">Produit frais</label>
+                </div>
+                <div>
+                    <label>Quantité min : </label>
+                    <input type="number" value="200">
+                    <select>
+                        <option selected value="">--Unite--</option>
+                        <option>Grammes</option>
+                        <option>Litres</option>
+                    </select>
+                    <label>€</label>
+                </div>
             </div>
         </main>
     </div>
