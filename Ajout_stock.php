@@ -48,20 +48,21 @@
 
 
             <br>
-            <div class="clear">
-                <select>
+            <div class="container content-container row text-center">
+                <select class="column">
                     <option selected value="">--Ingrédient à mettre a jour--</option>
                     <option>Aliment 1 </option>
                     <option>Aliment 2 </option>
                 </select>
 
-                <label>500</label>
-                <label>Grammes</label>
+                <label class="column">500</label>
+                <label class="column">Grammes</label>
             </div>
-            <div>
-                <label>Quantité reçue : </label>
-                <input type="number" value="200">
-                <label>Grammes</label>
+            <div class="clear"></div>
+            <div class="container content-container row text-center">
+                <label class="column">Quantité reçue :</label>
+                <input type="number" value="200" class="column noMarginPadding" style="width: 32%;">
+                <label class="column">Grammes</label>
             </div>
         </main>
     </div>

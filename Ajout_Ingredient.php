@@ -31,10 +31,10 @@
                 <h2 class="text-center">Interface Gérant</h2>
                 <div class="row text-center">
                     <div class="column2">
-                        <button class="button" onclick=window.location.href='Ajout_Stock.php'>Retour</button>
+                        <button class="button" onclick=window.location.href="Ajout_Stock.php">Retour</button>
                     </div>
                     <div class="column2">
-                        <button class="button" onclick=window.location.href=''>Confirmer l'ajout</button>
+                        <button class="button" onclick=window.location.href="">Confirmer l'ajout</button>
                     </div>
                 </div>
             </section>
