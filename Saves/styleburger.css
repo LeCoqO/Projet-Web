@@ -376,7 +376,7 @@ h6 {
     float: left;
 }
 
-.right {
+.rigth {
     float: right;
 }
 
@@ -408,7 +408,6 @@ h6 {
     border: 3px solid #2a4207;
     background: rgba(95, 95, 95);
 }
-
 .panier_ouvert {
     display: block;
     position: fixed;
@@ -457,198 +456,22 @@ a:focus span {
 }
 
 /* IHM Cuisinier */
-
-.articleCommande {
-    background-color: rgb(48, 48, 48);
-    color: whitesmoke;
-}
-
-.numCommande {
-    margin: 25px;
-    text-align: center;
-    border: solid 4px whitesmoke;
-    /*4 côtés*/
-    font-family: 'Shadows Into Light', cursive;
-    font-size: 50px;
-
-}
-
-.infoCommande {
-    justify-content: space-between;
-}
-
-
-
-.menuBurger {
-    margin: 25px;
-    padding: 10px;
-    border: solid 4px whitesmoke;
-    /*4 côtés*/
-    width: 35%;
-}
-
-.nomBurger {
-    text-align: center;
-    text-decoration: underline;
-    font-weight: bold;
-}
-
-.imgBurger {
-    max-width: 250px;
-}
-
 /*Fin IHM Cuisinier*/
 
 /* IHM Livreur */
 /*Fin IHM Livreur*/
 
-/*---------A modifier-------------*/
-
-.card {
-    border: #000000 solid 5px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    min-height: 250px;
-    float: left;
-    margin: 3%;
-}
-
-.imgFormatPdp {
-    width: 100%;
-    /*max-width: 250px;*/
-    min-width: 250px;
-    max-height: 250px;
-    min-height: 250px;
-
-}
-
-.large {
-    font-size: 25px;
-}
-
-.description {
-    width: 80%;
-    margin: 0% 10%;
-}
-
-.titre {
-    margin: 0% 10%;
-
-}
-
-/*air):  (229, 225, 222)
-Couleur fond2(noir-gris):  (40, 40, 40)
-Couleur font: noir ou blanc*/
-.footer {
-    padding: 40px 0;
-    background-color: rgb(229, 225, 222);
-    color: #4b4c4d;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-}
-
-.footer ul {
-    padding: 0;
-    list-style: none;
-    text-align: center;
-    font-size: 18px;
-    line-height: 1.6;
-    margin-bottom: 0;
-}
-
-.footer li {
-    padding: 0 10px;
-}
-
-.footer ul a {
-    color: inherit;
-    text-decoration: none;
-    opacity: 0.8;
-}
-
-.footer ul a:hover {
-    opacity: 1;
-}
-
-.footer .social {
-    text-align: center;
-    padding-bottom: 25px;
-}
-
-.footer .social > a {
-    font-size: 24px;
-    width: 40px;
-    height: 40px;
-    line-height: 40px;
-    display: inline-block;
-    text-align: center;
-    border-radius: 50%;
-    border: 1px solid #ccc;
-    margin: 0 8px;
-    color: inherit;
-    opacity: 0.75;
-}
-
-.footer .social > a:hover {
-    opacity: 0.9;
-}
-
-.footer .copyright {
-    margin-top: 15px;
-    text-align: center;
-    font-size: 13px;
-    color: #aaa;
-    margin-bottom: 0;
-}
-
 /* IHM Commande */
+
+
 /*Fin IHM Commande*/
 
-/* IHM Gérant */
-.column2 {
-    width: 50.00%;
-    float: left;
-}
-
-.column4 {
-    width: 24.99%;
-    float: left;
-}
-
-.boutonMenuGerant {
-    width: 100px;
-    height: 50px;
-
-}
-
-.debug {
-    border: 1px solid red;
-}
-
-.bonCompact {
-    border: 2px solid black;
-    background-color: white;
-}
-
-.noMarginPadding {
-    margin: 0;
-    padding: 0;
-}
-
-.petitInput{
-    width: 55px;
-}
-
-/* Fin IHM Gérant */
-
 /* IHM Panier */
-
-#bordure1 {
+#bordure1{
     border: solid 3px black;
     padding: 2%;
 }
-
-.bordure2 {
+.bordure2{
     border: double 3px black;
     padding: 1%;
     margin: 2%;
@@ -658,40 +481,20 @@ Couleur font: noir ou blanc*/
     margin: auto;
     padding: 15px;
     max-width: auto;
-    /*Adaptation du texte*/
+    /*Adaptation du texte*/     
     padding: 50px 25px;
     background-color: gray;
     text-align: center;
 }
 
-.espaceTxt {
+.espaceTxt{
     margin-right: 15px;
 }
+
 
 /*Fin IHM Panier*/
 
 /* IHM Stats */
-
-#chartContainer {
-    width: 65%;
-    height: 50%;
-    margin: 5%;
-    margin-left: 0%;
-    background-color: rgb(240, 40, 40);
-}
-
-.Choix {
-    width: 25%;
-    height: 10%;
-    margin: 5%;
-    margin-right: 0%;
-    float: none;
-}
-
-.cat {
-    margin-top: 20%;
-}
-
 /*Fin IHM Stats*/
 
 /* IHM Ajout ingrédients */

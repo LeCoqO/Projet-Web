@@ -31,39 +31,48 @@
                 <h2 class="text-center">Interface Gérant</h2>
                 <div class="row text-center">
                     <div class="column4">
-                        <button class="button" onclick=window.location.href="Consult_Stocks.php">Retour</button>
+                        <button class="button" onclick=window.location.href='AccueilGerant.php'>Retour</button>
                     </div>
                     <div class="column4">
-                        <button class="button" onclick=window.location.href="Ajout_ingredient.php">Ajouter Ingrédient</button>
+                        <button class="button" onclick=window.location.href='Ajout_stock.php'>Ajouter stocks</button>
                     </div>
                     <div class="column4">
-                        <button class="button" onclick=window.location.href="Index.php">Ajout Fournisseur</button>
+                        <button class="button" onclick=window.location.href='Inventaire.php'>Inventaire</button>
                     </div>
                     <div class="column4">
-                        <button class="button">Mettre à jour Stocks</button>
+                        <button class="button" onclick=window.location.href='commande_fournisseur.php'>Passer commande</button>
                     </div>
                 </div>
             </section>
+            <div class="clear"></div>
+
             <br>
-            <div class="container content-container row text-center">
-                <div class="column">
-                    <select>
-                        <option selected value="">--Ingrédient à mettre a jour--</option>
-                        <option>Aliment 1 </option>
-                        <option>Aliment 2 </option>
-                    </select>
-                </div>
-                <div class="column">
-                    <label>Quantité théorique : </label>
-                    <label>500</label>
-                    <label>Grammes</label>
-                </div>
-                <div class="column">
-                    <label>Quantité réelle : </label>
-                    <input class="petitInput" type="number" value="200" maxlength="4" style="width: 55px">
-                    <label>Grammes</label>
-                </div>
-            </div>
+            <table>
+                <tr>
+                    <td>
+                        Aliment
+                    </td>
+                    <td>
+                        Quantité
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Alim 1
+                    </td>
+                    <td>
+                        50g
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Alim 2
+                    </td>
+                    <td>
+                        2qté
+                    </td>
+                </tr>
+            </table>
         </main>
     </div>
 </body>
