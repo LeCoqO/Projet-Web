@@ -49,16 +49,49 @@
 
             <br>
             <div class="container content-container row text-center">
-                <div class="column2">
-                    <select>
-                        <option selected value="">--Ingrédient à mettre a jour--</option>
-                        <option>Aliment 1 </option>
-                        <option>Aliment 2 </option>
-                    </select>
+                <div id=requete class="column2">
+                    <script>
+                        $.ajax({
+                            url: 'ajax_Bdd.php', //toujours la même page qui est appelée
+                            type: 'POST',
+                            data: {
+                                fonction: 'selectListeIngredients', //fonction à executer
+                                base: 'physique',
+                                table: 'ingredient',
+                                selectCondition: '*'
+                            },
+                            success: function(data) {
+                                document.getElementById("requete").innerHTML = data;
+                            },
+                            error: function(dataSQL, statut) {
+                                alert("error sqlConnect.js : " + dataSQL.erreur);
+                            }
+                        });
+
+                    </script>
                 </div>
                 <div class="column2">
-                    <label>500</label>
-                    <label>Grammes</label>
+                    <script>
+                        function AppelQteIngredient($id) {
+                            $.ajax({
+                                url: 'ajax_Bdd.php', //toujours la même page qui est appelée
+                                type: 'POST',
+                                data: {
+                                    fonction: 'selectQteIngredient', //fonction à executer
+                                    base: 'physique',
+                                    table: 'ingredient',
+                                    selectCondition: '*',
+                                    id: '2',
+                                },
+                                success: function(data) {
+                                    document.getElementById("requete").innerHTML = data;
+                                },
+                                error: function(dataSQL, statut) {
+                                    alert("error sqlConnect.js : " + dataSQL.erreur);
+                                }
+                            });
+
+                    </script>
                 </div>
             </div>
             <div class="clear"></div>

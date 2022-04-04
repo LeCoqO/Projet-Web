@@ -47,32 +47,31 @@
             <div class="clear"></div>
 
             <br>
-            <table>
-                <tr>
-                    <td>
-                        Aliment
-                    </td>
-                    <td>
-                        Quantité
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Alim 1
-                    </td>
-                    <td>
-                        50g
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Alim 2
-                    </td>
-                    <td>
-                        2qté
-                    </td>
-                </tr>
-            </table>
+            <div id="tableauProduit">
+                <script>
+                    $.ajax({
+                        url: 'ajax_Bdd.php', //toujours la même page qui est appelée
+                        type: 'POST',
+                        data: {
+                            fonction: 'selectStocksBdd', //fonction à executer
+                            base: 'physique',
+                            table: 'ingredient',
+                            selectCondition: '*'
+                            //add a where EtatCde LIKE 'fini' (cest l'etat de preparation  du cuisto)
+
+                        },
+                        success: function(data) {
+                            //console.log("success");
+                            //console.log(data);
+                            document.getElementById("tableauProduit").innerHTML = data;
+                        },
+                        error: function(dataSQL, statut) {
+                            alert("error sqlConnect.js : " + dataSQL.erreur);
+                        }
+                    });
+
+                </script>
+            </div>
         </main>
     </div>
 </body>
