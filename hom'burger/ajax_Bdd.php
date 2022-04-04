@@ -193,8 +193,8 @@ function selectFournisseur($args)
 <div class='header__item'> <a id='CodePostal' class='filter__link' href='#'>CodePostal</a></div>
 <div class='header__item'> <a id='Ville' class='filter__link' href='#'>Ville</a></div>
 <div class='header__item'> <a id='Tel' class='filter__link' href='#'>Telephone</a></div>
-<div class='header__item'> <a id='Modif' class='filter__link' href='#'></a></div>
-<div class='header__item'> <a id='Suppr' class='filter__link' href='#'></a></div>"
+<div class='header__item'> <a id='Modif' class='filter__link' href='#'>Modification</a></div>
+<div class='header__item'> <a id='Suppr' class='filter__link' href='#'>Supresion</a></div>"
 
 
     );
@@ -219,4 +219,35 @@ function selectFournisseur($args)
     echo '</CENTER>';
     echo '</div>';
     echo '</FONT>';
+}
+
+function newFournisseur($args)
+{
+    $base = $args['base'];
+    $nom = $args["nom"];
+    $adr = $args["adr"];
+    $post = $args["post"];
+    $ville = $args["ville"];
+    $tel = $args["tel"];
+    $dateToday = null;
+    //require_once '../connexion.php';
+    try {
+        $connex = new PDO(
+            'mysql:host=' . 'localhost' .
+                ';dbname=' . $base,
+            'root',
+            '',
+            array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION)
+        );
+    } catch (PDOException $e) {
+        echo 'Erreur : ' . $e->getMessage() . '<br />';
+        echo 'N° : ' . $e->getCode();
+        die();
+    }
+
+    $connex->setAttribute(PDO::ATTR_AUTOCOMMIT, 0);
+    $connex->beginTransaction(); //début
+    $rq = "INSERT INTO fournisseur (NomFourn, Adresse, CodePostal, Ville, Tel, DateArchive) VALUE ('" . $nom . "', '" . $adr . "', '" . $post . "', '" . $ville . "', '" . $tel . ',' . '2022-04-04' . ")";
+    $connex->query($rq);
+    $connex->commit();
 }

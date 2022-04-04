@@ -304,7 +304,7 @@ h6 {
 .header__item {
   text-transform: uppercase;
   border: #000000 solid 1px;
-  padding: 15px 0px;
+  padding: 2% 0%;
 }
 
 .filter__link {
