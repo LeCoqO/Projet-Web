@@ -31,40 +31,36 @@
                 <h2 class="text-center">Interface Gérant</h2>
                 <div class="row text-center">
                     <div class="column4">
-                        <button class="button" onclick=window.location.href='Consult_Stocks.php'>Retour</button>
+                        <button class="button" onclick=window.location.href="Consult_Stocks.php">Retour</button>
                     </div>
                     <div class="column4">
-                        <button class="button" onclick=window.location.href='Ajout_ingredient.php'>Ajouter Ingrédient</button>
+                        <button class="button" onclick=window.location.href="Ajout_ingredient.php">Ajouter Ingrédient</button>
                     </div>
                     <div class="column4">
-                        <button class="button" onclick=window.location.href='index.php'>Ajout Fournisseur</button>
+                        <button class="button" onclick=window.location.href="Index.php">Ajout Fournisseur</button>
                     </div>
                     <div class="column4">
                         <button class="button">Mettre à jour Stocks</button>
                     </div>
                 </div>
             </section>
-            <div class="clear"></div>
-
-
             <br>
             <div class="container content-container row text-center">
-                <div class="column2">
+                <div class="column">
                     <select>
                         <option selected value="">--Ingrédient à mettre a jour--</option>
                         <option>Aliment 1 </option>
                         <option>Aliment 2 </option>
                     </select>
                 </div>
-                <div class="column2">
+                <div class="column">
+                    <label>Quantité théorique : </label>
                     <label>500</label>
                     <label>Grammes</label>
                 </div>
-            </div>
-            <div class="clear"></div>
-            <div class="container content-container row text-center">
-                <label class="column2">Quantité reçue :</label>
-                <div> <input type="number" value="200" class="noMarginPadding" style="width:55px">
+                <div class="column">
+                    <label>Quantité réelle : </label>
+                    <input class="petitInput" type="number" value="200" maxlength="4" style="width: 55px">
                     <label>Grammes</label>
                 </div>
             </div>
