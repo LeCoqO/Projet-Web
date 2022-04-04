@@ -36,31 +36,61 @@
             <div class="clear"><br><br><br></div>
             <div class="row text-center">
                 <div class="item">
-                    <img src="./img/Burger1.jpg">
+                    <img src="./images/Burger1.jpg">
                     <div class="item-infos">
                         <h3>Légendaire</h3>
                         <hr>
                         <p>1 steak + bacon + chedar</p>
+                        <p> Quantité :
+                            <select name="taskOption" required>
+                                <option valeur="" selected>--</option>
+                                <option valeur="1">1</option>
+                                <option valeur="2">2</option>
+                                <option valeur="3">3</option>
+                                <option valeur="4">4</option>
+                            </select>
+                        </p>
                         <p class="prix">4€00</p>
                     </div>
+                    <img src="./images/croix.png" class="imgpanier ">
                 </div>
                 <div class="item">
-                    <img src="./img/Burger1.jpg">
+                    <img src="./images/Burger1.jpg">
                     <div class="item-infos">
                         <h3>Légendaire</h3>
                         <hr>
                         <p>1 steak + bacon + chedar</p>
+                        <p> Quantité :
+                            <select name="taskOption" required>
+                                <option valeur="" selected>--</option>
+                                <option valeur="1">1</option>
+                                <option valeur="2">2</option>
+                                <option valeur="3">3</option>
+                                <option valeur="4">4</option>
+                            </select>
+                        </p>
                         <p class="prix">4€00</p>
                     </div>
+                    <img src="./images/croix.png" class="imgpanier ">
                 </div>
                 <div class="item">
-                    <img src="./img/Burger1.jpg">
+                    <img src="./images/Burger1.jpg">
                     <div class="item-infos">
                         <h3>Légendaire</h3>
                         <hr>
                         <p>1 steak + bacon + chedar</p>
+                        <p> Quantité :
+                            <select name="taskOption" required>
+                                <option valeur="" selected>--</option>
+                                <option valeur="1">1</option>
+                                <option valeur="2">2</option>
+                                <option valeur="3">3</option>
+                                <option valeur="4">4</option>
+                            </select>
+                        </p>
                         <p class="prix">4€00</p>
                     </div>
+                    <img src="./images/croix.png" class="imgpanier ">
                 </div>
             </div>
             <h2>Information de livraison</h2>

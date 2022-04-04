@@ -34,21 +34,21 @@
     <div>
         <h2 class="text-center">Nos Incontournables: </h2>
         <section id="burger" class="burger ">
-
-            <div class="item">
-                <img src="./img/Burger1.jpg">
-                <div class="item-infos">
-                    <h3>Légendaire</h3>
-                    <hr>
-                    <p>1 steak + bacon + chedar</p>
-                    <p class="prix">4€00</p>
+            <h6 class="choixburger">
+                <div class="item">
+                    <img src="./images/Burger1.jpg">
+                    <div class="item-infos choixburger">
+                        <h3>Légendaire</h3>
+                        <hr>
+                        <p>1 steak + bacon + chedar</p>
+                        <p class="prix">4€00</p>
+                    </div>
+                    <img src="./images/panier.png" class="imgpanier choixburger" id="Burger Légendaire">
                 </div>
-                <img src="./images/panier.png" class="imgpanier ">
-
-            </div>
+            </h6>
 
             <div class="item">
-                <img src="./img/Burger1.jpg">
+                <img src="./images/Burger1.jpg">
                 <div class="item-infos">
                     <h3>Villageois</h3>
                     <hr>
@@ -59,7 +59,7 @@
             </div>
 
             <div class="item">
-                <img src="./img/Burger1.jpg">
+                <img src="./images/Burger1.jpg">
                 <div class="item-infos">
                     <h30>Basique</h30>
                     <hr>
@@ -72,38 +72,38 @@
         </section>
         <div class="clear"><br><br><br></div>
         <section>
-                <div class="item">
-                    <img src="./img/Burger1.jpg">
-                    <div class="item-infos">
-                        <h3>Légendaire</h3>
-                        <hr>
-                        <p>1 steak + bacon + chedar</p>
-                        <p class="prix">4€00</p>
-                    </div>
-                    <img src="./images/panier.png" class="imgpanier ">
+            <div class="item">
+                <img src="./images/Burger1.jpg">
+                <div class="item-infos">
+                    <h3>Légendaire</h3>
+                    <hr>
+                    <p>1 steak + bacon + chedar</p>
+                    <p class="prix">4€00</p>
                 </div>
-                <div class="item">
-                    <img src="./img/Burger1.jpg">
-                    <div class="item-infos">
-                        <h3>Légendaire</h3>
-                        <hr>
-                        <p>1 steak + bacon + chedar</p>
-                        <p class="prix">4€00</p>
-                    </div>
-                    <img src="./images/panier.png" class="imgpanier ">
+                <img src="./images/panier.png" class="imgpanier ">
+            </div>
+            <div class="item">
+                <img src="./images/Burger1.jpg">
+                <div class="item-infos">
+                    <h3>Légendaire</h3>
+                    <hr>
+                    <p>1 steak + bacon + chedar</p>
+                    <p class="prix">4€00</p>
                 </div>
-                <div class="item">
-                    <img src="./img/Burger1.jpg">
-                    <div class="item-infos">
-                        <h3>Légendaire</h3>
-                        <hr>
-                        <p>1 steak + bacon + chedar</p>
-                        <p class="prix">4€00</p>
-                    </div>
-                    <img src="./images/panier.png" class="imgpanier ">
+                <img src="./images/panier.png" class="imgpanier ">
+            </div>
+            <div class="item">
+                <img src="./images/Burger1.jpg">
+                <div class="item-infos">
+                    <h3>Légendaire</h3>
+                    <hr>
+                    <p>1 steak + bacon + chedar</p>
+                    <p class="prix">4€00</p>
                 </div>
+                <img src="./images/panier.png" class="imgpanier ">
+            </div>
 
-                <div class="clear"><br><br><br><br></div>
+            <div class="clear"><br><br><br><br></div>
         </section>
         <button onclick="genererMenuJSON()">Ajouter au panier</button>
         <button><a href="Page_Livraison.php">Livraison</a></button>
@@ -117,6 +117,7 @@
     <a href="#" class="espaceTxt">Privacy Policy</a>
     <p class="copyright">Hom'burger © 2022</p>
 </footer>
+
 <script>
     function showPanier() {
         var lePanier = document.getElementById("panier");
@@ -132,41 +133,6 @@
         }
     }
 
-    function formatCommande(commande) {
-        var strgCommande = "";
-        console.log(commande);
-        /*commande = [{ //debug
-            "size": "M",
-            "viandes": {
-                "viande1": "poulit",
-                "viande2": "",
-                "viande3": ""
-            },
-            "sauce": "algé",
-            "supplements": {
-                "supplement1": "fromage",
-                "supplement2": ""
-            },
-            "boisson": "eau"
-        }];*/
-        for (let i = 0; i < commande.length; i++) {
-            strgCommande += "<strong>MENU n°" + (i + 1) + "</strong>" +
-                "<br>Size: " + commande[i]["size"] + "<br>Viandes: ";
-            for (let j = 0; j < 2; j++) {
-                if (commande[i]["viandes"]["viande" + (j + 1)]) {
-                    strgCommande += commande[i]["viandes"]["viande" + (j + 1)];
-                }
-            };
-            strgCommande += "<br>Sauce: " + commande[i]["sauce"] + "<br>Supplements: ";
-            for (let h = 0; h < 1; h++) {
-                if (commande[i]["supplements"]["supplement" + (h + 1)]) {
-                    strgCommande += commande[i]["supplements"]["supplement" + (h + 1)];
-                }
-            };
-            strgCommande += "<br>Boisson: " + commande[i]["boisson"] + "<br><br>";
-        }
-        return strgCommande;
-    }
 
     function sidebar_open() {
         document.getElementById("mySidebar").style.display = "block";
@@ -174,6 +140,33 @@
 
     function sidebar_close() {
         document.getElementById("mySidebar").style.display = "none";
+    }
+
+    var menu = {
+        "burger": "",
+    };
+    var commande = [];
+
+    for (var i = 0; i < $("h6").length; i++) {
+        $("h6")[i].addEventListener('click', function(e)) {
+                if ((this.className).includes("choixburger")) {
+                    tabBurger = document.getElementsByClassName("choixburger");
+                    for (let i = 0; i < tabBurger.length; i++) {
+                        tabBurger[i].classList.remove("choixburger");
+                    }
+                    this.classList.add("choixburger");
+                }
+            }
+        }
+    
+
+    function genererMenuJSON() {
+        if (document.getElementsByClassName("choixburger")[0] console.log(menu); commande.push(menu); resetMenu();
+
+        }
+        else {
+            alert("Recette incomplette");
+        }
     }
 
 </script>
