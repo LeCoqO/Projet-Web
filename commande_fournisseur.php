@@ -41,22 +41,30 @@
                     </div>
                 </div>
             </section>
+            <br>
             <div class='clear'></div>
-            <div>
-                <select>
+            <div class="container content-container text-center">
+                <select class="column">
                     <option selected value="">--Ingrédient à commander--</option>
                     <option>Ingredient 1</option>
                     <option>Ingredient 2</option>
                 </select>
-                <input type="number" value="200">
-                <label>Grammes</label>
+                <div class="column">
+                    <input type="number" value="200" style="width: 55px">
+                </div>
+                <label class="column">Grammes</label>
             </div>
-            <div>
-                <label>Date de livraison souhaitée</label>
-                <input type="date">
-                <label for="frais">Prix Total HT</label>
-                <input type="number" value="200" disabled>
-                <label>€</label>
+            <div class="clear"></div>
+            <div class="container content-container text-center">
+                <div class="column2">
+                    <label>Date de livraison souhaitée</label>
+                    <input type="date">
+                </div>
+                <div class="column2">
+                    <label>Prix Total HT</label>
+                    <input type="number" value="200" style="width: 55px" disabled>
+                    <label>€</label>
+                </div>
             </div>
         </main>
     </div>

@@ -635,6 +635,10 @@ Couleur font: noir ou blanc*/
     padding: 0;
 }
 
+.petitInput{
+    width: 55px;
+}
+
 /* Fin IHM Gérant */
 
 /* IHM Panier */

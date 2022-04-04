@@ -40,29 +40,38 @@
             </section>
 
             <br>
-            <div class="text-center debug">
-                <div>
-                    <input type="text" value="Nom">
-                    <label>Nom</label>
-                    <select>
+            <div class="text-center">
+                <div class="container content-container">
+                    <div class="column2">
+                        <input id="nom" type="text" value="Nom">
+                        <label for="nom">Nom</label>
+                    </div>
+                    <select class="column2" style="width:300px">
                         <option selected value="">--Fournisseur--</option>
                         <option>Fournisseur A</option>
                         <option>Fournisseur B</option>
                     </select>
                 </div>
-                <div>
+                <div class="clear">
                     <input type="checkbox" id="frais">
                     <label for="frais">Produit frais</label>
                 </div>
-                <div>
-                    <label>Quantité min : </label>
-                    <input type="number" value="200">
-                    <select>
-                        <option selected value="">--Unite--</option>
-                        <option>Grammes</option>
-                        <option>Litres</option>
-                    </select>
-                    <label>€</label>
+                <div class="container content-container">
+                    <div class="column">
+                        <label>Quantité min : </label>
+                        <input type="number" value="200">
+                    </div>
+                    <div class="column">
+                        <select>
+                            <option selected value="">--Unite--</option>
+                            <option>Grammes</option>
+                            <option>Litres</option>
+                        </select>
+                    </div>
+                    <div class="column">
+                        <input type="number" value="200" style="width: 55px" disabled>
+                        <label>€</label>
+                    </div>
                 </div>
             </div>
         </main>

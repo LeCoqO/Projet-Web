@@ -31,13 +31,13 @@
                 <h2 class="text-center">Interface Gérant</h2>
                 <div class="row text-center">
                     <div class="column4">
-                        <button class="button" onclick=window.location.href='Consult_Stocks.php'>Retour</button>
+                        <button class="button" onclick=window.location.href="Consult_Stocks.php">Retour</button>
                     </div>
                     <div class="column4">
-                        <button class="button" onclick=window.location.href='Ajout_ingredient.php'>Ajouter Ingrédient</button>
+                        <button class="button" onclick=window.location.href="Ajout_ingredient.php">Ajouter Ingrédient</button>
                     </div>
                     <div class="column4">
-                        <button class="button" onclick=window.location.href='index.php'>Ajout Fournisseur</button>
+                        <button class="button" onclick=window.location.href="Index.php">Ajout Fournisseur</button>
                     </div>
                     <div class="column4">
                         <button class="button">Mettre à jour Stocks</button>
@@ -60,7 +60,7 @@
                 </div>
                 <div class="column">
                     <label>Quantité réelle : </label>
-                    <input type="number" value="200" maxlength="4">
+                    <input class="petitInput" type="number" value="200" maxlength="4" style="width: 55px">
                     <label>Grammes</label>
                 </div>
             </div>
