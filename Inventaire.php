@@ -46,17 +46,52 @@
             </section>
             <br>
             <div class="container content-container row text-center">
-                <div class="column">
-                    <select>
-                        <option selected value="">--Ingrédient à mettre a jour--</option>
-                        <option>Aliment 1 </option>
-                        <option>Aliment 2 </option>
-                    </select>
+                <div id=requete class="column">
+                    <script>
+                        $.ajax({
+                            url: 'ajax_Bdd.php', //toujours la même page qui est appelée
+                            type: 'POST',
+                            data: {
+                                fonction: 'selectListeIngredients', //fonction à executer
+                                base: 'physique',
+                                table: 'ingredient',
+                                selectCondition: '*'
+                            },
+                            success: function(data) {
+                                document.getElementById("requete").innerHTML = data;
+                            },
+                            error: function(dataSQL, statut) {
+                                alert("error sqlConnect.js : " + dataSQL.erreur);
+                            }
+                        });
+
+                    </script>
                 </div>
-                <div class="column">
-                    <label>Quantité théorique : </label>
-                    <label>500</label>
-                    <label>Grammes</label>
+                <div>
+                <div id="qte" class="column">
+                    Quantité théorique
+                    <script>
+                        function AppelQteIngredient($id) {
+                            $.ajax({
+                                url: 'ajax_Bdd.php', //toujours la même page qui est appelée
+                                type: 'POST',
+                                data: {
+                                    fonction: 'selectQteIngredient', //fonction à executer
+                                    base: 'physique',
+                                    table: 'ingredient',
+                                    selectCondition: '*',
+                                    id: '2'
+                                },
+                                success: function(data) {
+                                    document.getElementById("qte").innerHTML = data;
+                                },
+                                error: function(dataSQL, statut) {
+                                    alert("error sqlConnect.js : " + dataSQL.erreur);
+                                }
+                            });
+                        }
+                    </script>
+                    </div>
                 </div>
                 <div class="column">
                     <label>Quantité réelle : </label>
