@@ -40,7 +40,6 @@ function updateBdd($args)
     $rq.=" WHERE $condition";*/
 
 
-
 function selectBdd($args)
 {
     $table = $args['table'];
@@ -167,124 +166,6 @@ function selectProduitBdd($args)
     echo '</div>';
     echo '</FONT>';
 }
-
-
-
-function selectStocksBdd($args)
-{
-    $table = $args['table'];
-    $base = $args['base'];
-    $condition = $args['selectCondition'];
-    //require_once '../connexion.php';
-    try {
-        $connex = new PDO(
-            'mysql:host=' . 'localhost' .
-                ';dbname=' . $base,
-            'root',
-            '',
-            array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION)
-        );
-    } catch (PDOException $e) {
-        echo 'Erreur : ' . $e->getMessage() . '<br />';
-        echo 'N° : ' . $e->getCode();
-        die();
-    }
-    $connex->setAttribute(PDO::ATTR_AUTOCOMMIT, 0);
-    $connex->beginTransaction(); //début
-    $rq = "SELECT $condition FROM $table";
-    $result = $connex->query($rq);
-    printf(
-    '<table>
-        <tr>
-            <td>
-                Aliment
-            </td>
-            <td>
-                Quantité
-            </td>
-        </tr>'
-    );
-    foreach ($result as $element) {
-        printf('<tr>
-                    <td> '.
-                        $element['NomIngred'] .'
-                    </td>
-                    <td> '.
-                        $element['StockReel'].' '.$element['Unite'] .'
-                    </td>
-                </td>');
-    }
-    printf(
-    '</table>'
-    );
-}
-
-function selectListeIngredients($args)
-{
-    $table = $args['table'];
-    $base = $args['base'];
-    $condition = $args['selectCondition'];
-    //require_once '../connexion.php';
-    try {
-        $connex = new PDO(
-            'mysql:host=' . 'localhost' .
-                ';dbname=' . $base,
-            'root',
-            '',
-            array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION)
-        );
-    } catch (PDOException $e) {
-        echo 'Erreur : ' . $e->getMessage() . '<br />';
-        echo 'N° : ' . $e->getCode();
-        die();
-    }
-    $connex->setAttribute(PDO::ATTR_AUTOCOMMIT, 0);
-    $connex->beginTransaction(); //début
-    $rq = "SELECT $condition FROM $table";
-    $result = $connex->query($rq);
-    printf('
-        <select id="ingredient" onChange="AppelQteIngredient(<script type="text/javascript"> document.getElementById("ingredient").value</script>)">
-            <option selected value="">--Ingrédient à mettre a jour--</option>'
-    );
-    foreach ($result as $element) {
-        printf('<option value="'.$element['IdIngred'].'">'
-        .$element['NomIngred'].'
-        </option>');
-    }
-    printf(
-        '</select>'
-    );
-}
-
-function selectQteIngredient($args)
-{
-    $table = $args['table'];
-    $base = $args['base'];
-    $condition = $args['selectCondition'];
-    $id = $args['id'];
-    //require_once '../connexion.php';
-    try {
-        $connex = new PDO(
-            'mysql:host=' . 'localhost' .
-                ';dbname=' . $base,
-            'root',
-            '',
-            array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION)
-        );
-    } catch (PDOException $e) {
-        echo 'Erreur : ' . $e->getMessage() . '<br />';
-        echo 'N° : ' . $e->getCode();
-        die();
-    }
-    $connex->setAttribute(PDO::ATTR_AUTOCOMMIT, 0);
-    $connex->beginTransaction(); //début
-    $rq = "SELECT $condition FROM $table WHERE IdIngred = $id";
-    $result = $connex->query($rq);
-    foreach ($result as $element) {
-        printf('<label>'.$element['StockReel'].'</label><label>'.$element['Unite'].'</label>');
-    }
-}
-
 
 function getIngrBdd($args)
 {
@@ -420,46 +301,82 @@ function selectCommande($args)
     $rq = 'SELECT * FROM `produit` WHERE IdProd IN( 
                 SELECT IdProd FROM `detail` WHERE Num_OF IN( 
                     SELECT Num_OF FROM `com_det` WHERE NumCom in(
-                        SELECT NumCom FROM `Commande` '.$condition.')))';
+                        SELECT NumCom FROM `Commande` ' . $condition . ')))';
     $result = $connex->query($rq);
 
     foreach ($result as $element) {
         echo '<article class="articleCommande"><h3 class="h3Cuisine">Commande N°1:</h3>';
         echo '<div class="nbBurger">';
-          echo '<p>Conteint 3 burgers</p></div>
+        echo '<p>Conteint 3 burgers</p></div>
           <div class="heurePrepa">';
-        
-          echo '<p>Doit être prête pour : ';//.$result2['HeureDispo'].'</p>';
+
+        echo '<p>Doit être prête pour : '; //.$result2['HeureDispo'].'</p>';
         echo '</div>
         <br /><br /><br /><br />
         <div class="burgerAFaire">
           <div class="apercuCmd">
-            <img src="'.$element['Image'].'" class="imgCuisine" />';
-            echo '<p>: 2 burgers</p>
+            <img src="' . $element['Image'] . '" class="imgCuisine" />';
+        echo '<p>: 2 burgers</p>
           </div>
           <div class="listeCuisine">
             <input
               type="button"
               value="Liste des ingrédients"
-              onclick="OnOff();"
+              onclick="OnOff(' . $element['IdProd'] . ');"
               class="btnListeIngredients"
             />';
-            echo '<span id="texte" style="visibility: hidden" class="listePrepa">';
-            if ($element['IngBase1']) echo $element['IngBase1'].'<br />';
-            if ($element['IngBase2']) echo $element['IngBase2'].'<br />';
-            if ($element['IngBase3']) echo $element['IngBase3'].'<br />';
-            if ($element['IngBase4']) echo $element['IngBase4'].'<br />';
-            if ($element['IngOpt1']) echo $element['IngOpt1'].'<br />';
-            if ($element['IngOpt2']) echo $element['IngOpt2'].'<br />';
-            if ($element['IngOpt3']) echo $element['IngOpt3'].'<br />';
-            if ($element['IngOpt4']) echo $element['IngOpt4'].'<br />';
-            echo '</span>
+        echo '<span id="' . $element['IdProd'] . '" style="visibility: hidden" class="listePrepa">';
+        if ($element['IngBase1']) echo $element['IngBase1'] . '<br />';
+        if ($element['IngBase2']) echo $element['IngBase2'] . '<br />';
+        if ($element['IngBase3']) echo $element['IngBase3'] . '<br />';
+        if ($element['IngBase4']) echo $element['IngBase4'] . '<br />';
+        if ($element['IngOpt1']) echo $element['IngOpt1'] . '<br />';
+        if ($element['IngOpt2']) echo $element['IngOpt2'] . '<br />';
+        if ($element['IngOpt3']) echo $element['IngOpt3'] . '<br />';
+        if ($element['IngOpt4']) echo $element['IngOpt4'] . '<br />';
+        echo '</span>
           </div>
         </div>';
-echo'<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+        echo '<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
         <input type="button" value="A préparer" class="aPrepa" />
         <input type="button" value="Commande terminée" class="cmdFinie" />
       </article>';
     }
- 
+}
+
+
+function newFournisseur($args)
+{
+    $base = $args['base'];
+    $nom = $args["nom"];
+    $adr = $args["adr"];
+    $post = $args["post"];
+    $ville = $args["ville"];
+    $tel = $args["tel"];
+    $dateToday = null;
+    //require_once '../connexion.php';
+    try {
+        $connex = new PDO(
+            'mysql:host=' . 'localhost' .
+                ';dbname=' . $base,
+            'root',
+            'cqfd14sAfe',
+            array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION)
+        );
+    } catch (PDOException $e) {
+        echo 'Erreur : ' . $e->getMessage() . '<br />';
+        echo 'N° : ' . $e->getCode();
+        die();
+    }
+    try {
+        $connex->setAttribute(PDO::ATTR_AUTOCOMMIT, 0);
+        $connex->beginTransaction(); //début
+        $rq = "INSERT INTO `fournisseur` (NomFourn, Adresse, CodePostal, Ville, Tel, DateArchiv) VALUE ('" . $nom . "', '" . $adr . "', '" . $post . "', '" . $ville . "', '" . $tel . "', '2022-04-04')";
+        $result = $connex->query($rq);
+        $connex->commit();
+    } catch (PDOException $e) {
+        echo 'Erreur : ' . $e->getMessage() . '<br />';
+        echo 'N° : ' . $e->getCode();
+        die();
+    }
 }

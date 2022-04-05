@@ -1,3 +1,7 @@
+
+
+
+
 var latDestination;
 var lngDestination;
 var lat;
@@ -15,6 +19,14 @@ function go() {
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
 }
 
+var conditionSelect;
+if (localStorage.getItem('cmd_livree') == 'true') {
+    conditionSelect = "";
+} else {
+    conditionSelect = "WHERE EtatLivraison NOT LIKE 'T'";
+}
+//console.log(conditionSelect);
+
 $.ajax({
     url: 'ajax_Bdd.php', //toujours la même page qui est appelée
     type: 'POST',
@@ -22,9 +34,9 @@ $.ajax({
         fonction: 'selectBdd', //fonction à executer
         base: 'physique',
         table: 'commande',
-        selectCondition: '*'        
-                //add a where EtatCde LIKE 'fini' (cest l'etat de preparation  du cuisto)
-
+        selectCondition: '*',
+        whereValue: conditionSelect
+        //add a where EtatCde LIKE 'fini' (cest l'etat de preparation  du cuisto)
     },
     success: function (data) {
         //console.log("success");
@@ -37,6 +49,8 @@ $.ajax({
         alert("error sqlConnect.js : " + dataSQL.erreur);
     }
 });
+
+
 
 
 function convertAdressToLatLng(address) {
@@ -132,4 +146,58 @@ function setupAdresseCalulItineraire() {
         })
     );
 }
+
+//selectIdLivreur();
+if (!localStorage.getItem("livreurConnected")) {
+    localStorage.setItem("livreurConnected", 1);
+    // console.log("Id livreur", localStorage.getItem("livreurConnected"));
+}
+$.ajax({
+    url: 'ajax_Bdd.php', //toujours la même page qui est appelée
+    type: 'POST',
+    data: {
+        fonction: 'selectLivreur', //fonction à executer
+        base: 'physique',
+        table: 'livreur',
+        selectCondition: '*',
+        IdLivreur: localStorage.getItem("livreurConnected")
+
+    },
+    success: function (data) {
+        //console.log("success");
+        //console.log(data);
+        document.getElementById("select_Livreur").innerHTML = data;
+        //setupTab(['ncom', 'ncli', 'date', 'iti', 'prix', 'statut']);
+
+    },
+    error: function (dataSQL, statut) {
+        alert("error sqlConnect.js : " + dataSQL.erreur);
+    }
+});
+
+
+
+
+//conditionAffichageLivree();
+
+function conditionAffichageLivree() {
+    if (!localStorage.getItem("cmd_livree")) {
+        localStorage.setItem("cmd_livree", false);
+        // console.log("Id livreur", localStorage.getItem("cmd_livree"));
+    } else {
+        localStorage.setItem("livreurConnected", document.getElementById("cmd_livree").value);
+        // console.log("Id livreur connected", localStorage.getItem("livreurConnected"));
+    };
+
+
+    let conditionSelect;
+    console.log($('cmd_livree'));
+    if ($('cmd_livree').is(":checked")) {
+        conditionSelect = "";
+
+    } else {
+        conditionSelect = "WHERE EtatLivraison NOT LIKE 'T'";
+    }
+
+};
 

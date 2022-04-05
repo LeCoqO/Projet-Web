@@ -1,24 +1,95 @@
-$.ajax({
-    url: 'ajax_Bdd.php', //toujours la même page qui est appelée
-    type: 'POST',
-    data: {
-        fonction: 'selectProduitBdd', //fonction à executer
-        base: 'physique',
-        table: 'produit',
-        selectCondition: '*'
-        //add a where EtatCde LIKE 'fini' (cest l'etat de preparation  du cuisto)
+getrecetteFromBdd();
+function getrecetteFromBdd() {
+    $.ajax({
+        url: 'ajax_Bdd.php', //toujours la même page qui est appelée
+        type: 'POST',
+        data: {
+            fonction: 'selectProduitBdd', //fonction à executer
+            base: 'physique',
+            table: 'produit',
+            selectCondition: '*'
+            //add a where EtatCde LIKE 'fini' (cest l'etat de preparation  du cuisto)
 
-    },
-    success: function (data) {
-        //console.log("success");
-        //console.log(data);
-        document.getElementById("tableauProduit").innerHTML = data;
-        setupTab(['recette', 'nom', 'ingr', 'prix']);
-    },
-    error: function (dataSQL, statut) {
-        alert("error sqlConnect.js : " + dataSQL.erreur);
-    }
-});
+        },
+        success: function (data) {
+            //console.log("success");
+            //console.log(data);
+            document.getElementById("tableauProduit").innerHTML = data;
+            setupTab(['recette', 'nom', 'ingr', 'heure', 'prix']);
+        },
+        error: function (dataSQL, statut) {
+            alert("error sqlConnect.js : " + dataSQL.erreur);
+        }
+    });
+}
+
+function getIngrFromBdd() {
+    $.ajax({
+        url: 'ajax_Bdd.php', //toujours la même page qui est appelée
+        type: 'POST',
+        data: {
+            fonction: 'getIngrBdd', //fonction à executer
+            base: 'physique',
+            table: 'ingredient',
+            selectCondition: '*',
+            whereValue: 'WHERE NomIngred LIKE "Pain%"',
+            classOption: 'burger_pain',
+
+        },
+        success: function (data) {
+            //console.log(data);
+
+            document.getElementById("ingr_pain").innerHTML = data;
+        },
+        error: function (dataSQL, statut) {
+            alert("error sqlConnect.js : " + dataSQL.erreur);
+        }
+    });
+
+    $.ajax({
+        url: 'ajax_Bdd.php', //toujours la même page qui est appelée
+        type: 'POST',
+        data: {
+            fonction: 'getIngrBdd', //fonction à executer
+            base: 'physique',
+            table: 'ingredient',
+            selectCondition: '*',
+            whereValue: 'WHERE TypeDIngr LIKE "S"',
+            classOption: 'ingr_secondaire',
+        },
+        success: function (data) {
+            //console.log(data);
+
+            document.getElementById("ingr_second").innerHTML = data;
+        },
+        error: function (dataSQL, statut) {
+            alert("error sqlConnect.js : " + dataSQL.erreur);
+        }
+    });
+    $.ajax({
+        url: 'ajax_Bdd.php', //toujours la même page qui est appelée
+        type: 'POST',
+        data: {
+            fonction: 'getIngrBdd', //fonction à executer
+            base: 'physique',
+            table: 'ingredient',
+            selectCondition: '*',
+            whereValue: 'WHERE TypeDIngr LIKE "P" AND NomIngred NOT LIKE "Pain%"',
+            classOption: 'ingr_principaux',
+
+        },
+        success: function (data) {
+            //console.log(data);
+            document.getElementById("ingr_princ").innerHTML = data;
+            setupIngrListener();
+        },
+        error: function (dataSQL, statut) {
+            alert("error sqlConnect.js : " + dataSQL.erreur);
+        }
+    });
+}
+
+
 recette = {
     "nom": "",
     "taille": "",
@@ -42,40 +113,6 @@ recette = {
         "ingr_6": ""
     },
 };
-
-for (var i = 0; i < $("h3").length; i++) {
-    $("h3")[i].addEventListener('click', function (e) {
-        if ((this.className).includes("burger_pain")) { //click sur pain
-            tabburgerpain = document.getElementsByClassName("burger_pain");
-            for (let i = 0; i < tabburgerpain.length; i++) { //Parcours tous les pains
-                tabburgerpain[i].classList.remove("pain-selected"); //enleve pain_selected
-            }
-            this.classList.add("pain-selected"); //selectionne this
-        }
-        if (document.getElementsByClassName("pain-selected")[0]) { //si pain choisi
-            if ((this.className).includes("ingr_principaux")) { //click sur pain ingr principaux
-                tabIngrPrincipauxSelected = document.getElementsByClassName("ingr_principaux-selected");
-                if ((this.className).includes("ingr_principaux-selected")) {
-                    this.classList.remove("ingr_principaux-selected");
-                } else if (tabIngrPrincipauxSelected.length < 4) { //4 ingrédients principaux max
-                    this.classList.add("ingr_principaux-selected");
-                }
-            }
-            if ((this.className).includes("ingr_secondaire")) {
-                if (document.getElementsByClassName("ingr_principaux-selected")[0]) {
-                    if ((this.className).includes("ingr_secondaire")) {
-                        tabIngrSecondaireSelected = document.getElementsByClassName("ingr_secondaire-selected");
-                        if ((this.className).includes("ingr_secondaire-selected")) {
-                            this.classList.remove("ingr_secondaire-selected");
-                        } else if (tabIngrSecondaireSelected.length < 6) { //6 ingrédients secondaire max
-                            this.classList.add("ingr_secondaire-selected");
-                        }
-                    }
-                }
-            }
-        }
-    })
-}
 
 function genererRecetteJSON() {
     let tabPrincipaux = document.getElementsByClassName("ingr_principaux-selected");
@@ -161,14 +198,21 @@ function resetRecette() {
 function showPanier() {
     var lePanier = document.getElementById("panier");
     var panierContent = document.getElementById("content");
+    var panierOuvertContent = document.getElementById("contentOuv");
+    var panierFermeeContent = document.getElementById("contentFer");
+
     if ((lePanier.className).includes("panier_fermee")) {
         lePanier.classList.remove("panier_fermee");
         lePanier.classList.add("panier_ouvert");
-        panierContent.innerHTML = formatRecette(recette);
+        panierOuvertContent.style.display = "none";
+        panierFermeeContent.style.display = "block";
+
     } else {
         lePanier.classList.remove("panier_ouvert");
         lePanier.classList.add("panier_fermee");
-        panierContent.innerHTML = "<small>R<br>E<br>C<br>E<br>T<br>T<br>E</small>";
+        panierOuvertContent.style.display = "block";
+        panierFermeeContent.style.display = "none";
+        panierContent.innerHTML = "";
     }
 }
 
@@ -212,9 +256,95 @@ var previewPicture = function (e) {
 function creation_open() {
     document.getElementById("main").style.display = "none";
     document.getElementById("main2").style.display = "block";
+    getIngrFromBdd();
 
 }
 function liste_open() {
     document.getElementById("main").style.display = "block";
     document.getElementById("main2").style.display = "none";
+    getrecetteFromBdd()
+}
+
+
+function setupIngrListener() {
+    // console.log($("h3"));
+    for (var i = 0; i < $("h3").length; i++) {
+        $("h3")[i].addEventListener('click', function (e) {
+            //console.log(this);
+            if ((this.className).includes("burger_pain")) { //click sur pain
+                tabburgerpain = document.getElementsByClassName("burger_pain");
+                for (let i = 0; i < tabburgerpain.length; i++) { //Parcours tous les pains
+                    tabburgerpain[i].classList.remove("pain-selected"); //enleve pain_selected
+                }
+                this.classList.add("pain-selected"); //selectionne this
+            }
+            if (document.getElementsByClassName("pain-selected")[0]) { //si pain choisi
+                if ((this.className).includes("ingr_principaux")) { //click sur pain ingr principaux
+                    tabIngrPrincipauxSelected = document.getElementsByClassName("ingr_principaux-selected");
+                    if ((this.className).includes("ingr_principaux-selected")) {
+                        this.classList.remove("ingr_principaux-selected");
+                    } else if (tabIngrPrincipauxSelected.length < 4) { //4 ingrédients principaux max
+                        this.classList.add("ingr_principaux-selected");
+                    }
+                }
+                if ((this.className).includes("ingr_secondaire")) {
+                    if (document.getElementsByClassName("ingr_principaux-selected")[0]) {
+                        if ((this.className).includes("ingr_secondaire")) {
+                            tabIngrSecondaireSelected = document.getElementsByClassName("ingr_secondaire-selected");
+                            if ((this.className).includes("ingr_secondaire-selected")) {
+                                this.classList.remove("ingr_secondaire-selected");
+                            } else if (tabIngrSecondaireSelected.length < 6) { //6 ingrédients secondaire max
+                                this.classList.add("ingr_secondaire-selected");
+                            }
+                        }
+                    }
+                }
+            }
+        })
+    }
+
+}
+
+
+/*
+$.ajax({
+    url: 'ajax_Bdd.php', //toujours la même page qui est appelée
+    type: 'POST',
+    data: {
+        fonction: 'selectCommande', //fonction à executer
+        base: 'physique',
+        selectCondition: '*',
+    },
+    success: function (data) {
+        //console.log(data);
+        document.getElementById("test").innerHTML = data;
+    },
+    error: function (dataSQL, statut) {
+        alert("error sqlConnect.js : " + dataSQL.erreur);
+    }
+});*/
+
+function test() {
+    $.ajax({
+        url: 'ajax_Bdd.php', //toujours la même page qui est appelée
+        type: 'POST',
+        data: {
+            fonction: 'newFournisseur', //fonction à executer
+            base: 'physique',
+            table: 'fournisseur',
+            nom: "Diego",
+            adr: "adr",
+            post: "71100",
+            ville: "Chalon",
+            tel: "0771718751"
+        },
+        success: function (data) {
+            //console.log(data);
+            document.getElementById("test").innerHTML = data;
+
+        },
+        error: function (dataSQL, statut) {
+            alert("error sqlConnect.js : " + dataSQL.erreur);
+        }
+    });
 }

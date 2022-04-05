@@ -1,8 +1,3 @@
-
-
-
-
-
 //function qui a partir d'un tableau d'id d'entete de tableau 
 //offre la posibilité de trie par colonne
 function setupTab(tabEntete) {
@@ -68,6 +63,7 @@ function el(id) {
 
 function sidebar_open() {
     document.getElementById("mySidebar").style.display = "block";
+    
 }
 
 function sidebar_close() {
