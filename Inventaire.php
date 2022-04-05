@@ -68,29 +68,30 @@
                     </script>
                 </div>
                 <div>
-                <div id="qte" class="column">
-                    Quantité théorique
-                    <script>
-                        function AppelQteIngredient($id) {
-                            $.ajax({
-                                url: 'ajax_Bdd.php', //toujours la même page qui est appelée
-                                type: 'POST',
-                                data: {
-                                    fonction: 'selectQteIngredient', //fonction à executer
-                                    base: 'physique',
-                                    table: 'ingredient',
-                                    selectCondition: '*',
-                                    id: '2'
-                                },
-                                success: function(data) {
-                                    document.getElementById("qte").innerHTML = data;
-                                },
-                                error: function(dataSQL, statut) {
-                                    alert("error sqlConnect.js : " + dataSQL.erreur);
-                                }
-                            });
-                        }
-                    </script>
+                    <div id="qte" class="column">
+                        Quantité théorique
+                        <script>
+                            function AppelQteIngredient($id) {
+                                $.ajax({
+                                    url: 'ajax_Bdd.php', //toujours la même page qui est appelée
+                                    type: 'POST',
+                                    data: {
+                                        fonction: 'selectQteIngredient', //fonction à executer
+                                        base: 'physique',
+                                        table: 'ingredient',
+                                        selectCondition: '*',
+                                        id: '2'
+                                    },
+                                    success: function(data) {
+                                        document.getElementById("qte").innerHTML = data;
+                                    },
+                                    error: function(dataSQL, statut) {
+                                        alert("error sqlConnect.js : " + dataSQL.erreur);
+                                    }
+                                });
+                            }
+
+                        </script>
                     </div>
                 </div>
                 <div class="column">

@@ -1,5 +1,6 @@
-<!DOCTYPE html/>
-<html lang="fr"/>
+<!DOCTYPE html>
+<html lang="fr">
+
 <head>
     <meta charset="UTF-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
@@ -66,10 +67,10 @@
                                 alert("error sqlConnect.js : " + dataSQL.erreur);
                             }
                         });
-                        
+
                     </script>
                 </div>
-                <div id="qte" class="column2">
+                <div class="column2">
                     <script>
                         function AppelQteIngredient($id) {
                             $.ajax({
@@ -80,16 +81,15 @@
                                     base: 'physique',
                                     table: 'ingredient',
                                     selectCondition: '*',
-                                    id: '2'
+                                    id: '2',
                                 },
                                 success: function(data) {
-                                    document.getElementById("qte").innerHTML = data;
+                                    document.getElementById("requete").innerHTML = data;
                                 },
                                 error: function(dataSQL, statut) {
                                     alert("error sqlConnect.js : " + dataSQL.erreur);
                                 }
-                            });
-                        }
+                            });};
                     </script>
                 </div>
             </div>
