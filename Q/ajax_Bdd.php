@@ -243,8 +243,8 @@ function selectListeIngredients($args)
     $rq = "SELECT $condition FROM $table";
     $result = $connex->query($rq);
     printf('
-        <select id="ingredient" onChange="AppelQteIngredient(this.value)">
-            <option selected value="">--Ingrédient à mettre a jour--</option>'
+        <select id="ingredient" onChange="AppelApresIngredient(this.value)" style="width:300px">
+            <option selected value="">--Ingrédient--</option>'
     );
     foreach ($result as $element) {
         printf('<option value="'.$element['IdIngred'].'">'
@@ -280,8 +280,108 @@ function selectQteIngredient($args)
     $rq = "SELECT $condition FROM $table WHERE IdIngred = $id";
     $result = $connex->query($rq);
     foreach ($result as $element) {
-        printf('<label>'.$element['StockReel'].'</label><label>'.$element['Unite'].'</label>');
+        printf('<label>'.$element['StockReel'].'</label> <label>'.$element['Unite'].'</label>');
     }
+}
+
+function selectUnite($args)
+{
+    $table = $args['table'];
+    $base = $args['base'];
+    $condition = $args['selectCondition'];
+    $id = $args['id'];    //require_once '../connexion.php';
+    try {
+        $connex = new PDO(
+            'mysql:host=' . 'localhost' .
+                ';dbname=' . $base,
+            'root',
+            '',
+            array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION)
+        );
+    } catch (PDOException $e) {
+        echo 'Erreur : ' . $e->getMessage() . '<br />';
+        echo 'N° : ' . $e->getCode();
+        die();
+    }
+    $connex->setAttribute(PDO::ATTR_AUTOCOMMIT, 0);
+    $connex->beginTransaction(); //début
+    $rq = "SELECT $condition FROM $table WHERE IdIngred = $id";
+    $result = $connex->query($rq);
+    foreach ($result as $element) {
+        printf('<label>'.$element['Unite'].'</label>');
+    }
+}
+
+
+function selectListeUnites($args)
+{
+    $table = $args['table'];
+    $base = $args['base'];
+    $condition = $args['selectCondition'];
+    //require_once '../connexion.php';
+    try {
+        $connex = new PDO(
+            'mysql:host=' . 'localhost' .
+                ';dbname=' . $base,
+            'root',
+            '',
+            array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION)
+        );
+    } catch (PDOException $e) {
+        echo 'Erreur : ' . $e->getMessage() . '<br />';
+        echo 'N° : ' . $e->getCode();
+        die();
+    }
+    $connex->setAttribute(PDO::ATTR_AUTOCOMMIT, 0);
+    $connex->beginTransaction(); //début
+    $rq = "SELECT DISTINCT $condition FROM $table";
+    $result = $connex->query($rq);
+    printf('
+        <select id="unites">
+            <option selected value="">--Selection Unité--</option>'
+    );
+    foreach ($result as $element) {
+        printf('<option>'.$element['Unite'].'</option>');
+    }
+    printf(
+        '</select>'
+    );
+}
+
+
+function selectListeFournisseurs($args)
+{
+    $table = $args['table'];
+    $base = $args['base'];
+    $condition = $args['selectCondition'];
+    //require_once '../connexion.php';
+    try {
+        $connex = new PDO(
+            'mysql:host=' . 'localhost' .
+                ';dbname=' . $base,
+            'root',
+            '',
+            array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION)
+        );
+    } catch (PDOException $e) {
+        echo 'Erreur : ' . $e->getMessage() . '<br />';
+        echo 'N° : ' . $e->getCode();
+        die();
+    }
+    $connex->setAttribute(PDO::ATTR_AUTOCOMMIT, 0);
+    $connex->beginTransaction(); //début
+    $rq = "SELECT DISTINCT $condition FROM $table";
+    $result = $connex->query($rq);
+    printf('
+        <select id="unites">
+            <option selected value="">--Selection Fournisseur--</option>'
+    );
+    foreach ($result as $element) {
+        printf('<option>'.$element['NomFourn'].'</option>');
+    }
+    printf(
+        '</select>'
+    );
 }
 
 

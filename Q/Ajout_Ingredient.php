@@ -46,11 +46,26 @@
                         <input id="nom" type="text" value="Nom">
                         <label for="nom">Nom</label>
                     </div>
-                    <select class="column2" style="width:300px">
-                        <option selected value="">--Fournisseur--</option>
-                        <option>Fournisseur A</option>
-                        <option>Fournisseur B</option>
-                    </select>
+                    <div id=choixFournisseurs class="column2" style="width:300px">
+                        <script>
+                            $.ajax({
+                                url: 'ajax_Bdd.php', //toujours la même page qui est appelée
+                                type: 'POST',
+                                data: {
+                                    fonction: 'selectListeFournisseurs', //fonction à executer
+                                    base: 'physique',
+                                    table: 'fournisseur',
+                                    selectCondition: '*'
+                                },
+                                success: function(data) {
+                                    document.getElementById("choixFournisseurs").innerHTML = data;
+                                },
+                                error: function(dataSQL, statut) {
+                                    alert("error sqlConnect.js : " + dataSQL.erreur);
+                                }
+                            });
+                        </script>
+                    </div>
                 </div>
                 <div class="clear">
                     <input type="checkbox" id="frais">
@@ -61,12 +76,26 @@
                         <label>Quantité min : </label>
                         <input type="number" value="200">
                     </div>
-                    <div class="column">
-                        <select>
-                            <option selected value="">--Unite--</option>
-                            <option>Grammes</option>
-                            <option>Litres</option>
-                        </select>
+                    <div id=choixUnites class="column">
+                        <script>
+                            $.ajax({
+                                url: 'ajax_Bdd.php', //toujours la même page qui est appelée
+                                type: 'POST',
+                                data: {
+                                    fonction: 'selectListeUnites', //fonction à executer
+                                    base: 'physique',
+                                    table: 'ingredient',
+                                    selectCondition: 'Unite'
+                                },
+                                success: function(data) {
+                                    document.getElementById("choixUnites").innerHTML = data;
+                                },
+                                error: function(dataSQL, statut) {
+                                    alert("error sqlConnect.js : " + dataSQL.erreur);
+                                }
+                            });
+
+                        </script>
                     </div>
                     <div class="column">
                         <input type="number" value="200" style="width: 55px" disabled>

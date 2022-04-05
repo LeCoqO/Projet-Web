@@ -44,17 +44,58 @@
             <br>
             <div class='clear'></div>
             <div class="container content-container text-center">
-                <select class="column">
-                    <option selected value="">--Ingrédient à commander--</option>
-                    <option>Ingredient 1</option>
-                    <option>Ingredient 2</option>
-                </select>
-                <div class="column">
-                    <input type="number" value="200" style="width: 55px">
+                <div id=choixIngredients class="column2">
+                    <script>
+                        $.ajax({
+                            url: 'ajax_Bdd.php', //toujours la même page qui est appelée
+                            type: 'POST',
+                            data: {
+                                fonction: 'selectListeIngredients', //fonction à executer
+                                base: 'physique',
+                                table: 'ingredient',
+                                selectCondition: '*'
+                            },
+                            success: function(data) {
+                                document.getElementById("choixIngredients").innerHTML = data;
+                            },
+                            error: function(dataSQL, statut) {
+                                alert("error sqlConnect.js : " + dataSQL.erreur);
+                            }
+                        });
+
+                    </script>
                 </div>
-                <label class="column">Grammes</label>
+                <div class="column2">
+                    <input type="number" value="200" style="width: 55px">
+                    <div id="unite">
+                        Unités
+                        <script>
+                            function AppelApresIngredient($id) {
+                                $.ajax({
+                                    url: 'ajax_Bdd.php', //toujours la même page qui est appelée
+                                    type: 'POST',
+                                    data: {
+                                        fonction: 'SelectUnite', //fonction à executer
+                                        base: 'physique',
+                                        table: 'ingredient',
+                                        selectCondition: '*',
+                                        id: $id,
+                                    },
+                                    success: function(data) {
+                                        document.getElementById("unite").innerHTML = data;
+                                    },
+                                    error: function(dataSQL, statut) {
+                                        alert("error sqlConnect.js : " + dataSQL.erreur);
+                                    }
+                                });
+                            };
+
+                        </script>
+                    </div>
+                </div>
             </div>
             <div class="clear"></div>
+
             <div class="container content-container text-center">
                 <div class="column2">
                     <label>Date de livraison souhaitée</label>

@@ -72,7 +72,7 @@
                 </div>
                 <div id="qte" class="column2">
                     <script>
-                        function AppelQteIngredient($id) {
+                        function AppelApresIngredient($id) {
                             $.ajax({
                                 url: 'ajax_Bdd.php', //toujours la même page qui est appelée
                                 type: 'POST',
