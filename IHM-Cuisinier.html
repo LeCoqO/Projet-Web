@@ -39,6 +39,7 @@
         href="https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap"
         rel="stylesheet"
       />
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     </header>
     <script>
       function sidebar_open() {
@@ -48,75 +49,39 @@
       function sidebar_close() {
         document.getElementById("mySidebar").style.display = "none";
       }
-      function OnOff() {
-        if (document.getElementById("texte").style.visibility == "visible")
-          document.getElementById("texte").style.visibility = "hidden";
-        else document.getElementById("texte").style.visibility = "visible";
-      }
+      function OnOff(id) {
+        if (document.getElementById(id).style.visibility == "visible")
+          document.getElementById(id).style.visibility = "hidden"; 
+        else document.getElementById(id).style.visibility = "visible";
+        }
+      
+      
+    </script>
+    <script>
+    $.ajax({
+      url: "ajax_Bdd.php", //toujours la même page qui est appelée
+      type: "POST",
+      data: {
+        fonction: "selectCommande", //fonction à executer
+        base: "physique",
+        selectCondition: "*",
+      },
+      success: function (data) {
+        //console.log(data);
+        document.getElementById("divCommande").innerHTML = data;
+      },
+      error: function (dataSQL, statut) {
+        alert(dataSQL,statut);
+      },
+    });
     </script>
   </head>
 
   <body id="acceuilCuisinier">
     <section id="sectionCuisine">
-      <article class="articleCommande">
-        <h3 class="h3Cuisine">Commande N°1 :</h3>
-        <div class="nbBurger">
-          <p>Conteint 3 burgers</p>
-        </div>
-        <div class="heurePrepa">
-          <p>Doit être prête pour : 19H</p>
-        </div>
-        <br /><br /><br /><br />
-        <div class="burgerAFaire">
-          <div class="apercuCmd">
-            <img src="Image/chinoisBurger.jpg" class="imgCuisine" />
-            <p>: 2 bugers</p>
-          </div>
-          <div class="listeCuisine">
-            <input
-              type="button"
-              value="Liste des ingrédients"
-              onclick="OnOff();"
-              class="btnListeIngredients"
-            />
-            <span id="texte" style="visibility: hidden" class="listePrepa">
-              <br />Pain : 100g<br />
-              Sauce burger<br />
-              Tomate : 2 tranches<br />
-              Salade : 2 feuilles<br />
-              Steak : 100g<br />
-              Cheddar : 1 tranche
-            </span>
-          </div>
-        </div>
+      <div id="divCommande">
 
-        <div class="burgerAFaire">
-          <div class="apercuCmd">
-            <img src="Image/burger1.jpg" class="imgCuisine" />
-            <p>: 1 buger</p>
-          </div>
-          <div class="listeCuisine">
-            <input
-              type="button"
-              value="Liste des ingrédients"
-              onclick="OnOff();"
-              class="btnListeIngredients"
-            />
-            <span id="texte" style="visibility: hidden" class="listePrepa">
-              <br />Pain : 100g<br />
-              Sauce burger<br />
-              Tomate : 2 tranches<br />
-              Salade : 2 feuilles<br />
-              Steak : 100g<br />
-              Cheddar : 1 tranche
-            </span>
-          </div>
-        </div>
-        <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-
-        <input type="button" value="A préparer" class="aPrepa" />
-
-        <input type="button" value="Commande terminée" class="cmdFinie" />
+      </div>
       </article>
     </section>
   </body>
