@@ -90,7 +90,6 @@
                                     alert("error sqlConnect.js : " + dataSQL.erreur);
                                 }
                             });
-
                     </script>
                 </div>
             </div>
