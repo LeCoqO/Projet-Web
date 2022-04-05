@@ -380,3 +380,70 @@ function newFournisseur($args)
         die();
     }
 }
+
+
+function selectQteIngredient($args)
+{
+    $table = $args['table'];
+    $base = $args['base'];
+    $condition = $args['selectCondition'];
+    $id = $args['id'];
+    //require_once '../connexion.php';
+    try {
+        $connex = new PDO(
+            'mysql:host=' . 'localhost' .
+                ';dbname=' . $base,
+            'root',
+            '',
+            array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION)
+        );
+    } catch (PDOException $e) {
+        echo 'Erreur : ' . $e->getMessage() . '<br />';
+        echo 'N° : ' . $e->getCode();
+        die();
+    }
+    $connex->setAttribute(PDO::ATTR_AUTOCOMMIT, 0);
+    $connex->beginTransaction(); //début
+    $rq = "SELECT $condition FROM $table WHERE IdIngred = $id";
+    $result = $connex->query($rq);
+    foreach ($result as $element) {
+        printf('<label>'.$element['StockReel'].'</label><label>'.$element['Unite'].'</label>');
+    }
+}
+
+function selectListeIngredients($args)
+{
+    $table = $args['table'];
+    $base = $args['base'];
+    $condition = $args['selectCondition'];
+    //require_once '../connexion.php';
+    try {
+        $connex = new PDO(
+            'mysql:host=' . 'localhost' .
+                ';dbname=' . $base,
+            'root',
+            '',
+            array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION)
+        );
+    } catch (PDOException $e) {
+        echo 'Erreur : ' . $e->getMessage() . '<br />';
+        echo 'N° : ' . $e->getCode();
+        die();
+    }
+    $connex->setAttribute(PDO::ATTR_AUTOCOMMIT, 0);
+    $connex->beginTransaction(); //début
+    $rq = "SELECT $condition FROM $table";
+    $result = $connex->query($rq);
+    printf('
+        <select id="ingredient" onChange="AppelQteIngredient(<script type="text/javascript"> document.getElementById("ingredient").value</script>)">
+            <option selected value="">--Ingrédient à mettre a jour--</option>'
+    );
+    foreach ($result as $element) {
+        printf('<option value="'.$element['IdIngred'].'">'
+        .$element['NomIngred'].'
+        </option>');
+    }
+    printf(
+        '</select>'
+    );
+}
