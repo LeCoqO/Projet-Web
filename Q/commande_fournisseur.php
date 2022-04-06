@@ -72,7 +72,7 @@
                         <script>
                             function AppelApresIngredient($id) {
                                 $.ajax({
-                                    url: 'ajax_Bdd.php', //toujours la même page qui est appelée
+                                    url: 'STOCK_REQUETTE.php', //toujours la même page qui est appelée
                                     type: 'POST',
                                     data: {
                                         fonction: 'SelectUnite', //fonction à executer

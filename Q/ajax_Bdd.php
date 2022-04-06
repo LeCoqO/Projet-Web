@@ -168,9 +168,9 @@ function selectProduitBdd($args)
     echo '</FONT>';
 }
 
+//DEBUT QUENTIN
 
-
-function selectStocksBdd($args)
+function selectStocksBdd($args) //TESTTT
 {
     $table = $args['table'];
     $base = $args['base'];
@@ -193,30 +193,11 @@ function selectStocksBdd($args)
     $connex->beginTransaction(); //début
     $rq = "SELECT $condition FROM $table";
     $result = $connex->query($rq);
-    printf(
-    '<table>
-        <tr>
-            <td>
-                Aliment
-            </td>
-            <td>
-                Quantité
-            </td>
-        </tr>'
-    );
-    foreach ($result as $element) {
-        printf('<tr>
-                    <td> '.
-                        $element['NomIngred'] .'
-                    </td>
-                    <td> '.
-                        $element['StockReel'].' '.$element['Unite'] .'
-                    </td>
-                </td>');
-    }
-    printf(
-    '</table>'
-    );
+    $test = $result->fetchAll(PDO::FETCH_ASSOC);
+    
+    var_dump($test);
+    
+    echo json_encode($test);
 }
 
 function selectListeIngredients($args)

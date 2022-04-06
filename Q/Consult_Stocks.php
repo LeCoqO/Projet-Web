@@ -8,6 +8,21 @@
     <link rel="stylesheet" href="style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>BulgarKing</title>
+
+    <style>
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+
+        th,
+        td {
+            padding: 10px 20px;
+            border: 1px solid #000;
+        }
+
+    </style>
+
 </head>
 <header>
     <div class="sidebar" id="mySidebar">
@@ -45,25 +60,55 @@
                 </div>
             </section>
             <div class="clear"></div>
-
-            <br>
             <div id="tableauProduit">
-                <script>
+                <script text/javascript>
                     $.ajax({
-                        url: 'ajax_Bdd.php', //toujours la même page qui est appelée
+                        url: 'STOCK_REQUETE.php', //toujours la même page qui est appelée
                         type: 'POST',
                         data: {
-                            fonction: 'selectStocksBdd', //fonction à executer
-                            base: 'physique',
-                            table: 'ingredient',
-                            selectCondition: '*'
-                            //add a where EtatCde LIKE 'fini' (cest l'etat de preparation  du cuisto)
-
+                            fonction: 'select', //fonction à executer
+                            requete: 'SELECT NomIngred,StockReel,Unite FROM ingredient',
                         },
                         success: function(data) {
-                            //console.log("success");
-                            //console.log(data);
-                            document.getElementById("tableauProduit").innerHTML = data;
+
+                            console.log(data);
+
+                            let resultats = JSON.parse(data);
+
+                            let table = document.createElement('table');
+                            let thead = document.createElement('thead');
+                            let tbody = document.createElement('tbody');
+
+                            table.appendChild(thead);
+                            table.appendChild(tbody);
+
+                            document.getElementById('tableauProduit').appendChild(table);
+
+                            let ligne_0 = document.createElement('tr');
+                            let caseTop_1 = document.createElement('th');
+                            caseTop_1.innerHTML = "Article";
+                            let caseTop_2 = document.createElement('th');
+                            caseTop_2.innerHTML = "Quantité";
+
+                            ligne_0.appendChild(caseTop_1);
+                            ligne_0.appendChild(caseTop_2);
+                            thead.appendChild(ligne_0);
+
+                            for (i = 0; i < resultats.length; i++) {
+                                var randomLigne = document.createElement('tr');
+                                randomLigne.id = 'ligne' + (i + 1);
+                                let caseRandom1 = document.createElement('th');
+                                caseRandom1.innerHTML = resultats[i]['NomIngred'];
+                                let caseRandom2 = document.createElement('th');
+                                caseRandom2.innerHTML = resultats[i]['StockReel'] + ' ' + resultats[i]['Unite'];
+
+                                tbody.appendChild(randomLigne);
+                                document.getElementById('ligne' + (i + 1)).appendChild(caseRandom1);
+                                document.getElementById('ligne' + (i + 1)).appendChild(caseRandom2);
+
+
+                            };
+
                         },
                         error: function(dataSQL, statut) {
                             alert("error sqlConnect.js : " + dataSQL.erreur);
