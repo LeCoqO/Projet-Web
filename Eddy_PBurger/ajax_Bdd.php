@@ -4,6 +4,7 @@ $fonction = $_POST['fonction'];
 unset($_POST['fonction']);
 $fonction($_POST);
 
+
 function selectProduit2Bdd($args)
 {
     $table = $args['table'];
@@ -29,16 +30,15 @@ function selectProduit2Bdd($args)
     $rq = "SELECT $condition FROM $table " . $whereValue;
     $result = $connex->query($rq);
      foreach ($result as $element) {
-    echo '<div class="item">
+    echo '<div id="'.$element['IdProd'].'" class="item choixburger" onclick = "RecupPanier(this)">
                 <img src="'.$element['Image'] .'">'.
                 '<div class="item-infos">'.
                     '<h3>'.$element['NomProd'] .'</h3>'.
                     '<hr>
                     <p>';
-                for ($j = 1; $j < intval($element['NbIngBase']) + 1; $j++) {
+                for ($j = 1; $j < intval($element['NbIngBase']) + 1; $j++) {    
                     printf($element['IngBase' . $j] . ", ");
                 }
-         
          echo'</p>
                 <p class="prix">'.$element['PrixUHT'].'</p>
                 </div>
@@ -46,6 +46,8 @@ function selectProduit2Bdd($args)
             </div>';
      }
 }
+
+
 function updateBdd($args)
 {
     $table = $args['table'];
