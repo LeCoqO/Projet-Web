@@ -14,8 +14,7 @@ function select($args){
         echo 'N° : ' . $e->getCode();
         die();
     }
-    $statement = $pdo->prepare($requete);
-    $statement->execute();
+    $statement = $pdo->query($requete);;
     $results = $statement->fetchAll(PDO::FETCH_ASSOC);
     $json = json_encode($results);
     echo $json;

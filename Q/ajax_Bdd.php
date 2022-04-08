@@ -170,36 +170,6 @@ function selectProduitBdd($args)
 
 //DEBUT QUENTIN
 
-function selectStocksBdd($args) //TESTTT
-{
-    $table = $args['table'];
-    $base = $args['base'];
-    $condition = $args['selectCondition'];
-    //require_once '../connexion.php';
-    try {
-        $connex = new PDO(
-            'mysql:host=' . 'localhost' .
-                ';dbname=' . $base,
-            'root',
-            '',
-            array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION)
-        );
-    } catch (PDOException $e) {
-        echo 'Erreur : ' . $e->getMessage() . '<br />';
-        echo 'N° : ' . $e->getCode();
-        die();
-    }
-    $connex->setAttribute(PDO::ATTR_AUTOCOMMIT, 0);
-    $connex->beginTransaction(); //début
-    $rq = "SELECT $condition FROM $table";
-    $result = $connex->query($rq);
-    $test = $result->fetchAll(PDO::FETCH_ASSOC);
-    
-    var_dump($test);
-    
-    echo json_encode($test);
-}
-
 function selectListeIngredients($args)
 {
     $table = $args['table'];

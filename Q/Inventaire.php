@@ -47,58 +47,89 @@
             <br>
             <div class="container content-container row text-center">
                 <div id=requete class="column">
-                    <script>
-                        $.ajax({
-                            url: 'ajax_Bdd.php', //toujours la même page qui est appelée
-                            type: 'POST',
-                            data: {
-                                fonction: 'selectListeIngredients', //fonction à executer
-                                base: 'physique',
-                                table: 'ingredient',
-                                selectCondition: '*'
-                            },
-                            success: function(data) {
-                                document.getElementById("requete").innerHTML = data;
-                            },
-                            error: function(dataSQL, statut) {
-                                alert("error sqlConnect.js : " + dataSQL.erreur);
-                            }
-                        });
 
-                    </script>
                 </div>
                 <div class="column">
-                    <label>Quantité théorique : </label>
                     <div id="qte" class="">
-                        <script>
-                            function AppelQteIngredient($id) {
-                                $.ajax({
-                                    url: 'ajax_Bdd.php', //toujours la même page qui est appelée
-                                    type: 'POST',
-                                    data: {
-                                        fonction: 'selectQteIngredient', //fonction à executer
-                                        base: 'physique',
-                                        table: 'ingredient',
-                                        selectCondition: '*',
-                                        id: $id,
-                                    },
-                                    success: function(data) {
-                                        document.getElementById("qte").innerHTML = data;
-                                    },
-                                    error: function(dataSQL, statut) {
-                                        alert("error sqlConnect.js : " + dataSQL.erreur);
-                                    }
-                                });
-                            };
-                        </script>
+                        <label>Quantité théorique : </label>
                     </div>
                 </div>
                 <div class="column">
                     <label>Quantité réelle : </label>
-                    <input class="petitInput" type="number" value="200" maxlength="4" style="width: 55px">
-                    <label>Grammes</label>
+                    <input id='qteReelle' class="petitInput" type="number" value="200" maxlength="4" style="width: 55px">
+                    <label id='unite2'>Grammes</label>
                 </div>
             </div>
+            <script>
+                var laFonction = $.ajax({
+                    url: 'STOCK_REQUETE.php', //toujours la même page qui est appelée
+                    type: 'POST',
+                    data: {
+                        fonction: 'select', //fonction à executer
+                        requete: 'SELECT NomIngred,IdIngred,StockReel,Unite FROM ingredient',
+                    }
+                });
+
+                laFonction.done(function(msg) {
+
+                    console.log(msg);
+
+                    let resultats = JSON.parse(msg);
+
+                    selectIng = document.createElement('select');
+
+                    selectIng[0] = new Option("--Ingrédient--", "", false, false);
+
+                    for (i = 0; i < resultats.length; i++) {
+                        selectIng[i + 1] = new Option(resultats[i]['NomIngred'], resultats[i]['IdIngred'], false, false);
+                    };
+
+                    selectIng.id = 'selectIng';
+                    selectIng.class = 'column';
+                    selectIng.onChange = 'appel(this.value)';
+
+                    document.getElementById('requete').appendChild(selectIng);
+
+                    $("#selectIng").click(function() {
+                        appel($("#selectIng").val());
+                    })
+                });
+                laFonction.fail(function(dataSQL, statut) {
+                    alert("error sqlConnect.js : " + dataSQL.erreur);
+                });
+
+                let labelQteActuelle = document.createElement('label');
+                let labelUniteActuelle = document.createElement('label');
+
+                document.getElementById('qte').appendChild(labelQteActuelle);
+                document.getElementById('qte').appendChild(labelUniteActuelle);
+
+                function appel($id) {
+                    var id = $id;
+                    console.log($id);
+                    console.log(id);
+                    $.ajax({
+                        url: 'STOCK_REQUETE.php', //toujours la même page qui est appelée
+                        type: 'POST',
+                        data: {
+                            fonction: 'select', //fonction à executer
+                            requete: 'SELECT StockReel,Unite FROM ingredient',
+                        },
+                        success: function(data) {
+                            let resultats = JSON.parse(data);
+                            labelQteActuelle.innerHTML = resultats[id - 1]["StockReel"];
+                            labelUniteActuelle.innerHTML = '&nbsp;' + resultats[id - 1]['Unite'];
+                            document.getElementById('unite2').innerHTML = resultats[id - 1]['Unite'];
+                            document.getElementById('qteReelle').value = resultats[id - 1]['StockReel'];
+                        },
+                        error: function(dataSQL, statut) {
+                            alert("error sqlConnect.js : " + dataSQL.erreur);
+                        }
+                    });
+                }
+                appel(0);
+
+            </script>
         </main>
     </div>
 </body>

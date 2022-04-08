@@ -59,7 +59,9 @@
                     </div>
                 </div>
             </section>
-            <div class="clear"></div>
+            <div class="clear">
+                <br>
+            </div>
             <div id="tableauProduit">
                 <script text/javascript>
                     $.ajax({

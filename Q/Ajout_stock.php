@@ -45,62 +45,103 @@
                 </div>
             </section>
             <div class="clear"></div>
-
-
             <br>
             <div class="container content-container row text-center">
                 <div id=requete class="column2">
-                    <script>
-                        $.ajax({
-                            url: 'ajax_Bdd.php', //toujours la même page qui est appelée
-                            type: 'POST',
-                            data: {
-                                fonction: 'selectListeIngredients', //fonction à executer
-                                base: 'physique',
-                                table: 'ingredient',
-                                selectCondition: '*'
-                            },
-                            success: function(data) {
-                                document.getElementById("requete").innerHTML = data;
-                            },
-                            error: function(dataSQL, statut) {
-                                alert("error sqlConnect.js : " + dataSQL.erreur);
-                            }
-                        });
 
-                    </script>
                 </div>
                 <div id="qte" class="column2">
-                    <script>
-                        function AppelApresIngredient($id) {
-                            $.ajax({
-                                url: 'ajax_Bdd.php', //toujours la même page qui est appelée
-                                type: 'POST',
-                                data: {
-                                    fonction: 'selectQteIngredient', //fonction à executer
-                                    base: 'physique',
-                                    table: 'ingredient',
-                                    selectCondition: '*',
-                                        id: $id,
-                                },
-                                success: function(data) {
-                                    document.getElementById("qte").innerHTML = data;
-                                },
-                                error: function(dataSQL, statut) {
-                                    alert("error sqlConnect.js : " + dataSQL.erreur);
-                                }
-                            });
-                        };
-                    </script>
                 </div>
             </div>
             <div class="clear"></div>
             <div class="container content-container row text-center">
                 <label class="column2">Quantité reçue :</label>
-                <div> <input type="number" value="200" class="noMarginPadding" style="width:55px">
-                    <label>Grammes</label>
+                <div>
+                    <input type="number" value="200" class="noMarginPadding" style="width:55px">
+                    <label id='unite2'>Grammes</label>
                 </div>
             </div>
+            <script>
+                var laFonction = $.ajax({
+                    url: 'STOCK_REQUETE.php', //toujours la même page qui est appelée
+                    type: 'POST',
+                    data: {
+                        fonction: 'select', //fonction à executer
+                        requete: 'SELECT NomIngred,IdIngred,StockReel,Unite FROM ingredient',
+                    }
+                });
+
+                laFonction.done(function(msg) {
+
+                    console.log(msg);
+
+                    let resultats = JSON.parse(msg);
+
+                    selectIng = document.createElement('select');
+
+                    selectIng[0] = new Option("--Ingrédient--", "", false, false);
+
+                    for (i = 0; i < resultats.length; i++) {
+                        selectIng[i + 1] = new Option(resultats[i]['NomIngred'], resultats[i]['IdIngred'], false, false);
+                    };
+
+                    selectIng.id = 'selectIng';
+                    selectIng.class = 'column2';
+                    selectIng.onChange = 'appel(this.value)';
+                    selectIng.style = 'width:300px';
+
+
+                    document.getElementById('requete').appendChild(selectIng);
+
+                    listeners();
+                });
+                laFonction.fail(function(dataSQL, statut) {
+                    alert("error sqlConnect.js : " + dataSQL.erreur);
+                });
+
+                function listeners() {
+                    $("#selectIng").click(function() {
+                        appel($("#selectIng").val());
+                    })
+                };
+
+
+                let labelChampActuelle = document.createElement('label');
+                document.getElementById("qte").appendChild(labelChampActuelle);
+
+                let labelQteActuelle = document.createElement('label');
+                let labelUniteActuelle = document.createElement('label');
+
+                document.getElementById('qte').appendChild(labelQteActuelle);
+                document.getElementById('qte').appendChild(labelUniteActuelle);
+
+                function appel($id) {
+                    var id = $id;
+                    console.log($id);
+                    console.log(id);
+                    $.ajax({
+                        url: 'STOCK_REQUETE.php', //toujours la même page qui est appelée
+                        type: 'POST',
+                        data: {
+                            fonction: 'select', //fonction à executer
+                            requete: 'SELECT StockReel,Unite FROM ingredient',
+                        },
+                        success: function(data) {
+                            let resultats = JSON.parse(data);
+                            labelChampActuelle.innerHTML = "Quantité actuelle :&nbsp;";
+                            labelQteActuelle.innerHTML = resultats[id - 1]["StockReel"];
+                            labelUniteActuelle.innerHTML = '&nbsp;' + resultats[id - 1]['Unite'];
+                            document.getElementById('unite2').innerHTML = resultats[id - 1]['Unite'];
+                        },
+                        error: function(dataSQL, statut) {
+                            alert("error sqlConnect.js : " + dataSQL.erreur);
+                        }
+                    });
+                }
+
+                appel(0);
+
+            </script>
         </main>
     </div>
 </body>
