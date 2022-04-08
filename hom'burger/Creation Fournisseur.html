@@ -29,43 +29,40 @@
         </div>
 
     </header>
-    <fieldset class="left Choix">
-        <legend>
-            <h2>Nouveau fournisseur :</h2>
-        </legend>
+    <fieldset class="text-center Choix">
         <form>
             <br>
             <div>
-                <label for="nom">Nom : </label>
+                <label for="nom">Nom : </label><br>
                 <input type="text" id="nom" name="nom" value="" size="20" maxlength="20" required>
             </div>
             <br>
             <div>
-                <label for="Adresse">Adresse : </label>
+                <label for="Adresse">Adresse : </label><br>
                 <input type="text" id="adr" name="Adresse" value="" size="20" maxlength="20" required>
             </div>
             <br>
             <div>
-                <label for="CodePostal">CodePostal : </label>
+                <label for="CodePostal">CodePostal : </label><br>
                 <input type="text" id="post" name="CodePostal" value="" size="20" maxlength="20" required>
             </div>
             <br>
             <div>
-                <label for="Ville">Ville : </label>
+                <label for="Ville">Ville : </label><br>
                 <input type="text" id="ville" name="Ville" value="" size="20" maxlength="20" required>
             </div>
             <br>
             <div>
-                <label for="tel">Téléphone:</label>
-                <input type="tel" id="tel" name="tel" pattern="[0-9]{10}" required>
+                <label for="tel">Téléphone:</label> <br>
+                <input type="tel" id="tel" name="tel" pattern="[0-9]{10}" required> <br>
                 <small>Format: 12.34.56.78.90</small>
             </div>
             <br>
             <div>
-                <button type="button" class="button" onclick="history.back();">Annuler</button>
+                <button class="button" onclick="nouveaufournisseur()">Envoyer</button>
+                <button type="button" class="button"
+                    onclick="location.href = 'Gestion Fournisseur.html';">Retour</button>
             </div>
-            <button class="button" onclick="nouveaufournisseur()">Envoyer</button>
-
         </form>
     </fieldset>
 
@@ -76,13 +73,13 @@
                 type: 'POST',
                 data: {
                     fonction: 'newFournisseur', //fonction à executer
-                    base: 'physique',
+                    base: 'homburger',
                     table: 'fournisseur',
-                    nom: "Diego",
-                    adr: "adr",
-                    post: "71100",
-                    ville: "Chalon",
-                    tel: "0771718751"
+                    nom: document.getElementById("nom").value,
+                    adr: document.getElementById("adr").value,
+                    post: document.getElementById("post").value,
+                    ville: document.getElementById("ville").value,
+                    tel: document.getElementById("tel").value
                 },
                 success: function (data) {
                     //console.log(data);

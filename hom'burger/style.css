@@ -514,16 +514,32 @@ Couleur font: noir ou blanc*/
   background-color: rgb(240, 40, 40);
 }
 
+#tabfournisseur{
+  height: 600px;
+  margin-left: 10%;
+  margin-right: 10%;
+  overflow:auto;
+}
+
 .Choix {
-  width: 25%;
+  width: 30%;
   height: 10%;
-  margin: 5%;
-  margin-right: 0%;
+  margin: 0% 35%;
   float: none;
 }
 
 .cat {
   margin-top: 20%;
+}
+
+.centrer {
+  margin-left: 40%;
+  margin-top: 80px;
+  margin-bottom: 30px;
+}
+
+.inputImage a :hover{
+background-color: #e54315;
 }
 /*--------------Fin lilian--------------*/
 
