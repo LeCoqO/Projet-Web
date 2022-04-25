@@ -34,7 +34,7 @@
                         <button class="button" onclick=window.location.href="Ajout_Stock.php">Retour</button>
                     </div>
                     <div class="column2">
-                        <button class="button" onclick=window.location.href="">Confirmer l'ajout</button>
+                        <button id='ok' class="button" onclick=window.location.href="">Confirmer l'ajout</button>
                     </div>
                 </div>
             </section>
@@ -48,21 +48,38 @@
                     </div>
                     <div id=choixFournisseurs class="column2" style="width:300px">
                         <script>
-                            $.ajax({
-                                url: 'ajax_Bdd.php', //toujours la même page qui est appelée
+                            var laFonction = $.ajax({
+                                url: 'STOCK_REQUETE.php', //toujours la même page qui est appelée
                                 type: 'POST',
                                 data: {
-                                    fonction: 'selectListeFournisseurs', //fonction à executer
-                                    base: 'physique',
-                                    table: 'fournisseur',
-                                    selectCondition: '*'
-                                },
-                                success: function(data) {
-                                    document.getElementById("choixFournisseurs").innerHTML = data;
-                                },
-                                error: function(dataSQL, statut) {
-                                    alert("error sqlConnect.js : " + dataSQL.erreur);
+                                    fonction: 'select', //fonction à executer
+                                    requete: 'SELECT NomFourn FROM fournisseur',
                                 }
+                            });
+                            laFonction.done(function(msg) {
+
+                                console.log(msg);
+
+                                let resultats = JSON.parse(msg);
+
+                                selectFourn = document.createElement('select');
+
+                                selectFourn[0] = new Option("--Fournisseur--", "", false, false);
+
+                                for (i = 0; i < resultats.length; i++) {
+                                    selectFourn[i + 1] = new Option(resultats[i]['NomFourn'], resultats[i]['NomFourn'], false, false);
+                                };
+
+                                selectFourn.id = 'selectFourn';
+                                selectFourn.class = '';
+                                selectFourn.onChange = 'appel(this.value)';
+                                selectFourn.style = 'width:300px';
+
+                                document.getElementById('choixFournisseurs').appendChild(selectFourn);
+
+                            });
+                            laFonction.fail(function(dataSQL, statut) {
+                                alert("error sqlConnect.js : " + dataSQL.erreur);
                             });
                         </script>
                     </div>
@@ -94,15 +111,24 @@
                                     alert("error sqlConnect.js : " + dataSQL.erreur);
                                 }
                             });
-
                         </script>
                     </div>
                     <div class="column">
-                        <input type="number" value="200" style="width: 55px" disabled>
+                        <input id="prixUHT" type="number" value="200" style="width: 55px" disabled>
                         <label>€</label>
                     </div>
                 </div>
             </div>
+            <script>
+                $("#ok").click(function() {
+                    insert($("#nom").val(),
+                            $("#choixFournisseurs").val()),
+                        $("#frais").val(),
+                        $("#choixUnites").val(),
+                        $("#frais").val(),
+                        $("#frais").val();
+                })
+            </script>
         </main>
     </div>
 </body>

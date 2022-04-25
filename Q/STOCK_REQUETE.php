@@ -19,4 +19,42 @@ function select($args){
     $json = json_encode($results);
     echo $json;
 }
+
+function update($args){
+    $requete = $args['requete'];
+    try{
+        $pdo = new PDO('mysql:host=localhost;dbname=physique','root','');
+        $pdo -> exec("set names utf8");
+    } catch (PDOException $e) {
+        echo 'Erreur : ' . $e->getMessage() . '<br />';
+        echo 'N° : ' . $e->getCode();
+        die();
+    }
+    $statement = $pdo->prepare($requete);
+    $statement->execute();
+  if($statement){
+    echo 'Les données ont bien été insérés';
+  }else{
+    echo "Une erreur est survenue !";
+  }
+}
+function insert($args){
+    $requete = $args['requete'];
+    try{
+        $pdo = new PDO('mysql:host=localhost;dbname=physique','root','');
+        $pdo -> exec("set names utf8");
+    } catch (PDOException $e) {
+        echo 'Erreur : ' . $e->getMessage() . '<br />';
+        echo 'N° : ' . $e->getCode();
+        die();
+    }
+    $statement = $pdo->prepare($requete);
+    $statement->execute();
+  if($statement){
+    echo 'Les données ont bien été insérés';
+  }else{
+    echo "Une erreur est survenue !";
+  }
+}
+
 ?>

@@ -40,7 +40,7 @@
                         <button class="button" onclick=window.location.href="Index.php">Ajout Fournisseur</button>
                     </div>
                     <div class="column4">
-                        <button class="button">Mettre à jour Stocks</button>
+                        <button id='maj' class="button">Mettre à jour Stocks</button>
                     </div>
                 </div>
             </section>
@@ -93,6 +93,11 @@
                     $("#selectIng").click(function() {
                         appel($("#selectIng").val());
                     })
+
+                    $("#maj").click(function() {
+                        update($("#selectIng").val(), $("#qteReelle").val());
+                    })
+
                 });
                 laFonction.fail(function(dataSQL, statut) {
                     alert("error sqlConnect.js : " + dataSQL.erreur);
@@ -104,10 +109,36 @@
                 document.getElementById('qte').appendChild(labelQteActuelle);
                 document.getElementById('qte').appendChild(labelUniteActuelle);
 
+
+                function update($produit, $qte) {
+                    var produit = $produit;
+                    var qte = $qte;
+
+                    console.log('UPDATE ingredient SET StockReel =' + qte + ' WHERE ID =' + produit + ';');
+
+                    var laFonction = $.ajax({
+                        url: 'STOCK_REQUETE.php', //toujours la même page qui est appelée
+                        type: 'POST',
+                        data: {
+                            fonction: 'update', //fonction à executer
+                            requete: 'UPDATE ingredient SET StockReel =' + qte + ' WHERE IdIngred =' + produit + ';'
+                        }
+                    });
+
+                    laFonction.done(function(msg) {
+
+                        alert('Base mise à jour.');
+
+                        appel(produit);
+
+                    });
+                    laFonction.fail(function(dataSQL, statut) {
+                        alert("error sqlConnect.js : " + dataSQL.erreur);
+                    });
+                }
+
                 function appel($id) {
                     var id = $id;
-                    console.log($id);
-                    console.log(id);
                     $.ajax({
                         url: 'STOCK_REQUETE.php', //toujours la même page qui est appelée
                         type: 'POST',
@@ -117,10 +148,14 @@
                         },
                         success: function(data) {
                             let resultats = JSON.parse(data);
-                            labelQteActuelle.innerHTML = resultats[id - 1]["StockReel"];
-                            labelUniteActuelle.innerHTML = '&nbsp;' + resultats[id - 1]['Unite'];
-                            document.getElementById('unite2').innerHTML = resultats[id - 1]['Unite'];
-                            document.getElementById('qteReelle').value = resultats[id - 1]['StockReel'];
+                            try {
+                                labelQteActuelle.innerHTML = resultats[id - 1]["StockReel"];
+                                labelUniteActuelle.innerHTML = '&nbsp;' + resultats[id - 1]['Unite'];
+                                document.getElementById('unite2').innerHTML = resultats[id - 1]['Unite'];
+                                document.getElementById('qteReelle').value = resultats[id - 1]['StockReel'];
+                            } catch (error) {
+                                console.log(error);
+                            }
                         },
                         error: function(dataSQL, statut) {
                             alert("error sqlConnect.js : " + dataSQL.erreur);
@@ -128,7 +163,6 @@
                     });
                 }
                 appel(0);
-
             </script>
         </main>
     </div>

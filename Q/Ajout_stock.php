@@ -40,25 +40,24 @@
                         <button class="button" onclick=window.location.href='index.php'>Ajout Fournisseur</button>
                     </div>
                     <div class="column4">
-                        <button class="button">Mettre à jour Stocks</button>
+                        <button id='maj' class="button">Mettre à jour Stocks</button>
                     </div>
                 </div>
             </section>
             <div class="clear"></div>
             <br>
             <div class="container content-container row text-center">
-                <div id=requete class="column2">
+                <div id='requete' class='column'>
 
                 </div>
-                <div id="qte" class="column2">
+                <div id='qte' class='column'>
                 </div>
-            </div>
-            <div class="clear"></div>
-            <div class="container content-container row text-center">
-                <label class="column2">Quantité reçue :</label>
-                <div>
-                    <input type="number" value="200" class="noMarginPadding" style="width:55px">
-                    <label id='unite2'>Grammes</label>
+                <div class="column">
+                    <label>Quantité reçue :</label>
+                    <div>
+                        <input id=inputQte type="number" value="200" class="noMarginPadding" style="width:55px">
+                        <label id='unite2'>Grammes</label>
+                    </div>
                 </div>
             </div>
             <script>
@@ -86,10 +85,9 @@
                     };
 
                     selectIng.id = 'selectIng';
-                    selectIng.class = 'column2';
+                    selectIng.class = '';
                     selectIng.onChange = 'appel(this.value)';
                     selectIng.style = 'width:300px';
-
 
                     document.getElementById('requete').appendChild(selectIng);
 
@@ -103,7 +101,35 @@
                     $("#selectIng").click(function() {
                         appel($("#selectIng").val());
                     })
+
+                    $("#maj").click(function() {
+                        update($("#selectIng").val(), $("#inputQte").val());
+                    })
                 };
+
+                function update($produit, $qte) {
+                    var produit = $produit;
+                    var qte = $qte;
+                    var laFonction = $.ajax({
+                        url: 'STOCK_REQUETE.php', //toujours la même page qui est appelée
+                        type: 'POST',
+                        data: {
+                            fonction: 'update', //fonction à executer
+                            requete: 'UPDATE ingredient SET StockReel =' + qte + ' WHERE IdIngred =' + produit + ';'
+                        }
+                    });
+
+                    laFonction.done(function(msg) {
+
+                        alert('Base mise à jour.');
+
+                        appel(produit);
+
+                    });
+                    laFonction.fail(function(dataSQL, statut) {
+                        alert("error sqlConnect.js : " + dataSQL.erreur);
+                    });
+                }
 
 
                 let labelChampActuelle = document.createElement('label');
@@ -117,8 +143,6 @@
 
                 function appel($id) {
                     var id = $id;
-                    console.log($id);
-                    console.log(id);
                     $.ajax({
                         url: 'STOCK_REQUETE.php', //toujours la même page qui est appelée
                         type: 'POST',
@@ -128,10 +152,14 @@
                         },
                         success: function(data) {
                             let resultats = JSON.parse(data);
-                            labelChampActuelle.innerHTML = "Quantité actuelle :&nbsp;";
-                            labelQteActuelle.innerHTML = resultats[id - 1]["StockReel"];
-                            labelUniteActuelle.innerHTML = '&nbsp;' + resultats[id - 1]['Unite'];
-                            document.getElementById('unite2').innerHTML = resultats[id - 1]['Unite'];
+                            try {
+                                labelChampActuelle.innerHTML = "Quantité actuelle :&nbsp;";
+                                labelQteActuelle.innerHTML = resultats[id - 1]['StockReel'];
+                                labelUniteActuelle.innerHTML = '&nbsp;' + resultats[id - 1]['Unite'];
+                                document.getElementById('unite2').innerHTML = resultats[id - 1]['Unite'];
+                            } catch (error) {
+                                console.log(error);
+                            }
                         },
                         error: function(dataSQL, statut) {
                             alert("error sqlConnect.js : " + dataSQL.erreur);
@@ -140,7 +168,6 @@
                 }
 
                 appel(0);
-
             </script>
         </main>
     </div>
