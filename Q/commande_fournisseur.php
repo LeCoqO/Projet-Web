@@ -37,7 +37,7 @@
                         <button class="button" onclick=window.location.href='bons_de_commandes.php'>Bons de commandes</button>
                     </div>
                     <div class="column">
-                        <button class="button" onclick=window.location.href=''>Emmetre un bon</button>
+                        <button id='ok' class="button">Emettre un bon</button>
                     </div>
                 </div>
             </section>
@@ -47,7 +47,7 @@
                 <div id=requete class="column2">
                 </div>
                 <div class="column2">
-                    <input type="number" value="200" style="width: 55px">
+                    <input id='qte' type="number" min=0 value="200" style="width: 55px">
                     <label id='unite2'>Grammes</label>
                 </div>
             </div>
@@ -60,7 +60,7 @@
                 </div>
                 <div class="column2">
                     <label>Prix Total HT</label>
-                    <input type="number" value="200" style="width: 55px" disabled>
+                    <input id='total' type="number" value="0" style="width: 55px" disabled>
                     <label>€</label>
                 </div>
             </div>
@@ -70,7 +70,7 @@
                     type: 'POST',
                     data: {
                         fonction: 'select', //fonction à executer
-                        requete: 'SELECT NomIngred,IdIngred,StockReel,Unite FROM ingredient',
+                        requete: 'SELECT NomIngred,IdIngred FROM ingredient',
                     }
                 });
 
@@ -105,32 +105,60 @@
                 document.getElementById('qte').appendChild(labelQteActuelle);
                 document.getElementById('qte').appendChild(labelUniteActuelle);
 
-                function appel($id) {
+                $("#selectIng").click(function() {
+                    calculPrix($("#selectIng").val(), $("#qte").val());
+                })
+
+                $("#qte").change(function() {
+                    calculPrix($("#selectIng").val(), $("#qte").val());
+                })
+
+                function calculPrix($id, $qte) {
                     var id = $id;
-                    console.log($id);
-                    console.log(id);
-                    $.ajax({
+                    var qte = $qte;
+                    var laFonction = $.ajax({
                         url: 'STOCK_REQUETE.php', //toujours la même page qui est appelée
                         type: 'POST',
                         data: {
                             fonction: 'select', //fonction à executer
-                            requete: 'SELECT Unite FROM ingredient',
-                        },
-                        success: function(data) {
-                            let resultats = JSON.parse(data);
-                            document.getElementById('unite2').innerHTML = resultats[id - 1]['Unite'];
-
-                        },
-                        error: function(dataSQL, statut) {
-                            alert("error sqlConnect.js : " + dataSQL.erreur);
+                            requete: 'SELECT PrixUHT_Moyen FROM ingredient WHERE IdIngred = ' + id + ';',
                         }
                     });
+                    laFonction.done(function(data) {
+                        console.log(data);
+                        let resultats = JSON.parse(data);
+                        document.getElementById('total').value = (resultats[0]['PrixUHT_Moyen'] * qte);
+                    });
+                    laFonction.fail(function(dataSQL, statut) {
+                        alert("error sqlConnect.js : " + dataSQL.erreur);
+                    });
                 }
-                appel(0);
 
+                function appel($id) {
+                    var id = $id;
+                    console.log('SELECT StockMin,Unite FROM ingredient WHERE IdIngred = ' + id + ';', )
+                    var laFonction = $.ajax({
+                        url: 'STOCK_REQUETE.php', //toujours la même page qui est appelée
+                        type: 'POST',
+                        data: {
+                            fonction: 'select', //fonction à executer
+                            requete: 'SELECT StockMin,Unite FROM ingredient WHERE IdIngred = ' + id + ';',
+                        }
+                    });
+                    laFonction.done(function(data) {
+                        console.log(data);
+
+                        let resultats = JSON.parse(data);
+                        document.getElementById('unite2').innerHTML = resultats[0]['Unite'];
+
+                        document.getElementById('qte').value = resultats[0]['StockMin']
+                    });
+                    laFonction.fail(function(dataSQL, statut) {
+                        alert("error sqlConnect.js : " + dataSQL.erreur);
+                    });
+                }
             </script>
         </main>
     </div>
-</body>
 
 </html>

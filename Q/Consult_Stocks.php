@@ -20,7 +20,6 @@
             padding: 10px 20px;
             border: 1px solid #000;
         }
-
     </style>
 
 </head>
@@ -107,16 +106,12 @@
                                 tbody.appendChild(randomLigne);
                                 document.getElementById('ligne' + (i + 1)).appendChild(caseRandom1);
                                 document.getElementById('ligne' + (i + 1)).appendChild(caseRandom2);
-
-
                             };
-
                         },
                         error: function(dataSQL, statut) {
                             alert("error sqlConnect.js : " + dataSQL.erreur);
                         }
                     });
-
                 </script>
             </div>
         </main>
