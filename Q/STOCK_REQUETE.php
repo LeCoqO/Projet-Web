@@ -33,7 +33,7 @@ function update($args){
     $statement = $pdo->prepare($requete);
     $statement->execute();
   if($statement){
-    echo 'Les données ont bien été insérés';
+    echo 'Les données ont bien été mises à jour';
   }else{
     echo "Une erreur est survenue !";
   }

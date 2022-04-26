@@ -63,7 +63,7 @@
                     <input id='total' type="number" value="0" style="width: 55px" disabled>
                     <label>€</label>
                 </div>
-            </div>
+            </div>²
             <script>
                 var laFonction = $.ajax({
                     url: 'STOCK_REQUETE.php', //toujours la même page qui est appelée
@@ -76,87 +76,76 @@
 
                 laFonction.done(function(msg) {
                     let resultats = JSON.parse(msg);
-
                     selectIng = document.createElement('select');
-
                     selectIng[0] = new Option("--Ingrédient--", "", false, false);
-
                     for (i = 0; i < resultats.length; i++) {
                         selectIng[i + 1] = new Option(resultats[i]['NomIngred'], resultats[i]['IdIngred'], false, false);
                     };
-
                     selectIng.id = 'selectIng';
                     selectIng.class = 'column';
                     selectIng.onChange = 'appel(this.value)';
-
                     document.getElementById('requete').appendChild(selectIng);
-
-                    $("#selectIng").click(function() {
-                        appel($("#selectIng").val());
-                    })
                 });
                 laFonction.fail(function(dataSQL, statut) {
                     alert("error sqlConnect.js : " + dataSQL.erreur);
                 });
-
                 let labelQteActuelle = document.createElement('label');
                 let labelUniteActuelle = document.createElement('label');
-
                 document.getElementById('qte').appendChild(labelQteActuelle);
                 document.getElementById('qte').appendChild(labelUniteActuelle);
 
-                $("#selectIng").click(function() {
-                    calculPrix($("#selectIng").val(), $("#qte").val());
-                })
-
-                $("#qte").change(function() {
-                    calculPrix($("#selectIng").val(), $("#qte").val());
-                })
+                function listeners() {
+                    $(document).on("click change", "#qte, #selectIng", function() {
+                        calculPrix($("#selectIng").val(), $("#qte").val());
+                    })
+                }
 
                 function calculPrix($id, $qte) {
                     var id = $id;
                     var qte = $qte;
-                    var laFonction = $.ajax({
-                        url: 'STOCK_REQUETE.php', //toujours la même page qui est appelée
-                        type: 'POST',
-                        data: {
-                            fonction: 'select', //fonction à executer
-                            requete: 'SELECT PrixUHT_Moyen FROM ingredient WHERE IdIngred = ' + id + ';',
-                        }
-                    });
-                    laFonction.done(function(data) {
-                        console.log(data);
-                        let resultats = JSON.parse(data);
-                        document.getElementById('total').value = (resultats[0]['PrixUHT_Moyen'] * qte);
-                    });
-                    laFonction.fail(function(dataSQL, statut) {
-                        alert("error sqlConnect.js : " + dataSQL.erreur);
-                    });
+                    if (id != 0) {
+                        var laFonction = $.ajax({
+                            url: 'STOCK_REQUETE.php', //toujours la même page qui est appelée
+                            type: 'POST',
+                            data: {
+                                fonction: 'select', //fonction à executer
+                                requete: 'SELECT PrixUHT_Moyen FROM ingredient WHERE IdIngred = ' + id + ';',
+                            }
+                        });
+                        laFonction.done(function(data) {
+                            let resultats = JSON.parse(data);
+                            let prix = resultats[0]['PrixUHT_Moyen'] * qte;
+                            document.getElementById('total').value = prix;
+                        });
+                        laFonction.fail(function(dataSQL, statut) {
+                            alert("error sqlConnect.js : " + dataSQL.erreur);
+                        });
+                    }
                 }
 
                 function appel($id) {
                     var id = $id;
-                    console.log('SELECT StockMin,Unite FROM ingredient WHERE IdIngred = ' + id + ';', )
-                    var laFonction = $.ajax({
-                        url: 'STOCK_REQUETE.php', //toujours la même page qui est appelée
-                        type: 'POST',
-                        data: {
-                            fonction: 'select', //fonction à executer
-                            requete: 'SELECT StockMin,Unite FROM ingredient WHERE IdIngred = ' + id + ';',
-                        }
-                    });
-                    laFonction.done(function(data) {
-                        console.log(data);
-
-                        let resultats = JSON.parse(data);
-                        document.getElementById('unite2').innerHTML = resultats[0]['Unite'];
-
-                        document.getElementById('qte').value = resultats[0]['StockMin']
-                    });
-                    laFonction.fail(function(dataSQL, statut) {
-                        alert("error sqlConnect.js : " + dataSQL.erreur);
-                    });
+                    if (id != 0) {
+                        var laFonction = $.ajax({
+                            url: 'STOCK_REQUETE.php', //toujours la même page qui est appelée
+                            type: 'POST',
+                            data: {
+                                fonction: 'select', //fonction à executer
+                                requete: 'SELECT StockMin,Unite FROM ingredient WHERE IdIngred = ' + id + ';',
+                            }
+                        });
+                        laFonction.done(function(data) {
+                            let resultats = JSON.parse(data);
+                            document.getElementById('unite2').innerHTML = resultats[0]['Unite'];
+                            document.getElementById('qte').value = resultats[0]['StockMin']
+                        });
+                        laFonction.fail(function(dataSQL, statut) {
+                            alert("error sqlConnect.js : " + dataSQL.erreur);
+                        });
+                    }
                 }
+
+                listeners();
             </script>
         </main>
     </div>
