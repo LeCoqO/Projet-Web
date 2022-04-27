@@ -32,6 +32,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   </header>
+  <div id="testid"></div>
   <script>
     function sidebar_open() {
       document.getElementById("mySidebar").style.display = "block";
@@ -46,8 +47,89 @@
       else document.getElementById(id).style.visibility = "visible";
     }
 
+    function createDiv(NumCom) {
+      var newDiv = document.createElement("div");
+      newDiv.id = NumCom;
+      newDiv.className = 'articleCommande';
+      newDiv.innerHTML = '<label>TEST</label>';
+      document.getElementById('testid').appendChild(newDiv);
+    }
 
+    function populateDivCom() {
+      let allCommandeDiv = document.getElementsByClassName("articleCommande"); //avec en id l'id de la commande
+      console.log(allCommandeDiv);
+      for (let i = 0; i < allCommandeDiv.length; i++) {
+        console.log(allCommandeDiv[i].id);
+        //appel base to get info about cmd
+
+        $.ajax({
+          url: 'requette.php', //toujours la même page qui est appelée
+          type: 'POST',
+          data: {
+            fonction: 'select', //fonction à executer
+            requete: 'SELECT HeureDispo FROM commande WHERE NumCom LIKE ' + allCommandeDiv[i].id,
+          },
+          success: function (data) {
+
+            console.log(data);
+
+            let resultat = JSON.parse(data);
+
+            //document.getElementsById('reqHeure').appendChild(resultat);
+
+          },
+          error: function (dataSQL, statut) {
+            alert("error sqlConnect.js : " + dataSQL.erreur);
+          }
+        });
+
+        $.ajax({
+          url: 'requette.php', //toujours la même page qui est appelée
+          type: 'POST',
+          data: {
+            fonction: 'select', //fonction à executer
+            requete: 'SELECT SUM(Quant) FROM com_det WHERE NumCom LIKE ' + allCommandeDiv[i].id,
+          },
+          success: function (data) {
+
+            console.log(data);
+
+            let resultat2 = JSON.parse(data);
+
+            //document.getElementsById('nombreBurger').appendChild(resultat2);
+
+          },
+          error: function (dataSQL, statut) {
+            alert("error sqlConnect.js : " + dataSQL.erreur);
+          }
+        });
+
+        allCommandeDiv[i].innerHTML = '<h3>Commande N° : ' + allCommandeDiv[i].id + ' </h3>' +
+          '<div class="nbBurger">' +
+          '<p>Nombre de burgers : </p>' +
+          '</div>' +
+          '<div class="heurePrepa">' +
+          '<p>Doit être prête pour : </p>' +
+          '</div>' +
+          '<br />' +
+          '<div class="burgerAFaire">' +
+          '<div class="apercuCmd">' +
+          '<img class="imgCuisine" src="Image/chinoisBurger.jpg">' +
+          '<p>: 2 burgers</p>' +
+          '</div>' +
+          '<div class="listeCuisine">' +
+          '<input type="button" value="Liste des ingrédients" class="btnListeIngredients" />' +
+          '<span id="listeIng"></span>' +
+          '</div>' +
+          '</div>' +
+          '<br />' +
+          '<input type="button" value="A préparer" class="aPrepa" />' +
+          '<input type="button" value="Commande terminée" class="cmdFinie" />';
+        
+      }
+    }
   </script>
+
   <!-- Select Numéro de commande -->
   <script text/javascript>
     $.ajax({
@@ -63,18 +145,11 @@
 
         let resultats = JSON.parse(data);
 
-        let selectNumCom = document.createElement('select');
-
-        document.getElementById('h3Cuisine').appendChild(selectNumCom);
-
         for (i = 0; i < resultats.length; i++) {
-          var randomOption = document.createElement('option');
-          randomOption.innerHTML = resultats[i]['NumCom'];
-          randomOption.value = resultats[i]['NumCom'];
-
-          selectNumCom.appendChild(randomOption);
+          console.log('test');
+          createDiv(resultats[i]['NumCom']);
         };
-
+        populateDivCom();
       },
       error: function (dataSQL, statut) {
         alert("error sqlConnect.js : " + dataSQL.erreur);
@@ -82,163 +157,12 @@
     });
 
   </script>
-  <!-- Select Heure disponibilité -->
-  <script text/javascript>
-    $.ajax({
-      url: 'requette.php', //toujours la même page qui est appelée
-      type: 'POST',
-      data: {
-        fonction: 'select', //fonction à executer
-        requete: 'SELECT HeureDispo FROM commande WHERE NumCom',
-      },
-      success: function (data) {
 
-        console.log(data);
-
-        let resultats = JSON.parse(data);
-
-        let selectHeure = document.createElement('select');
-
-        document.getElementById('reqHeure').appendChild(selectHeure);
-
-        for (i = 0; i < resultats.length; i++) {
-          var randomOption = document.createElement('option');
-          randomOption.innerHTML = resultats[i]['HeureDispo'];
-          randomOption.value = resultats[i]['HeureDispo'];
-
-          selectHeure.appendChild(randomOption);
-        };
-
-      },
-      error: function (dataSQL, statut) {
-        alert("error sqlConnect.js : " + dataSQL.erreur);
-      }
-    });
-  </script>
-  <!-- Select Nb burger -->
-  <script text/javascript>
-    $.ajax({
-      url: 'requette.php', //toujours la même page qui est appelée
-      type: 'POST',
-      data: {
-        fonction: 'select', //fonction à executer
-        requete: 'SELECT SUM(Quant) FROM com_det WHERE NumCom',
-      },
-      success: function (data) {
-
-        console.log(data);
-
-        let resultats = JSON.parse(data);
-
-        let selectNbBurger = document.createElement('select');
-
-        document.getElementById('nombreBurger').appendChild(selectNbBurger);
-
-        for (i = 0; i < resultats.length; i++) {
-          var randomOption = document.createElement('option');
-          randomOption.innerHTML = resultats[i]['SUM(Quant)'];
-          randomOption.value = resultats[i]['SUM(Quant)'];
-
-          selectNbBurger.appendChild(randomOption);
-        };
-
-      },
-      error: function (dataSQL, statut) {
-        alert("error sqlConnect.js : " + dataSQL.erreur);
-      }
-    });
-  </script>
-  <!-- Select liste ingrédients -->
-  <script text/javascript>
-    $.ajax({
-      url: 'requette.php', //toujours la même page qui est appelée
-      type: 'POST',
-      data: {
-        fonction: 'select', //fonction à executer
-        requete: 'SELECT * FROM `produit` WHERE IdProd IN(SELECT IdProd FROM `detail` WHERE Num_OF IN(SELECT Num_OF FROM `com_det` WHERE NumCom in(SELECT NumCom FROM `Commande` WHERE EtatCde LIKE "A Preparer"))) ',
-      },
-    success: function (data) {
-
-      console.log(data);
-
-      let resultats = JSON.parse(data);
-
-      let selectListe = document.createElement('select');
-
-      document.getElementById('listeIng').appendChild(selectListe);
-
-      for (i = 0; i < resultats.length; i++) {
-        var randomOption = document.createElement('option');
-
-        let array = ['IngBase1','IngBase2','IngBase3','IngBase4','IngOpt1','IngOpt2','IngOpt3','IngOpt4'];
-        let tabF;
-        array.forEach ;{
-          
-          if (['IngBase1'] != null) {
-            tabF+=['IngBase1'];
-          }
-          if (['IngBase2'] != null) {
-            tabF+=['IngBase2'];
-          }
-          if (['IngBase3'] != null) {
-            tabF+=['IngBase3'];
-          }
-          if (['IngBase4'] != null) {
-            tabF+=['IngBase4'];
-          }
-          if (['IngOpt1'] != null) {
-            tabF+=['IngOpt1'];
-          }
-          if (['IngOpt2'] != null) {
-            tabF+=['IngOpt2'];
-          }
-          if (['IngOpt3'] != null) {
-            tabF+=['IngOpt3'];
-          }
-          if (['IngOpt4'] != null) {
-            tabF+=['IngOpt4'];
-          }
-          for(j = 0; j < tabF; j++) {
-            randomOption.innerHTML = tabF[i];
-            randomOption.value = tabF[i];
-          }
-        } 
-        selectListe.appendChild(randomOption);
-      };
-
-    },
-    error: function (dataSQL, statut) {
-      alert("error sqlConnect.js : " + dataSQL.erreur);
-    }
-    });
-  </script>
 </head>
 
 <body id="acceuilCuisinier">
   <section id="sectionCuisine">
-    <article class="articleCommande">
-      <h3 id="h3Cuisine">Commande N° : </h3>
-      <div class="nbBurger">
-        <p id="nombreBurger">Nombre de burgers : </p>
-      </div>
-      <div class="heurePrepa">
-        <p id="reqHeure">Doit être prête pour : </p>
-      </div>
-      <br /><br /><br /><br />
-      <div class="burgerAFaire">
-        <div class="apercuCmd">
-          <img class="imgCuisine" src="Image/chinoisBurger.jpg">
-          <p>: 2 burgers</p>
-        </div>
-        <div class="listeCuisine">
-          <input type="button" value="Liste des ingrédients" class="btnListeIngredients" />
-          <span id="listeIng"></span>
-        </div>
-      </div>
-      <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-      <input type="button" value="A préparer" class="aPrepa" />
-      <input type="button" value="Commande terminée" class="cmdFinie" />
-    </article>
+
   </section>
 </body>
 
