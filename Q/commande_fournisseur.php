@@ -56,21 +56,21 @@
             <div class="container content-container text-center">
                 <div class="column2">
                     <label>Date de livraison souhaitée</label>
-                    <input type="date">
+                    <input id='livraison' type="date">
                 </div>
                 <div class="column2">
                     <label>Prix Total HT</label>
                     <input id='total' type="number" value="0" style="width: 55px" disabled>
                     <label>€</label>
                 </div>
-            </div>²
+            </div>
             <script>
                 var laFonction = $.ajax({
                     url: 'STOCK_REQUETE.php', //toujours la même page qui est appelée
                     type: 'POST',
                     data: {
                         fonction: 'select', //fonction à executer
-                        requete: 'SELECT NomIngred,IdIngred FROM ingredient',
+                        requete: 'SELECT IdIng,NomIng FROM ingredient',
                     }
                 });
 
@@ -79,7 +79,7 @@
                     selectIng = document.createElement('select');
                     selectIng[0] = new Option("--Ingrédient--", "", false, false);
                     for (i = 0; i < resultats.length; i++) {
-                        selectIng[i + 1] = new Option(resultats[i]['NomIngred'], resultats[i]['IdIngred'], false, false);
+                        selectIng[i + 1] = new Option(resultats[i]['NomIng'], resultats[i]['IdIng'], false, false);
                     };
                     selectIng.id = 'selectIng';
                     selectIng.class = 'column';
@@ -89,15 +89,42 @@
                 laFonction.fail(function(dataSQL, statut) {
                     alert("error sqlConnect.js : " + dataSQL.erreur);
                 });
-                let labelQteActuelle = document.createElement('label');
-                let labelUniteActuelle = document.createElement('label');
-                document.getElementById('qte').appendChild(labelQteActuelle);
-                document.getElementById('qte').appendChild(labelUniteActuelle);
 
                 function listeners() {
                     $(document).on("click change", "#qte, #selectIng", function() {
                         calculPrix($("#selectIng").val(), $("#qte").val());
                     })
+                    $(document).on('click','#ok',function(){
+                        creationCommande();
+                    }
+                    )
+                }
+
+                function creationCommande(){
+                    let dateAjd = new Date();
+                    dateAjd = dateAjd.getFullYear() + "-" + (dateAjd.getMonth() + 1) + "-" + dateAjd.getDate();
+                    var dateLiv = document.getElementById('livraison').value;
+                    var ing = document.getElementById('selectIng').value;
+                    //var fourn = document.getElementById('selectFourn').value;
+                    var qte = document.getElementById('qte').value;
+
+                    console.log('INSERT INTO commandefournisseur (`IdIng`, `NomFourn`, `QteComFourn`,`DateLivFourn`,`DateComFourn`) VALUES ('+ing+','+'"MyFoodnisseur"'+','+qte+',"'+dateLiv+'","'+dateAjd+'");');
+
+                    var laFonction = $.ajax({
+                            url: 'STOCK_REQUETE.php', //toujours la même page qui est appelée
+                            type: 'POST',
+                            data: {
+                                fonction: 'insert', //fonction à executer
+                                requete: 'INSERT INTO commandefournisseur (`IdIng`, `NomFourn`, `QteComFourn`,`DateLivFourn`,`DateComFourn`) VALUES ('+ing+','+'"MyFoodnisseur"'+','+qte+',"'+dateLiv+'","'+dateAjd+'");',
+                            }
+                        });
+                        laFonction.done(function(data) {
+                            alert('Commande passée!');
+                        });
+                        laFonction.fail(function(dataSQL, statut) {
+                            alert("error sqlConnect.js : " + dataSQL.erreur);
+                        });
+
                 }
 
                 function calculPrix($id, $qte) {
@@ -109,7 +136,7 @@
                             type: 'POST',
                             data: {
                                 fonction: 'select', //fonction à executer
-                                requete: 'SELECT PrixUHT_Moyen FROM ingredient WHERE IdIngred = ' + id + ';',
+                                requete: 'SELECT PrixUHT_Moyen FROM ingredient WHERE IdIng = ' + id + ';',
                             }
                         });
                         laFonction.done(function(data) {
@@ -131,7 +158,7 @@
                             type: 'POST',
                             data: {
                                 fonction: 'select', //fonction à executer
-                                requete: 'SELECT StockMin,Unite FROM ingredient WHERE IdIngred = ' + id + ';',
+                                requete: 'SELECT StockMin,Unite FROM ingredient WHERE IdIng = ' + id + ';',
                             }
                         });
                         laFonction.done(function(data) {

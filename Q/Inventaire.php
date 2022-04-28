@@ -66,7 +66,7 @@
                     type: 'POST',
                     data: {
                         fonction: 'select', //fonction à executer
-                        requete: 'SELECT NomIngred,IdIngred,StockReel,Unite FROM ingredient',
+                        requete: 'SELECT NomIng,IdIng,StockReel,Unite FROM ingredient',
                     }
                 });
 
@@ -81,7 +81,7 @@
                     selectIng[0] = new Option("--Ingrédient--", "", false, false);
 
                     for (i = 0; i < resultats.length; i++) {
-                        selectIng[i + 1] = new Option(resultats[i]['NomIngred'], resultats[i]['IdIngred'], false, false);
+                        selectIng[i + 1] = new Option(resultats[i]['NomIng'], resultats[i]['IdIng'], false, false);
                     };
 
                     selectIng.id = 'selectIng';
@@ -113,15 +113,12 @@
                 function update($produit, $qte) {
                     var produit = $produit;
                     var qte = $qte;
-
-                    console.log('UPDATE ingredient SET StockReel =' + qte + ' WHERE ID =' + produit + ';');
-
                     var laFonction = $.ajax({
                         url: 'STOCK_REQUETE.php', //toujours la même page qui est appelée
                         type: 'POST',
                         data: {
                             fonction: 'update', //fonction à executer
-                            requete: 'UPDATE ingredient SET StockReel =' + qte + ' WHERE IdIngred =' + produit + ';'
+                            requete: 'UPDATE ingredient SET StockReel =' + qte + ' WHERE IdIng =' + produit + ';'
                         }
                     });
 

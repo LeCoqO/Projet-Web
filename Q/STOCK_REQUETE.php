@@ -7,7 +7,7 @@ $fonction($_POST);
 function select($args){
     $requete = $args['requete'];
     try{
-        $pdo = new PDO('mysql:host=localhost;dbname=physique','root','');
+        $pdo = new PDO('mysql:host=localhost;dbname=homburger','root','');
         $pdo -> exec("set names utf8");
     } catch (PDOException $e) {
         echo 'Erreur : ' . $e->getMessage() . '<br />';
@@ -23,7 +23,7 @@ function select($args){
 function update($args){
     $requete = $args['requete'];
     try{
-        $pdo = new PDO('mysql:host=localhost;dbname=physique','root','');
+        $pdo = new PDO('mysql:host=localhost;dbname=homburger','root','');
         $pdo -> exec("set names utf8");
     } catch (PDOException $e) {
         echo 'Erreur : ' . $e->getMessage() . '<br />';
@@ -41,7 +41,7 @@ function update($args){
 function insert($args){
     $requete = $args['requete'];
     try{
-        $pdo = new PDO('mysql:host=localhost;dbname=physique','root','');
+        $pdo = new PDO('mysql:host=localhost;dbname=homburger','root','');
         $pdo -> exec("set names utf8");
     } catch (PDOException $e) {
         echo 'Erreur : ' . $e->getMessage() . '<br />';

@@ -68,14 +68,10 @@
                         type: 'POST',
                         data: {
                             fonction: 'select', //fonction à executer
-                            requete: 'SELECT NomIngred,StockReel,Unite FROM ingredient',
+                            requete: 'SELECT NomIng,StockReel,Unite FROM ingredient',
                         },
                         success: function(data) {
-
-                            console.log(data);
-
                             let resultats = JSON.parse(data);
-
                             let table = document.createElement('table');
                             let thead = document.createElement('thead');
                             let tbody = document.createElement('tbody');
@@ -99,7 +95,7 @@
                                 var randomLigne = document.createElement('tr');
                                 randomLigne.id = 'ligne' + (i + 1);
                                 let caseRandom1 = document.createElement('th');
-                                caseRandom1.innerHTML = resultats[i]['NomIngred'];
+                                caseRandom1.innerHTML = resultats[i]['NomIng'];
                                 let caseRandom2 = document.createElement('th');
                                 caseRandom2.innerHTML = resultats[i]['StockReel'] + ' ' + resultats[i]['Unite'];
 

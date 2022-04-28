@@ -152,15 +152,14 @@
                     var puht = $puht;
 
                     console.log(unite);
-
-                    console.log('INSERT INTO ingredient(NomIngred,Frais,TypeDIngr,Unite,StockMin,StockReel,PrixUHT_Moyen,Q_A_Com,DateArchiv) VALUES (' + nom + ', ' + estFrais + ',' + '"S"' + ',' + unite + ',' + qte + ',0,' + puht + ',0,NOW());');
+                    console.log('INSERT INTO ingredient(NomIng,Frais,Type,Unite,StockMin,StockReel,PrixUHT_Moyen,Q_A_Com,DateArchivIng) VALUES (' + nom + ', ' + estFrais + ',' + '"S"' + ',' + "unite" + ',' + qte + ',0,' + puht + ',0,NOW());');
 
                     var laFonction = $.ajax({
                         url: 'STOCK_REQUETE.php', //toujours la même page qui est appelée
                         type: 'POST',
                         data: {
                             fonction: 'update', //fonction à executer
-                            requete: 'INSERT INTO ingredient(NomIngred,Frais,TypeDIngr,Unite,StockMin,StockReel,PrixUHT_Moyen,Q_A_Com,DateArchiv) VALUES (' + nom + ', ' + estFrais + ',' + '"S"' + ',' + "unite" + ',' + qte + ',0,' + puht + ',0,NOW());'
+                            requete: 'INSERT INTO ingredient(NomIng,Frais,Type,Unite,StockMin,StockReel,PrixUHT_Moyen,Q_A_Com,DateArchivIng) VALUES (' + nom + ', ' + estFrais + ',' + '"S"' + ',' + "unite" + ',' + qte + ',0,' + puht + ',0,NOW());'
                         }
                     });
 
