@@ -32,7 +32,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   </header>
-  <div id="testid"></div>
   <script>
     function sidebar_open() {
       document.getElementById("mySidebar").style.display = "block";
@@ -46,13 +45,42 @@
         document.getElementById(id).style.visibility = "hidden";
       else document.getElementById(id).style.visibility = "visible";
     }
+    
+    function cmdTerminee() {
+      $.ajax({
+      url: 'requette.php', //toujours la même page qui est appelée
+      type: 'POST',
+      data: {
+        fonction: 'select', //fonction à executer
+        requete: 'SELECT NumCom FROM commande WHERE EtatCde LIKE "A Prepare" AND HeureDispo ORDER BY HeureDispo ASC',
+      },
+      success: function (data) {
+
+        console.log(data);
+
+        let resultats = JSON.parse(data);
+
+        for (i = 0; i < resultats.length; i++) {
+          console.log('test');
+          if(!document.getElementById(resultats[i]['NumCom'])) {
+            createDiv(resultats[i]['NumCom']);
+          }
+          
+        };
+        populateDivCom();
+      },
+      error: function (dataSQL, statut) {
+        alert("error sqlConnect.js : " + dataSQL.erreur);
+      }
+    });
+    }
 
     function createDiv(NumCom) {
       var newDiv = document.createElement("div");
       newDiv.id = NumCom;
       newDiv.className = 'articleCommande';
-      newDiv.innerHTML = '<label>TEST</label>';
-      document.getElementById('testid').appendChild(newDiv);
+
+      document.getElementById('sectionCuisine').appendChild(newDiv);
     }
 
     function populateDivCom() {
@@ -71,11 +99,9 @@
           },
           success: function (data) {
 
-            console.log(data);
-
             let resultat = JSON.parse(data);
 
-            //document.getElementsById('reqHeure').appendChild(resultat);
+            $("#hDisp" + i).text(resultat[0]['HeureDispo']);
 
           },
           error: function (dataSQL, statut) {
@@ -96,7 +122,7 @@
 
             let resultat2 = JSON.parse(data);
 
-            //document.getElementsById('nombreBurger').appendChild(resultat2);
+            $("#nbBurg" + i).text(resultat2[0]['SUM(Quant)']);
 
           },
           error: function (dataSQL, statut) {
@@ -106,10 +132,12 @@
 
         allCommandeDiv[i].innerHTML = '<h3>Commande N° : ' + allCommandeDiv[i].id + ' </h3>' +
           '<div class="nbBurger">' +
-          '<p>Nombre de burgers : </p>' +
+          '<p class="nombreBurger">Nombre de burgers : </p>' +
+          '<p id="nbBurg' + i + '"> </p>' +
           '</div>' +
           '<div class="heurePrepa">' +
-          '<p>Doit être prête pour : </p>' +
+          '<p class="reqHeure">Doit être prête pour : </p>' +
+          '<p id="hDisp' + i + '"></p>' +
           '</div>' +
           '<br />' +
           '<div class="burgerAFaire">' +
@@ -124,20 +152,20 @@
           '</div>' +
           '<br />' +
           '<input type="button" value="A préparer" class="aPrepa" />' +
-          '<input type="button" value="Commande terminée" class="cmdFinie" />';
-        
+          '<button class="cmdFinie" onClick="cmdTerminee()">Commande Finie</button>';
+
       }
     }
   </script>
 
-  <!-- Select Numéro de commande -->
+  <!-- Select Numéro de commande 
   <script text/javascript>
     $.ajax({
       url: 'requette.php', //toujours la même page qui est appelée
       type: 'POST',
       data: {
         fonction: 'select', //fonction à executer
-        requete: 'SELECT NumCom FROM commande',
+        requete: 'SELECT NumCom FROM commande WHERE EtatCde LIKE "A Prepare" AND HeureDispo ORDER BY HeureDispo ASC',
       },
       success: function (data) {
 
@@ -156,13 +184,15 @@
       }
     });
 
-  </script>
+  </script> -->
 
 </head>
 
 <body id="acceuilCuisinier">
   <section id="sectionCuisine">
-
+    <script>
+      cmdTerminee();
+    </script>
   </section>
 </body>
 
