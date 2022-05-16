@@ -146,31 +146,52 @@
 
                                 button.addEventListener('click', event => {
                                     console.log(button.id); ///PDF
+                                    $.ajax({
+                                        url: 'PDF.php', //toujours la même page qui est appelée
+                                        type: 'POST',
+                                        data: ({
+                                            infos: resultats
+                                        }),
+                                        /*data: {
+                                            dateEmission: resultats[i]['DateComFourn'],
+                                            dateLivraison: resultats[i]['DateLivFourn'],
+                                            idIng: resultats[i]['IdIng'],
+                                            nomIng: resultats2[i]['NomIng'],
+                                            qteIng: resultats[i]['QteComFourn'],
+                                            fournisseur: resultats[i]['NomFourn'],
+                                            puht: resultats2[i]['PUHT'],
+                                        },*/
+                                        success: function(data) {
+                                            alert('AJAX call was successful!');
+                                        },
+                                        error: function() {
+                                            alert('There was some error performing the AJAX call!');
+                                        },
+                                    });
                                 });
-
                                 parent = document.getElementById('parent');
                                 parent.appendChild(laCommande);
                             }
-                        });
-                        laFonction.fail(function(dataSQL, statut) {
-                            alert("error sqlConnect.js : " + dataSQL.erreur);
-                        });
-                        /* 
-                        let resultats = JSON.parse(msg);
-                        selectIng = document.createElement('select');
-                        selectIng[0] = new Option("--Ingrédient--", "", false, false);
-                        for (i = 0; i < resultats.length; i++) {
-                            selectIng[i + 1] = new Option(resultats[i]['NomIng'], resultats[i]['IdIng'], false, false);
-                        };
-                        selectIng.id = 'selectIng';
-                        selectIng.class = 'column';
-                        selectIng.onChange = 'appel(this.value)';
-                        document.getElementById('requete').appendChild(selectIng);
-                        */
+                            laFonction2.fail(function(dataSQL, statut) {
+                                alert("error sqlConnect.js : " + dataSQL.erreur);
+                            });
+                            laFonction.fail(function(dataSQL, statut) {
+                                alert("error sqlConnect.js : " + dataSQL.erreur);
+                            });
+                            /* 
+                            let resultats = JSON.parse(msg);
+                            selectIng = document.createElement('select');
+                            selectIng[0] = new Option("--Ingrédient--", "", false, false);
+                            for (i = 0; i < resultats.length; i++) {
+                                selectIng[i + 1] = new Option(resultats[i]['NomIng'], resultats[i]['IdIng'], false, false);
+                            };
+                            selectIng.id = 'selectIng';
+                            selectIng.class = 'column';
+                            selectIng.onChange = 'appel(this.value)';
+                            document.getElementById('requete').appendChild(selectIng);
+                            */
 
-                    });
-                    laFonction.fail(function(dataSQL, statut) {
-                        alert("error sqlConnect.js : " + dataSQL.erreur);
+                        });
                     });
                 </script>
                 </article>
