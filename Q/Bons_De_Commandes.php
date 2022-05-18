@@ -73,8 +73,26 @@
 
 
                 <script>
+                    var date = new Date();
+                    console.log(date);
                     var resultats
                     var resultats2;
+                    var resultats3;
+                    var laFonctionn = $.ajax({
+                        url: 'STOCK_REQUETE.php', //toujours la même page qui est appelée
+                        type: 'POST',
+                        data: {
+                            fonction: 'select', //fonction à executer
+                            requete: 'SELECT NomFourn,AdresseFourn,CPFourn,VilleFourn,TelFourn FROM fournisseur',
+                        }
+                    });
+                    laFonctionn.done(function(data) {
+                        resultats3 = JSON.parse(data);
+                    });
+                    laFonctionn.fail(function(dataSQL, statut) {
+                        alert("error sqlConnect.js : " + dataSQL.erreur);
+                    });
+
                     var laFonction = $.ajax({
                         url: 'STOCK_REQUETE.php', //toujours la même page qui est appelée
                         type: 'POST',
@@ -96,7 +114,7 @@
                             type: 'POST',
                             data: {
                                 fonction: 'select', //fonction à executer
-                                requete: 'SELECT NomIng,IdIng,Unite,PrixUHT_Moyen AS PUHT FROM ingredient WHERE IdIng IN (SELECT IdIng FROM commandefournisseur)',
+                                requete: 'SELECT NomIng,IdIng,Unite,PrixUHT_Moyen AS PUHT FROM ingredient', // WHERE IdIng IN (SELECT IdIng FROM commandefournisseur)',
                             }
                         });
                         laFonction2.done(function(msg2) {
@@ -113,6 +131,7 @@
                                 let qte = document.createElement('div');
                                 let fourn = document.createElement('div');
                                 let prix = document.createElement('div');
+                                let clear = document.createElement('div');
 
                                 button.innerHTML = "link text";
                                 dateE.innerHTML = "Date d'émission : " + resultats[i]['DateComFourn'];
@@ -123,8 +142,7 @@
                                 prix.innerHTML = 'PRIX TOTAL HT : ' + resultats[i]['QteComFourn'] * resultats2[i]['PUHT'] + ' €';
 
                                 laCommande.className = 'left';
-                                button.id = 'PDF' + resultats[i]['IdComFourn'];
-                                button.href = "https://www.google.com/";
+                                button.id = i; //resultats[i]['IdComFourn']
                                 button.className = 'button toPDF'
                                 tousLesChamps.className = 'bonCompact';
                                 dateE.className = 'left';
@@ -133,6 +151,7 @@
                                 qte.className = 'right';
                                 fourn.className = 'clear';
                                 prix.className = 'text-center';
+                                clear.className = 'clear';
 
                                 laCommande.appendChild(h3);
                                 h3.appendChild(button);
@@ -145,33 +164,39 @@
                                 laCommande.appendChild(tousLesChamps);
 
                                 button.addEventListener('click', event => {
-                                    console.log(button.id); ///PDF
-                                    console.log(resultats);
-                                    console.log(resultats2);
-                                    console.log(({
-                                            commandefournisseur: resultats,
-                                            ingredient: resultats2,
-                                            id: button.id
-                                        }),)
+                                    i = button.id;
+                                    console.log(i);
+                                    console.log(new Date(2022, 4, 07))
+                                    var dateLiv = new Date(resultats[i]['DateLivFourn'].substr(0, 4), resultats[i]['DateLivFourn'].substr(5, 2) - 1, resultats[i]['DateLivFourn'].substr(8, 2)); //POIR LES MOIS, il faut -1 car ils vont de 0 à 11.
+                                    console.log(dateLiv);
+                                    if (dateLiv <= date) {
+                                        alert('Commande trop ancienne, merci d\'en génerer une nouvelle');
+                                    } else {
 
-                                    $.ajax({
-                                        url: 'PDF.php', //toujours la même pag  e qui est appelée
-                                        type: 'POST',
-                                        data: ({
-                                            commandefournisseur: resultats,
-                                            ingredient: resultats2,
-                                            id: button.id
-                                        }),
-                                        success: function(data) {
-                                            alert('AJAX call was successful!');
-                                        },
-                                        error: function() {
-                                            alert('There was some error performing the AJAX call!');
-                                        },
-                                    });
+
+
+                                        $.ajax({
+                                            url: 'PDF.php', //toujours la même page qui est appelée
+                                            type: 'POST',
+                                            data: ({
+                                                commandefournisseur: resultats,
+                                                ingredient: resultats2,
+                                                id: resultats[i]['IdComFourn'],
+                                                fournisseur: resultats3
+                                            }),
+                                            success: function(data) {},
+                                            error: function() {
+                                                alert('There was some error performing the AJAX call!');
+                                            },
+                                        });
+                                        setTimeout(function() {
+                                            javascipt: window.open('commandes/PDF' + resultats[i]['IdComFourn'] + '.pdf');
+                                        }, 500); //On attend 500ms avant d'ouvrir le PDF, le temps que se dernier se génère/mette  à jour
+                                    }
                                 });
                                 parent = document.getElementById('parent');
                                 parent.appendChild(laCommande);
+                                parent.appendChild(clear);
                             }
                             laFonction2.fail(function(dataSQL, statut) {
                                 alert("error sqlConnect.js : " + dataSQL.erreur);
@@ -179,19 +204,6 @@
                             laFonction.fail(function(dataSQL, statut) {
                                 alert("error sqlConnect.js : " + dataSQL.erreur);
                             });
-                            /* 
-                            let resultats = JSON.parse(msg);
-                            selectIng = document.createElement('select');
-                            selectIng[0] = new Option("--Ingrédient--", "", false, false);
-                            for (i = 0; i < resultats.length; i++) {
-                                selectIng[i + 1] = new Option(resultats[i]['NomIng'], resultats[i]['IdIng'], false, false);
-                            };
-                            selectIng.id = 'selectIng';
-                            selectIng.class = 'column';
-                            selectIng.onChange = 'appel(this.value)';
-                            document.getElementById('requete').appendChild(selectIng);
-                            */
-
                         });
                     });
                 </script>
