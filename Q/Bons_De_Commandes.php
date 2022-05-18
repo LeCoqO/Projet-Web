@@ -73,6 +73,8 @@
 
 
                 <script>
+                    var resultats
+                    var resultats2;
                     var laFonction = $.ajax({
                         url: 'STOCK_REQUETE.php', //toujours la même page qui est appelée
                         type: 'POST',
@@ -83,10 +85,8 @@
                     });
 
                     laFonction.done(function(msg) {
-                        let resultats = JSON.parse(msg);
-                        let resultats2;
+                        resultats = JSON.parse(msg);
                         let autreReq = [];
-
                         for (var IdIng in resultats) {
                             autreReq.push(IdIng);
                         }
@@ -146,21 +146,22 @@
 
                                 button.addEventListener('click', event => {
                                     console.log(button.id); ///PDF
+                                    console.log(resultats);
+                                    console.log(resultats2);
+                                    console.log(({
+                                            commandefournisseur: resultats,
+                                            ingredient: resultats2,
+                                            id: button.id
+                                        }),)
+
                                     $.ajax({
-                                        url: 'PDF.php', //toujours la même page qui est appelée
+                                        url: 'PDF.php', //toujours la même pag  e qui est appelée
                                         type: 'POST',
                                         data: ({
-                                            infos: resultats
+                                            commandefournisseur: resultats,
+                                            ingredient: resultats2,
+                                            id: button.id
                                         }),
-                                        /*data: {
-                                            dateEmission: resultats[i]['DateComFourn'],
-                                            dateLivraison: resultats[i]['DateLivFourn'],
-                                            idIng: resultats[i]['IdIng'],
-                                            nomIng: resultats2[i]['NomIng'],
-                                            qteIng: resultats[i]['QteComFourn'],
-                                            fournisseur: resultats[i]['NomFourn'],
-                                            puht: resultats2[i]['PUHT'],
-                                        },*/
                                         success: function(data) {
                                             alert('AJAX call was successful!');
                                         },
