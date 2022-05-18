@@ -639,6 +639,19 @@ Couleur font: noir ou blanc*/
     width: 55px;
 }
 
+.commande{
+    width: 680px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.centered-element{
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: grey;
+    padding: 15px;
+}
 /* Fin IHM Gérant */
 
 /* IHM Panier */
