@@ -73,6 +73,12 @@
 
 
                 <script>
+                    Date.prototype.addDays = function(days) { //Fonction pour les dates
+                        var date = new Date(this.valueOf());
+                        date.setDate(date.getDate() + days);
+                        return date;
+                    }
+
                     var date = new Date();
                     console.log(date);
                     var resultats
@@ -165,23 +171,18 @@
 
                                 button.addEventListener('click', event => {
                                     i = button.id;
-                                    console.log(i);
-                                    console.log(new Date(2022, 4, 07))
                                     var dateLiv = new Date(resultats[i]['DateLivFourn'].substr(0, 4), resultats[i]['DateLivFourn'].substr(5, 2) - 1, resultats[i]['DateLivFourn'].substr(8, 2)); //POIR LES MOIS, il faut -1 car ils vont de 0 à 11.
-                                    console.log(dateLiv);
-                                    if (dateLiv <= date) {
+                                    var dateCom = new Date(resultats[i]['DateComFourn'].substr(0, 4), resultats[i]['DateComFourn'].substr(5, 2) - 1, resultats[i]['DateComFourn'].substr(8, 2)); //POIR LES MOIS, il faut -1 car ils vont de 0 à 11.
+                                    if (dateLiv < date || dateCom.addDays(30) < date) {
                                         alert('Commande trop ancienne, merci d\'en génerer une nouvelle');
                                     } else {
-
-
-
                                         $.ajax({
                                             url: 'PDF.php', //toujours la même page qui est appelée
                                             type: 'POST',
                                             data: ({
                                                 commandefournisseur: resultats,
                                                 ingredient: resultats2,
-                                                id: resultats[i]['IdComFourn'],
+                                                id: 'PDF'+resultats[i]['IdComFourn'],
                                                 fournisseur: resultats3
                                             }),
                                             success: function(data) {},
