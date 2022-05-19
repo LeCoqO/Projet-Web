@@ -34,10 +34,10 @@
                         <button class="button" onclick=window.location.href='commande_fournisseur.php'>Retour</button>
                     </div>
                     <div class="column">
-                        <button class="button" onclick=window.location.href=''>Commander</button>
+                        <button class="button" id='commander'>Commander</button>
                     </div>
                     <div class="column">
-                        <button class="button" onclick=window.location.href=''>Supprimer</button>
+                        <button class="button" id='supprimer'>Supprimer</button>
                     </div>
                 </div>
             </section>
@@ -162,6 +162,7 @@
                             clear.className = 'clear';
                             input.id = i + 'bis';
                             input.type = 'checkbox';
+                            input.className = 'checkbox';
                             laCheck.className = 'right vertical-center';
 
                             tousLesChamps.appendChild(dateE);
@@ -212,6 +213,76 @@
                             alert("error sqlConnect.js : " + dataSQL.erreur);
                         });
                     });
+                });
+
+                document.getElementById('supprimer').addEventListener('click', event => {
+                    var selection = false;
+                    $(".checkbox").each(function() {
+                            console.log($(this).is(":checked"));
+                            if ($(this).is(":checked")) {
+                                selection = true;
+                                $.ajax({
+                                    url: 'mailSender.php', //toujours la même page qui est appelée
+                                    type: 'POST',
+                                    data: {
+                                        fournisseurMail: resultats[$(this).attr('id').replace('bis', '')]['MailFourn'], //fonction à executer
+                                        commandeID: resultats[$(this).attr('id').replace('bis', '')]['IdComFourn'],
+                                    },
+                                    success: function(data) {
+                                        console.log('Coooool');
+                                    },
+                                    error: function(dataSQL, statut) {
+                                        alert("error sqlConnect.js : " + dataSQL.erreur);
+                                    }
+                                })
+                            }
+                        }
+                    )
+
+                    if(!selection){
+                        alert('Veuillez séléctionner une ou plusieures commande(s)');
+                    }
+
+                    setTimeout(function() {
+                        window.location.reload()
+                    }, 100);
+                });
+
+
+
+
+                document.getElementById('commander').addEventListener('click', event => {
+                    var selection = false;
+                    $(".checkbox").each(function() {
+                            console.log($(this).is(":checked"));
+                            if ($(this).is(":checked")) {
+                                selection = true;
+                                $.ajax({
+                                    url: 'STOCK_REQUETE.php', //toujours la même page qui est appelée
+                                    type: 'POST',
+                                    data: {
+                                        fonction: 'update', //fonction à executer
+                                        requete: 'DELETE FROM commandefournisseur WHERE IdComFourn = ' + resultats[$(this).attr('id').replace('bis', '')]['IdComFourn'] + ';',
+                                    },
+                                    success: function(data) {
+                                        console.log('Coooool');
+                                    },
+                                    error: function(dataSQL, statut) {
+                                        alert("error sqlConnect.js : " + dataSQL.erreur);
+                                    }
+                                })
+                            }
+                        }
+
+                    )
+
+                    if(!selection){
+                        alert('Veuillez séléctionner une ou plusieures commande(s)');
+                    }
+
+                    setTimeout(function() {
+                        window.location.reload()
+                    }, 100);
                 });
             </script>
             </article>
