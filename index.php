@@ -12,9 +12,10 @@
 <header>
     <div class="sidebar" id="mySidebar">
         <button class="bar-item button" onclick="sidebar_close()">Close &times;</button>
-        <br/><a href="#" class="bar-item button">Accueil</a>
-        <br/><a href="livreur.php" class="bar-item button">Livreur</a>
-        <br/><a href="mentionLegale.html" class="bar-item button">Mention légale</a>
+        <a href="#" class="bar-item button">Accueil</a><br>
+        <a href="livreur.php" class="bar-item button">Livreur</a><br>
+        <a href="recette.php" class="bar-item button">Recette</a><br>
+        <a href="mentionLegale.html" class="bar-item button">Mention légale</a><br>
     </div>
     <button class="button left hide-large" onclick="sidebar_open()">&#9776;</button>
     <h1 class="text-center ">
@@ -33,9 +34,9 @@
             <section>
                 <h2 class="text-center">Nos incontournables: </h2>
                 <div class="row text-center">
-                    <div class="column">Premier <img src="./img/logo.jpg" class="logo" alt="" width="33%"/></div>
-                    <div class="column">deux <img src="./img/logo.jpg" class="logo" alt="" width="33%"/></div>
-                    <div class="column">3 <img src="./img/logo.jpg" class="logo" alt="" width="33%"/></div>
+                    <div class="column">Premier <img src="./img/logo.jpg" class="logo" alt="" width="33%" /></div>
+                    <div class="column">deux <img src="./img/logo.jpg" class="logo" alt="" width="33%" /></div>
+                    <div class="column">3 <img src="./img/logo.jpg" class="logo" alt="" width="33%" /></div>
                 </div>
             </section>
             <div class="clear"><br><br><br></div>
@@ -233,7 +234,44 @@
         <button onclick="genererMenuJSON()">Ajouter</button>
 
     </div>
-
+    <div class="footer-dark">
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6 col-md-3 item">
+                        <h3>Services</h3>
+                        <ul>
+                            <li><a href="#">Web design</a></li>
+                            <li><a href="#">Development</a></li>
+                            <li><a href="#">Hosting</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-6 col-md-3 item">
+                        <h3>About</h3>
+                        <ul>
+                            <li><a href="#">Company</a></li>
+                            <li><a href="#">Team</a></li>
+                            <li><a href="#">Careers</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6 item text">
+                        <h3>Hom'burger</h3>
+                        <p>Praesent sed lobortis mi. Suspendisse vel placerat ligula.
+                            Vivamus ac sem lacus. Ut vehicula rhoncus elementum. Etiam quis tristique lectus.
+                            Aliquam in arcu eget velit pulvinar dictum vel in justo.
+                        </p>
+                    </div>
+                    <div class="col item social">
+                        <a href="#"><i class="icon ion-social-facebook"></i></a>
+                        <a href="#"><i class="icon ion-social-twitter"></i></a>
+                        <a href="#"><i class="icon ion-social-snapchat"></i></a>
+                        <a href="#"><i class="icon ion-social-instagram"></i></a>
+                    </div>
+                </div>
+                <p class="copyright">Hom'burger © 2022</p>
+            </div>
+        </footer>
+    </div>
 </body>
 <script>
     var menu = {
@@ -250,6 +288,15 @@
         },
         "boisson": ""
     };
+    var menu = [{
+            "productId": "",
+            "productName": "",
+        },
+        {
+            "productId": "",
+            "productName": "",
+        },
+    ];
     var commande = [];
 
     for (var i = 0; i < $("h3").length; i++) {

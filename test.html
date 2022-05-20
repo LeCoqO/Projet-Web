@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+</head>
+
+<body>
+
+</body>
+
+
+<script type="module">
+  var json = {
+    "nom": "azd",
+    "idProd": "",
+    "taille": "M",
+    "nbr_ingr_principaux": 3,
+    "nbr_ingr_secondaires": 3,
+    "prix": "10",
+    "img": "logo_3.png",
+    "ingr_principaux": {
+      "ingr_1": "Pain Sesame",
+      "ingr_1_qty": "4",
+      "ingr_2": "Boeuf",
+      "ingr_2_qty": "7",
+      "ingr_3": "Poulet",
+      "ingr_3_qty": "6",
+      "ingr_4": "Salade",
+      "ingr_4_qty": "56",
+      "ingr_5": "",
+      "ingr_5_qty": ""
+    },
+    "ingr_secondaires": {
+      "ingr_1": "Sauce Algérienne",
+      "ingr_1_qty": "6",
+      "ingr_2": "Sauce Burger",
+      "ingr_2_qty": "65",
+      "ingr_3": "Sauce Moustache",
+      "ingr_3_qty": "7",
+      "ingr_4": "",
+      "ingr_4_qty": "",
+      "ingr_5": "",
+      "ingr_5_qty": "",
+      "ingr_6": "",
+      "ingr_6_qty": ""
+    },
+    "incontournable": true,
+    "nombreOptionMax": "3"
+  }
+  var prodId, ingId;
+  var waitALL = 0;
+  $.ajax({
+      url: 'ajax_Bdd.php', //toujours la même page qui est appelée
+      type: 'POST',
+      data: {
+        fonction: 'requete', //fonction à executer
+        requete: "SELECT IdProd FROM produit WHERE NomProd LIKE '" + json["nom"] + "'",
+      },
+      success: function (data) {
+        //console.log(data)
+        var resultats = JSON.parse(data);
+        json["idProd"] = resultats[0]["IdProd"];
+      },
+      error: function (dataSQL, statut) {
+        alert("error sqlConnect.js : " + dataSQL.erreur);
+      }
+    });
+  for (let i = 0; i < json['nbr_ingr_principaux']; i++) {
+    $.ajax({
+      url: 'ajax_Bdd.php', //toujours la même page qui est appelée
+      type: 'POST',
+      data: {
+        fonction: 'requete', //fonction à executer
+        requete: "SELECT IdIng FROM ingredient WHERE NomIng LIKE '" + json['ingr_principaux']['ingr_' + (i + 1)] + "'",
+      },
+      success: function (data) {
+        var resultats = JSON.parse(data);
+        //console.log("456: ", resultats[0]);
+        console.log("Nom ingr " + i + ": ", resultats[0]["IdIng"]);
+        ingId = resultats[0]["IdIng"];
+        pushToBdd(ingId, json["idProd"], i)
+      },
+      error: function (dataSQL, statut) {
+        alert("error sqlConnect.js : " + dataSQL.erreur);
+      }
+    });
+
+  }
+  for (let i = 0; i < json['nbr_ingr_secondaires']; i++) {
+    $.ajax({
+      url: 'ajax_Bdd.php', //toujours la même page qui est appelée
+      type: 'POST',
+      data: {
+        fonction: 'requete', //fonction à executer
+        requete: "SELECT IdIng FROM ingredient WHERE NomIng LIKE '" + json['ingr_secondaires']['ingr_' + (i + 1)] + "'",
+      },
+      success: function (data) {
+        var resultats = JSON.parse(data);
+        //console.log("456: ", resultats[0]);
+        console.log("Nom ingr " + i + ": ", resultats[0]["IdIng"]);
+        ingId = resultats[0]["IdIng"];
+        pushToBdd(ingId, json["idProd"], i)
+
+      },
+      error: function (dataSQL, statut) {
+        alert("error sqlConnect.js : " + dataSQL.erreur);
+      }
+    });
+  }
+
+  function pushToBdd(ingId, prodId, i) {
+    console.log("pushTo: " + ingId, prodId, i);
+    //waitALL++;
+    //if (waitALL >= 2) {
+    var rq = "INSERT INTO `prod_ingr` (`IdIng`, `IdProd`, `Quant`)" +
+      "VALUES ('" + ingId + "', '" + prodId + "', '" + json["ingr_secondaires"]["ingr_" + (i + 1) + "_qty"] + "');"
+    console.log(rq)
+
+    $.ajax({
+      url: 'ajax_Bdd.php', //toujours la même page qui est appelée
+      type: 'POST',
+      data: {
+        fonction: 'update', //fonction à executer
+        requete: rq,
+      },
+      success: function (data) {
+        //location.reload();
+        //console.log(data)
+      },
+      error: function (dataSQL, statut) {
+        alert("error sqlConnect.js : " + dataSQL.erreur);
+      }
+    });
+    //}
+
+  }
+</script>
+
+</html>

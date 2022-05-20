@@ -8,8 +8,8 @@
   </style>
   <meta charset="utf-8" />
   <meta name="author" content="TORRES Diego" />
-  <meta name="content" content="Fruits VS Légumes" />
-  <title>Fruits VS Légumes</title>
+  <meta name="content" content="L'Hom'burger" />
+  <title>L'Hom'burger</title>
   <link rel="stylesheet" type="text/css" href="style.css" />
 </head>
 
@@ -18,10 +18,11 @@
     <div class="sidebar" id="mySidebar">
       <button class="bar-item button" onclick="sidebar_close()">Close &times;</button><br>
       <a href="index.php" class="bar-item button">Accueil</a><br>
-      <a href="commande.php" class="bar-item button">Livreur</a><br>
-      <a href="mentionLegale.html" class="bar-item button">Mention légale</a><br>
+      <a href="livreur.php" class="bar-item button">Livreur</a><br>
+      <a href="recette.php" class="bar-item button">Recette</a><br>
+      <a href="#" class="bar-item button">Mention légale</a><br>
     </div>
-    <button class="button left hide-large" onclick="sidebar_open()">&#9776;</button>
+    <button class="button_sidebar button left hide-large" onclick="sidebar_open()">&#9776;</button>
     <h1 class="text-center ">
       <img src="./img/logo.png" class="logo" alt="" />
     </h1>
@@ -29,63 +30,152 @@
   <div id="wrapper">
     <header id="banniere">
       <br />
-      <h1 class="gras text-center">L'Hom'burger</h1>
       <br />
     </header>
     <section>
       <article>
+        <h1 class="titre">Description du restaurant</h1>
+        <p class="large description">
+          <br />
+          Créé en France en 2022, L'Hom'burger compte aujourd'hui plus de 280 restaurants dans son réseau et connaît
+          depuis de
+          nombreuses années la plus belle expansion au sein de son secteur.<br /><br />
 
-        <p>
-        <h2>Description du restaurant</h2><br />
-        Adresse : 14 Avenue Duquesne, 75007 Paris <br />
-        Téléphone : 01 40 56 60 00 <br />
-        Email : contact@ministeresante.fr <br />
-        <h2>Edition du site Internet </h2>
-        Responsable de la publication : Service Communication du ministère de la santé<br /><br />
-        Réalisation du site Internet et maintenance : TAIS Hébergement <br />
+          L'Hom'burger est leader sur son marché et « de loin » d’après une personne visiblement très objective. En
+          effet, le premier challenger de
+          la marque compte seulement une vingtaine de restaurants à ce jour.<br /><br />
+
+          Le French burger (burger à la française), à l’antipode du burger mexicain, est le produit phare de la marque ;
+          l’idée de combiner la cuisine rapide et traditionnelle française en apportant la french touch unique aux
+          recettes : l’unique sauce Moustache Hom'burger ravis les nombreux clients de la marque.<br /><br />
+
+          Hom'burger est une réelle alternative à la restauration rapide classique en France. Le concept et le goût sont
+          vantés par ses millions de fans sur les réseaux sociaux où la marque est très présente.<br /><br />
+        </p>
+        <h1 class="titre">Des valeurs fortes</h1><br />
+        <p class="large description">
+          L’intégrité, le respect, la responsabilité et la satisfaction client animent chaque jour ces collaborateurs
+          dans
+          leurs missions.<br />
+
+          Ces fortes valeurs ancrées dans l’ADN Hom'burger lui permettent de maintenir une croissance constante et de
+          pérenniser la marque.<br /><br />
 
         </p>
       </article>
+      <h1>Nos équipes: </h1>
+      <div class="row">
+        <div class="column">
+          <div class="card">
+            <img src="./img/liliPet.gif" alt="Lilian" class="imgFormatPdp">
+            <div class="container">
+              <h2>Lilian </h2>
+              <p class="title">Jefe</p>
+              <p>Some text that describes me lorem ipsum ipsum lorem.</p>
+              <p><button class="button">Contact</button></p>
+            </div>
+          </div>
+        </div>
 
-      <article class="vignettePresentation">
-        <img src="./img/liliPet.gif" width="150px" heigth="150px" class="logo" alt="" /><br>
-        <p>
-          <bold>Lilian Page</bold><br>
-          Bon toutou (chef)
-        </p>
-      </article>
-      <article class="vignettePresentation">
-        <img src="./img/Eddy.jpg" width="150px" heigth="150px" class="logo" alt="" /><br>
-        <p>
-          <bold>Eddy</bold><br>
-          (licencié)
-        </p>
-      </article>
-      <article class="vignettePresentation">
-        <img src="./img/pikazo.JPG" width="150px" heigth="150px" class="logo" alt="" /><br>
-        <p>
-          <bold>Corentin</bold><br>
-          (Pikazo)
-        </p>
-      </article>
-      <article class="vignettePresentation">
-        <img src="./img/noopy.png" width="150px" heigth="150px" class="logo" alt="" /><br>
-        <p>
-          <bold>Quentin</bold><br>
-          (Impostor)
-        </p>
-      </article>
-      <article class="vignettePresentation">
-        <img src="./img/liliPet.gif" width="150px" heigth="150px" class="logo" alt="" /><br>
-        <p>
-          <bold>Lilian Page</bold><br>
-          Bon toutou (chef)
-        </p>
-      </article>
+        <div class="column">
+          <div class="card">
+            <img src="./img/Eddy.jpg" alt="Eddy" class="imgFormatPdp">
+            <div class="container">
+              <h2>Eddy</h2>
+              <p class="title">Licencié</p>
+              <p>Some text that describes me lorem ipsum ipsum lorem.</p>
+              <p><button class="button">Contact</button></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="column">
+          <div class="card">
+            <img src="./img/pikazo.JPG" alt="corentin" class="imgFormatPdp">
+            <div class="container">
+              <h2>Corentin Mauchand</h2>
+              <p class="title">Art Director Designer aka PIKAZO</p>
+              <p>Some text that describes me lorem ipsum ipsum lorem.</p>
+              <p><button class="button">Contact</button></p>
+            </div>
+          </div>
+        </div>
+        <div class="column">
+          <div class="card">
+            <img src="./img/noopy.png" alt="corentin" class="imgFormatPdp">
+            <div class="container">
+              <h2>Quentin</h2>
+              <p class="title">Art Director Designer aka PIKAZO</p>
+              <p>Some text that describes me lorem ipsum ipsum lorem.</p>
+              <p><button class="button">Contact</button></p>
+            </div>
+          </div>
+        </div>
+        <div class="column">
+          <div class="card">
+            <img src="./img/moi.png" alt="corentin" class="imgFormatPdp">
+            <div class="container">
+              <h2>Diago</h2>
+              <p class="title">Community manager</p>
+              <p>Some text that describes me lorem ipsum ipsum lorem.</p>
+              <p><button class="button">Contact</button></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </section>
     <div id="traitPointillé"></div>
 
   </div>
+  <div class="footer-dark">
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-md-3 item">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="#">Web design</a></li>
+                        <li><a href="#">Development</a></li>
+                        <li><a href="#">Hosting</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-6 col-md-3 item">
+                    <h3>About</h3>
+                    <ul>
+                        <li><a href="#">Company</a></li>
+                        <li><a href="#">Team</a></li>
+                        <li><a href="#">Careers</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-6 item text">
+                    <h3>Hom'burger</h3>
+                    <p>Praesent sed lobortis mi. Suspendisse vel placerat ligula.
+                        Vivamus ac sem lacus. Ut vehicula rhoncus elementum. Etiam quis tristique lectus.
+                        Aliquam in arcu eget velit pulvinar dictum vel in justo.
+                    </p>
+                </div>
+                <div class="col item social">
+                    <a href="#"><i class="icon ion-social-facebook"></i></a>
+                    <a href="#"><i class="icon ion-social-twitter"></i></a>
+                    <a href="#"><i class="icon ion-social-snapchat"></i></a>
+                    <a href="#"><i class="icon ion-social-instagram"></i></a>
+                </div>
+            </div>
+            <p class="copyright">Hom'burger © 2022</p>
+        </div>
+    </footer>
+</div>
 </body>
+
+<script>
+  function sidebar_open() {
+    document.getElementById("mySidebar").style.display = "block";
+  }
+
+  function sidebar_close() {
+    document.getElementById("mySidebar").style.display = "none";
+  }
+</script>
 
 </html>
