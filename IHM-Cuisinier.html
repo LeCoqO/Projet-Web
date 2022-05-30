@@ -19,7 +19,7 @@
       &#9776;
     </button>
     <div class="rigth logo">
-      <img src="Image/logo.png" class="text-center" alt="" width="100px" height="100px" />
+      <img src="img/logo.png" class="text-center" alt="" width="100px" height="100px" />
     </div>
     <div>
       <br /><br /><br /><br /><br />
@@ -32,134 +32,23 @@
     <link href="https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   </header>
-  <script>
-    function sidebar_open() {
-      document.getElementById("mySidebar").style.display = "block";
-    }
+</head>
 
-    function sidebar_close() {
-      document.getElementById("mySidebar").style.display = "none";
-    }
-    function OnOff(id) {
-      if (document.getElementById(id).style.visibility == "visible")
-        document.getElementById(id).style.visibility = "hidden";
-      else document.getElementById(id).style.visibility = "visible";
-    }
-    
-    function cmdTerminee() {
-      $.ajax({
-      url: 'requette.php', //toujours la même page qui est appelée
-      type: 'POST',
-      data: {
-        fonction: 'select', //fonction à executer
-        requete: 'SELECT NumCom FROM commande WHERE EtatCde LIKE "A Prepare" AND HeureDispo ORDER BY HeureDispo ASC',
-      },
-      success: function (data) {
+<script>
+  function sidebar_open() {
+    document.getElementById("mySidebar").style.display = "block";
+  }
 
-        console.log(data);
+  function sidebar_close() {
+    document.getElementById("mySidebar").style.display = "none";
+  }
+  function OnOff(id) {
+    if (document.getElementById(id).style.visibility == "visible")
+      document.getElementById(id).style.visibility = "hidden";
+    else document.getElementById(id).style.visibility = "visible";
+  }
 
-        let resultats = JSON.parse(data);
-
-        for (i = 0; i < resultats.length; i++) {
-          console.log('test');
-          if(!document.getElementById(resultats[i]['NumCom'])) {
-            createDiv(resultats[i]['NumCom']);
-          }
-          
-        };
-        populateDivCom();
-      },
-      error: function (dataSQL, statut) {
-        alert("error sqlConnect.js : " + dataSQL.erreur);
-      }
-    });
-    }
-
-    function createDiv(NumCom) {
-      var newDiv = document.createElement("div");
-      newDiv.id = NumCom;
-      newDiv.className = 'articleCommande';
-
-      document.getElementById('sectionCuisine').appendChild(newDiv);
-    }
-
-    function populateDivCom() {
-      let allCommandeDiv = document.getElementsByClassName("articleCommande"); //avec en id l'id de la commande
-      console.log(allCommandeDiv);
-      for (let i = 0; i < allCommandeDiv.length; i++) {
-        console.log(allCommandeDiv[i].id);
-        //appel base to get info about cmd
-
-        $.ajax({
-          url: 'requette.php', //toujours la même page qui est appelée
-          type: 'POST',
-          data: {
-            fonction: 'select', //fonction à executer
-            requete: 'SELECT HeureDispo FROM commande WHERE NumCom LIKE ' + allCommandeDiv[i].id,
-          },
-          success: function (data) {
-
-            let resultat = JSON.parse(data);
-
-            $("#hDisp" + i).text(resultat[0]['HeureDispo']);
-
-          },
-          error: function (dataSQL, statut) {
-            alert("error sqlConnect.js : " + dataSQL.erreur);
-          }
-        });
-
-        $.ajax({
-          url: 'requette.php', //toujours la même page qui est appelée
-          type: 'POST',
-          data: {
-            fonction: 'select', //fonction à executer
-            requete: 'SELECT SUM(Quant) FROM com_det WHERE NumCom LIKE ' + allCommandeDiv[i].id,
-          },
-          success: function (data) {
-
-            console.log(data);
-
-            let resultat2 = JSON.parse(data);
-
-            $("#nbBurg" + i).text(resultat2[0]['SUM(Quant)']);
-
-          },
-          error: function (dataSQL, statut) {
-            alert("error sqlConnect.js : " + dataSQL.erreur);
-          }
-        });
-
-        allCommandeDiv[i].innerHTML = '<h3>Commande N° : ' + allCommandeDiv[i].id + ' </h3>' +
-          '<div class="nbBurger">' +
-          '<p class="nombreBurger">Nombre de burgers : </p>' +
-          '<p id="nbBurg' + i + '"> </p>' +
-          '</div>' +
-          '<div class="heurePrepa">' +
-          '<p class="reqHeure">Doit être prête pour : </p>' +
-          '<p id="hDisp' + i + '"></p>' +
-          '</div>' +
-          '<br />' +
-          '<div class="burgerAFaire">' +
-          '<div class="apercuCmd">' +
-          '<img class="imgCuisine" src="Image/chinoisBurger.jpg">' +
-          '<p>: 2 burgers</p>' +
-          '</div>' +
-          '<div class="listeCuisine">' +
-          '<input type="button" value="Liste des ingrédients" class="btnListeIngredients" />' +
-          '<span id="listeIng"></span>' +
-          '</div>' +
-          '</div>' +
-          '<br />' +
-          '<input type="button" value="A préparer" class="aPrepa" />' +
-          '<button class="cmdFinie" onClick="cmdTerminee()">Commande Finie</button>';
-
-      }
-    }
-  </script>
-
-  <!-- Select Numéro de commande 
-  <script text/javascript>
+  function creaCommande() {
     $.ajax({
       url: 'requette.php', //toujours la même page qui est appelée
       type: 'POST',
@@ -175,23 +64,192 @@
 
         for (i = 0; i < resultats.length; i++) {
           console.log('test');
-          createDiv(resultats[i]['NumCom']);
-        };
+          if (!document.getElementById(resultats[i]['NumCom'])) {
+            createDiv(resultats[i]['NumCom']);
+          }
+
+        }
         populateDivCom();
       },
       error: function (dataSQL, statut) {
         alert("error sqlConnect.js : " + dataSQL.erreur);
       }
     });
+  }
 
-  </script> -->
+  function cmdTerminee(numCom) {
+    $.ajax({
+      url: 'requette.php', //toujours la même page qui est appelée
+      type: 'POST',
+      data: {
+        fonction: 'update', //fonction à executer
+        requete: 'UPDATE commande SET EtatCde = "A Livrer" WHERE NumCom LIKE ' + numCom,
+      },
+      success: function (data) {
+        console.log(numCom);
+        console.log("Je fais un test" + data);
+        location.reload();
+      },
+      error: function (dataSQL, statut) {
+        alert("error sqlConnect.js : " + dataSQL.erreur);
+      }
+    });
+  }
 
-</head>
+  function createDiv(NumCom) {
+    var newDiv = document.createElement("div");
+    newDiv.id = NumCom;
+    newDiv.className = 'articleCommande';
+
+    document.getElementById('sectionCuisine').appendChild(newDiv);
+  }
+
+  function populateDivCom() {
+    let allCommandeDiv = document.getElementsByClassName("articleCommande"); //avec en id l'id de la commande
+    console.log(allCommandeDiv);
+    for (let i = 0; i < allCommandeDiv.length; i++) {
+      console.log(allCommandeDiv[i].id);
+      //appel base to get info about cmd
+
+      $.ajax({
+        url: 'requette.php', //toujours la même page qui est appelée
+        type: 'POST',
+        data: {
+          fonction: 'select', //fonction à executer
+          requete: 'SELECT HeureDispo FROM commande WHERE NumCom LIKE ' + allCommandeDiv[i].id,
+        },
+        success: function (data) {
+
+          let resultat = JSON.parse(data);
+
+          $("#hDisp" + i).text(resultat[0]['HeureDispo']);
+
+        },
+        error: function (dataSQL, statut) {
+          alert("error sqlConnect.js : " + dataSQL.erreur);
+        }
+      });
+
+      $.ajax({
+        url: 'requette.php', //toujours la même page qui est appelée
+        type: 'POST',
+        data: {
+          fonction: 'select', //fonction à executer
+          requete: 'SELECT SUM(Quant) FROM detail WHERE NumCom LIKE ' + allCommandeDiv[i].id,
+        },
+        success: function (data) {
+
+          console.log(data);
+
+          let resultat2 = JSON.parse(data);
+
+          $("#nbBurg" + i).text(resultat2[0]['SUM(Quant)']);
+
+        },
+        error: function (dataSQL, statut) {
+          alert("error sqlConnect.js : " + dataSQL.erreur);
+        }
+      });
+
+      $.ajax({
+        url: 'requette.php', //toujours la même page qui est appelée
+        type: 'POST',
+        data: {
+          fonction: 'select', //fonction à executer
+          requete: 'SELECT NumCom, idProd, Quant FROM detail WHERE NumCom LIKE ' + allCommandeDiv[i].id + ' GROUP BY idProd ',
+        },
+
+        success: function (data) {
+
+          let resultat4 = JSON.parse(data);
+          console.log(resultat4);
+          var fin="";
+          for(j = 0; j < resultat4.length; j++) {
+            fin += resultat4[j]['Quant']; 
+          }
+          $("#nbBurger" + i).text(fin);
+        },
+        error: function (dataSQL, statut) {
+          alert("error sqlConnect.js : " + dataSQL.erreur);
+        }
+      });
+      /*
+      $.ajax({
+        url: 'requette.php', //toujours la même page qui est appelée
+        type: 'POST',
+        data: {
+          fonction: 'select', //fonction à executer
+          requete: 'SELECT Image FROM produit WHERE IdProd LIKE (SELECT IdProd from detail WHERE NumCom LIKE ' + allCommandeDiv[i].id + ')',
+        },
+
+        success: function (data) {
+
+          let resultat5 = JSON.parse(data);
+          console.log(resultat5);
+          $("#imgCuisine" + i).text(resultat5[0]['Image']);
+        },
+        error: function (dataSQL, statut) {
+          alert("error sqlConnect.js : " + dataSQL.erreur);
+        }
+      });*/
+
+      $.ajax({
+        url: 'requette.php', //toujours la même page qui est appelée
+        type: 'POST',
+        data: {
+          fonction: 'select', //fonction à executer
+          requete: 'SELECT * FROM `produit` WHERE IdProd IN( SELECT IdProd FROM `detail` WHERE Num_OF IN( SELECT Num_OF FROM `detail` WHERE NumCom in( SELECT NumCom FROM `Commande` WHERE EtatCde LIKE "A Prepare")))',
+        },
+
+        success: function (data) {
+
+          let resultat6 = JSON.parse(data);
+          console.log(resultat6);
+          var final = ("\n" + resultat6[0]['IngBase1']);
+          if (resultat6[0]['IngBase2'] !== null) { final += ("\n" + resultat6[0]['IngBase2']); }
+          if (resultat6[0]['IngBase3'] !== null) { final += ("\n" + resultat6[0]['IngBase3']); }
+          if (resultat6[0]['IngBase4'] !== null) { final += ("\n" + resultat6[0]['IngBase4']); }
+          if (resultat6[0]['IngOpti1'] !== null) { final += ("\n" + resultat6[0]['IngOpti1']); }
+          if (resultat6[0]['IngOpti2'] !== null) { final += ("\n" + resultat6[0]['IngOpti2']); }
+          if (resultat6[0]['IngOpti3'] !== null) { final += ("\n" + resultat6[0]['IngOpti3']); }
+          if (resultat6[0]['IngOpti4'] !== null) { final += ("\n" + resultat6[0]['IngOpti4']); }
+          $("#listeIng" + i).text(final);
+        },
+        error: function (dataSQL, statut) {
+          alert("error sqlConnect.js : " + dataSQL.erreur);
+        }
+      });
+
+      allCommandeDiv[i].innerHTML = '<h3 class="cmdNum">Commande N° : ' + allCommandeDiv[i].id + ' </h3>' +
+        '<div class="nbBurger">' +
+        '<p class="nombreBurger">Nombre de burgers : </p>' +
+        '<p id="nbBurg' + i + '"> </p>' +
+        '</div>' +
+        '<div class="heurePrepa">' +
+        '<p class="reqHeure">Doit être prête pour : </p>' +
+        '<p id="hDisp' + i + '"></p>' +
+        '</div>' +
+        '<br />' +
+        '<div class="burgerAFaire">' +
+        '<div class="apercuCmd">' +
+        //'<img id="imgCuisine' + i + ' src="">' +
+        '<p id="nbBurger' + i + '">: </p>' +
+        '</div>' +
+        '<div class="listeCuisine">' +
+        '<span id="listeIng' + i + '" class="listeI"></span>' +
+        '</div>' +
+        '</div>' +
+        '<br />' +
+        '<button class="cmdFinie" onClick="creaCommande();cmdTerminee(' + allCommandeDiv[i].id + ');">Commande Finie</button>';
+
+    }
+  }
+</script>
 
 <body id="acceuilCuisinier">
   <section id="sectionCuisine">
     <script>
-      cmdTerminee();
+      creaCommande();
     </script>
   </section>
 </body>
