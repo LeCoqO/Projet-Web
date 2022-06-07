@@ -26,17 +26,18 @@
         <div>
             <br><br><br><br><br>
             <h1 id="TitreDuSite" class="titre text-center">Gestions des fournisseurs</h1>
-        </div>
-        <div id="tabfournisseur">
-
-        </div>
-        <div>
-            <button type='button' class="button titre text-center" id='NewFournisseur'
-                onclick="location.href = 'Creation Fournisseur.html'">
-                Créé un nouveau fournisseur</input>
+            <br><br><br>
         </div>
     </header>
 
+    <div id="tabfournisseur">
+
+    </div>
+    <div>
+        <button type='button' class="button titre text-center" id='NewFournisseur'
+            onclick="location.href = 'Creation Fournisseur.html'">
+            Créé un nouveau fournisseur</input>
+    </div>
 
     <script>
         $.ajax({
@@ -44,7 +45,7 @@
             type: 'POST',
             data: {
                 fonction: 'select',
-                rq: "SELECT * FROM fournisseur Where DateArchiv IS NULL"
+                rq: "SELECT * FROM fournisseur Where DateArchivFourn IS NULL"
             },
             success: function (data) {
                 console.log(data);
@@ -53,14 +54,15 @@
 
                 var string = "<FONT face='arial'><div class='container'><CENTER>" +
                     "<div class='table'>" +
-
-                    "<div class='header__item'> <a id='NomFourn'  class='filter__link' href='#'>Nom Fournisseur</a></div>" +
-                    "<div class='header__item'> <a id='Adresse' class='filter__link' href='#'>Adresse</a></div>" +
-                    "<div class='header__item'> <a id='CodePostal' class='filter__link' href='#'>CodePostal</a></div>" +
+                    "<div class='table-header' bgcolor='grey' align='center'>" +
+                    "<div class='header__item'> <a id='NomFourn'  class='filter__link' href='#'>Fourn</a></div>" +
+                    "<div class='header__item'> <a id='Adresse' class='filter__link' href='#'>Adr</a></div>" +
+                    "<div class='header__item'> <a id='CodePostal' class='filter__link' href='#'>CP</a></div>" +
                     "<div class='header__item'> <a id='Ville' class='filter__link' href='#'>Ville</a></div>" +
-                    "<div class='header__item'> <a id='Tel' class='filter__link' href='#'>Telephone</a></div>" +
-                    "<div class='header__item'> <a id='Modif' class='filter__link' href='#'>Modifier</a></div>" +
-                    "<div class='header__item'> <a id='Suppr' class='filter__link' href='#'>Suprimer</a></div>" +
+                    "<div class='header__item'> <a id='Tel' class='filter__link' href='#'>Tel</a></div>" +
+                    "<div class='header__item'> <a id='Tel' class='filter__link' href='#'>Mail</a></div>" +
+                    "<div class='header__item'> <a id='Modif' class='filter__link' href='#'>Modif</a></div>" +
+                    "<div class='header__item'> <a id='Suppr' class='filter__link' href='#'>Sup</a></div>" +
                     "</div><div class='table-content'>";
 
 
@@ -73,18 +75,18 @@
                     string += '<div class="table-row">'
                         + "<div class='table-data'>" + resultats[i]['NomFourn'] + "</div>"
                         + "<div class='table-data'>" + resultats[i]['AdresseFourn'] + "</div>"
-                        + "<div class='table-data'>" + resultats[i]['CPFourni'] + "</div>"
+                        + "<div class='table-data'>" + resultats[i]['CPFourn'] + "</div>"
                         + "<div class='table-data'>" + resultats[i]['VilleFourn'] + "</div>"
                         + "<div class='table-data'>" + resultats[i]['TelFourn'] + "</div>"
-                        + "<div class='table-data'> <input type='image' id='image' class='inputImage' src = 'img/engrenage.png' width = '45px' height = '45px' onclick = 'modif()' ></input > </div > "
+                        + "<div class='table-data'>" + resultats[i]['MailFourn'] + "</div>"
+                        + "<div class='table-data'> <input type='image' id='image' class='inputImage' src = 'img/engrenage.png' width = '45px' height = '45px' onclick = 'modif(this)' ></input > </div > "
                         + "<div class='table-data'> <input type='image' id='image' class='inputImage'src = 'img/supprimer.png' width = '45px' height = '45px' onclick = 'suppressionFournisseur(this)' ></input > </div > "
-                        + "</div > "
-                        + "<div class= 'table-data' > ";
+                        + "</div > ";
 
                 }
                 string += '</div>' + '</CENTER>' + '</div>' + '</FONT>';
 
-                document.getElementById("tableauProduit").innerHTML = string;
+                document.getElementById("tabfournisseur").innerHTML = string;
                 setupTab(['NomFourn', 'Adresse', 'CodePostal', 'Ville', 'Tel', 'Modif', 'Suppr']);
             },
             error: function (dataSQL, statut) {
@@ -100,15 +102,12 @@
             let row = boutton.parentNode.parentNode;
             let NomFourn = row.firstChild.innerHTML;
 
-            let rq = "UPDATE fournisseur SET DateArchiv = '" + laDate + "' WHERE NomFourn = '" + NomFourn + "'";
-            console.log(rq);
-
             $.ajax({
                 url: 'STOCK_REQUETE.php',
                 type: 'POST',
                 data: {
                     fonction: 'Update',
-                    rq: rq
+                    rq: "UPDATE fournisseur SET DateArchivFourn = '" + laDate + "' WHERE NomFourn = '" + NomFourn + "'"
                 },
                 success: function (data) {
                     //console.log(data);
@@ -120,7 +119,16 @@
             });
         }
 
-        function modif() {
+        function modif(e) {
+            //Récupère le parent de la ligne qude l'on modifi
+            let row = e.parentNode.parentNode;
+
+            localStorage.setItem('NomFourn', row.childNodes[0].innerHTML);
+            localStorage.setItem('AdrFourn', row.childNodes[1].innerHTML);
+            localStorage.setItem('CPFourn', row.childNodes[2].innerHTML);
+            localStorage.setItem('VilleFourn', row.childNodes[3].innerHTML);
+            localStorage.setItem('TelFourn', row.childNodes[4].innerHTML);
+            localStorage.setItem('MailFourn', row.childNodes[5].innerHTML);
             location.href = 'Modification Fournisseur.html';
         }
     </script>

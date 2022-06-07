@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="style.css">
     <meta name="author" content="PAGE Lilian" />
-    <meta name="description" content="Statistique" />
+    <meta name="description" content="Création Fournisseur" />
     <script src="scriptCommun.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
@@ -29,33 +29,37 @@
         </div>
 
     </header>
-    <fieldset class="text-center Choix">
+    <fieldset class="Choix centrer">
         <form>
             <br>
-            <div>
-                <label for="nom">Nom : </label><br>
-                <input type="text" id="nom" name="nom" value="" size="20" maxlength="20" required>
+            <div class="form__group field column2">
+                <input type="input" class="form__field" placeholder="Nom" name="Nom" id='nom' required />
+                <label for="nom" class="form__label">Nom : </label>
             </div>
-            <br>
-            <div>
-                <label for="Adresse">Adresse : </label><br>
-                <input type="text" id="adr" name="Adresse" value="" size="20" maxlength="20" required>
+            <div class="form__group field column2">
+                <input class="form__field" type="text" placeholder="Adresse" id="adr" name="Adresse" value="" size="20"
+                    maxlength="20" required>
+                <label for="Adresse" class="form__label">Adresse : </label>
             </div>
-            <br>
-            <div>
-                <label for="CodePostal">CodePostal : </label><br>
-                <input type="text" id="post" name="CodePostal" value="" size="20" maxlength="20" required>
+            <div class="form__group field column2">
+                <input class="form__field" type="text" placeholder="CodePostal" id="post" name="CodePostal" value=""
+                    size="20" maxlength="5" required>
+                <label for="CodePostal" class="form__label">CodePostal : </label>
             </div>
-            <br>
-            <div>
-                <label for="Ville">Ville : </label><br>
-                <input type="text" id="ville" name="Ville" value="" size="20" maxlength="20" required>
+            <div class=" form__group field column2">
+                <input class="form__field" type="input" placeholder="Ville" name="Ville" id='ville' required />
+                <label class="form__label" for="Ville">Ville : </label>
             </div>
-            <br>
-            <div>
-                <label for="tel">Téléphone:</label> <br>
-                <input type="tel" id="tel" name="tel" pattern="[0-9]{10}" required> <br>
-                <small>Format: 12.34.56.78.90</small>
+            <div class="form__group field column2">
+                <input class="form__field" type="tel" placeholder="Tel" id="tel" name="tel" pattern="[0-9]{10}"
+                    maxlength="10" required>
+                <label class="form__label" for="tel">Téléphone:</label>
+                <br>
+                <small>Format: 12 34 56 78 90</small>
+            </div>
+            <div class=" form__group field column2">
+                <input class="form__field" type="input" placeholder="Mail" name="Mail" id='Mail' required />
+                <label class="form__label" for="Mail">Mail : </label>
             </div>
             <br>
             <div>
@@ -69,26 +73,24 @@
     <script>
         function nouveaufournisseur() {
             $.ajax({
-                url: 'ajax_Bdd.php', //toujours la même page qui est appelée
+                url: 'STOCK_REQUETE.php', //toujours la même page qui est appelée
                 type: 'POST',
                 data: {
-                    fonction: 'newFournisseur', //fonction à executer
-                    base: 'homburger',
-                    table: 'fournisseur',
-                    nom: document.getElementById("nom").value,
-                    adr: document.getElementById("adr").value,
-                    post: document.getElementById("post").value,
-                    ville: document.getElementById("ville").value,
-                    tel: document.getElementById("tel").value
+                    fonction: 'Update', //fonction à executer
+                    rq: "INSERT INTO fournisseur (NomFourn, AdresseFourn, CPFourn, VilleFourn, TelFourn, MailFourn, DateArchivFourn) " +
+                        "VALUE('" + document.getElementById("nom").value + "', '" + document.getElementById("adr").value + "', '" +
+                        document.getElementById("post").value + "', '" + document.getElementById("ville").value + "', '" +
+                        document.getElementById("tel").value + "', '" + document.getElementById("Mail").value + "', null)"
                 },
                 success: function (data) {
-                    //console.log(data);
+                    console.log(data);
 
                 },
                 error: function (dataSQL, statut) {
                     alert("error sqlConnect.js : " + dataSQL.erreur);
                 }
             });
+
         }
     </script>
 </body>

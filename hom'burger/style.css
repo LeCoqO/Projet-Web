@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700");
-
+@import url("https://fonts.googleapis.com/css?family=Roboto:700,300");
 /*
 Couleur fond(gris clair):  (229, 225, 222)
 Couleur fond2(noir-gris):  (40, 40, 40)
@@ -66,7 +66,7 @@ body {
   line-height: 1.5;
   color: black;
   text-align: left;
-  background-color: rgb(229, 225, 222);
+  background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%); 
 }
 
 h1,
@@ -506,14 +506,6 @@ Couleur font: noir ou blanc*/
 }
 
 /*--------------lilian--------------*/
-#chartContainer {
-  width: 65%;
-  height: 50%;
-  margin: 5%;
-  margin-left: 0%;
-  background-color: rgb(240, 40, 40);
-}
-
 #tabfournisseur{
   height: 600px;
   margin-left: 10%;
@@ -521,25 +513,115 @@ Couleur font: noir ou blanc*/
   overflow:auto;
 }
 
-.Choix {
-  width: 30%;
-  height: 10%;
-  margin: 0% 35%;
-  float: none;
+.hide{
+  display: none;
 }
 
+.Choix {
+  width: 100%;
+  height: 100px;
+}
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.column2 {
+  width: 26%;
+}
 .cat {
   margin-top: 20%;
 }
 
 .centrer {
-  margin-left: 40%;
+  margin-left: 37%;
   margin-top: 80px;
   margin-bottom: 30px;
 }
 
 .inputImage a :hover{
 background-color: #e54315;
+}
+
+.sign-up-modal {
+    font-family: "Roboto", arial, sans-serif;
+    color: #ffffff;
+    border-style: solid;
+    border-width: 10px;
+    border-color: rgb(0, 0, 0);
+    border-radius: 10px 10px 10px 10px;
+    background-image: -moz-linear-gradient(-90deg, rgb(92, 92, 92) 0%, rgb(155, 155, 155) 100%);
+    background-image: -webkit-linear-gradient(-90deg, rgb(92, 92, 92) 0%, rgb(155, 155, 155) 100%);
+    background-image: -ms-linear-gradient(-90deg, rgb(92, 92, 92) 0%, rrgb(155, 155, 155) 100%);
+    margin: 0 auto;
+    padding: 25px;
+}
+
+label {
+    display: block;
+    width: 150px;
+    float: left;
+}
+
+.form__group {
+    position: relative;
+    padding: 15px 0 0;
+    margin: 10px;
+}
+
+.form__field {
+    font-family: inherit;
+    width: 100%;
+    border: 0;
+    border-bottom: 2px solid #9b9b9b;
+    outline: 0;
+    font-size: 1.3rem;
+    padding: 7px 0;
+    background: transparent;
+    transition: border-color 0.2s;
+}
+
+.form__field::placeholder {
+    color: transparent;
+}
+
+.form__field:placeholder-shown~.form__label {
+    font-size: 1.3rem;
+    cursor: text;
+    top: 20px;
+}
+
+.form__label {
+    position: absolute;
+    top: 0;
+    display: block;
+    transition: 0.2s;
+    font-size: 1rem;
+    color: #5f5f5f;
+}
+
+.form__field:focus {
+    padding-bottom: 6px;
+    font-weight: 700;
+    border-width: 3px;
+    border-image: linear-gradient(to right, #11998e, #38ef7d);
+    border-image-slice: 1;
+}
+
+.form__field:focus~.form__label {
+    position: absolute;
+    top: 0;
+    display: block;
+    transition: 0.2s;
+    font-size: 1rem;
+    color: #11998e;
+    font-weight: 700;
+}
+
+/* reset input */
+.form__field:required,
+.form__field:invalid {
+    box-shadow: none;
 }
 /*--------------Fin lilian--------------*/
 
