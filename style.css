@@ -893,6 +893,15 @@ li {
   background: linear-gradient(45deg, #ddc3a5 48%, #1b1e21 48%);
 }
 
+.imgNavbar{
+  width: 75px;
+  height: 75px;
+}
+
+.fixed-top{
+  margin-bottom: 100px;
+}
+
 /* Footer */
 .footer-basic {
   padding:40px 0;

@@ -115,7 +115,7 @@
                             let laCheck = document.createElement('div');
                             let input = document.createElement('input');
 
-                            button.innerHTML = "link text";
+                            button.innerHTML = "PDF";
                             dateE.innerHTML = "Date d'émission : " + resultats[i]['DateComFourn'];
                             dateL.innerHTML = "Date livraison prévue : " + resultats[i]['DateLivFourn'];
                             ing.innerHTML = resultats2[i]['NomIng'];
