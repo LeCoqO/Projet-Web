@@ -968,7 +968,7 @@ li {
 
 /*--------------lilian--------------*/
 #tabfournisseur{
-  height: 600px;
+  height: 700px;
   margin-left: 10%;
   margin-right: 10%;
   overflow:auto;
@@ -1030,7 +1030,7 @@ label {
     position: relative;
     padding: 15px 0 0;
     margin: 10px;
-    width: 26%;
+    
 }
 
 .form__field {

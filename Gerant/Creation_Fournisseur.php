@@ -1,3 +1,10 @@
+<?php
+ob_start();
+session_start();
+if (!$_SESSION['valid']) {
+    header('Location: login.php');
+}
+?>
 <!DOCTYPE html">
 <html lang="fr">
 
