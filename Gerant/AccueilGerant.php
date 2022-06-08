@@ -14,30 +14,91 @@ if (!$_SESSION['valid']) {
   <meta content="width=device-width, initial-scale=1.0" name="viewport" />
   <meta name="author" content="LUSTIERE Quentin" />
   <link rel="stylesheet" href="style.css">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-  <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css" />
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" />
   <title>HOMBURGER - GERANT</title>
+
+  <style>
+    table {
+      border-collapse: collapse;
+      border-spacing: 0;
+    }
+
+    th,
+    td {
+      padding: 10px 20px;
+      border: 1px solid #000;
+    }
+
+    .column{
+      clear: both;
+    }
+  </style>
+
 </head>
 <header>
-  <div class="sidebar" id="mySidebar">
-    <button class="bar-item button" onclick="sidebar_close()">Close &times;</button>
-    <br /><a href="#" class="bar-item button">Accueil</a>
-    <br /><a href="livreur.php" class="bar-item button">Livreur</a>
-    <br /><a href="mentionLegale.html" class="bar-item button">Mention légale</a>
-  </div>
-  <button class="button left hide-large" onclick="sidebar_open()">&#9776;</button>
-  <h1 class="text-center ">
-    <img src="./img/logo.png" class="logo" alt="" />
-  </h1>
-</header>
 
-<body>
+  <div class="fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark mx-background-top-linear">
+      <div class="container">
+        <a class="navbar-brand" style="text-transform: uppercase;">
+          Hom'Burger
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">
+                Home
+                <span class="sr-only">(current)</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Fruits</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Sea food</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Vegetables</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Blog</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Contact</a>
+            </li>
+          </ul>
+          <img class="imgNavbar" src="./img/logo.png">
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>
+<br>
+<br>
+<br>
+
+<body class="d-flex flex-column min-vh-100">
+
   <hr>
   <div class="container content-container">
     <main role="main">
       <section>
         <h2 class="text-center">Interface Gérant</h2>
+
+        <br>
+        <br>
+        <br>
+
         <div class="row text-center">
           <div class="column">
             <button class="button" onclick=window.location.href='Statistique.php'>Statistiques</button>
@@ -52,28 +113,27 @@ if (!$_SESSION['valid']) {
       </section>
     </main>
   </div>
-  <div class="footer-basic">
-    <footer>
-      <div class="social">
-        <a href="https://www.instagram.com/_hom_burger_/?hl=fr">
-          <i class="fa fa-instagram" aria-hidden="true"></i>
+  <footer class="mt-auto footer-basic fixed-bottom">
+    <div class="social">
+      <a href="https://www.instagram.com/_hom_burger_/?hl=fr">
+        <i class="fa fa-instagram" aria-hidden="true"></i>
 
-        </a>
-        <a href="https://twitter.com/hom_burger">
-          <i class="fa fa-twitter"></i>
-        </a>
-      </div>
-      <ul class="list-inline">
-        <li class="list-inline-item"><a href="#">Home</a></li>
-        <li class="list-inline-item">
-          <a href="equipe.html">Notre équipe</a>
-        </li>
-        <li class="list-inline-item"><a href="#">A propos</a></li>
-        <li class="list-inline-item"><a href="#">Privacy Policy</a></li>
-      </ul>
-      <p class="copyright">Hom'Burger © 2022</p>
-    </footer>
-  </div>
+      </a>
+      <a href="https://twitter.com/hom_burger">
+        <i class="fa fa-twitter"></i>
+      </a>
+    </div>
+    <ul class="list-inline">
+      <li class="list-inline-item"><a href="#">Home</a></li>
+      <li class="list-inline-item">
+        <a href="equipe.html">Notre équipe</a>
+      </li>
+      <li class="list-inline-item"><a href="#">A propos</a></li>
+      <li class="list-inline-item"><a href="#">Privacy Policy</a></li>
+    </ul>
+    <p class="copyright">Hom'Burger © 2022</p>
+  </footer>
 </body>
 
 </html>
+
