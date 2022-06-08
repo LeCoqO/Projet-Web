@@ -4,10 +4,10 @@
 <head>
     <meta charset="UTF-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <meta name="author" content="Diego TORRES" />
+    <meta name="author" content="LUSTIERE Quentin" />
     <link rel="stylesheet" href="style.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <title>BulgarKing</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>HOMBURGER - GERANT</title>
 </head>
 <header>
     <div class="sidebar" id="mySidebar">
@@ -42,36 +42,9 @@
                 </div>
             </section>
             <div class='clear'></div>
-
-
-
             <br>
-            <!--<div>
-                <article>
-                    <div class="left">
-                        <h3><a href="" id="PDF">link text</a></h3>
-                        <div class="bonCompact">
-                            <div class="left">Date d'émission : XX/XX/XXXX</div>
-                            <div class="right">Date livraison prévue : XX/XX/XXXX</div>
-                            <div class="clear left">Nom Ingrédient</div>
-                            <div class=right>Quantité Unité</div><br>
-                            <div class="clear">Fournisseur</div>
-                            <div class="text-center">
-                                PRIX TOTAL HT : XXX€
-                            </div>
-                        </div>
-                    </div>
-                    <div class="right vertical-center">
-                        <input class="" type="checkbox" checked>
-                    </div>
-                </article>
-                <br>
-                <br>
-                <hr>-->
             <div id="parent" class="clear">
             </div>
-
-
             <script>
                 Date.prototype.addDays = function(days) { //Fonction pour les dates
                     var date = new Date(this.valueOf());
@@ -80,10 +53,10 @@
                 }
 
                 var date = new Date();
-                console.log(date);
                 var resultats
                 var resultats2;
                 var resultats3;
+                //APPEL DE TTES LES DONNES NECESSAIRES A LA REDACTION D'UN BON DE COMMANDE, POINT DE VUE FOURNISSEUR
                 var laFonctionn = $.ajax({
                     url: 'STOCK_REQUETE.php', //toujours la même page qui est appelée
                     type: 'POST',
@@ -99,6 +72,7 @@
                     alert("error sqlConnect.js : " + dataSQL.erreur);
                 });
 
+                //APPEL DE TTES LES DONNES NECESSAIRES A LA REDACTION D'UN BON DE COMMANDE, POINT DE VUE BON DE COMMANDE
                 var laFonction = $.ajax({
                     url: 'STOCK_REQUETE.php', //toujours la même page qui est appelée
                     type: 'POST',
@@ -114,7 +88,7 @@
                     for (var IdIng in resultats) {
                         autreReq.push(IdIng);
                     }
-
+                    //APPEL DE TTES LES DONNES NECESSAIRES A LA REDACTION D'UN BON DE COMMANDE, POINT DE VUE INGREDIENT
                     var laFonction2 = $.ajax({
                         url: 'STOCK_REQUETE.php', //toujours la même page qui est appelée
                         type: 'POST',
@@ -125,7 +99,7 @@
                     });
                     laFonction2.done(function(msg2) {
                         resultats2 = JSON.parse(msg2);
-                        for (i = 0; i < resultats.length; i++) {
+                        for (i = 0; i < resultats.length; i++) {            //AFFICHAGE DE CES DONNEES DE MANIERE STRUCTUREE DANS LA PAGE
 
                             let laCommande = document.createElement('article');
                             let recapEtBouton = document.createElement('div');
@@ -183,9 +157,9 @@
                                 i = button.id;
                                 var dateLiv = new Date(resultats[i]['DateLivFourn'].substr(0, 4), resultats[i]['DateLivFourn'].substr(5, 2) - 1, resultats[i]['DateLivFourn'].substr(8, 2)); //POIR LES MOIS, il faut -1 car ils vont de 0 à 11.
                                 var dateCom = new Date(resultats[i]['DateComFourn'].substr(0, 4), resultats[i]['DateComFourn'].substr(5, 2) - 1, resultats[i]['DateComFourn'].substr(8, 2)); //POIR LES MOIS, il faut -1 car ils vont de 0 à 11.
-                                if (dateLiv < date || dateCom.addDays(30) < date) {
+                                if (dateLiv < date || dateCom.addDays(30) < date) { //TEST DE LA COMMANDE (30J  MAX)
                                     alert('Commande trop ancienne, merci d\'en génerer une nouvelle');
-                                } else {
+                                } else {        //APPEL DE LA CLASSE PDF, GENERANT DES PDF
                                     $.ajax({
                                         url: 'PDF.php', //toujours la même page qui est appelée
                                         type: 'POST',
@@ -215,7 +189,9 @@
                     });
                 });
 
-                document.getElementById('supprimer').addEventListener('click', event => {
+                //ENVOI DES BONS DE COMMANDE, PUIS RECHARGEMENT DE LA PAGE
+                // -----------------------OBSOLETE------------------------------
+                document.getElementById('commander').addEventListener('click', event => {
                     var selection = false;
                     $(".checkbox").each(function() {
                             console.log($(this).is(":checked"));
@@ -250,14 +226,14 @@
 
 
 
-
-                document.getElementById('commander').addEventListener('click', event => {
+                //SUPPRESSION DES BONS DE COMMANDE, DE LA BASE PUIS RECHARGEMENT DE LA PAGE
+                document.getElementById('supprimer').addEventListener('click', event => {
                     var selection = false;
                     $(".checkbox").each(function() {
                             console.log($(this).is(":checked"));
                             if ($(this).is(":checked")) {
-                                selection = true;
-                                $.ajax({
+                                selection = true; //VERIFICATION QU'IL Y A AU MOINS UNE SELECTION
+                                $.ajax({ //SUPPRESSION DE LA COMMANDE DE LA BASE
                                     url: 'STOCK_REQUETE.php', //toujours la même page qui est appelée
                                     type: 'POST',
                                     data: {
@@ -265,7 +241,6 @@
                                         requete: 'DELETE FROM commandefournisseur WHERE IdComFourn = ' + resultats[$(this).attr('id').replace('bis', '')]['IdComFourn'] + ';',
                                     },
                                     success: function(data) {
-                                        console.log('Coooool');
                                     },
                                     error: function(dataSQL, statut) {
                                         alert("error sqlConnect.js : " + dataSQL.erreur);
@@ -276,10 +251,10 @@
 
                     )
 
-                    if(!selection){
+                    if(!selection){ //SI AUCUNE COMMANDE SELECTIONNEE ... 
                         alert('Veuillez séléctionner une ou plusieures commande(s)');
                     }
-
+                        //RECHARGEMENT DE LA PAGE
                     setTimeout(function() {
                         window.location.reload()
                     }, 100);

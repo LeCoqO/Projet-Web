@@ -4,10 +4,10 @@
 <head>
     <meta charset="UTF-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <meta name="author" content="Diego TORRES" />
+    <meta name="author" content="LUSTIERE Quentin" />
     <link rel="stylesheet" href="style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <title>BulgarKing</title>
+    <title>HOMBURGER - GERANT</title>
 </head>
 <header>
     <div class="sidebar" id="mySidebar">
@@ -47,6 +47,8 @@
                 </div>
                 <div id=choixFournisseurs class="column">
                     <script>
+
+                        //RECUPERATION DES FOURNISSEURS DANS LA BDD, POUR LES METTRE EN TANT QU'OPTION DANS UN SELECT
                         var laFonction = $.ajax({
                             url: 'STOCK_REQUETE.php', //toujours la même page qui est appelée
                             type: 'POST',
@@ -91,6 +93,8 @@
                 </div>
                 <div id=choixUnites class="column">
                     <script>
+
+                        //RECUP DES UNITE POUR EN FAIRE LE MEME USAGE QUE LES FOURNISSEURS
                         var laFonction = $.ajax({
                             url: 'STOCK_REQUETE.php', //toujours la même page qui est appelée
                             type: 'POST',
@@ -126,7 +130,7 @@
                 </div>
             </div>
             <script>
-                console.log('ok0');
+                //LISTENER SUR LE BOUTON POUR LANCER L'INSERTION, AVEC SELECTIONS DES DONNEES REMPLIES DANS LA PAGE
                 $("#ok").click(function() {
                     insert($("#nom").val(),
                         "MyFoodnisseur",
@@ -136,7 +140,7 @@
                         $("#inputPrix").val());
                 })
 
-
+                    //INSERTION DANS LA BASE DE L'INGREDIENT CREE, AVEC LES DIFFERENTS CHAMPS REMPLIS DANS LA PAGE, VERIFICATION DES CHAMPS FAITE DANS LE HTML
                 function insert($nom, $fournisseur, $estFrais, $unite, $qte, $puht) {
                     console.log('ok2');
 
@@ -150,9 +154,6 @@
                     var unite = $unite;
                     var qte = $qte;
                     var puht = $puht;
-
-                    console.log(unite);
-                    console.log('INSERT INTO ingredient(NomIng,Frais,Type,Unite,StockMin,StockReel,PrixUHT_Moyen,Q_A_Com,DateArchivIng) VALUES (' + nom + ', ' + estFrais + ',' + '"S"' + ',' + "unite" + ',' + qte + ',0,' + puht + ',0,NOW());');
 
                     var laFonction = $.ajax({
                         url: 'STOCK_REQUETE.php', //toujours la même page qui est appelée

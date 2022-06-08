@@ -4,10 +4,10 @@
 <head>
     <meta charset="UTF-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <meta name="author" content="Diego TORRES" />
+    <meta name="author" content="LUSTIERE Quentin" />
     <link rel="stylesheet" href="style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <title>BulgarKing</title>
+    <title>HOMBURGER - GERANT</title>
 </head>
 <header>
     <div class="sidebar" id="mySidebar">
@@ -65,6 +65,8 @@
                 </div>
             </div>
             <script>
+
+                //RECUPERATION DES INGREDIENTS POUR LES PROPOSER DANS UN SELECT
                 var laFonction = $.ajax({
                     url: 'STOCK_REQUETE.php', //toujours la même page qui est appelée
                     type: 'POST',
@@ -90,6 +92,9 @@
                     alert("error sqlConnect.js : " + dataSQL.erreur);
                 });
 
+
+                //LISTENERS EN VUE D'UN CHANGEMENT DE QTE OU DE PRODUIT, POUR CALCULER LE PRIX DYNAMIQUEMENT
+                //ET POUR VALIDER LA CREATION DE COMMANDE
                 function listeners() {
                     $(document).on("click change", "#qte, #selectIng", function() {
                         calculPrix($("#selectIng").val(), $("#qte").val());
@@ -100,6 +105,7 @@
                     )
                 }
 
+                //FONCTION QUI CREE UNE COMMANDE DANS LA BASE, AVEC LES CHAMPS DE LA PAGE
                 function creationCommande(){
                     let dateAjd = new Date();
                     dateAjd = dateAjd.getFullYear() + "-" + (dateAjd.getMonth() + 1) + "-" + dateAjd.getDate();
@@ -127,6 +133,7 @@
 
                 }
 
+                //FONCTION METTANT A JOUR LE PRIX
                 function calculPrix($id, $qte) {
                     var id = $id;
                     var qte = $qte;
@@ -150,6 +157,7 @@
                     }
                 }
 
+                //FONCTION APPELALNT LES RESTES D'INFORMATION SUR UN INGREDIENT
                 function appel($id) {
                     var id = $id;
                     if (id != 0) {
@@ -172,6 +180,7 @@
                     }
                 }
 
+                //APPEL DES LISTENERS
                 listeners();
             </script>
         </main>

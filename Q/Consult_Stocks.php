@@ -1,13 +1,22 @@
+<?php
+ob_start();
+session_start();
+if (!$_SESSION['valid']) {
+    header('Location: login.php');
+}
+//pour reset: $_SESSION['valid']=false;
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 
 <head>
     <meta charset="UTF-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <meta name="author" content="Diego TORRES" />
+    <meta name="author" content="LUSTIERE Quentin" />
     <link rel="stylesheet" href="style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <title>BulgarKing</title>
+    <title>HOMBURGER - GERANT</title>
 
     <style>
         table {
@@ -62,7 +71,7 @@
                 <br>
             </div>
             <div id="tableauProduit">
-                <script text/javascript>
+                <script text/javascript> //DMD A LA BASE DES LES PRODUITS ET LEUR STOCK VIA AJAX->PHP->MySQL 
                     $.ajax({
                         url: 'STOCK_REQUETE.php', //toujours la même page qui est appelée
                         type: 'POST',
