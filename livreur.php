@@ -19,77 +19,98 @@
 
     <link rel="stylesheet" href="style.css">
     <script src="scriptCommun.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css" />
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" />
+
 </head>
+
+<br><br><br>
 <header>
-    <div class="sidebar" id="mySidebar">
-        <button class="bar-item button" onclick="sidebar_close()">Close &times;</button>
-        <div class="clear"></div>
-        <a href="index.php" class="bar-item button">Accueil</a><br>
-        <a href="#" class="bar-item button">Livreur</a><br>
-        <a href="recette.php" class="bar-item button">Recette</a><br>
-        <a href="mentionLegale.html" class="bar-item button">Mention légale</a><br>
+    <!-- Navigation -->
+    <div class="fixed-top">
+        <nav class="navbar navbar-expand-lg navbar-dark mx-background-top-linear">
+            <div class="container">
+                <img class="imgNavbar" style="width: 50px;" src="./img/logo.png">
+
+                <a class="navbar-brand" style="text-transform: uppercase;">
+                    Hom'Burger
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="index.php">
+                                Home
+                                <span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="mentionLegale.html">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Livreur</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="recette.php">Recette</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Gérant</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Contact</a>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+        </nav>
     </div>
-    <button class="button_sidebar button left" onclick="sidebar_open()">&#9776;</button>
-
     <div id="select_Livreur" value='1'></div>
-
-    <h1 class="text-center ">
-        <img src="./img/logo.png" class="logo" alt="Hom'burger logo" />
-    </h1>
+    <br><br><br><br><br><br>
 </header>
+
 
 <body>
 
     <div id="tableauCommande"></div>
 
+    
     <div class="text-center inputGroup">
         <input type="checkbox" id="cmd_livree" name="cmd_livree" />
         <label for="cmd_livree">Commande Livrée</label>
+        
     </div>
 
-
+    <div id="infoItinéraire"></div>
     <div id="zoneMap">
         <div id="map" class="map"></div>
     </div>
 
     <br><br><br>
-    <div class="footer-dark">
+    <div class="footer-basic">
         <footer>
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-6 col-md-3 item2">
-                        <h3>Services</h3>
-                        <ul>
-                            <li><a href="#">Web design</a></li>
-                            <li><a href="#">Development</a></li>
-                            <li><a href="#">Hosting</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-sm-6 col-md-3 item2">
-                        <h3>About</h3>
-                        <ul>
-                            <li><a href="mentionLegale.html">Company</a></li>
-                            <li><a href="mentionLegale.html">Team</a></li>
-                            <li><a href="mentionLegale.html">Careers</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="col-md-6 item2 text">
-                        <h3>Homburger</h3>
-                        <p>Le French burger (burger à la française), à l’antipode du burger mexicain, est le produit phare de la marque ;
-                            l’idée de combiner la cuisine rapide et traditionnelle française en apportant la french touch unique aux
-                            recettes : l’unique sauce Moustache Hom'burger ravis les nombreux clients de la marque.<br /><br />
-                        </p>
-                    </div>
-                    <div class="col item2 social">
-                        <a href="https://twitter.com/hom_burger"><i class="icon ion-social-twitter"></i> </a>
-                        <a href="https://www.instagram.com/_hom_burger_/?hl=fr"><i class="icon ion-social-instagram"></i></a>
-                    </div>
-                </div>
-                <p class="copyright">Company Name © 2018</p>
+            <div class="social">
+                <a href="https://www.instagram.com/_hom_burger_/?hl=fr">
+                    <i class="fa fa-instagram"></i>
+                </a>
+                <a href="https://twitter.com/hom_burger">
+                    <i class="fa fa-twitter"></i>
+                </a>
             </div>
+            <ul class="list-inline">
+                <li class="list-inline-item"><a href="#">Home</a></li>
+                <li class="list-inline-item">
+                    <a href="equipe.html">Notre équipe</a>
+                </li>
+                <li class="list-inline-item"><a href="#">A propos</a></li>
+                <li class="list-inline-item"><a href="#">Privacy Policy</a></li>
+            </ul>
+            <p class="copyright">Hom'Burger © 2022</p>
         </footer>
     </div>
 </body>

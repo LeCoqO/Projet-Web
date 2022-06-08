@@ -8,8 +8,8 @@
     <link href="style.css" rel="stylesheet">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="./scriptCommun.js"></script>
 
@@ -18,19 +18,52 @@
 
 
 </head>
-<header>
-    <div class="sidebar" id="mySidebar">
-        <button class="bar-item button" onclick="sidebar_close()">Close &times;</button><br>
-        <a href="index.php" class="bar-item button">Accueil</a><br>
-        <a href="livreur.php" class="bar-item button">Livreur</a><br>
-        <a href="#" class="bar-item button">Recette</a><br>
-        <a href="mentionLegale.html" class="bar-item button">Mention légale</a><br>
-    </div>
-    <button class="button_sidebar button left hide-large" onclick="sidebar_open()">&#9776;</button>
-    <h1 class="text-center">
-        <img src="./img/logo.png" class="logo" alt="" />
-    </h1>
 
+<br><br><br>
+<header>
+    <!-- Navigation -->
+    <div class="fixed-top">
+        <nav class="navbar navbar-expand-lg navbar-dark mx-background-top-linear">
+            <div class="container">
+                <img class="imgNavbar" style="width: 50px;" src="./img/logo.png">
+
+                <a class="navbar-brand" style="text-transform: uppercase;">
+                    Hom'Burger
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="index.php">
+                                Home
+                                <span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="mentionLegale.html">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Livreur</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="recette.php">Recette</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Gérant</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Contact</a>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+        </nav>
+    </div>
+    <div id="select_Livreur" value='1'></div>
+    <br><br><br><br><br><br>
 </header>
 
 
@@ -177,48 +210,33 @@
 
     </div>
     <div class="clear"></div>
-    <div class="footer-dark">
+    <br><br><br>
+    <div class="footer-basic">
         <footer>
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-6 col-md-3">
-                        <h3>Services</h3>
-                        <ul>
-                            <li><a href="#">Web design</a></li>
-                            <li><a href="#">Development</a></li>
-                            <li><a href="#">Hosting</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-sm-6 col-md-3">
-                        <h3>About</h3>
-                        <ul>
-                            <li><a href="#">Company</a></li>
-                            <li><a href="#">Team</a></li>
-                            <li><a href="#">Careers</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-md-6 text">
-                        <h3>Hom'burger</h3>
-                        <p>Praesent sed lobortis mi. Suspendisse vel placerat ligula.
-                            Vivamus ac sem lacus. Ut vehicula rhoncus elementum. Etiam quis tristique lectus.
-                            Aliquam in arcu eget velit pulvinar dictum vel in justo.
-                        </p>
-                    </div>
-                    <div class="col social">
-                        <a href="#"><i class="icon ion-social-facebook"></i></a>
-                        <a href="#"><i class="icon ion-social-twitter"></i></a>
-                        <a href="#"><i class="icon ion-social-snapchat"></i></a>
-                        <a href="#"><i class="icon ion-social-instagram"></i></a>
-                    </div>
-                </div>
-                <p class="copyright">Hom'burger © 2022</p>
+            <div class="social">
+                <a href="https://www.instagram.com/_hom_burger_/?hl=fr">
+                    <i class="fa fa-instagram"></i>
+                </a>
+                <a href="https://twitter.com/hom_burger">
+                    <i class="fa fa-twitter"></i>
+                </a>
             </div>
+            <ul class="list-inline">
+                <li class="list-inline-item"><a href="#">Home</a></li>
+                <li class="list-inline-item">
+                    <a href="equipe.html">Notre équipe</a>
+                </li>
+                <li class="list-inline-item"><a href="#">A propos</a></li>
+                <li class="list-inline-item"><a href="#">Privacy Policy</a></li>
+            </ul>
+            <p class="copyright">Hom'Burger © 2022</p>
         </footer>
     </div>
 </body>
 <script src="./script_recette.js"></script>
 
 <script>
+
     //Cette fontion ajoute ou nullifie (en fonction du boolean) la date d'une recette dont l'id est passé en parametre
     function updateLine(idProd, bool) {
         let laDate;

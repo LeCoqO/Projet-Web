@@ -467,12 +467,12 @@ function setupIngrListener() {
 
                 if ((this.className).includes("burger_pain")) {                         //click sur pain
                     tabburgerpain = document.getElementsByClassName("burger_pain");
-                    for (let i = 0; i < tabburgerpain.length; i++) {                    
-                        tabburgerpain[i].classList.remove("pain-selected");             
-                        $(tabburgerpain[i]).next().css("display", "none")              
-                        $(tabburgerpain[i]).next().removeClass("selectedQtyP");        
+                    for (let i = 0; i < tabburgerpain.length; i++) {
+                        tabburgerpain[i].classList.remove("pain-selected");
+                        $(tabburgerpain[i]).next().css("display", "none")
+                        $(tabburgerpain[i]).next().removeClass("selectedQtyP");
                     }
-                    this.classList.add("pain-selected"); 
+                    this.classList.add("pain-selected");
                     $(this).next().css("display", "block")
                     $(this).next().addClass("selectedQtyP");
 
@@ -510,7 +510,6 @@ function setupIngrListener() {
                     }
                 }
             })
-
         }
     }
 }

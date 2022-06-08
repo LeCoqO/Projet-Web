@@ -98,7 +98,7 @@ function convertAdressToLatLng(address) {
         setTimeout(() => {
             console.log("Address found!");
             resolve();
-            
+
         }, 5000
         );
     });
@@ -126,31 +126,38 @@ function setupAdresseCalulItineraire() {
                 shadows.forEach(shadow => {
                     shadow.remove();
                 });
-                document.getElementsByClassName("green")[0].classList.remove("green");
+                if (document.getElementsByClassName("ready")[0]) {
+                    document.getElementsByClassName("ready")[0].classList.remove("ready");
+                }
             }
             if (document.getElementsByClassName("cmd-selected").length > 0) {
                 document.getElementsByClassName("cmd-selected")[0].classList.remove("cmd-selected");
             }
-            e.target.classList.add("red");
+            e.target.parentElement.classList.add("notReady");
+            console.log("e.target.parent(): ", e.target.parentElement);
 
             //Géolocalise l'utilisateur
+            document.getElementById("infoItinéraire").innerHTML = "Localisation en cours...";
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(function (position) {
                     lat = position.coords.latitude;
                     lng = position.coords.longitude;
                 });
+
             } else {
                 alert("Désolé, votre moteur de recherche ne supporte pas la géolocalisation HTML5.");
             }
 
             await convertAdressToLatLng(item.innerHTML);
-            e.target.classList.remove("red");
-            e.target.classList.add("green");
+            e.target.parentElement.classList.remove("notReady");
+            e.target.parentElement.classList.add("ready");
             console.log("latDest: " + latDestination);
             console.log("lngDest: " + lngDestination);
             console.log("lat: " + lat);
             console.log("lng: " + lng);
+            document.getElementById("infoItinéraire").innerHTML = "Localisation terminée !";
 
+            document.getElementById("infoItinéraire").innerHTML = "Calcul de l'itinéraire en cours...";
             var routes = L.Routing.control({    // add a  route
                 waypoints: [
                     L.latLng(lat, lng),
@@ -159,6 +166,7 @@ function setupAdresseCalulItineraire() {
                 routeWhileDragging: true
             });
             routes.addTo(map)
+            document.getElementById("infoItinéraire").innerHTML = "Itinéraire défini !";
 
         })
     );

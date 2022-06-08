@@ -34,192 +34,238 @@
     <a class="me" href="https://codepen.io/uzcho_/pens/popular/?grid_type=list" target="_blank" style="color:#000"></a>
     <fieldset class="Choix text-center">
 
-        <br>
-        <br>
-        <div class="sign-up-modal">
-            <fieldset class="Choix text-center">
-                <form>
-                    <br>
-                    <div class="form__group field">
-                        <input type="input" class="form__field" placeholder="Name" name="name" id='nom' required />
-                        <label for="nom" class="form__label">Nom : </label>
-                    </div>
-
-                    <br>
-                    <div class="form__group field">
-                        <input class="form__field" type="text" id="adr" name="Adresse" value="" size="20" maxlength="20"
-                            required>
-
-                        <label for="Adresse" class="form__label">Adresse : </label>
-                    </div>
-
-                    <br>
-                    <div>
-                        <label for="CodePostal">CodePostal : </label>
-                        <input type="text" id="post" name="CodePostal" value="" size="20" maxlength="5" required>
-                    </div>
-                    <br>
-                    <div class="form__group field">
-                        <label class="form__label" for="Ville">Ville : </label>
-                        <input type="input" class="form__field" placeholder="Name" name="name" id='name' required />
-                    </div>
-                    <div>
-
-                        <input type="text" id="ville" name="Ville" value="" size="20" maxlength="20" required>
-                    </div>
-                    <br>
-                    <div>
-                        <label class="form__label" for="tel">Téléphone:</label>
-                        <input class="form__field" type="tel" id="tel" name="tel" pattern="[0-9]{10}" maxlength="10"
-                            required> <br>
-                        <small>Format: 12 34 56 78 90</small>
-                    </div>
-                    <br>
-                    <div>
-                        <button type="button" class="button"
-                            onclick="location.href = 'Gestion Fournisseur.html';">Retour</button>
-                        <button class="button" onclick="nouveaufournisseur()">Envoyer</button>
-
-                    </div>
-                </form>
-            </fieldset>
-
-
+        <legend>
+            <h2>Configuration :</h2>
+        </legend>
+        <div class="Choix row">
+            <div class="column2 form__group field left">
+                <select id="Datation" onchange="choixTypeDate()" class="form__field" size="1" name="prog">
+                    <option value="ChoixDate1" selected>Libre</option>
+                    <option value="ChoixDate2">Mois</option>
+                    <option value="ChoixDate3">Année</option>
+                </select>
+                <label class="form__label" for="Datation">Datation:</label>
+            </div>
+            <div id="Diagramme" class="column2 form__group field left">
+                <select id="DiagrammeType" class="form__field" size="1" name="prog">
+                    <option selected>pie</option>
+                    <option>bar</option>
+                </select>
+                <label class="form__label" for="DiagrammeType">Type diagramme:</label>
+            </div>
+            <div id="option" class="column2 form__group field left">
+            </div>
         </div>
+        <div id="ChoixDate1" class="Choix ChoixDate row">
+            <p>test 1 </p>
+        </div>
+        <div id="ChoixDate2" class="Choix ChoixDate row afficher">
+            <p>test 2 </p>
+        </div>
+        <div>
+            <button class="button left" onclick="afficherStatistique()">Envoyer</button>
+            <br>
+            <br>
+            <div class="sign-up-modal">
+                <fieldset class="Choix text-center">
+                    <form>
+                        <br>
+                        <div class="form__group field">
+                            <input type="input" class="form__field" placeholder="Name" name="name" id='nom' required />
+                            <label for="nom" class="form__label">Nom : </label>
+                        </div>
+
+                        <br>
+                        <div class="form__group field">
+                            <input class="form__field" type="text" id="adr" name="Adresse" value="" size="20"
+                                maxlength="20" required>
+
+                            <label for="Adresse" class="form__label">Adresse : </label>
+                        </div>
+
+                        <br>
+                        <div>
+                            <label for="CodePostal">CodePostal : </label>
+                            <input type="text" id="post" name="CodePostal" value="" size="20" maxlength="5" required>
+                        </div>
+                        <br>
+                        <div class="form__group field">
+                            <label class="form__label" for="Ville">Ville : </label>
+                            <input type="input" class="form__field" placeholder="Name" name="name" id='name' required />
+                        </div>
+                        <div>
+
+                            <input type="text" id="ville" name="Ville" value="" size="20" maxlength="20" required>
+                        </div>
+                        <br>
+                        <div>
+                            <label class="form__label" for="tel">Téléphone:</label>
+                            <input class="form__field" type="tel" id="tel" name="tel" pattern="[0-9]{10}" maxlength="10"
+                                required> <br>
+                            <small>Format: 12 34 56 78 90</small>
+                        </div>
+                        <br>
+                        <div>
+                            <button type="button" class="button"
+                                onclick="location.href = 'Gestion Fournisseur.html';">Retour</button>
+                            <button class="button" onclick="nouveaufournisseur()">Envoyer</button>
+
+                        </div>
+                    </form>
 
 
-        <style>
-            @import url(https://fonts.googleapis.com/css?family=Roboto:700,300);
+                </fieldset>
 
 
-
-            .sign-up-modal {
-                font-family: "Roboto", arial, sans-serif;
-                color: #ffffff;
-                border-style: solid;
-                border-width: 10px;
-                border-color: rgb(0, 0, 0);
-                border-radius: 10px 10px 10px 10px;
-                background-image: -moz-linear-gradient(-90deg, rgb(92, 92, 92) 0%, rgb(155, 155, 155) 100%);
-                background-image: -webkit-linear-gradient(-90deg, rgb(92, 92, 92) 0%, rgb(155, 155, 155) 100%);
-                background-image: -ms-linear-gradient(-90deg, rgb(92, 92, 92) 0%, rrgb(155, 155, 155) 100%);
-                margin: 0 auto;
-                padding: 25px;
-            }
-
-            label {
-                display: block;
-                width: 150px;
-                float: left;
-            }
+            </div>
 
 
-            .form__group {
-                position: relative;
-                padding: 15px 0 0;
-                margin-top: 10px;
-                width: 50%;
-            }
+            <style>
+                @import url(https://fonts.googleapis.com/css?family=Roboto:700,300);
 
-            .form__field {
-                font-family: inherit;
-                border: 0;
-                border-bottom: 2px solid rgb(0, 0, 0);
-                outline: 0;
-                font-size: 1.3rem;
-                padding: 7px 0;
-                background: transparent;
-                transition: border-color 0.2s;
+                .afficher {
+                    display: none;
+                }
 
-            }
+                .sign-up-modal {
+                    font-family: "Roboto", arial, sans-serif;
+                    color: #ffffff;
+                    border-style: solid;
+                    border-width: 10px;
+                    border-color: rgb(0, 0, 0);
+                    border-radius: 10px 10px 10px 10px;
+                    background-image: -moz-linear-gradient(-90deg, rgb(92, 92, 92) 0%, rgb(155, 155, 155) 100%);
+                    background-image: -webkit-linear-gradient(-90deg, rgb(92, 92, 92) 0%, rgb(155, 155, 155) 100%);
+                    background-image: -ms-linear-gradient(-90deg, rgb(92, 92, 92) 0%, rrgb(155, 155, 155) 100%);
+                    margin: 0 auto;
+                    padding: 25px;
+                }
 
-            .form__group {
-                position: relative;
-                padding: 15px 0 0;
-                margin-top: 10px;
-                width: 50%;
-            }
+                label {
+                    display: block;
+                    width: 150px;
+                    float: left;
+                }
 
-            .form__field {
-                font-family: inherit;
-                width: 100%;
-                border: 0;
-                border-bottom: 2px solid #9b9b9b;
-                outline: 0;
-                font-size: 1.3rem;
-                color: #fff;
-                padding: 7px 0;
-                background: transparent;
-                transition: border-color 0.2s;
-            }
 
-            .form__field::placeholder {
-                color: transparent;
-            }
+                .form__group {
+                    position: relative;
+                    padding: 15px 0 0;
+                    margin-top: 10px;
+                    width: 50%;
+                }
 
-            .form__field:placeholder-shown~.form__label {
-                font-size: 1.3rem;
-                cursor: text;
-                top: 20px;
-            }
+                .form__field {
+                    font-family: inherit;
+                    border: 0;
+                    border-bottom: 2px solid rgb(0, 0, 0);
+                    outline: 0;
+                    font-size: 1.3rem;
+                    padding: 7px 0;
+                    background: transparent;
+                    transition: border-color 0.2s;
 
-            .form__label {
-                position: absolute;
-                top: 0;
-                display: block;
-                transition: 0.2s;
-                font-size: 1rem;
-                color: #ffffff;
-            }
+                }
 
-            .form__field:focus {
-                padding-bottom: 6px;
-                font-weight: 700;
-                border-width: 3px;
-                border-image: linear-gradient(to right, #11998e, #38ef7d);
-                border-image-slice: 1;
-            }
+                .form__group {
+                    position: relative;
+                    padding: 15px 0 0;
+                    margin-top: 10px;
+                    width: 50%;
+                }
 
-            .form__field:focus~.form__label {
-                position: absolute;
-                top: 0;
-                display: block;
-                transition: 0.2s;
-                font-size: 1rem;
-                color: #11998e;
-                font-weight: 700;
-            }
+                .form__field {
+                    font-family: inherit;
+                    width: 100%;
+                    border: 0;
+                    border-bottom: 2px solid #9b9b9b;
+                    outline: 0;
+                    font-size: 1.3rem;
+                    color: #fff;
+                    padding: 7px 0;
+                    background: transparent;
+                    transition: border-color 0.2s;
+                }
 
-            /* reset input */
-            .form__field:required,
-            .form__field:invalid {
-                box-shadow: none;
-            }
-        </style>
-        <script>
-            function nouveaufournisseur() {
-                $.ajax({
-                    url: 'STOCK_REQUETE.php', //toujours la même page qui est appelée
-                    type: 'POST',
-                    data: {
-                        fonction: 'Update', //fonction à executer
-                        rq: "INSERT INTO fournisseur (NomFourn, AdresseFourn, CPFourni, VilleFourn, TelFourn, DateArchiv) " +
-                            "VALUE('" + document.getElementById("nom").value + "', '" + document.getElementById("adr").value + "', '" +
-                            document.getElementById("post").value + "', '" + document.getElementById("ville").value + "', '" + document.getElementById("tel").value + "', null)"
-                    },
-                    success: function (data) {
-                        //console.log(data);
+                .form__field::placeholder {
+                    color: transparent;
+                }
 
-                    },
-                    error: function (dataSQL, statut) {
-                        alert("error sqlConnect.js : " + dataSQL.erreur);
-                    }
-                });
+                .form__field:placeholder-shown~.form__label {
+                    font-size: 1.3rem;
+                    cursor: text;
+                    top: 20px;
+                }
 
-            }
+                .form__label {
+                    position: absolute;
+                    top: 0;
+                    display: block;
+                    transition: 0.2s;
+                    font-size: 1rem;
+                    color: #ffffff;
+                }
 
-           
-        </script>
+                .form__field:focus {
+                    padding-bottom: 6px;
+                    font-weight: 700;
+                    border-width: 3px;
+                    border-image: linear-gradient(to right, #11998e, #38ef7d);
+                    border-image-slice: 1;
+                }
+
+                .form__field:focus~.form__label {
+                    position: absolute;
+                    top: 0;
+                    display: block;
+                    transition: 0.2s;
+                    font-size: 1rem;
+                    color: #11998e;
+                    font-weight: 700;
+                }
+
+                /* reset input */
+                .form__field:required,
+                .form__field:invalid {
+                    box-shadow: none;
+                }
+            </style>
+            <script>
+                function nouveaufournisseur() {
+                    $.ajax({
+                        url: 'STOCK_REQUETE.php', //toujours la même page qui est appelée
+                        type: 'POST',
+                        data: {
+                            fonction: 'Update', //fonction à executer
+                            rq: "INSERT INTO fournisseur (NomFourn, AdresseFourn, CPFourni, VilleFourn, TelFourn, DateArchiv) " +
+                                "VALUE('" + document.getElementById("nom").value + "', '" + document.getElementById("adr").value + "', '" +
+                                document.getElementById("post").value + "', '" + document.getElementById("ville").value + "', '" + document.getElementById("tel").value + "', null)"
+                        },
+                        success: function (data) {
+                            //console.log(data);
+
+                        },
+                        error: function (dataSQL, statut) {
+                            alert("error sqlConnect.js : " + dataSQL.erreur);
+                        }
+                    });
+
+                }
+                function choixTypeDate() {
+
+                    divShow = document.getElementById("Datation").value;
+                    console.log(divShow);
+                    let test = document.querySelectorAll(".ChoixDate");
+                    console.log(test);
+
+                    test.forEach(e => {
+                        console.log(e);
+                        e.classList.add("afficher")
+                    });
+                    $("#" + divShow).removeClass("afficher");
+                }
+
+            </script>
 </body>
 
 </html>

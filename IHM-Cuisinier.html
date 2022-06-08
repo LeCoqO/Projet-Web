@@ -45,34 +45,34 @@
         document.getElementById(id).style.visibility = "hidden";
       else document.getElementById(id).style.visibility = "visible";
     }
-    
+
     function cmdTerminee() {
       $.ajax({
-      url: 'requette.php', //toujours la même page qui est appelée
-      type: 'POST',
-      data: {
-        fonction: 'select', //fonction à executer
-        requete: 'SELECT NumCom FROM commande WHERE EtatCde LIKE "A Prepare" AND HeureDispo ORDER BY HeureDispo ASC',
-      },
-      success: function (data) {
+        url: 'requette.php', //toujours la même page qui est appelée
+        type: 'POST',
+        data: {
+          fonction: 'select', //fonction à executer
+          requete: 'SELECT NumCom FROM commande WHERE EtatCde LIKE "A Prepare" AND HeureDispo ORDER BY HeureDispo ASC',
+        },
+        success: function (data) {
 
-        console.log(data);
+          console.log(data);
 
-        let resultats = JSON.parse(data);
+          let resultats = JSON.parse(data);
 
-        for (i = 0; i < resultats.length; i++) {
-          console.log('test');
-          if(!document.getElementById(resultats[i]['NumCom'])) {
-            createDiv(resultats[i]['NumCom']);
-          }
-          
-        };
-        populateDivCom();
-      },
-      error: function (dataSQL, statut) {
-        alert("error sqlConnect.js : " + dataSQL.erreur);
-      }
-    });
+          for (i = 0; i < resultats.length; i++) {
+            console.log('test');
+            if (!document.getElementById(resultats[i]['NumCom'])) {
+              createDiv(resultats[i]['NumCom']);
+            }
+
+          };
+          populateDivCom();
+        },
+        error: function (dataSQL, statut) {
+          alert("error sqlConnect.js : " + dataSQL.erreur);
+        }
+      });
     }
 
     function createDiv(NumCom) {
@@ -85,46 +85,46 @@
 
     function numOF(numOf) {
       $.ajax({
-          url: 'requette.php', //toujours la même page qui est appelée
-          type: 'POST',
-          data: {
-            fonction: 'select', //fonction à executer
-            requete: 'SELECT Quant FROM detail WHERE Num_OF LIKE ' + numOf,
-          },
-          success: function (data) {
+        url: 'requette.php', //toujours la même page qui est appelée
+        type: 'POST',
+        data: {
+          fonction: 'select', //fonction à executer
+          requete: 'SELECT Quant FROM detail WHERE Num_OF LIKE ' + numOf,
+        },
+        success: function (data) {
 
-            console.log(data);
-            let resultat5 = JSON.parse(data);
-            console.log(resultat5+"zizi");
+          console.log(data);
+          let resultat5 = JSON.parse(data);
+          console.log(resultat5 + "zizi");
 
-            $("#nbBurger" + i).text(resultat5[0]['Quant']);
+          $("#nbBurger" + i).text(resultat5[0]['Quant']);
 
-          },
-          error: function (dataSQL, statut) {
-            alert("error sqlConnect.js : " + dataSQL.erreur);
-          }
-        });
+        },
+        error: function (dataSQL, statut) {
+          alert("error sqlConnect.js : " + dataSQL.erreur);
+        }
+      });
     }
 
     function getImage(numOf) {
       $.ajax({
-          url: 'requette.php', //toujours la même page qui est appelée
-          type: 'POST',
-          data: {
-            fonction: 'select', //fonction à executer
-            requete: 'SELECT Image FROM produit WHERE IdProd LIKE (Select IdProd FROM detail WHERE Num_OF LIKE ' + numOf+ ')',
-          },
-          success: function (data) {
-            console.log(data);
-            let resultat6 = JSON.parse(data);
-            console.log(resultat6);
-            $("#imgCuisine" + i).text(resultat6[0]['Image']);
+        url: 'requette.php', //toujours la même page qui est appelée
+        type: 'POST',
+        data: {
+          fonction: 'select', //fonction à executer
+          requete: 'SELECT Image FROM produit WHERE IdProd LIKE (Select IdProd FROM detail WHERE Num_OF LIKE ' + numOf + ')',
+        },
+        success: function (data) {
+          console.log(data);
+          let resultat6 = JSON.parse(data);
+          console.log(resultat6);
+          $("#imgCuisine" + i).text(resultat6[0]['Image']);
 
-          },
-          error: function (dataSQL, statut) {
-            alert("error sqlConnect.js : " + dataSQL.erreur);
-          }
-        });
+        },
+        error: function (dataSQL, statut) {
+          alert("error sqlConnect.js : " + dataSQL.erreur);
+        }
+      });
     }
 
     function populateDivCom() {
@@ -187,7 +187,7 @@
 
             let resultat4 = JSON.parse(data);
 
-            for(var j = 0; j < resultat4.length; j++) {
+            for (var j = 0; j < resultat4.length; j++) {
               numOF(resultat4[j]);
               getImage(resultat4[j]);
             }

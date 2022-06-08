@@ -2,6 +2,14 @@
 <html lang="fr">
 
 <head>
+    <?php
+    ob_start();
+    session_start();
+    if (!$_SESSION['valid']) {
+        header('Location: login.php');
+    }
+    //pour reset: $_SESSION['valid']=false;
+    ?>
     <meta charset="UTF-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <meta name="author" content="Diego TORRES" />
