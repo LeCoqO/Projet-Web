@@ -71,7 +71,8 @@ if (!$_SESSION['valid']) {
                 <br>
             </div>
             <div id="tableauProduit">
-                <script text/javascript> //DMD A LA BASE DES LES PRODUITS ET LEUR STOCK VIA AJAX->PHP->MySQL 
+                <script text/javascript>
+                    //DMD A LA BASE DES LES PRODUITS ET LEUR STOCK VIA AJAX->PHP->MySQL 
                     $.ajax({
                         url: 'STOCK_REQUETE.php', //toujours la même page qui est appelée
                         type: 'POST',

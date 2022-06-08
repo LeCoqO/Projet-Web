@@ -1,3 +1,11 @@
+<?php
+ob_start();
+session_start();
+if (!$_SESSION['valid']) {
+    header('Location: login.php');
+}
+//pour reset: $_SESSION['valid']=false;
+?>
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -65,7 +73,6 @@
                 </div>
             </div>
             <script>
-
                 //RECUPERATION DES INGREDIENTS POUR LES PROPOSER DANS UN SELECT
                 var laFonction = $.ajax({
                     url: 'STOCK_REQUETE.php', //toujours la même page qui est appelée
@@ -99,14 +106,13 @@
                     $(document).on("click change", "#qte, #selectIng", function() {
                         calculPrix($("#selectIng").val(), $("#qte").val());
                     })
-                    $(document).on('click','#ok',function(){
+                    $(document).on('click', '#ok', function() {
                         creationCommande();
-                    }
-                    )
+                    })
                 }
 
                 //FONCTION QUI CREE UNE COMMANDE DANS LA BASE, AVEC LES CHAMPS DE LA PAGE
-                function creationCommande(){
+                function creationCommande() {
                     let dateAjd = new Date();
                     dateAjd = dateAjd.getFullYear() + "-" + (dateAjd.getMonth() + 1) + "-" + dateAjd.getDate();
                     var dateLiv = document.getElementById('livraison').value;
@@ -114,22 +120,22 @@
                     //var fourn = document.getElementById('selectFourn').value;
                     var qte = document.getElementById('qte').value;
 
-                    console.log('INSERT INTO commandefournisseur (`IdIng`, `NomFourn`, `QteComFourn`,`DateLivFourn`,`DateComFourn`) VALUES ('+ing+','+'"MyFoodnisseur"'+','+qte+',"'+dateLiv+'","'+dateAjd+'");');
+                    console.log('INSERT INTO commandefournisseur (`IdIng`, `NomFourn`, `QteComFourn`,`DateLivFourn`,`DateComFourn`) VALUES (' + ing + ',' + '"MyFoodnisseur"' + ',' + qte + ',"' + dateLiv + '","' + dateAjd + '");');
 
                     var laFonction = $.ajax({
-                            url: 'STOCK_REQUETE.php', //toujours la même page qui est appelée
-                            type: 'POST',
-                            data: {
-                                fonction: 'insert', //fonction à executer
-                                requete: 'INSERT INTO commandefournisseur (`IdIng`, `NomFourn`, `QteComFourn`,`DateLivFourn`,`DateComFourn`) VALUES ('+ing+','+'"MyFoodnisseur"'+','+qte+',"'+dateLiv+'","'+dateAjd+'");',
-                            }
-                        });
-                        laFonction.done(function(data) {
-                            alert('Commande passée!');
-                        });
-                        laFonction.fail(function(dataSQL, statut) {
-                            alert("error sqlConnect.js : " + dataSQL.erreur);
-                        });
+                        url: 'STOCK_REQUETE.php', //toujours la même page qui est appelée
+                        type: 'POST',
+                        data: {
+                            fonction: 'insert', //fonction à executer
+                            requete: 'INSERT INTO commandefournisseur (`IdIng`, `NomFourn`, `QteComFourn`,`DateLivFourn`,`DateComFourn`) VALUES (' + ing + ',' + '"MyFoodnisseur"' + ',' + qte + ',"' + dateLiv + '","' + dateAjd + '");',
+                        }
+                    });
+                    laFonction.done(function(data) {
+                        alert('Commande passée!');
+                    });
+                    laFonction.fail(function(dataSQL, statut) {
+                        alert("error sqlConnect.js : " + dataSQL.erreur);
+                    });
 
                 }
 

@@ -1,3 +1,11 @@
+<?php
+ob_start();
+session_start();
+if (!$_SESSION['valid']) {
+    header('Location: login.php');
+}
+//pour reset: $_SESSION['valid']=false;
+?>
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -79,7 +87,7 @@
                     selectIng = document.createElement('select');
 
                     selectIng[0] = new Option("--Ingrédient--", "", false, false);
-                                                                    //AFFICHAGE DES INFREDIENTS EN TANT QU'OPTION DANS UNE BALISE SELECT
+                    //AFFICHAGE DES INFREDIENTS EN TANT QU'OPTION DANS UNE BALISE SELECT
                     for (i = 0; i < resultats.length; i++) {
                         selectIng[i + 1] = new Option(resultats[i]['NomIng'], resultats[i]['IdIng'], false, false);
                     };
@@ -96,8 +104,8 @@
                 laFonction.fail(function(dataSQL, statut) {
                     alert("error sqlConnect.js : " + dataSQL.erreur);
                 });
-                    //LISTENERS EN VUE D'UN CHANGEMENT DE PRODUIT, POUR AFFICHER LA QTE ETC
-                    //ET POUR LANCER L'UPDATE DE LA QTE EN STOCK
+                //LISTENERS EN VUE D'UN CHANGEMENT DE PRODUIT, POUR AFFICHER LA QTE ETC
+                //ET POUR LANCER L'UPDATE DE LA QTE EN STOCK
                 function listeners() {
                     $("#selectIng").click(function() {
                         appel($("#selectIng").val());
@@ -107,7 +115,7 @@
                         update($("#selectIng").val(), $("#inputQte").val());
                     })
                 };
-                    //FONCTION QUI VIENT METTRE LA BASE A JOUR AVEC LE NOUVEAU STOCK
+                //FONCTION QUI VIENT METTRE LA BASE A JOUR AVEC LE NOUVEAU STOCK
                 function update($produit, $qte) {
                     var produit = $produit;
                     var qte = $qte;

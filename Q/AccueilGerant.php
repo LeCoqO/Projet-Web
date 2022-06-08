@@ -1,3 +1,11 @@
+<?php
+ob_start();
+session_start();
+if (!$_SESSION['valid']) {
+    header('Location: login.php');
+}
+//pour reset: $_SESSION['valid']=false;
+?>
 <!DOCTYPE html>
 <html lang="fr">
 
