@@ -6,8 +6,6 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <meta name="author" content="Diego TORRES" />
     <link href="style.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="scriptCommun.js"></script>
 
@@ -30,17 +28,15 @@
     <p class="text-center">
         <button class="button" onclick="liste_open()">Liste des recettes</button>
         <button class="button" onclick="creation_open()">Ajout d'une recette</button>
-
     </p>
-    <!--
     <div id="panier" class="panier_fermee" onclick="showPanier()">
-        <div id="contentOuv">R<br>E<br>C<br>E<br>T<br>T<br>E</div>
-        <div id="contentFer"block><p>testteteteteateatzrgsdf</p></div>
+        <p id="content" class="text-center">
+            <small>R<br>E<br>C<br>E<br>T<br>T<br>E</small>
+        </p>
     </div>
-    -->
-    <div id="test"></div>
 
-<div id="test"></div>
+
+
     <div class="container content-container">
         <main id="main">
             <div id="tableauProduit"></div>
@@ -66,22 +62,66 @@
 
             <section class="left">
                 <article role="article center">
-                    <h2 class="text-center">Choisissez le pain</h2>
-                    <div id="ingr_pain"></div>
+                    <h2 class="small text-center">Choisissez le pain</h2>
+                    <h3 class="text-center burger_pain" id="Pain Sésame">
+                        Pain Sésame
+                    </h3>
+                    <h3 class="text-center burger_pain" id="Pain Blé">
+                        Pain Blé
+                    </h3>
                 </article>
             </section>
             <section class="left">
                 <article class="left">
-                    <h2 class="text-center">Choisissez vos ingrédients <br /> principaux</h2>
-                    <div id="ingr_princ"></div>
+                    <h2 class="small text-center">Choisissez vos ingrédients <br /> principaux</h2>
+                    <h3 class="text-center ingr_principaux" id="Filet de poulet nature ou mariné">
+                        Filet de poulet nature ou mariné
+                    </h3>
+                    <h3 class="text-center ingr_principaux" id="Viande hachée">
+                        Viande hachée
+                    </h3>
+                    <h3 class="text-center ingr_principaux" id="Cordon Bleu">
+                        Cordon Bleu
+                    </h3>
+                    <h3 class="text-center ingr_principaux" id="Nuggets">
+                        Nuggets
+                    </h3>
+                    <h3 class="text-center ingr_principaux" id="Merguez">
+                        Merguez
+                    </h3>
+                    <h3 class="text-center ingr_principaux" id="Tenders">
+                        Tenders
+                    </h3>
+                    <h3 class="text-center ingr_principaux" id="Falafels">
+                        Falafels
+                    </h3>
                 </article>
             </section>
 
             <section class="left">
-                <article class="left">
-                    <h2 class="text-center">Choisissez vos ingrédients <br />secondaires</h2>
-                    <div id="ingr_second"></div>
-
+                <article class="col-md-6 d-flex flex-column justify-content-center">
+                    <h2 class="small text-center">Choisissez vos ingrédients <br />secondaires</h2>
+                    <h3 class="text-center ingr_secondaire" id="Algerienne">
+                        Algerienne
+                    </h3>
+                    <h3 class="text-center ingr_secondaire" id="Barbecue">
+                        Barbecue
+                    </h3>
+                    <h3 class="text-center ingr_secondaire" id="Burger">
+                        Burger
+                    </h3>
+                    <h3 class="text-center ingr_secondaire" id="Chili thai">
+                        Chili thai
+                    </h3>
+                    <h3 class="text-center ingr_secondaire" id="Ketchup">
+                        Ketchup
+                    </h3>
+                    <h3 class="text-center ingr_secondaire" id="Mayonnaise">
+                        Mayonnaise
+                    </h3>
+                    <h3 class="text-center ingr_secondaire" id="Fuego">
+                        Fuego
+                    </h3>
                 </article>
             </section>
             <div class="clear"><br><br><br></div>
@@ -99,7 +139,7 @@
         </main>
 
     </div>
-    <div class="clear"><br><br><br></div>
+
 </body>
 <script src="./script_recette.js"></script>
 
