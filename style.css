@@ -67,8 +67,7 @@ body {
   line-height: 1.5;
   color: black;
   text-align: left;
-  background: rgb(34,193,195);
-  background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%);
+  background: linear-gradient(to right,#e0a96d,#ddc3a5,#ddc3a5,#e0a96d);
 }
 
 h1,
@@ -419,76 +418,118 @@ a:focus span {
 
 /* IHM Cuisinier */
 
- #acceuilCuisinier{
-  color:rgb(48, 48, 48);
-}
-
-.cmdNum {
-  text-align: center;
+ #sectionCuisine{
+    color: whitesmoke;
+    font-family: 'Changa', sans-serif;
+    margin-left: 100px;
+    margin-right: 100px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    border-bottom-left-radius: 5px 255px;
+    border-bottom-right-radius: 225px 5px;
+    border-top-left-radius: 255px 5px;
+    border-top-right-radius: 5px 225px;
 }
 
 .articleCommande {
-  margin: 20px;
-  background-color:rgb(48, 48, 48);
-  border-radius: 5px;
-  color: whitesmoke;
-  box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.3); 
+  margin: 40px;
+  background-color: #201e20;
 }
 
-.nbBurger {
-  border: solid 2px rgb(255, 255, 255); /*4 côtés*/
-  margin: 5px;
-	padding: 10px;
+.column-layout {
+  display: table;
+  width: 99%;
+  border-collapse: separate;
+  margin: 9px;
+}
+
+.column-layout > .nbBurger, .heurePrepa {
+  display: table-cell;
   text-align: center;
-  width: 20%;
-  float: right;
+  border: solid;
+  padding: 10px;
+  width: 47%;
+  border-bottom-left-radius: 20px 255px;
+    border-bottom-right-radius: 225px 20px;
+    border-top-left-radius: 255px 20px;
+    border-top-right-radius: 20px 225px;
 }
 
-.heurePrepa {
-  border: solid 2px rgb(255, 255, 255); /*4 côtés*/
-  margin: 5px;
-	padding: 10px;
-  text-align: center;
-  width: 20%;
-}
-
-.imgCuisine {
-  width: 200px;
-  height: 200px;
+.cmdNum {
+    text-align: center;
+    color : #e0a96d;
 }
 
 .burgerAFaire {
-  margin: 5px;
-  width: 45%;  
-  background-color: rgb(0, 0, 0);
-  position: relative;
+  border: solid;
+  margin-left: 15px;
+  margin-right: 15px;
+  border-bottom-left-radius: 5px 255px;
+  border-bottom-right-radius: 225px 5px;
+  border-top-left-radius: 255px 5px;
+  border-top-right-radius: 5px 225px;
+}
+
+.nBurger, .hDispo {
+  color : #e0a96d;
 }
 
 .apercuCmd {
-  margin: 5px;
-  width: 45%;
+  margin-right: 250px;
+  margin-left: 250px;
+  margin-top: 5px;
+  
+}
+.apercuCmd2 {
+  margin-right: 250px;
+  margin-left: 250px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.nom {
+  color: #e0a96d;
 }
 
-.listeCuisine {
-  margin: 5px;
-  width: 45%;
-}
-
-.cmdFinie {
-  background-color:rgb(48, 48, 48);
-  color: whitesmoke;
+.cmdFinie {   
   width: 99%;
-  height: 5em;
+  font-family: 'Changa', sans-serif;
+  align-self: center;
+  background-color: #e0a96d;
+  background-image: none;
+  background-position: 0 90%;
+  background-repeat: repeat no-repeat;
+  background-size: 4px 3px;
+  border-radius: 15px 225px 255px 15px 15px 255px 225px 15px;
+  border-style: solid;
+  border-width: 2px;
+  box-shadow: rgba(0, 0, 0, .2) 15px 28px 25px -18px;
+  box-sizing: border-box;
+  color: white;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 1rem;
+  line-height: 23px;
+  outline: none;
+  padding: .75rem;
   margin: 10px;
+  text-decoration: none;
+  transition: all 235ms ease-in-out;
+  border-bottom-left-radius: 20px 255px;
+  border-bottom-right-radius: 225px 20px;
+  border-top-left-radius: 255px 20px;
+  border-top-right-radius: 20px 225px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
 }
 
-.cmdFinie:hover{
-  box-shadow: 0px 2px 4px rgba(0,0,0,0.2), 
-              0px 8px 8px rgba(0,0,0,0.2), 
-              0px 16px 16px rgba(0,0,0,0.2), 
-              0px 32px 32px rgba(0,0,0,0.2);
-  transform: translateY(-10px);
-  transition: 0.2s;
+.cmdFinie:hover {
+  box-shadow: rgba(0, 0, 0, .3) 2px 8px 8px -5px;
+  transform: translate3d(0, 2px, 0);
+}
+
+.cmdFinie:focus {
+  box-shadow: rgba(0, 0, 0, .3) 2px 8px 4px -6px;
 }
 
 /*Fin IHM Cuisinier*/
@@ -690,6 +731,231 @@ Couleur font: noir ou blanc*/
 
 /* IHM Passer commande */
 /*Fin IHM Passer commande*/
+
+/* Header */
+
+.navbar {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -ms-flex-align: center;
+  align-items: center;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  padding: 5px;
+}
+
+/*
+headeer top
+*/
+.topbar{
+background-color: #212529;
+padding: 0;
+}
+
+.topbar .container .row {
+margin:-7px;
+padding:0;
+}
+
+.topbar .container .row .col-md-12 { 
+padding:0;
+}
+
+.topbar p{
+margin:0;
+display:inline-block;
+font-size: 13px;
+color: #f1f6ff;
+}
+
+.topbar p > i{
+margin-right:5px;
+}
+.topbar p:last-child{
+text-align:right;
+} 
+
+header .navbar {
+  margin-bottom: 0;
+}
+
+.topbar li.topbar {
+  display: inline;
+  padding-right: 18px;
+  line-height: 52px;
+  transition: all .3s linear;
+}
+
+.topbar li.topbar:hover {
+  color: #1bbde8;
+}
+
+.topbar ul.info i {
+  color: #131313;
+  font-style: normal;
+  margin-right: 8px;
+  display: inline-block;
+  position: relative;
+  top: 4px;
+}
+
+.topbar ul.info li {
+  float: right;
+  padding-left: 30px;
+  color: #ffffff;
+  font-size: 13px;
+  line-height: 44px;
+}
+
+.topbar ul.info i span {
+  color: #aaa;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 50px;
+  padding-left: 18px;
+}
+
+ul.social-network {
+border:none;
+margin:0;
+padding:0;
+}
+
+ul.social-network li {
+border:none;  
+margin:0;
+}
+
+ul.social-network li i {
+margin:0;
+}
+
+ul.social-network li {
+  display:inline;
+  margin: 0 5px;
+  border: 0px solid #2D2D2D;
+  padding: 5px 0 0;
+  width: 32px;
+  display: inline-block;
+  text-align: center;
+  height: 32px;
+  vertical-align: baseline;
+  color: #000;
+}
+
+ul.social-network {
+list-style: none;
+margin: 5px 0 10px -25px;
+float: right;
+}
+
+.waves-effect {
+  position: relative;
+  cursor: pointer;
+  display: inline-block;
+  overflow: hidden;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  vertical-align: middle;
+  z-index: 1;
+  will-change: opacity, transform;
+  transition: .3s ease-out;
+  color: #fff;
+}
+a {
+color: #0a0a0a;
+text-decoration: none;
+}
+
+li {
+  list-style-type: none;
+}
+.bg-image-full {
+  background-position: center center;
+  background-repeat: no-repeat;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+}
+.bg-dark {
+  background-color: #222!important;
+}
+
+.mx-background-top-linear {
+  background: -webkit-linear-gradient(45deg, #ddc3a5 48%, #1b1e21 48%);
+  background: -webkit-linear-gradient(left, #ddc3a5 48%, #1b1e21 48%);
+  background: linear-gradient(45deg, #ddc3a5 48%, #1b1e21 48%);
+}
+
+/* Footer */
+.footer-basic {
+  padding:40px 0;
+  background-color:#201e20;
+  color:#e0a96d;
+}
+
+.footer-basic ul {
+  padding:0;
+  list-style:none;
+  text-align:center;
+  font-size:18px;
+  line-height:1.6;
+  margin-bottom:0;
+}
+
+.footer-basic li {
+  padding:0 10px;
+}
+
+.footer-basic ul a {
+  color:inherit;
+  text-decoration:none;
+  opacity:0.8;
+}
+
+.footer-basic ul a:hover {
+  opacity:1;
+}
+
+.footer-basic .social {
+  text-align:center;
+  padding-bottom:25px;
+}
+
+.footer-basic .social > a {
+  font-size:24px;
+  width:40px;
+  height:40px;
+  line-height:40px;
+  display:inline-block;
+  text-align:center;
+  border-radius:50%;
+  border:1px solid #e0a96d;
+  margin:0 8px;
+  color:inherit;
+  opacity:0.75;
+}
+
+.footer-basic .social > a:hover {
+  opacity:0.9;
+}
+
+.footer-basic .copyright {
+  margin-top:15px;
+  text-align:center;
+  font-size:13px;
+  color:#e0a96d;
+  margin-bottom:0;
+}
+.list-inline-item{
+  display: inline;
+}
 
 /* RESPONSIVE */
 
