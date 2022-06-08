@@ -1,3 +1,11 @@
+<?php
+ob_start();
+session_start();
+if (!$_SESSION['valid']) {
+    header('Location: login.php');
+}
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -72,8 +80,8 @@
 
         </div>
         <div>
-            <button type='button' class="button titre text-center" id='NewFournisseur'
-                onclick="location.href = 'Creation_Fournisseur.php'">
+            <button type='button' class="button titre text-center" style="margin: 40px; margin-left: 40%;"
+                id='NewFournisseur' onclick="location.href = 'Creation_Fournisseur.php'">
                 Créé un nouveau fournisseur</input>
         </div>
     </div>
