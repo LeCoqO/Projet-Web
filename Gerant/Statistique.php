@@ -79,8 +79,8 @@ if (!$_SESSION['valid']) {
         <legend>
             <h2>Configuration :</h2>
         </legend>
-        <div class="Choix row">
-            <div class="column2 form__group field left">
+        <div class="roww">
+            <div class="colone form__group field left">
                 <select id="Datation" onchange="choixTypeDate()" class="form__field" size="1" name="prog">
                     <option value="ChoixDate1" selected>Libre</option>
                     <option value="ChoixDate2">Mois</option>
@@ -88,37 +88,39 @@ if (!$_SESSION['valid']) {
                 </select>
                 <label class="form__label" for="Datation">Datation:</label>
             </div>
-            <div id="Diagramme" class="column2 form__group field left">
+            <div id="Diagramme" class="colone form__group field left">
                 <select id="DiagrammeType" class="form__field" size="1" name="prog">
                     <option selected>pie</option>
                     <option>bar</option>
                 </select>
                 <label class="form__label" for="DiagrammeType">Type diagramme:</label>
             </div>
-            <div id="option" class="column2 form__group field left">
+            <div id="option" class="colone form__group field left">
             </div>
         </div>
-        <div id="ChoixDate1" class="ChoixDate Choix roww">
-            <div class="form__group field left column2">
-                <input type="date" class="form__field" id="start" name="DateDebut" min="2022-01-01"
-                    value="<?php echo choixDate("-2 month"); ?>" max="<?php echo choixDate("-1 days"); ?>">
-                <label class="form__label" for="DateDebut" class="cat">Date de début:</label>
+        <div class="roww">
+            <div id="ChoixDate1">
+                <div class="colone form__group field left">
+                    <input type="date" class="form__field" id="start" name="DateDebut" min="2022-01-01"
+                        value="<?php echo choixDate("-2 month"); ?>" max="<?php echo choixDate("-1 days"); ?>">
+                    <label class="form__label" for="DateDebut" class="cat">Date de début:</label>
+                </div>
+                <div class="colone form__group field left">
+                    <input type="date" class="form__field" id="end" name="DateFin" min="2022-01-02">
+                    <label class="form__label" for="DateFin">Date de fin:</label>
+                </div>
             </div>
-            <div class="form__group field left column2">
-                <input type="date" class="form__field" id="end" name="DateFin" min="2022-01-02">
-                <label class="form__label" for="DateFin">Date de fin:</label>
+            <div id="ChoixDate2" class="cacher">
+                <div class="colone form__group field left">
+                    <input type="month" id="Mois" class="form__field" min="2022-01">
+                    <label class="form__label" for="Mois">Année et Mois:</label>
+                </div>
             </div>
-        </div>
-        <div id="ChoixDate2" class="ChoixDate Choix roww cacher">
-            <div class="form__group field left column2">
-                <input type="month" id="Mois" class="form__field" min="2022-01">
-                <label class="form__label" for="Mois">Année et Mois:</label>
-            </div>
-        </div>
-        <div id="ChoixDate3" class="ChoixDate Choix roww cacher">
-            <div class="form__group field left column2">
-                <input id="Annee" type="number" class="form__field" min="2022" max="2099" step="1" value="2022" />
-                <label class="form__label" for="Annee">Année:</label>
+            <div id="ChoixDate3" class="cacher">
+                <div class="colone form__group field left">
+                    <input id="Annee" type="number" class="form__field" min="2022" max="2099" step="1" value="2022" />
+                    <label class="form__label" for="Annee">Année:</label>
+                </div>
             </div>
         </div>
         <div>
@@ -168,6 +170,7 @@ if (!$_SESSION['valid']) {
     });
 
     function afficherStatistique() {
+
         $.ajax({
             url: 'STOCK_REQUETE.php', //toujours le même fichier qui est appelée
             type: 'POST',

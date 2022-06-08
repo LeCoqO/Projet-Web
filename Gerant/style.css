@@ -978,10 +978,6 @@ li {
   display: none;
 }
 
-.Choix {
-  width: 100%;
-  height: 100px;
-}
 .roww{
   margin-left: -15px;
 }
@@ -1086,6 +1082,11 @@ label {
 .form__field:required,
 .form__field:invalid {
     box-shadow: none;
+}
+
+.colone{
+  width: 27%;
+  height: 100px;
 }
 /*--------------Fin lilian--------------*/
 
