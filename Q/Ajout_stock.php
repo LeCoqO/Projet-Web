@@ -4,10 +4,10 @@
 <head>
     <meta charset="UTF-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <meta name="author" content="Diego TORRES" />
+    <meta name="author" content="LUSTIERE Quentin" />
     <link rel="stylesheet" href="style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <title>BulgarKing</title>
+    <title>HOMBURGER - GERANT</title>
 </head>
 <header>
     <div class="sidebar" id="mySidebar">
@@ -61,12 +61,12 @@
                 </div>
             </div>
             <script>
-                var laFonction = $.ajax({
+                var laFonction = $.ajax({ //DMD A LA BASE LA LISTE DES ID ING ET DE LEUR NOM
                     url: 'STOCK_REQUETE.php', //toujours la même page qui est appelée
                     type: 'POST',
                     data: {
                         fonction: 'select', //fonction à executer
-                        requete: 'SELECT NomIng,IdIng,StockReel,Unite FROM ingredient',
+                        requete: 'SELECT NomIng,IdIng FROM ingredient',
                     }
                 });
 
@@ -79,7 +79,7 @@
                     selectIng = document.createElement('select');
 
                     selectIng[0] = new Option("--Ingrédient--", "", false, false);
-
+                                                                    //AFFICHAGE DES INFREDIENTS EN TANT QU'OPTION DANS UNE BALISE SELECT
                     for (i = 0; i < resultats.length; i++) {
                         selectIng[i + 1] = new Option(resultats[i]['NomIng'], resultats[i]['IdIng'], false, false);
                     };
@@ -96,7 +96,8 @@
                 laFonction.fail(function(dataSQL, statut) {
                     alert("error sqlConnect.js : " + dataSQL.erreur);
                 });
-
+                    //LISTENERS EN VUE D'UN CHANGEMENT DE PRODUIT, POUR AFFICHER LA QTE ETC
+                    //ET POUR LANCER L'UPDATE DE LA QTE EN STOCK
                 function listeners() {
                     $("#selectIng").click(function() {
                         appel($("#selectIng").val());
@@ -106,7 +107,7 @@
                         update($("#selectIng").val(), $("#inputQte").val());
                     })
                 };
-
+                    //FONCTION QUI VIENT METTRE LA BASE A JOUR AVEC LE NOUVEAU STOCK
                 function update($produit, $qte) {
                     var produit = $produit;
                     var qte = $qte;
@@ -131,7 +132,7 @@
                     });
                 }
 
-
+                //CREATION DES CHAMPS OU APPARAISSENT LA QTE ET L'UNITE
                 let labelChampActuelle = document.createElement('label');
                 document.getElementById("qte").appendChild(labelChampActuelle);
 
@@ -141,6 +142,7 @@
                 document.getElementById('qte').appendChild(labelQteActuelle);
                 document.getElementById('qte').appendChild(labelUniteActuelle);
 
+                //FONCTION QUI VIENT COMPLETER LES CHAMPS UNITE ET QTE, APPELLE AVEC LE BON ID INGREDIENT
                 function appel($id) {
                     var id = $id;
                     $.ajax({
@@ -166,7 +168,7 @@
                         }
                     });
                 }
-
+                //APPEL DE LA FONCTION AVEC LE 1ER INGREDIENT DISPONIBLE
                 appel(0);
             </script>
         </main>

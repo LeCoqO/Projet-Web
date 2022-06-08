@@ -4,11 +4,10 @@
 <head>
     <meta charset="UTF-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <meta name="author" content="Diego TORRES" />
+    <meta name="author" content="LUSTIERE Quentin" />
     <link rel="stylesheet" href="style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="scriptCommun.js"></script>
-    <title>BulgarKing</title>
+    <title>HOMBURGER - GERANT</title>
 </head>
 <header>
     <div class="sidebar" id="mySidebar">
