@@ -5,6 +5,48 @@ unset($_POST['fonction']);
 $fonction($_POST);
 
 
+function selectProduit2Bdd($args)
+{
+    $table = $args['table'];
+    $base = $args['base'];
+    $condition = $args['selectCondition'];
+    $whereValue =  $args['whereValue'];
+    //require_once '../connexion.php';
+   try {
+        $connex = new PDO(
+            'mysql:host=' . 'localhost' .
+                ';dbname=' . $base,
+            'root',
+            '',
+            array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION)
+        );
+    } catch (PDOException $e) {
+        echo 'Erreur : ' . $e->getMessage() . '<br />';
+        echo 'N° : ' . $e->getCode();
+        die();
+    }
+    $connex->setAttribute(PDO::ATTR_AUTOCOMMIT, 0);
+    $connex->beginTransaction(); //début
+    $rq = "SELECT $condition FROM $table " . $whereValue;
+    $result = $connex->query($rq);
+     foreach ($result as $element) {
+    echo '<div id="'.$element['IdProd'].'" class="item choixburger" onclick = "RecupPanier(this)">
+                <img src="'.$element['Image'] .'">'.
+                '<div class="item-infos">'.
+                    '<h3>'.$element['NomProd'] .'</h3>'.
+                    '<hr>
+                    <p>';
+                for ($j = 1; $j < intval($element['NbIngBase']) + 1; $j++) {    
+                    printf($element['IngBase' . $j] . ", ");
+                }
+         echo'</p>
+                <p class="prix">'.$element['PrixUHT'].'</p>
+                </div>
+                <img src="./images/panier.png" class="imgpanier ">
+            </div>';
+     }
+}
+
 
 function updateBdd($args)
 {

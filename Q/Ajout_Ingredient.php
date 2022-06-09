@@ -1,3 +1,11 @@
+<?php
+ob_start();
+session_start();
+if (!$_SESSION['valid']) {
+    header('Location: login.php');
+}
+//pour reset: $_SESSION['valid']=false;
+?>
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -47,7 +55,6 @@
                 </div>
                 <div id=choixFournisseurs class="column">
                     <script>
-
                         //RECUPERATION DES FOURNISSEURS DANS LA BDD, POUR LES METTRE EN TANT QU'OPTION DANS UN SELECT
                         var laFonction = $.ajax({
                             url: 'STOCK_REQUETE.php', //toujours la même page qui est appelée
@@ -93,7 +100,6 @@
                 </div>
                 <div id=choixUnites class="column">
                     <script>
-
                         //RECUP DES UNITE POUR EN FAIRE LE MEME USAGE QUE LES FOURNISSEURS
                         var laFonction = $.ajax({
                             url: 'STOCK_REQUETE.php', //toujours la même page qui est appelée
@@ -140,7 +146,7 @@
                         $("#inputPrix").val());
                 })
 
-                    //INSERTION DANS LA BASE DE L'INGREDIENT CREE, AVEC LES DIFFERENTS CHAMPS REMPLIS DANS LA PAGE, VERIFICATION DES CHAMPS FAITE DANS LE HTML
+                //INSERTION DANS LA BASE DE L'INGREDIENT CREE, AVEC LES DIFFERENTS CHAMPS REMPLIS DANS LA PAGE, VERIFICATION DES CHAMPS FAITE DANS LE HTML
                 function insert($nom, $fournisseur, $estFrais, $unite, $qte, $puht) {
                     console.log('ok2');
 
@@ -175,6 +181,27 @@
                 }
             </script>
     </main>
+    </div>
+    <div class="footer-basic">
+      <footer>
+        <div class="social">
+          <a href="https://www.instagram.com/_hom_burger_/?hl=fr">
+            <i class="fa fa-instagram"></i>
+          </a>
+          <a href="https://twitter.com/hom_burger">
+            <i class="fa fa-twitter"></i>
+          </a>
+        </div>
+        <ul class="list-inline">
+          <li class="list-inline-item"><a href="#">Home</a></li>
+          <li class="list-inline-item">
+            <a href="equipe.html">Notre équipe</a>
+          </li>
+          <li class="list-inline-item"><a href="#">A propos</a></li>
+          <li class="list-inline-item"><a href="#">Privacy Policy</a></li>
+        </ul>
+        <p class="copyright">Hom'Burger © 2022</p>
+      </footer>
     </div>
 </body>
 

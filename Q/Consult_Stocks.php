@@ -71,7 +71,8 @@ if (!$_SESSION['valid']) {
                 <br>
             </div>
             <div id="tableauProduit">
-                <script text/javascript> //DMD A LA BASE DES LES PRODUITS ET LEUR STOCK VIA AJAX->PHP->MySQL 
+                <script text/javascript>
+                    //DMD A LA BASE DES LES PRODUITS ET LEUR STOCK VIA AJAX->PHP->MySQL 
                     $.ajax({
                         url: 'STOCK_REQUETE.php', //toujours la même page qui est appelée
                         type: 'POST',
@@ -120,6 +121,27 @@ if (!$_SESSION['valid']) {
                 </script>
             </div>
         </main>
+    </div>
+    <div class="footer-basic">
+      <footer>
+        <div class="social">
+          <a href="https://www.instagram.com/_hom_burger_/?hl=fr">
+            <i class="fa fa-instagram"></i>
+          </a>
+          <a href="https://twitter.com/hom_burger">
+            <i class="fa fa-twitter"></i>
+          </a>
+        </div>
+        <ul class="list-inline">
+          <li class="list-inline-item"><a href="#">Home</a></li>
+          <li class="list-inline-item">
+            <a href="equipe.html">Notre équipe</a>
+          </li>
+          <li class="list-inline-item"><a href="#">A propos</a></li>
+          <li class="list-inline-item"><a href="#">Privacy Policy</a></li>
+        </ul>
+        <p class="copyright">Hom'Burger © 2022</p>
+      </footer>
     </div>
 </body>
 

@@ -1,3 +1,11 @@
+<?php
+ob_start();
+session_start();
+if (!$_SESSION['valid']) {
+    header('Location: login.php');
+}
+//pour reset: $_SESSION['valid']=false;
+?>
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -79,7 +87,7 @@
                     selectIng = document.createElement('select');
 
                     selectIng[0] = new Option("--Ingrédient--", "", false, false);
-                                                                    //AFFICHAGE DES INFREDIENTS EN TANT QU'OPTION DANS UNE BALISE SELECT
+                    //AFFICHAGE DES INFREDIENTS EN TANT QU'OPTION DANS UNE BALISE SELECT
                     for (i = 0; i < resultats.length; i++) {
                         selectIng[i + 1] = new Option(resultats[i]['NomIng'], resultats[i]['IdIng'], false, false);
                     };
@@ -96,8 +104,8 @@
                 laFonction.fail(function(dataSQL, statut) {
                     alert("error sqlConnect.js : " + dataSQL.erreur);
                 });
-                    //LISTENERS EN VUE D'UN CHANGEMENT DE PRODUIT, POUR AFFICHER LA QTE ETC
-                    //ET POUR LANCER L'UPDATE DE LA QTE EN STOCK
+                //LISTENERS EN VUE D'UN CHANGEMENT DE PRODUIT, POUR AFFICHER LA QTE ETC
+                //ET POUR LANCER L'UPDATE DE LA QTE EN STOCK
                 function listeners() {
                     $("#selectIng").click(function() {
                         appel($("#selectIng").val());
@@ -107,7 +115,7 @@
                         update($("#selectIng").val(), $("#inputQte").val());
                     })
                 };
-                    //FONCTION QUI VIENT METTRE LA BASE A JOUR AVEC LE NOUVEAU STOCK
+                //FONCTION QUI VIENT METTRE LA BASE A JOUR AVEC LE NOUVEAU STOCK
                 function update($produit, $qte) {
                     var produit = $produit;
                     var qte = $qte;
@@ -172,6 +180,27 @@
                 appel(0);
             </script>
         </main>
+    </div>
+    <div class="footer-basic">
+      <footer>
+        <div class="social">
+          <a href="https://www.instagram.com/_hom_burger_/?hl=fr">
+            <i class="fa fa-instagram"></i>
+          </a>
+          <a href="https://twitter.com/hom_burger">
+            <i class="fa fa-twitter"></i>
+          </a>
+        </div>
+        <ul class="list-inline">
+          <li class="list-inline-item"><a href="#">Home</a></li>
+          <li class="list-inline-item">
+            <a href="equipe.html">Notre équipe</a>
+          </li>
+          <li class="list-inline-item"><a href="#">A propos</a></li>
+          <li class="list-inline-item"><a href="#">Privacy Policy</a></li>
+        </ul>
+        <p class="copyright">Hom'Burger © 2022</p>
+      </footer>
     </div>
 </body>
 

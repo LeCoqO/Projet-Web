@@ -99,7 +99,7 @@
                     });
                     laFonction2.done(function(msg2) {
                         resultats2 = JSON.parse(msg2);
-                        for (i = 0; i < resultats.length; i++) {            //AFFICHAGE DE CES DONNEES DE MANIERE STRUCTUREE DANS LA PAGE
+                        for (i = 0; i < resultats.length; i++) { //AFFICHAGE DE CES DONNEES DE MANIERE STRUCTUREE DANS LA PAGE
 
                             let laCommande = document.createElement('article');
                             let recapEtBouton = document.createElement('div');
@@ -159,7 +159,7 @@
                                 var dateCom = new Date(resultats[i]['DateComFourn'].substr(0, 4), resultats[i]['DateComFourn'].substr(5, 2) - 1, resultats[i]['DateComFourn'].substr(8, 2)); //POIR LES MOIS, il faut -1 car ils vont de 0 à 11.
                                 if (dateLiv < date || dateCom.addDays(30) < date) { //TEST DE LA COMMANDE (30J  MAX)
                                     alert('Commande trop ancienne, merci d\'en génerer une nouvelle');
-                                } else {        //APPEL DE LA CLASSE PDF, GENERANT DES PDF
+                                } else { //APPEL DE LA CLASSE PDF, GENERANT DES PDF
                                     $.ajax({
                                         url: 'PDF.php', //toujours la même page qui est appelée
                                         type: 'POST',
@@ -194,28 +194,27 @@
                 document.getElementById('commander').addEventListener('click', event => {
                     var selection = false;
                     $(".checkbox").each(function() {
-                            console.log($(this).is(":checked"));
-                            if ($(this).is(":checked")) {
-                                selection = true;
-                                $.ajax({
-                                    url: 'mailSender.php', //toujours la même page qui est appelée
-                                    type: 'POST',
-                                    data: {
-                                        fournisseurMail: resultats[$(this).attr('id').replace('bis', '')]['MailFourn'], //fonction à executer
-                                        commandeID: resultats[$(this).attr('id').replace('bis', '')]['IdComFourn'],
-                                    },
-                                    success: function(data) {
-                                        console.log('Coooool');
-                                    },
-                                    error: function(dataSQL, statut) {
-                                        alert("error sqlConnect.js : " + dataSQL.erreur);
-                                    }
-                                })
-                            }
+                        console.log($(this).is(":checked"));
+                        if ($(this).is(":checked")) {
+                            selection = true;
+                            $.ajax({
+                                url: 'mailSender.php', //toujours la même page qui est appelée
+                                type: 'POST',
+                                data: {
+                                    fournisseurMail: resultats[$(this).attr('id').replace('bis', '')]['MailFourn'], //fonction à executer
+                                    commandeID: resultats[$(this).attr('id').replace('bis', '')]['IdComFourn'],
+                                },
+                                success: function(data) {
+                                    console.log('Coooool');
+                                },
+                                error: function(dataSQL, statut) {
+                                    alert("error sqlConnect.js : " + dataSQL.erreur);
+                                }
+                            })
                         }
-                    )
+                    })
 
-                    if(!selection){
+                    if (!selection) {
                         alert('Veuillez séléctionner une ou plusieures commande(s)');
                     }
 
@@ -240,8 +239,7 @@
                                         fonction: 'update', //fonction à executer
                                         requete: 'DELETE FROM commandefournisseur WHERE IdComFourn = ' + resultats[$(this).attr('id').replace('bis', '')]['IdComFourn'] + ';',
                                     },
-                                    success: function(data) {
-                                    },
+                                    success: function(data) {},
                                     error: function(dataSQL, statut) {
                                         alert("error sqlConnect.js : " + dataSQL.erreur);
                                     }
@@ -251,10 +249,10 @@
 
                     )
 
-                    if(!selection){ //SI AUCUNE COMMANDE SELECTIONNEE ... 
+                    if (!selection) { //SI AUCUNE COMMANDE SELECTIONNEE ... 
                         alert('Veuillez séléctionner une ou plusieures commande(s)');
                     }
-                        //RECHARGEMENT DE LA PAGE
+                    //RECHARGEMENT DE LA PAGE
                     setTimeout(function() {
                         window.location.reload()
                     }, 100);
@@ -263,6 +261,27 @@
             </article>
     </div>
     </main>
+    </div>
+    <div class="footer-basic">
+        <footer>
+            <div class="social">
+                <a href="https://www.instagram.com/_hom_burger_/?hl=fr">
+                    <i class="fa fa-instagram"></i>
+                </a>
+                <a href="https://twitter.com/hom_burger">
+                    <i class="fa fa-twitter"></i>
+                </a>
+            </div>
+            <ul class="list-inline">
+                <li class="list-inline-item"><a href="#">Home</a></li>
+                <li class="list-inline-item">
+                    <a href="equipe.html">Notre équipe</a>
+                </li>
+                <li class="list-inline-item"><a href="#">A propos</a></li>
+                <li class="list-inline-item"><a href="#">Privacy Policy</a></li>
+            </ul>
+            <p class="copyright">Hom'Burger © 2022</p>
+        </footer>
     </div>
 </body>
 
