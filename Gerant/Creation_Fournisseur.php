@@ -121,7 +121,7 @@ if (!$_SESSION['valid']) {
             url: 'STOCK_REQUETE.php', //toujours la même page qui est appelée
             type: 'POST',
             data: {
-                fonction: 'Update', //fonction à executer
+                fonction: 'update', //fonction à executer
                 rq: "INSERT INTO fournisseur (NomFourn, AdresseFourn, CPFourn, VilleFourn, TelFourn, MailFourn, DateArchivFourn) " +
                     "VALUE('" + document.getElementById("nom").value + "', '" + document.getElementById("adr")
                     .value + "', '" +

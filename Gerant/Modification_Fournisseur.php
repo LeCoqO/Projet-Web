@@ -131,7 +131,7 @@ if (!$_SESSION['valid']) {
             url: 'STOCK_REQUETE.php', //toujours la même page qui est appelée
             type: 'POST',
             data: {
-                fonction: 'Update', //fonction à executer
+                fonction: 'update', //fonction à executer
                 rq: "UPDATE fournisseur " +
                     "SET AdresseFourn = '" + document.getElementById("adr").value + "', " +
                     "CPFourn = '" + document.getElementById("post").value + "', " +
