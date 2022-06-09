@@ -5,24 +5,65 @@
     <meta charset="UTF-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <meta name="author" content="Eddy GUENARD" />
-    <link rel="stylesheet" href="css/styles.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <title>BulgarKing</title>
-</head>
-<header>
-    <div class="sidebar" id="mySidebar">
-        <button class="bar-item button" onclick="sidebar_close()">Close &times;</button>
-        <br /><a href="#" class="bar-item button">Accueil</a>
-        <br /><a href="livreur.php" class="bar-item button">Livreur</a>
-        <br /><a href="mentionLegale.html" class="bar-item button">Mention légale</a>
-    </div>
-    <button class="button left hide-large" onclick="sidebar_open()">&#9776;</button>
-    <h1 class="text-center ">
 
-    </h1>
-</header>
+    <link rel="stylesheet" href="css/stylePanier.css" />
+    <link rel="stylesheet" href="css/styleCommun.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>Hom'Burger</title>
+</head>
 
 <body>
+    <header>
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css" />
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+        <!------ Include the above in your HEAD tag ---------->
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" />
+        <!-- Navigation -->
+        <div class="fixed-top">
+            <nav class="navbar navbar-expand-lg navbar-dark mx-background-top-linear">
+                <div class="container">
+                    <a class="navbar-brand" style="text-transform: uppercase;">
+                        Hom'Burger
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarResponsive">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="#">
+                                    Home
+                                    <span class="sr-only">(current)</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">About</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Fruits</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Sea food</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Vegetables</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Blog</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Contact</a>
+                            </li>
+                        </ul>
+                        <img class="imgNavbar" src="./images/logo.png">
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <div class="clear"></div><br><br><br><br><br>
     <div class="container content-container">
         <section id="bordure1">
             <h2 class="text-center">Votre Panier </h2>
@@ -30,12 +71,14 @@
 
             <br>
             <div class="form__group field">
-                <input type="input" class="form__field" placeholder="Nom" name="Nom" id='nom' required />
                 <label for="nom" class="form__label">Nom : </label>
+                <input type="input" class="form__field" placeholder="Nom" name="Nom" id='nom' required />
+                
             </div>
             <div class="form__group field">
-                <input class="form__field" type="tel" placeholder="Tel" id="tel" name="tel" pattern="[0-9]{10}" maxlength="10" required>
                 <label class="form__label" for="tel">Téléphone:</label>
+                <input class="form__field" type="tel" placeholder="Tel" id="tel" name="tel" pattern="[0-9]{10}" maxlength="10" required>
+                
                 <br>
                 <small>Format: 12 34 56 78 90</small>
             </div>
@@ -57,14 +100,32 @@
             <button id="validButtonFalse" class="button" onclick='checkBox_close()'><a href="IndextestTT.php">ok</a></button>
         </div>
     </div>
+    <footer class="mt-auto footer-basic fixed-bottom">
+        <div class="social">
+            <a href="https://www.instagram.com/_hom_burger_/?hl=fr%22%3E">
+                <i class="fa fa-instagram" aria-hidden="true"></i>
+
+            </a>
+            <a href="https://twitter.com/hom_burger%22%3E">
+                <i class="fa fa-twitter"></i>
+            </a>
+        </div>
+        <ul class="list-inline">
+            <li class="list-inline-item"><a href="#">Home</a></li>
+            <li class="list-inline-item">
+                <a href="equipe.html">Notre équipe</a>
+            </li>
+            <li class="list-inline-item"><a href="#">A propos</a></li>
+            <li class="list-inline-item"><a href="#">Privacy Policy</a></li>
+        </ul>
+        <p class="copyright">Hom'Burger © 2022</p>
+    </footer>
 </body>
 
-<footer id="piedPage">
-    <a href="#" class="espaceTxt">Home</a>
-    <a href="#" class="espaceTxt">About</a>
-    <a href="#" class="espaceTxt">Privacy Policy</a>
-    <p class="copyright">Hom'burger © 2022</p>
-</footer>
+</html>
+
+
+
 <script>
     RecapCommande();
     gethoraire();
@@ -80,13 +141,13 @@
                 "<br>Quantité: " + Recap[i]["quantity"] + "<br>Prix Unitaire: " + Recap[i]["price"] + "Є" + "<br>Prix total: " + (parseInt(Recap[i]["price"]) * parseInt(Recap[i]["quantity"]) + "Є") +
                 "<br>----------";
 
-           /* quantBurg = quantBurg + Recap[i]["quantity"];
-            if(quantBurg % 6 != 0) {
-                quantBurg += 6 - (quantBurg % 6);
-                strgRecap += "<br>-" + Recap[i]["price"] + "Є";
-                burgerpromo = burgerpromo + 1;
-                console.log(burgerpromo);
-            }*/
+            /* quantBurg = quantBurg + Recap[i]["quantity"];
+             if(quantBurg % 6 != 0) {
+                 quantBurg += 6 - (quantBurg % 6);
+                 strgRecap += "<br>-" + Recap[i]["price"] + "Є";
+                 burgerpromo = burgerpromo + 1;
+                 console.log(burgerpromo);
+             }*/
             prixtot = (parseInt(Recap[i]["price"]) * parseInt(Recap[i]["quantity"] - burgerpromo)) + prixtot;
 
         }
