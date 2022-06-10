@@ -11,6 +11,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css" />
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" />
+
     <script src="./scriptCommun.js"></script>
 
     <title>Hom'burger</title>
@@ -21,13 +27,10 @@
 
 <br><br><br>
 <header>
-    <!-- Navigation -->
     <div class="fixed-top">
         <nav class="navbar navbar-expand-lg navbar-dark mx-background-top-linear">
             <div class="container">
-                <img class="imgNavbar" style="width: 50px;" src="./img/logo.png">
-
-                <a class="navbar-brand" style="text-transform: uppercase;">
+                <a class="navbar-brand" style="text-transform: uppercase">
                     Hom'Burger
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
@@ -37,36 +40,31 @@
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item active">
-                            <a class="nav-link" href="index.php">
+                            <a class="nav-link" href="#">
                                 Home
                                 <span class="sr-only">(current)</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="mentionLegale.html">About</a>
+                            <a class="nav-link" href="../Accueil/">Acceuil</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Livreur</a>
+                            <a class="nav-link" href="../Cuisine/">Cusinier</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="recette.php">Recette</a>
+                            <a class="nav-link" href="../Gerant/">Gérant</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Gérant</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Contact</a>
+                            <a class="nav-link" href="../Livreur/">Livreur</a>
                         </li>
                     </ul>
-
+                    <img class="imgNavbar" src="./img/logo.png" />
                 </div>
             </div>
         </nav>
     </div>
-    <div id="select_Livreur" value='1'></div>
-    <br><br><br><br><br><br>
 </header>
-
+<br><br><br><br><br><br>
 
 <body>
     <div id="loading">

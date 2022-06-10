@@ -22,5 +22,3 @@ $headers = 'From: diego.publicmail@gmail.com' . "\r\n" .
 
 //mail($toFourni,$subject,$message,$headers);
 mail($toGerant,$subject,$message,$headers);
-
-?>

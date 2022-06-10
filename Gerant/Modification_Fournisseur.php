@@ -18,16 +18,15 @@ if (!$_SESSION['valid']) {
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css" />
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" />
 </head>
 
 <body>
     <header>
-        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" />
-        <!-- Navigation -->
         <div class="fixed-top">
             <nav class="navbar navbar-expand-lg navbar-dark mx-background-top-linear">
                 <div class="container">
-                    <a class="navbar-brand" style="text-transform: uppercase;">
+                    <a class="navbar-brand" style="text-transform: uppercase">
                         Hom'Burger
                     </a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
@@ -42,32 +41,20 @@ if (!$_SESSION['valid']) {
                                     <span class="sr-only">(current)</span>
                                 </a>
                             </li>
-
                             <li class="nav-item">
-                                <a class="nav-link" href="#">About</a>
+                                <a class="nav-link" href="../Accueil/">Acceuil</a>
                             </li>
-
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Fruits</a>
+                                <a class="nav-link" href="../Cuisine/">Cusinier</a>
                             </li>
-
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Sea food</a>
+                                <a class="nav-link" href="../Gerant/">Gérant</a>
                             </li>
-
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Vegetables</a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Blog</a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Contact</a>
+                                <a class="nav-link" href="../Livreur/">Livreur</a>
                             </li>
                         </ul>
-                        <img class="imgNavbar" style="width: 50px;" src="./img/logo.png">
+                        <img class="imgNavbar" src="./img/logo.png" />
                     </div>
                 </div>
             </nav>
@@ -132,7 +119,7 @@ if (!$_SESSION['valid']) {
             type: 'POST',
             data: {
                 fonction: 'update', //fonction à executer
-                rq: "UPDATE fournisseur " +
+                requete: "UPDATE fournisseur " +
                     "SET AdresseFourn = '" + document.getElementById("adr").value + "', " +
                     "CPFourn = '" + document.getElementById("post").value + "', " +
                     "VilleFourn = '" + document.getElementById("ville").value + "', " +

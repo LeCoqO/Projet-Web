@@ -16,18 +16,17 @@ if (!$_SESSION['valid']) {
     <meta name="description" content="Création Fournisseur" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css" />
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" />
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 </head>
 
 <body>
     <header>
-        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" />
-        <!-- Navigation -->
         <div class="fixed-top">
             <nav class="navbar navbar-expand-lg navbar-dark mx-background-top-linear">
                 <div class="container">
-                    <a class="navbar-brand" style="text-transform: uppercase;">
+                    <a class="navbar-brand" style="text-transform: uppercase">
                         Hom'Burger
                     </a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
@@ -42,32 +41,20 @@ if (!$_SESSION['valid']) {
                                     <span class="sr-only">(current)</span>
                                 </a>
                             </li>
-
                             <li class="nav-item">
-                                <a class="nav-link" href="#">About</a>
+                                <a class="nav-link" href="../Accueil/">Acceuil</a>
                             </li>
-
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Fruits</a>
+                                <a class="nav-link" href="../Cuisine/">Cusinier</a>
                             </li>
-
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Sea food</a>
+                                <a class="nav-link" href="../Gerant/">Gérant</a>
                             </li>
-
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Vegetables</a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Blog</a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Contact</a>
+                                <a class="nav-link" href="../Livreur/">Livreur</a>
                             </li>
                         </ul>
-                        <img class="imgNavbar" style="width: 50px;" src="./img/logo.png">
+                        <img class="imgNavbar" src="./img/logo.png" />
                     </div>
                 </div>
             </nav>
@@ -122,7 +109,7 @@ if (!$_SESSION['valid']) {
             type: 'POST',
             data: {
                 fonction: 'update', //fonction à executer
-                rq: "INSERT INTO fournisseur (NomFourn, AdresseFourn, CPFourn, VilleFourn, TelFourn, MailFourn, DateArchivFourn) " +
+                requete: "INSERT INTO fournisseur (NomFourn, AdresseFourn, CPFourn, VilleFourn, TelFourn, MailFourn, DateArchivFourn) " +
                     "VALUE('" + document.getElementById("nom").value + "', '" + document.getElementById("adr")
                     .value + "', '" +
                     document.getElementById("post").value + "', '" + document.getElementById("ville").value +

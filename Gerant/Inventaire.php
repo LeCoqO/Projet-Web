@@ -15,20 +15,49 @@ if (!$_SESSION['valid']) {
     <meta name="author" content="LUSTIERE Quentin" />
     <link rel="stylesheet" href="style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css" />
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" />
     <title>HOMBURGER - GERANT</title>
 </head>
 <header>
-    <div class="sidebar" id="mySidebar">
-        <button class="bar-item button" onclick="sidebar_close()">Close &times;</button>
-        <a href="commande.php" class="bar-item button">Commande</a><br>
-        <a href="recette.php" class="bar-item button">Link 2</a><br>
-        <a href="#" class="bar-item button">Link 3</a>
+    <div class="fixed-top">
+        <nav class="navbar navbar-expand-lg navbar-dark mx-background-top-linear">
+            <div class="container">
+                <a class="navbar-brand" style="text-transform: uppercase">
+                    Hom'Burger
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                    aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#">
+                                Home
+                                <span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../Accueil/">Acceuil</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../Cuisine/">Cusinier</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../Gerant/">Gérant</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../Livreur/">Livreur</a>
+                        </li>
+                    </ul>
+                    <img class="imgNavbar" src="./img/logo.png" />
+                </div>
+            </div>
+        </nav>
     </div>
-    <button class="button left hide-large" onclick="sidebar_open()">&#9776;</button>
-    <h1 class="text-center ">
-        <img src="img/logo.png" class="logo" alt="" />
-    </h1>
-
 </header>
 
 <body>

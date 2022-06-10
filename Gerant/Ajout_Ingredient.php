@@ -15,20 +15,49 @@ if (!$_SESSION['valid']) {
     <meta name="author" content="LUSTIERE Quentin" />
     <link rel="stylesheet" href="style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css" />
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" />
     <title>HOMBURGER - GERANT</title>
 </head>
 <header>
-    <div class="sidebar" id="mySidebar">
-        <button class="bar-item button" onclick="sidebar_close()">Close &times;</button>
-        <a href="commande.php" class="bar-item button">Commande</a><br>
-        <a href="recette.php" class="bar-item button">Link 2</a><br>
-        <a href="#" class="bar-item button">Link 3</a>
+    <div class="fixed-top">
+        <nav class="navbar navbar-expand-lg navbar-dark mx-background-top-linear">
+            <div class="container">
+                <a class="navbar-brand" style="text-transform: uppercase">
+                    Hom'Burger
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                    aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#">
+                                Home
+                                <span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../Accueil/">Acceuil</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../Cuisine/">Cusinier</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../Gerant/">Gérant</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../Livreur/">Livreur</a>
+                        </li>
+                    </ul>
+                    <img class="imgNavbar" src="./img/logo.png" />
+                </div>
+            </div>
+        </nav>
     </div>
-    <button class="button left hide-large" onclick="sidebar_open()">&#9776;</button>
-    <h1 class="text-center ">
-        <img src="img/logo.png" class="logo" alt="" />
-    </h1>
-
 </header>
 
 <body>
@@ -55,35 +84,36 @@ if (!$_SESSION['valid']) {
                 </div>
                 <div id=choixFournisseurs class="column">
                     <script>
-                        //RECUPERATION DES FOURNISSEURS DANS LA BDD, POUR LES METTRE EN TANT QU'OPTION DANS UN SELECT
-                        var laFonction = $.ajax({
-                            url: 'STOCK_REQUETE.php', //toujours la même page qui est appelée
-                            type: 'POST',
-                            data: {
-                                fonction: 'select', //fonction à executer
-                                requete: 'SELECT NomFourn FROM fournisseur',
-                            }
-                        });
-                        laFonction.done(function(msg) {
-                            let resultats = JSON.parse(msg);
-                            selectFourn = document.createElement('select');
-                            selectFourn[0] = new Option("--Fournisseur--", "", false, false);
+                    //RECUPERATION DES FOURNISSEURS DANS LA BDD, POUR LES METTRE EN TANT QU'OPTION DANS UN SELECT
+                    var laFonction = $.ajax({
+                        url: 'STOCK_REQUETE.php', //toujours la même page qui est appelée
+                        type: 'POST',
+                        data: {
+                            fonction: 'select', //fonction à executer
+                            requete: 'SELECT NomFourn FROM fournisseur',
+                        }
+                    });
+                    laFonction.done(function(msg) {
+                        let resultats = JSON.parse(msg);
+                        selectFourn = document.createElement('select');
+                        selectFourn[0] = new Option("--Fournisseur--", "", false, false);
 
-                            for (i = 0; i < resultats.length; i++) {
-                                selectFourn[i + 1] = new Option(resultats[i]['NomFourn'], resultats[i]['NomFourn'], false, false);
-                            };
+                        for (i = 0; i < resultats.length; i++) {
+                            selectFourn[i + 1] = new Option(resultats[i]['NomFourn'], resultats[i]['NomFourn'],
+                                false, false);
+                        };
 
-                            selectFourn.id = 'selectFourn';
-                            selectFourn.class = '';
-                            selectFourn.onChange = '';
-                            selectFourn.style = '';
+                        selectFourn.id = 'selectFourn';
+                        selectFourn.class = '';
+                        selectFourn.onChange = '';
+                        selectFourn.style = '';
 
-                            document.getElementById('choixFournisseurs').appendChild(selectFourn);
+                        document.getElementById('choixFournisseurs').appendChild(selectFourn);
 
-                        });
-                        laFonction.fail(function(dataSQL, statut) {
-                            alert("error sqlConnect.js : " + dataSQL.erreur);
-                        });
+                    });
+                    laFonction.fail(function(dataSQL, statut) {
+                        alert("error sqlConnect.js : " + dataSQL.erreur);
+                    });
                     </script>
                 </div>
                 <div class="column">
@@ -100,34 +130,35 @@ if (!$_SESSION['valid']) {
                 </div>
                 <div id=choixUnites class="column">
                     <script>
-                        //RECUP DES UNITE POUR EN FAIRE LE MEME USAGE QUE LES FOURNISSEURS
-                        var laFonction = $.ajax({
-                            url: 'STOCK_REQUETE.php', //toujours la même page qui est appelée
-                            type: 'POST',
-                            data: {
-                                fonction: 'select', //fonction à executer
-                                requete: 'SELECT DISTINCT unite FROM ingredient',
-                            }
-                        });
-                        laFonction.done(function(msg) {
-                            let resultats = JSON.parse(msg);
-                            selectUnite = document.createElement('select');
-                            selectUnite[0] = new Option("--Unités--", "", false, false);
+                    //RECUP DES UNITE POUR EN FAIRE LE MEME USAGE QUE LES FOURNISSEURS
+                    var laFonction = $.ajax({
+                        url: 'STOCK_REQUETE.php', //toujours la même page qui est appelée
+                        type: 'POST',
+                        data: {
+                            fonction: 'select', //fonction à executer
+                            requete: 'SELECT DISTINCT unite FROM ingredient',
+                        }
+                    });
+                    laFonction.done(function(msg) {
+                        let resultats = JSON.parse(msg);
+                        selectUnite = document.createElement('select');
+                        selectUnite[0] = new Option("--Unités--", "", false, false);
 
-                            for (i = 0; i < resultats.length; i++) {
-                                selectUnite[i + 1] = new Option(resultats[i]['unite'], resultats[i]['unite'], false, false);
-                            };
+                        for (i = 0; i < resultats.length; i++) {
+                            selectUnite[i + 1] = new Option(resultats[i]['unite'], resultats[i]['unite'], false,
+                                false);
+                        };
 
-                            selectUnite.id = 'selectUnite';
-                            selectUnite.class = '';
-                            selectUnite.onChange = '';
-                            selectUnite.style = '';
-                            document.getElementById('choixUnites').appendChild(selectUnite);
+                        selectUnite.id = 'selectUnite';
+                        selectUnite.class = '';
+                        selectUnite.onChange = '';
+                        selectUnite.style = '';
+                        document.getElementById('choixUnites').appendChild(selectUnite);
 
-                        });
-                        laFonction.fail(function(dataSQL, statut) {
-                            alert("error sqlConnect.js : " + dataSQL.erreur);
-                        });
+                    });
+                    laFonction.fail(function(dataSQL, statut) {
+                        alert("error sqlConnect.js : " + dataSQL.erreur);
+                    });
                     </script>
                 </div>
                 <div>
@@ -136,72 +167,74 @@ if (!$_SESSION['valid']) {
                 </div>
             </div>
             <script>
-                //LISTENER SUR LE BOUTON POUR LANCER L'INSERTION, AVEC SELECTIONS DES DONNEES REMPLIES DANS LA PAGE
-                $("#ok").click(function() {
-                    insert($("#nom").val(),
-                        "MyFoodnisseur",
-                        $("#frais").val(),
-                        $("#selectUnite").val(),
-                        $("#inputQte").val(),
-                        $("#inputPrix").val());
-                })
+            //LISTENER SUR LE BOUTON POUR LANCER L'INSERTION, AVEC SELECTIONS DES DONNEES REMPLIES DANS LA PAGE
+            $("#ok").click(function() {
+                insert($("#nom").val(),
+                    "MyFoodnisseur",
+                    $("#frais").val(),
+                    $("#selectUnite").val(),
+                    $("#inputQte").val(),
+                    $("#inputPrix").val());
+            })
 
-                //INSERTION DANS LA BASE DE L'INGREDIENT CREE, AVEC LES DIFFERENTS CHAMPS REMPLIS DANS LA PAGE, VERIFICATION DES CHAMPS FAITE DANS LE HTML
-                function insert($nom, $fournisseur, $estFrais, $unite, $qte, $puht) {
-                    console.log('ok2');
+            //INSERTION DANS LA BASE DE L'INGREDIENT CREE, AVEC LES DIFFERENTS CHAMPS REMPLIS DANS LA PAGE, VERIFICATION DES CHAMPS FAITE DANS LE HTML
+            function insert($nom, $fournisseur, $estFrais, $unite, $qte, $puht) {
+                console.log('ok2');
 
-                    var nom = '"' + $nom + '"';
-                    var fournisseur = '"' + $fournisseur + '"';
-                    if ($estFrais) {
-                        var estFrais = '"T"';
-                    } else {
-                        var estFrais = '"F"';
-                    }
-                    var unite = $unite;
-                    var qte = $qte;
-                    var puht = $puht;
-
-                    var laFonction = $.ajax({
-                        url: 'STOCK_REQUETE.php', //toujours la même page qui est appelée
-                        type: 'POST',
-                        data: {
-                            fonction: 'update', //fonction à executer
-                            requete: 'INSERT INTO ingredient(NomIng,Frais,Type,Unite,StockMin,StockReel,PrixUHT_Moyen,Q_A_Com,DateArchivIng) VALUES (' + nom + ', ' + estFrais + ',' + '"S"' + ',' + "unite" + ',' + qte + ',0,' + puht + ',0,NOW());'
-                        }
-                    });
-
-                    laFonction.done(function(msg) {
-
-                        alert('Produit ajouté.');
-
-                    });
-                    laFonction.fail(function(dataSQL, statut) {
-                        alert("error sqlConnect.js : " + dataSQL.erreur);
-                    });
+                var nom = '"' + $nom + '"';
+                var fournisseur = '"' + $fournisseur + '"';
+                if ($estFrais) {
+                    var estFrais = '"T"';
+                } else {
+                    var estFrais = '"F"';
                 }
+                var unite = $unite;
+                var qte = $qte;
+                var puht = $puht;
+
+                var laFonction = $.ajax({
+                    url: 'STOCK_REQUETE.php', //toujours la même page qui est appelée
+                    type: 'POST',
+                    data: {
+                        fonction: 'update', //fonction à executer
+                        requete: 'INSERT INTO ingredient(NomIng,Frais,Type,Unite,StockMin,StockReel,PrixUHT_Moyen,Q_A_Com,DateArchivIng) VALUES (' +
+                            nom + ', ' + estFrais + ',' + '"S"' + ',' + "unite" + ',' + qte + ',0,' + puht +
+                            ',0,NOW());'
+                    }
+                });
+
+                laFonction.done(function(msg) {
+
+                    alert('Produit ajouté.');
+
+                });
+                laFonction.fail(function(dataSQL, statut) {
+                    alert("error sqlConnect.js : " + dataSQL.erreur);
+                });
+            }
             </script>
     </main>
     </div>
     <div class="footer-basic">
-      <footer>
-        <div class="social">
-          <a href="https://www.instagram.com/_hom_burger_/?hl=fr">
-            <i class="fa fa-instagram"></i>
-          </a>
-          <a href="https://twitter.com/hom_burger">
-            <i class="fa fa-twitter"></i>
-          </a>
-        </div>
-        <ul class="list-inline">
-          <li class="list-inline-item"><a href="#">Home</a></li>
-          <li class="list-inline-item">
-            <a href="equipe.html">Notre équipe</a>
-          </li>
-          <li class="list-inline-item"><a href="#">A propos</a></li>
-          <li class="list-inline-item"><a href="#">Privacy Policy</a></li>
-        </ul>
-        <p class="copyright">Hom'Burger © 2022</p>
-      </footer>
+        <footer>
+            <div class="social">
+                <a href="https://www.instagram.com/_hom_burger_/?hl=fr">
+                    <i class="fa fa-instagram"></i>
+                </a>
+                <a href="https://twitter.com/hom_burger">
+                    <i class="fa fa-twitter"></i>
+                </a>
+            </div>
+            <ul class="list-inline">
+                <li class="list-inline-item"><a href="#">Home</a></li>
+                <li class="list-inline-item">
+                    <a href="equipe.html">Notre équipe</a>
+                </li>
+                <li class="list-inline-item"><a href="#">A propos</a></li>
+                <li class="list-inline-item"><a href="#">Privacy Policy</a></li>
+            </ul>
+            <p class="copyright">Hom'Burger © 2022</p>
+        </footer>
     </div>
 </body>
 
