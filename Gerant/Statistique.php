@@ -101,12 +101,13 @@ if (!$_SESSION['valid']) {
         <div class="roww">
             <div id="ChoixDate1">
                 <div class="colone form__group field left">
-                    <input type="date" class="form__field" id="start" name="DateDebut" min="2022-01-01"
+                    <input type="date" class="form__field" id="DateDebut" name="DateDebut" min="2022-01-01"
                         value="<?php echo choixDate("-2 month"); ?>" max="<?php echo choixDate("-1 days"); ?>">
                     <label class="form__label" for="DateDebut" class="cat">Date de début:</label>
                 </div>
                 <div class="colone form__group field left">
-                    <input type="date" class="form__field" id="end" name="DateFin" min="2022-01-02">
+                    <input type="date" class="form__field" id="DateFin" name="DateFin" min="2022-01-02"
+                        value="<?php echo choixDate("0 days"); ?>" max="<?php echo choixDate("0 days"); ?>">
                     <label class="form__label" for="DateFin">Date de fin:</label>
                 </div>
             </div>
@@ -137,10 +138,6 @@ if (!$_SESSION['valid']) {
     document.getElementById("Mois").setAttribute("max", date);
     document.getElementById("Mois").setAttribute("value", date);
 
-    date = laDate.getFullYear() + "-" + 0 + (laDate.getMonth() + 1) + "-" + 0 + laDate.getDate();
-    document.getElementById("end").setAttribute("max", date);
-    document.getElementById("end").setAttribute("value", date);
-
     afficherStatistique()
 
     $.ajax({
@@ -152,7 +149,6 @@ if (!$_SESSION['valid']) {
         },
         success: function(data) {
             var resultats = JSON.parse(data);
-            console.log(data);
             var stringOption =
                 '<label for="Choi categorie" class="form__label" class="cat">Categorie:</label>' +
                 '<select id="langage" class="form__field" size=1 name="prog">' +
@@ -177,8 +173,8 @@ if (!$_SESSION['valid']) {
             data: {
                 fonction: 'select', //fonction à executer
                 requete: "SELECT NomProd, SUM(Quant) AS Quant FROM detail WHERE DateArchivDet >= '" +
-                    document.getElementById("start").value + "' And DateArchivDet <= '" +
-                    document.getElementById("end").value + "' GROUP BY NomProd"
+                    document.getElementById("DateDebut").value + "' And DateArchivDet <= '" +
+                    document.getElementById("DateFin").value + "' GROUP BY NomProd"
             },
             success: function(data) {
                 $('#myChart').remove();

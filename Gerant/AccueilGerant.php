@@ -2,7 +2,7 @@
 ob_start();
 session_start();
 if (!$_SESSION['valid']) {
-  header('Location: login.php');
+    header('Location: login.php');
 }
 //pour reset: $_SESSION['valid']=false;
 ?>
@@ -84,36 +84,30 @@ if (!$_SESSION['valid']) {
         </nav>
     </div>
 </header>
-<br>
-<br>
-<br>
+<br><br><br><br><br>
 
 <body class="d-flex flex-column min-vh-100">
 
-    <hr>
-    <div class="container content-container">
-        <main role="main">
-            <section>
-                <h2 class="text-center">Interface Gérant</h2>
 
-                <br>
-                <br>
-                <br>
-
-                <div class="row text-center">
-                    <div class="column">
-                        <button class="button" onclick=window.location.href='Statistique.php'>Statistiques</button>
-                    </div>
-                    <div class="column">
-                        <button class="button" onclick=window.location.href='Consult_Stocks.php'>Stocks</button>
-                    </div>
-                    <div class="column">
-                        <button class="button" onclick=window.location.href='recette.php'>Recettes</button>
-                    </div>
-                </div>
-            </section>
-        </main>
+    <div class="center-div">
+        <div id="div_stat" class="block_Menu" style="margin-left: 7%;">
+            <div id="div_button_stat" class="sous_block_Menu">
+                <button class="button BoutonAccueil" onclick=window.location.href='Statistique.php'>Statistique</button>
+            </div>
+        </div>
+        <div id="div_Stocks" class="block_Menu">
+            <div class="sous_block_Menu">
+                <button class="button BoutonAccueil" onclick=window.location.href='Consult_Stocks.php'>Stocks</button>
+            </div>
+        </div>
+        <div id="div_Recettes" class="block_Menu">
+            <div class="sous_block_Menu">
+                <button class="button BoutonAccueil" onclick=window.location.href='recette.php'>Recettes</button>
+            </div>
+        </div>
     </div>
+
+
     <footer class="mt-auto footer-basic fixed-bottom">
         <div class="social">
             <a href="https://www.instagram.com/_hom_burger_/?hl=fr">
