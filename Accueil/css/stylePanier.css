@@ -1,0 +1,195 @@
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700");
+
+/************************ Fin IHM Commande / Panier ************************/
+
+.button-pannier {
+    border: none;
+    display: inline-block;
+    vertical-align: middle;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    background-color: inherit;
+    text-align: center;
+    cursor: pointer;
+    white-space: nowrap;
+    color: white;
+    background-color: #212529;
+  
+
+}
+
+#bordure1 {
+    border: solid 3px black;
+    padding: 2%;
+}
+
+.bordure2 {
+    border: double 3px black;
+    padding: 1%;
+    margin: 2%;
+}
+
+#piedPage {
+    margin: auto;
+    padding: 15px;
+    max-width: auto;
+    /*Adaptation du texte*/
+    padding: 50px 25px;
+    background-color: gray;
+    text-align: center;
+}
+
+.espaceTxt {
+    margin-right: 15px;
+}
+
+.burger {
+    background: url(../images/burger-banner.jpg) 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+}
+
+.item {
+    background-color: white;
+    margin: 20px;
+    display: flex;
+    cursor: pointer;
+    transition: 0.3s all;
+    width: 75%;
+}
+
+.item:hover {
+    transform: scale(1.1);
+    transition: 0.3s all;
+}
+
+.item:hover {
+    transition: 0.3s all;
+    box-shadow: -8px 8px 2px 1px rgba(0, 0, 0, .1);
+}
+
+.item-infos {
+    padding: 20px;
+    line-height: 40px;
+}
+
+section {
+    padding: 100px;
+    font-family: 'Martel', serif;
+}
+
+.item-infos h3 {
+    font-size: 25px;
+}
+
+.item-infos hr {
+    margin: 10px 0 10px 0;
+    opacity: 0.5;
+}
+
+.prix {
+    font-weight: bold;
+    font-size: 22px;
+}
+
+.imgpanier {
+    float: right;
+    margin-left: auto;
+    margin-right: 1%;
+    margin-top: auto;
+    width: 75px;
+    height: 75px;
+}
+
+.messageBox {
+    padding: 10%;
+    margin: 0% 10%;
+    display: block;
+    position: fixed;
+    top: 20%;
+    left: 10%;
+    opacity: 1;
+    background-color: #969292;
+    border: #000 solid;
+    z-index: 99;
+    text-align: center;
+}
+
+.button {
+    border: none;
+    display: inline-block;
+    padding: 12px 20px;
+    vertical-align: middle;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    background-color: inherit;
+    text-align: center;
+    cursor: pointer;
+    white-space: nowrap;
+    color: white;
+    background-color: rgb(40, 40, 40);
+}
+
+
+
+.panier_fermee {
+    display: block;
+    position: fixed;
+    top: 80px;
+    right: 0;
+    width: 30px;
+    height: 170px;
+    border: none;
+    background:#212529;
+    margin-top: 100px;
+
+}
+
+.panier_ouvert {
+    display: block;
+    position: fixed;
+    border: 3px solid rgba(0, 0, 00);
+    top: 80px;
+    right: 0;
+    width: 300px;
+    height: 550px;
+    background: #ddc3a5;
+    margin-top: 50px;
+}
+
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.styleButPanier {
+
+    display: table;
+    width: 100%;
+    border-collapse: separate;
+    margin: 1px;
+    position: absolute;
+    bottom: 0;
+}
+
+.styleButPanier > #butpanierliv,
+#butpanieremp {
+    display: table-cell;
+    text-align: center;
+    border: solid;
+    padding: 10px;
+    width: 47%;
+}
+
+#butpanierliv{
+    background-color: #212529;
+}
+#butpanieremp{
+    background-color: #212529;
+}
+/************************ Fin IHM Commande / Panier ************************/

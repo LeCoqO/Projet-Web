@@ -1,0 +1,644 @@
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700");
+
+
+
+/*
+Couleur fond(gris clair):  (229, 225, 222)
+Couleur fond2(noir-gris):  (40, 40, 40)
+Couleur font: noir ou blanc
+
+*/
+html {
+    -ms-text-size-adjust: 100%;
+}
+
+article,
+aside,
+footer,
+header,
+nav,
+section {
+    display: block;
+}
+
+section {
+    margin: 0% 0%;
+}
+
+h1 {
+    font-size: 2em;
+    margin: 0.67em 0;
+}
+
+main {
+    display: block;
+}
+
+b,
+strong {
+    font-weight: inherit;
+}
+
+button {
+    overflow: visible;
+}
+
+input {
+    overflow: visible;
+}
+
+fieldset {
+    padding: 0.35em 0.75em 0.625em;
+}
+
+/*
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+.table-step{
+  width: 100%;
+}*/
+
+body {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: black;
+    text-align: left;
+    background-color: rgb(229, 225, 222);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+}
+
+p {
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+
+dl,
+ol,
+ul {
+    margin-top: 0;
+}
+
+ol ol,
+ol ul,
+ul ol,
+ul ul {
+    margin-bottom: 0;
+}
+
+b,
+strong {
+    font-weight: bolder;
+}
+
+small {
+    font-size: 80%;
+}
+
+a {
+    color: #e54315;
+    background-color: transparent;
+}
+
+a:hover {
+    color: #9f2e0f;
+    text-decoration: underline;
+}
+
+img {
+    border-style: none;
+
+}
+
+/*SideBar*/
+.sidebar {
+    height: 100%;
+    width: 200px;
+    color: white;
+    background-color: rgb(40, 40, 40);
+    position: fixed !important;
+    z-index: 1;
+    overflow: auto;
+    width: 200px;
+    left: 0;
+    display: none;
+}
+
+.bar-item {
+    padding: 8px 16px;
+    width: auto;
+    border: none;
+    display: inline;
+    outline: 0;
+}
+
+.button {
+    border: none;
+    display: inline-block;
+    padding: 12px 20px;
+    vertical-align: middle;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    background-color: inherit;
+    text-align: center;
+    cursor: pointer;
+    white-space: nowrap;
+    color: white;
+    background-color: rgb(40, 40, 40);
+}
+
+
+
+#content {
+    color: white;
+}
+
+.img-fluid {
+    /*flex*/
+    margin-top: 0px;
+}
+
+.logo {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.map {
+    margin-left: 5%;
+    margin-top: 5%;
+    height: 800px;
+    width: 90%;
+    color: #000;
+}
+
+.cmd-selected {
+    background: rgb(255, 0, 0);
+}
+
+label {
+    display: inline-block;
+    margin-bottom: 0.5rem;
+}
+
+button {
+    border-radius: 0;
+}
+
+button:focus {
+    outline: 1px dotted;
+    outline: 5px auto -webkit-focus-ring-color;
+}
+
+button,
+input,
+optgroup,
+select,
+textarea {
+    margin: 0;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+    box-sizing: border-box;
+    padding: 0;
+}
+
+textarea {
+    overflow: auto;
+    resize: vertical;
+}
+
+fieldset {
+    min-width: 0;
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin-bottom: 0.5rem;
+    font-family: inherit;
+    font-weight: 500;
+    line-height: 1.2;
+    color: inherit;
+}
+
+.h1,
+h1 {
+    font-size: 32px;
+}
+
+.h2,
+h2 {
+    font-size: 24px;
+}
+
+.h3,
+h3 {
+    font-size: 18.72px;
+}
+
+h3:hover {
+    color: red;
+}
+
+.h4,
+h4 {
+    font-size: 16px;
+}
+
+.h5,
+h5 {
+    font-size: 13.28px;
+}
+
+.h6,
+h6 {
+    font-size: 10.72px;
+}
+
+.container {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.table {
+    width: 100%;
+
+}
+
+.table-header {
+
+    display: flex;
+    font-weight: bold;
+    width: 100%;
+    background: rgb(70, 70, 70);
+    padding: (12px * 1.5) 0;
+
+}
+
+.table-row {
+    display: flex;
+    width: 100%;
+    font-weight: bold;
+    padding: (12px * 1.5) 0;
+    color: black;
+    background: #bbbbbb;
+}
+
+.table-row:nth-of-type(odd) {
+    background: #888888;
+}
+
+.table-data,
+.header__item {
+    flex: 1 1 20%;
+    text-align: center;
+}
+
+.table-data {
+    border: #000000 solid 1px;
+}
+
+.header__item {
+    text-transform: uppercase;
+    border: #000000 solid 1px;
+    padding: 15px 0px;
+}
+
+.filter__link {
+    color: white;
+    text-decoration: none;
+    position: relative;
+    display: inline-block;
+    padding-left: 24px;
+    padding-right: 24px;
+}
+
+.filter__link::after {
+    content: "";
+    position: absolute;
+    right: -(12px * 1.5);
+    color: white;
+    font-size: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.filter__link.desc::after {
+    content: "(desc)";
+}
+
+.filter__link.asc::after {
+    content: "(asc)";
+}
+
+.text-center {
+    text-align: center !important;
+}
+
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
+
+.noFloat {
+    float: none;
+}
+
+.clear {
+    clear: both;
+}
+
+.burger-viande-selected,
+.pain-selected,
+.burger-sauce-selected,
+.burger-supplement-selected,
+.boisson-selected {
+    color: rgb(255, 255, 255);
+    background-color: rgb(192, 68, 19);
+    border-radius: 15%;
+}
+
+.panier_fermee {
+    display: block;
+    position: fixed;
+    top: 80px;
+    right: 0;
+    width: 30px;
+    height: 170px;
+    border: 3px solid #2a4207;
+    background: rgba(95, 95, 95);
+    
+}
+
+.panier_ouvert {
+    display: block;
+    position: fixed;
+    border: 3px solid #73ad21;
+    top: 80px;
+    right: 0;
+    width: 300px;
+    height: 550px;
+    background: rgba(95, 95, 95);
+}
+
+.column {
+    float: left;
+    width: 33.33%;
+}
+
+.half {
+    width: 45%;
+    float: left;
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+a span {
+    position: absolute;
+    margin-top: 23px;
+    margin-left: -35px;
+    color: #ffffff;
+    background: rgba(0, 0, 0, 0.9);
+    padding: 5px;
+    border-radius: 3px;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+    transform: scale(0) rotate(-12deg);
+    opacity: 0;
+}
+
+a:hover span,
+a:focus span {
+    transform: scale(1) rotate(0);
+    opacity: 1;
+}
+
+/* IHM Cuisinier */
+/*Fin IHM Cuisinier*/
+
+/* IHM Livreur */
+/*Fin IHM Livreur*/
+
+/* IHM Commande */
+.button-pannier {
+    border: none;
+    display: inline-block;
+    padding: 12px 20px;
+    vertical-align: middle;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    background-color: inherit;
+    text-align: center;
+    cursor: pointer;
+    white-space: nowrap;
+    color: white;
+    background-color: rgb(40, 40, 40);
+    
+}
+
+
+/*Fin IHM Commande*/
+
+/* IHM Panier */
+
+#bordure1 {
+    border: solid 3px black;
+    padding: 2%;
+}
+
+.bordure2 {
+    border: double 3px black;
+    padding: 1%;
+    margin: 2%;
+}
+
+#piedPage {
+    margin: auto;
+    padding: 15px;
+    max-width: auto;
+    /*Adaptation du texte*/
+    padding: 50px 25px;
+    background-color: gray;
+    text-align: center;
+}
+
+.espaceTxt {
+    margin-right: 15px;
+}
+
+.burger {
+    background: url(../images/burger-banner.jpg) 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+}
+
+/*TEST EDDY*/
+/* sections plats */
+
+.item {
+    background-color: white;
+    margin: 20px;
+    display: flex;
+    cursor: pointer;
+    transition: 0.3s all;
+    width: 75%;
+}
+
+.item:hover {
+    transform: scale(1.1);
+    transition: 0.3s all;
+}
+
+.item:hover {
+    transition: 0.3s all;
+    box-shadow: -8px 8px 2px 1px rgba(0, 0, 0, .1);
+}
+
+.item-infos {
+    padding: 20px;
+    line-height: 40px;
+}
+
+section {
+    padding: 100px;
+    font-family: 'Martel', serif;
+}
+
+.item-infos h3 {
+    font-size: 25px;
+}
+
+.item-infos hr {
+    margin: 10px 0 10px 0;
+    opacity: 0.5;
+}
+
+.prix {
+    font-weight: bold;
+    font-size: 22px;
+}
+
+.imgpanier {
+    float: right;
+    margin-left: auto;
+    margin-right: 1%;
+    margin-top: auto;
+    width: 75px;
+    height: 75px;
+}
+
+.messageBox {
+    padding: 10%;
+    margin: 0% 10%;
+    display: block;
+    position: fixed;
+    top: 20%;
+    left: 10%;
+    opacity: 1;
+    background-color: #969292;
+    border: #000 solid;
+    z-index: 99;
+    text-align: center;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* sections plats */
+
+
+/*Fin IHM Panier*/
+
+/* IHM Stats */
+/*Fin IHM Stats*/
+
+/* IHM Ajout ingrédients */
+/*Fin IHM Ajout ingrédients*/
+
+/* IHM Ajout stocks */
+/*Fin IHM Ajout stocks*/
+
+/* IHM Stocks */
+/*Fin IHM Stocks*/
+
+/* IHM Inventaire */
+/*Fin IHM Inventaire*/
+
+/* IHM Bon de commande */
+/*Fin IHM Bon de commande*/
+
+/* IHM Passer commande */
+/*Fin IHM Passer commande*/
+
+/* RESPONSIVE */
+
+@media (min-width: 576px) {
+    .container {
+        max-width: 540px;
+    }
+}
+
+@media (min-width: 768px) {
+    .container {
+        max-width: 720px;
+    }
+}
+
+@media (min-width: 992px) {
+    .container {
+        max-width: 960px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1140px;
+    }
+}
+
+/*------------------------------*/
