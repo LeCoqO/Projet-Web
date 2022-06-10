@@ -68,7 +68,7 @@ if (!$_SESSION['valid']) {
                             <a class="nav-link" href="../Livreur/">Livreur</a>
                         </li>
                     </ul>
-                    <img class="imgNavbar" src="./img/logo.png" />
+                    <img class="imgNavbar" src="../img/logo.png" />
                 </div>
             </div>
         </nav>
@@ -217,16 +217,17 @@ if (!$_SESSION['valid']) {
                                 resultats[i]['DateLivFourn'].substr(5, 2) - 1, resultats[i][
                                     'DateLivFourn'
                                 ].substr(8, 2)
-                                ); //POIR LES MOIS, il faut -1 car ils vont de 0 à 11.
+                            ); //POIR LES MOIS, il faut -1 car ils vont de 0 à 11.
                             var dateCom = new Date(resultats[i]['DateComFourn'].substr(0, 4),
                                 resultats[i]['DateComFourn'].substr(5, 2) - 1, resultats[i][
                                     'DateComFourn'
                                 ].substr(8, 2)
-                                ); //POIR LES MOIS, il faut -1 car ils vont de 0 à 11.
+                            ); //POIR LES MOIS, il faut -1 car ils vont de 0 à 11.
                             if (dateLiv < date || dateCom.addDays(30) <
                                 date) { //TEST DE LA COMMANDE (30J  MAX)
                                 alert(
-                                    'Commande trop ancienne, merci d\'en génerer une nouvelle');
+                                    'Commande trop ancienne, merci d\'en génerer une nouvelle'
+                                    );
                             } else { //APPEL DE LA CLASSE PDF, GENERANT DES PDF
                                 $.ajax({
                                     url: 'PDF.php', //toujours la même page qui est appelée
@@ -240,14 +241,16 @@ if (!$_SESSION['valid']) {
                                     success: function(data) {},
                                     error: function() {
                                         alert(
-                                            'There was some error performing the AJAX call!');
+                                            'There was some error performing the AJAX call!'
+                                            );
                                     },
                                 });
                                 setTimeout(function() {
-                                    javascipt: window.open('commandes/PDF' + resultats[
-                                        i]['IdComFourn'] + '.pdf');
-                                },
-                                500); //On attend 500ms avant d'ouvrir le PDF, le temps que se dernier se génère/mette  à jour
+                                        javascipt: window.open('commandes/PDF' + resultats[
+                                            i]['IdComFourn'] + '.pdf');
+                                    },
+                                    500
+                                    ); //On attend 500ms avant d'ouvrir le PDF, le temps que se dernier se génère/mette  à jour
                             }
                         });
                     }

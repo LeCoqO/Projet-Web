@@ -55,7 +55,7 @@ if (!$_SESSION['valid']) {
                                 <a class="nav-link" href="../Livreur/">Livreur</a>
                             </li>
                         </ul>
-                        <img class="imgNavbar" src="./img/logo.png" />
+                        <img class="imgNavbar" src="../img/logo.png" />
                     </div>
                 </div>
             </nav>
@@ -112,8 +112,8 @@ if (!$_SESSION['valid']) {
                     "<div class='table-data'>" + resultats[i]['VilleFourn'] + "</div>" +
                     "<div class='table-data'>" + resultats[i]['TelFourn'] + "</div>" +
                     "<div class='table-data'>" + resultats[i]['MailFourn'] + "</div>" +
-                    "<div class='table-data'> <input type='image' id='image' class='inputImage' src = 'img/engrenage.png' width = '45px' height = '45px' onclick = 'modif(this)' ></input > </div > " +
-                    "<div class='table-data'> <input type='image' id='image' class='inputImage'src = 'img/supprimer.png' width = '45px' height = '45px' onclick = 'suppressionFournisseur(this)' ></input > </div > " +
+                    "<div class='table-data'> <input type='image' id='image' class='inputImage' src = '../img/engrenage.png' width = '45px' height = '45px' onclick = 'modif(this)' ></input > </div > " +
+                    "<div class='table-data'> <input type='image' id='image' class='inputImage'src = '../img/supprimer.png' width = '45px' height = '45px' onclick = 'suppressionFournisseur(this)' ></input > </div > " +
                     "</div > ";
 
             }

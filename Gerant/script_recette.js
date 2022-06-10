@@ -41,7 +41,7 @@ function getrecetteFromBdd() {
                 }
                 string += "</div><div class='table-data'>" + resultats[i]['PrixUHT'] + "</div><div class='table-data'>" +
                     "<input type = 'image' id = 'image'onclick = 'checkBox_open(" + resultats[i]['IdProd'] + ", false)'" +
-                    " src = 'img/supprimer.png' width = '45px' height = '45px' ></input > " +
+                    " src = '../img/supprimer.png' width = '45px' height = '45px' ></input > " +
                     "</div ></div>";
             }
             string += '</div>' + '</CENTER>' + '</div>' + '</FONT>';
@@ -232,7 +232,7 @@ function genererRecetteJSON() {
             '<div class="item-infos">' +
             '<h3>' + recette["nom"] + '</h3>' +
             '<hr> <p>' + recette['ingr_principaux']['ingr_1'] + stringIngrPrinc + stringIngrSecond + '</p><p class="prix">' + recette["prix"] + '</p>' +
-            '<img src="./img/panier.png" class="imgpanier "></div></div>';
+            '<img src="../img/panier.png" class="imgpanier "></div></div>';
 
         document.getElementById("previewRecette").innerHTML = string;
         //On ajoute l'image a la prévisualisation

@@ -58,7 +58,7 @@
                             <a class="nav-link" href="../Livreur/">Livreur</a>
                         </li>
                     </ul>
-                    <img class="imgNavbar" src="./img/logo.png" />
+                    <img class="imgNavbar" src="../img/logo.png" />
                 </div>
             </div>
         </nav>
@@ -319,7 +319,7 @@ function afficherSuppri() {
                         "<input type = 'image' id = 'image' onclick = 'checkBox_open(" + resultats[i][
                             'IdProd'
                         ] + ", true)'" +
-                        "src = 'img/addButton.png' width = '45px' height = '45px' ></input > " +
+                        "src = '../img/addButton.png' width = '45px' height = '45px' ></input > " +
                         "</div ></div>";
                 }
                 string += '</div>' + '</CENTER>' + '</div>' + '</FONT>';

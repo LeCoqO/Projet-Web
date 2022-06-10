@@ -68,7 +68,7 @@ if (!$_SESSION['valid']) {
                             <a class="nav-link" href="../Livreur/">Livreur</a>
                         </li>
                     </ul>
-                    <img class="imgNavbar" src="./img/logo.png" />
+                    <img class="imgNavbar" src="../img/logo.png" />
                 </div>
             </div>
         </nav>

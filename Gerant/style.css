@@ -1112,21 +1112,21 @@ label {
 }
 
 #div_stat {
-  background-image: url(img/Stat.png);
+  background-image: url(../img/Stat.png);
   background-size: 100% auto;
   background-repeat: no-repeat;
   border-radius: 10px;
   background-color: rgba(0, 0, 0, 0.3);
 }
 #div_Stocks {
-  background-image: url(img/Stocks.png);
+  background-image: url(../img/Stocks.png);
   background-size: 100% auto;
   background-repeat: no-repeat;
   border-radius: 10px;
   background-color: rgba(0, 0, 0, 0.3);
 }
 #div_Recettes {
-  background-image: url(img/Recettes.png);
+  background-image: url(../img/Recettes.png);
   background-size: 100% auto;
   background-repeat: no-repeat;
   border-radius: 10px;
