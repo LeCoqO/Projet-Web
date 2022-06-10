@@ -2,7 +2,10 @@ var latDestination;
 var lngDestination;
 var lat;
 var lng;
-var map = L.map('map').setView([46, 2.5], 5);
+
+var map = L.map('map', {
+    fullscreenControl: true,
+}).setView([46, 2.5], 5);
 
 console.log("Connexion...");
 //Connexion à l'API
@@ -117,21 +120,23 @@ function setupAdresseCalulItineraire() {
         item.addEventListener('click', async e => {
             //supprime l'ancien itinéraire s'il existe
             if (document.getElementsByClassName("leaflet-control").length > 0) {
-                document.getElementsByClassName("leaflet-control")[0].remove();
-                let boxes = document.querySelectorAll(".leaflet-interactive");
-                boxes.forEach(box => {
-                    box.remove();
-                });
-                let shadows = document.querySelectorAll(".leaflet-marker-shadow");
-                shadows.forEach(shadow => {
-                    shadow.remove();
-                });
-                if (document.getElementsByClassName("ready")[0]) {
-                    document.getElementsByClassName("ready")[0].classList.remove("ready");
+                for (let g = 0; g < document.getElementsByClassName("leaflet-control").length; g++) {
+                    document.getElementsByClassName("leaflet-control")[g].remove();
+                    let boxes = document.querySelectorAll(".leaflet-interactive");
+                    boxes.forEach(box => {
+                        box.remove();
+                    });
+                    let shadows = document.querySelectorAll(".leaflet-marker-shadow");
+                    shadows.forEach(shadow => {
+                        shadow.remove();
+                    });
+                    if (document.getElementsByClassName("ready")[g]) {
+                        document.getElementsByClassName("ready")[g].classList.remove("ready");
+                    }
                 }
-            }
-            if (document.getElementsByClassName("cmd-selected").length > 0) {
-                document.getElementsByClassName("cmd-selected")[0].classList.remove("cmd-selected");
+                if (document.getElementsByClassName("cmd-selected").length > 0) {
+                    document.getElementsByClassName("cmd-selected")[g].classList.remove("cmd-selected");
+                }
             }
             e.target.parentElement.classList.add("notReady");
             console.log("e.target.parent(): ", e.target.parentElement);
@@ -208,4 +213,3 @@ $.ajax({
         alert("error sqlConnect.js : " + dataSQL.erreur);
     }
 });
-

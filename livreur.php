@@ -24,7 +24,9 @@
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" />
-
+    <!--Fullscreen map-->
+    <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/Leaflet.fullscreen.min.js'></script>
+    <link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/leaflet.fullscreen.css' rel='stylesheet' />
 </head>
 
 <br><br><br>
@@ -79,11 +81,11 @@
 
     <div id="tableauCommande"></div>
 
-    
+
     <div class="text-center inputGroup">
         <input type="checkbox" id="cmd_livree" name="cmd_livree" />
         <label for="cmd_livree">Commande Livrée</label>
-        
+
     </div>
 
     <div id="infoItinéraire"></div>
