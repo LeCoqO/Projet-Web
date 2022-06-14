@@ -12,7 +12,7 @@ if (!$_SESSION['valid']) {
     <title>Modification Fournisseur</title>
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="../CSS/styleCommun.css">
-    <link rel="stylesheet" type="text/css" href="../CSS/styleGerant.css">
+    <link rel="stylesheet" type="text/css" href="../CSS/styleLivreur.css">
     <meta name="author" content="PAGE Lilian" />
     <meta name="description" content="Modification Fournisseur" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -64,6 +64,7 @@ if (!$_SESSION['valid']) {
     <br><br><br><br><br><br>
     <fieldset class="Choix centrer">
         <form>
+            <h2 class="text-center">Interface Gérant</h2>
             <br>
             <div class="form__group">
                 <input type="input" class="form__field" placeholder="Name" name="name" id='nom' disabled="disabled"

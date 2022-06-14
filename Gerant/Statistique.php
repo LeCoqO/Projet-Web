@@ -25,6 +25,7 @@ if (!$_SESSION['valid']) {
 
 <body>
     <header>
+        <h2 class="text-center">Interface Gérant</h2>
         <div class="fixed-top">
             <nav class="navbar navbar-expand-lg navbar-dark mx-background-top-linear">
                 <div class="container">
@@ -154,15 +155,27 @@ if (!$_SESSION['valid']) {
     });
 
     function afficherStatistique() {
+        if ($("#Datation").val() == "ChoixDate1") {
+            var where = "WHERE DateArchivDet >= '" +
+                $("#DateDebut").val() + "' And DateArchivDet <= '" +
+                $("#DateFin").val() + "'";
+        } else if ($("#Datation").val() == "ChoixDate1") {
+            var where = "WHERE DateArchivDet >= '" +
+                $("#Mois").val() + "-01' And DateArchivDet <= '" +
+                $("#Mois").val() + "'-31";
+        } else {
+            var where = "WHERE DateArchivDet >= '" +
+                $("#Annee").val() + "-01-01' And DateArchivDet <= '" +
+                $("#Annee").val() + "-12-31'";
+        }
 
+        console.log(where);
         $.ajax({
             url: '../STOCK_REQUETE.php', //toujours le même fichier qui est appelée
             type: 'POST',
             data: {
                 fonction: 'select', //fonction à executer
-                requete: "SELECT NomProd, SUM(Quant) AS Quant FROM detail WHERE DateArchivDet >= '" +
-                    document.getElementById("DateDebut").value + "' And DateArchivDet <= '" +
-                    document.getElementById("DateFin").value + "' GROUP BY NomProd"
+                requete: "SELECT NomProd, SUM(Quant) AS Quant FROM detail " + where + " GROUP BY NomProd"
             },
             success: function(data) {
                 $('#myChart').remove();
