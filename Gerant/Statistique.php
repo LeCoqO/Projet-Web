@@ -11,7 +11,8 @@ if (!$_SESSION['valid']) {
 <head>
     <title>Statistique</title>
     <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="../CSS/styleGerant.css">
+    <link rel="stylesheet" type="text/css" href="../CSS/styleCommun.css">
     <meta name="author" content="PAGE Lilian" />
     <meta name="description" content="Statistique" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -67,7 +68,7 @@ if (!$_SESSION['valid']) {
             <h2>Configuration :</h2>
         </legend>
         <div class="roww">
-            <div class="colone form__group field left">
+            <div class="colone3 form__group field left">
                 <select id="Datation" onchange="choixTypeDate()" class="form__field" size="1" name="prog">
                     <option value="ChoixDate1" selected>Libre</option>
                     <option value="ChoixDate2">Mois</option>
@@ -75,37 +76,37 @@ if (!$_SESSION['valid']) {
                 </select>
                 <label class="form__label" for="Datation">Datation:</label>
             </div>
-            <div id="Diagramme" class="colone form__group field left">
+            <div id="Diagramme" class="colone3 form__group field left">
                 <select id="DiagrammeType" class="form__field" size="1" name="prog">
                     <option selected>pie</option>
                     <option>bar</option>
                 </select>
                 <label class="form__label" for="DiagrammeType">Type diagramme:</label>
             </div>
-            <div id="option" class="colone form__group field left">
+            <div id="option" class="colone3 form__group field left">
             </div>
         </div>
         <div class="roww">
             <div id="ChoixDate1">
-                <div class="colone form__group field left">
+                <div class="colone3 form__group field left">
                     <input type="date" class="form__field" id="DateDebut" name="DateDebut" min="2022-01-01"
                         value="<?php echo choixDate("-2 month"); ?>" max="<?php echo choixDate("-1 days"); ?>">
                     <label class="form__label" for="DateDebut" class="cat">Date de début:</label>
                 </div>
-                <div class="colone form__group field left">
+                <div class="colone3 form__group field left">
                     <input type="date" class="form__field" id="DateFin" name="DateFin" min="2022-01-02"
                         value="<?php echo choixDate("0 days"); ?>" max="<?php echo choixDate("0 days"); ?>">
                     <label class="form__label" for="DateFin">Date de fin:</label>
                 </div>
             </div>
             <div id="ChoixDate2" class="cacher">
-                <div class="colone form__group field left">
+                <div class="colone3 form__group field left">
                     <input type="month" id="Mois" class="form__field" min="2022-01">
                     <label class="form__label" for="Mois">Année et Mois:</label>
                 </div>
             </div>
             <div id="ChoixDate3" class="cacher">
-                <div class="colone form__group field left">
+                <div class="colone3 form__group field left">
                     <input id="Annee" type="number" class="form__field" min="2022" max="2099" step="1" value="2022" />
                     <label class="form__label" for="Annee">Année:</label>
                 </div>
@@ -128,7 +129,7 @@ if (!$_SESSION['valid']) {
     afficherStatistique()
 
     $.ajax({
-        url: 'STOCK_REQUETE.php', //toujours la même page qui est appelée
+        url: '../STOCK_REQUETE.php', //toujours la même page qui est appelée
         type: 'POST',
         data: {
             fonction: 'select', //fonction à executer
@@ -155,7 +156,7 @@ if (!$_SESSION['valid']) {
     function afficherStatistique() {
 
         $.ajax({
-            url: 'STOCK_REQUETE.php', //toujours le même fichier qui est appelée
+            url: '../STOCK_REQUETE.php', //toujours le même fichier qui est appelée
             type: 'POST',
             data: {
                 fonction: 'select', //fonction à executer
