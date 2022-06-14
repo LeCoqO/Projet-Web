@@ -172,10 +172,11 @@ if (!$_SESSION['valid']) {
                         let laCheck = document.createElement('div');
                         let input = document.createElement('input');
 
+                        let indexIng = resultats[i]['IdIng'] - 1;
                         button.innerHTML = "PDF";
                         dateE.innerHTML = "Date d'émission : " + resultats[i]['DateComFourn'];
                         dateL.innerHTML = "Date livraison prévue : " + resultats[i]['DateLivFourn'];
-                        ing.innerHTML = resultats2[i]['NomIng'];
+                        ing.innerHTML = resultats2[indexIng]['NomIng'];
                         qte.innerHTML = resultats[i]['QteComFourn'] + ' ' + resultats2[i]['Unite'];
                         fourn.innerHTML = resultats[i]['NomFourn'];
                         prix.innerHTML = 'PRIX TOTAL HT : ' + resultats[i]['QteComFourn'] * resultats2[
