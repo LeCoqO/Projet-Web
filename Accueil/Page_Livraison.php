@@ -5,8 +5,8 @@
     <meta charset="UTF-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <meta name="author" content="Eddy GUENARD" />
-    <link rel="stylesheet" href="css/stylePanier.css" />
-    <link rel="stylesheet" href="css/styleCommun.css" />
+    <link rel="stylesheet" href="../CSS/stylePanier.css" />
+    <link rel="stylesheet" href="../CSS/styleCommun.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css" />
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
@@ -115,9 +115,7 @@
             <button id="validButtonFalse" class="button" onclick='checkBox_close()'><a href="index.php">ok</a></button>
         </div>
     </div>
-    <div class="clear"></div><br><br><br><br> <br><br><br><br><br><br><br>
-
-
+    <div class="clear"></div><br><br><br><br>
     <div class="footer-basic">
         <footer>
             <div class="social">
@@ -172,10 +170,10 @@ function Validationlivraison() {
     //console.log("INSERT INTO commande (NomCom, TelCom, AdrCom, CPCom,VilleCom,HeureDispo) " + "VALUE('" + document.getElementById("nom").value + "', '" + document.getElementById("tel").value + "', '" +
     //document.getElementById("adr").value + "', '" + document.getElementById("post").value + "', '" + document.getElementById("ville").value + "', '" + document.getElementById("temps-select").value + "')"); 
     $.ajax({
-        url: 'ajax_Bdd.php', //toujours la même page qui est appelée
+        url: '../STOCK_REQUETE.php', //toujours la même page qui est appelée
         type: 'POST',
         data: {
-            fonction: 'update', //fonction à executer
+            fonction: 'insert', //fonction à executer
             requete: "INSERT INTO commande (NomCom, TelCom, AdrCom, CPCom,VilleCom,HeureDispo) " +
                 "VALUE('" + document.getElementById("nom").value + "', '" + document.getElementById("tel")
                 .value + "', '" +
@@ -192,10 +190,10 @@ function Validationlivraison() {
         }
     });
     $.ajax({
-        url: 'ajax_Bdd.php', //toujours la même page qui est appelée
+        url: '../STOCK_REQUETE.php', //toujours la même page qui est appelée
         type: 'POST',
         data: {
-            fonction: 'requete', //fonction à executer
+            fonction: 'select', //fonction à executer
             requete: "SELECT MAX(NumCom) FROM commande",
         },
         success: function(data) {
@@ -220,7 +218,7 @@ function Validationlivraison() {
                 }
             }
             $.ajax({
-                url: 'ajax_Bdd.php', //toujours la même page qui est appelées
+                url: '../STOCK_REQUETE.php', //toujours la même page qui est appelées
                 type: 'POST',
                 data: {
                     fonction: 'update', //fonction à executer
