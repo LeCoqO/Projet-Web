@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>IHM-Cuisinier</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="../CSS/styleCuisinier.css" />
+  <link rel="stylesheet" href="../CSS/styleCommun.css" />
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css" />
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" />
+</head>
+<script>
+  function sidebar_open() {
+    document.getElementById("mySidebar").style.display = "block";
+  }
+
+  function sidebar_close() {
+    document.getElementById("mySidebar").style.display = "none";
+  }
+  function OnOff(id) {
+    if (document.getElementById(id).style.visibility == "visible")
+      document.getElementById(id).style.visibility = "hidden";
+    else document.getElementById(id).style.visibility = "visible";
+  }
+
+  function creaCommande() {
+    $.ajax({
+      url: "../STOCK_REQUETE.php", //toujours la même page qui est appelée
+      type: "POST",
+      data: {
+        fonction: "select", //fonction à executer
+        requete:
+          'SELECT NumCom FROM commande WHERE EtatCde LIKE "A Prepare" AND HeureDispo ORDER BY HeureDispo ASC',
+      },
+      success: function (data) {
+        let resultats = JSON.parse(data);
+
+        for (i = 0; i < resultats.length; i++) {
+          if (!document.getElementById(resultats[i]["NumCom"])) {
+            createDiv(resultats[i]["NumCom"]);
+          }
+        }
+        populateDivCom();
+      },
+      error: function (dataSQL, statut) {
+        alert("error sqlConnect.js : " + dataSQL.erreur);
+      },
+    });
+  }
+
+  function cmdTerminee(numCom) {
+    $.ajax({
+      url: "../STOCK_REQUETE.php", //toujours la même page qui est appelée
+      type: "POST",
+      data: {
+        fonction: "Update", //fonction à executer
+        requete:
+          'UPDATE commande SET EtatCde = "A Livrer" WHERE NumCom LIKE ' +
+          numCom,
+      },
+      success: function (data) {
+        location.reload();
+        //getIdsProdAndQtys(numCom);
+        $.ajax({
+          url: "../STOCK_REQUETE.php", //toujours la même page qui est appelée
+          type: "POST",
+          data: {
+            fonction: "select", //fonction à executer
+            requete:
+              "SELECT IdProd, Quant FROM `detail` WHERE NumCom LIKE " +
+              numCom,
+          },
+          success: function (data) {
+            var resultats = JSON.parse(data);
+            for (e in resultats) {
+              let QuantProd = resultats[e]["Quant"];
+
+              $.ajax({
+                //pour chaque produit
+                url: "../STOCK_REQUETE.php", //toujours la même page qui est appelée
+                type: "POST",
+                data: {
+                  fonction: "select", //fonction à executer
+                  requete:
+                    "SELECT IdIng, Quant FROM `prod_ingr` WHERE IdProd LIKE " +
+                    resultats[e]["IdProd"],
+                },
+                success: function (data) {
+                  var resultats = JSON.parse(data);
+                  for (e in resultats) {
+                    let IdIng = resultats[e]["IdIng"];
+                    let QuantIng = resultats[e]["Quant"];
+                    $.ajax({
+                      //pour chaque produit
+                      url: "../STOCK_REQUETE.php", //toujours la même page qui est appelée
+                      type: "POST",
+                      data: {
+                        fonction: "update", //fonction à executer
+                        requete:
+                          "UPDATE `ingredient` SET StockReel = StockReel - " +
+                          QuantIng * QuantProd +
+                          " WHERE IdIng LIKE " +
+                          IdIng,
+                      },
+                      success: function (data) { },
+                      error: function (dataSQL, statut) {
+                        alert("error sqlConnect.js : " + dataSQL.erreur);
+                      },
+                    });
+                  }
+                },
+                error: function (dataSQL, statut) {
+                  alert("error sqlConnect.js : " + dataSQL.erreur);
+                },
+              });
+            }
+          },
+          error: function (dataSQL, statut) {
+            alert("error sqlConnect.js : " + dataSQL.erreur);
+          },
+        });
+      },
+      error: function (dataSQL, statut) {
+        alert("error sqlConnect.js : " + dataSQL.erreur);
+      },
+    });
+  }
+
+  function createDiv(NumCom) {
+    var newDiv = document.createElement("div");
+    newDiv.id = NumCom;
+    newDiv.className = "articleCommande";
+
+    document.getElementById("sectionCuisine").appendChild(newDiv);
+  }
+
+  function populateDivCom() {
+    let allCommandeDiv = document.getElementsByClassName("articleCommande"); //avec en id l'id de la commande
+    for (let i = 0; i < allCommandeDiv.length; i++) {
+      //appel base to get info about cmd
+
+      $.ajax({
+        url: "../STOCK_REQUETE.php", //toujours la même page qui est appelée
+        type: "POST",
+        data: {
+          fonction: "select", //fonction à executer
+          requete:
+            "SELECT HeureDispo FROM commande WHERE NumCom LIKE " +
+            allCommandeDiv[i].id,
+        },
+        success: function (data) {
+          let resultat = JSON.parse(data);
+
+          $("#hDisp" + i).text(resultat[0]["HeureDispo"]);
+        },
+        error: function (dataSQL, statut) {
+          alert("error sqlConnect.js : " + dataSQL.erreur);
+        },
+      });
+
+      $.ajax({
+        url: "../STOCK_REQUETE.php", //toujours la même page qui est appelée
+        type: "POST",
+        data: {
+          fonction: "select", //fonction à executer
+          requete:
+            "SELECT SUM(Quant) FROM detail WHERE NumCom LIKE " +
+            allCommandeDiv[i].id,
+        },
+        success: function (data) {
+          let resultat2 = JSON.parse(data);
+
+          $("#nbBurg" + i).text(resultat2[0]["SUM(Quant)"]);
+        },
+        error: function (dataSQL, statut) {
+          alert("error sqlConnect.js : " + dataSQL.erreur);
+        },
+      });
+
+      $.ajax({
+        url: "../STOCK_REQUETE.php", //toujours la même page qui est appelée
+        type: "POST",
+        data: {
+          fonction: "select", //fonction à executer
+          requete: "SELECT NumCom, IdProd, Quant, NomProd FROM detail WHERE NumCom LIKE " +
+            allCommandeDiv[i].id +
+            " GROUP BY IdProd"
+          ,
+        },
+
+        success: function (data) {
+          console.log("pute", allCommandeDiv);
+          let resultat4 = JSON.parse(data);
+
+          console.log(resultat4);
+          var fin = "";
+          for (j = 0; j < resultat4.length; j++) {
+
+            let quant = resultat4[j]["Quant"];
+            let nomProd = resultat4[j]["NomProd"];
+            console.log("j", resultat4[j]);
+            $.ajax({
+              url: "../STOCK_REQUETE.php", //toujours la même page qui est appelée
+              type: "POST",
+              data: {
+                fonction: "select", //fonction à executer
+                requete:
+                  "SELECT * FROM produit WHERE IdProd LIKE " +
+                  resultat4[j]["IdProd"],
+              },
+              success: function (data) {
+                let res = JSON.parse(data);
+                console.log(res);
+                let string = "";
+                let fin = "";
+                fin +=
+                  '<img style="width:100px" src="' +
+                  res[0]["Image"] +
+                  '"> ' +
+                  quant +
+                  " " +
+                  nomProd;
+                console.log("nbingbase", res[0]['NbIngBase']);
+                for (
+                  j = 1;
+                  j < parseInt(res[0]["NbIngBase"]) + 1;
+                  j++
+                ) {
+                  string += res[0]["IngBase" + j] + ", ";
+                }
+                for (k = 1; k < parseInt(res[0]["NbIngOpt"]) + 1; k++) {
+                  string += res[0]["IngOpti" + k] + ", ";
+                }
+                fin += string;
+                console.log("fin", fin);
+                //console.log(i);
+                $("#nbBurgers" + i).append(fin);
+              },
+              error: function (dataSQL, statut) {
+                alert("error sqlConnect.js : " + dataSQL.erreur);
+              },
+            });
+          }
+        },
+        error: function (dataSQL, statut) {
+          alert("error sqlConnect.js : " + dataSQL.erreur);
+        },
+      });
+
+      allCommandeDiv[i].innerHTML =
+        '<h3 class="cmdNum">Commande N° : ' + allCommandeDiv[i].id +
+        " </h3>" +
+        '<div class="column-layout">' +
+        '<div class="nbBurger">' +
+        '<p class="nombreBurger">Nombre de burgers : </p>' +
+        '<p id="nbBurg' + i + '" class="nBurger"> </p>' +
+        "</div>" +
+        '<div class="heurePrepa">' +
+        '<p class="reqHeure">Doit être prête pour : </p>' +
+        '<p id="hDisp' + i + '" class="hDispo"></p>' +
+        "</div>" +
+        "</div>" +
+        "<br />" +
+        '<div class="burgerAFaire">' +
+        '<div class="apercuCmd">' +
+        '<p id="nbBurgers' + i + '"></p>' +
+        '<span id="listeIng' + i + '" class="listeI" style="block"></span>' +
+        "</div>" +
+        "</div>" +
+        "<br />" +
+        '<button class="cmdFinie" onClick="creaCommande();cmdTerminee(' + allCommandeDiv[i].id + ');">Commande Finie</button>';
+    }
+  }
+</script>
+
+<body id="acceuilCuisinier">
+  <br /><br /><br />
+  <header>
+    <div class="fixed-top">
+      <nav class="navbar navbar-expand-lg navbar-dark mx-background-top-linear">
+        <div class="container">
+          <a class="navbar-brand" style="text-transform: uppercase">
+            Hom'Burger
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+            aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item active">
+                <a class="nav-link" href="#">
+                  Home
+                  <span class="sr-only">(current)</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="../Accueil/">Acceuil</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="../Cuisine/">Cusinier</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="../Gerant/">Gérant</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="../Livreur/">Livreur</a>
+              </li>
+            </ul>
+            <img class="imgNavbar" src="../img/logo.png" />
+          </div>
+        </div>
+      </nav>
+    </div>
+  </header>
+  <section id="sectionCuisine">
+    <script>
+      creaCommande();
+    </script>
+  </section>
+  <div class="footer-basic">
+    <footer>
+      <div class="social">
+        <a href="https://www.instagram.com/_hom_burger_/?hl=fr">
+          <i class="fa fa-instagram"></i>
+        </a>
+        <a href="https://twitter.com/hom_burger">
+          <i class="fa fa-twitter"></i>
+        </a>
+      </div>
+      <ul class="list-inline">
+        <li class="list-inline-item"><a href="#">Home</a></li>
+        <li class="list-inline-item">
+          <a href="equipe.html">Notre équipe</a>
+        </li>
+        <li class="list-inline-item"><a href="#">A propos</a></li>
+        <li class="list-inline-item"><a href="#">Privacy Policy</a></li>
+      </ul>
+      <p class="copyright">Hom'Burger © 2022</p>
+    </footer>
+  </div>
+</body>
+
+</html>
