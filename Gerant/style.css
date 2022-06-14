@@ -700,6 +700,23 @@ Couleur font: noir ou blanc*/
   background-color: rgb(240, 40, 40);
 }
 
+
+.messageBox {
+  padding: 10%;
+  margin: 0% 10%;
+  display: block;
+  /*position: absolute;*/
+  z-index: 9;
+  position: fixed;
+
+  top: 20%;
+  left: 10%;
+  opacity: 1;
+  background-color: #969292;
+  border: #000 solid;
+  z-index: 99;
+  text-align: center;
+}
 .Choix {
   width: 25%;
   height: 10%;
@@ -710,6 +727,14 @@ Couleur font: noir ou blanc*/
 
 .cat {
   margin-top: 20%;
+}
+
+.ingr_principaux-selected,
+.pain-selected,
+.ingr_secondaire-selected {
+  color: rgb(255, 255, 255);
+  background-color: rgb(192, 68, 19);
+  border: 1px solid rgb(40, 40, 40);
 }
 
 /*Fin IHM Stats*/

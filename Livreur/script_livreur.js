@@ -2,7 +2,9 @@ var latDestination;
 var lngDestination;
 var lat;
 var lng;
-var map = L.map('map').setView([46, 2.5], 5);
+var map = L.map('map', {
+    fullscreenControl: true,
+}).setView([46, 2.5], 5);
 
 console.log("Connexion...");
 //Connexion à l'API
@@ -28,15 +30,17 @@ if (localStorage.getItem('cmd_livree') == 'true') {
 //console.log(conditionSelect);
 //récupere les commandes dans la bdd et l'affiche dans un tableau
 $.ajax({
-    url: 'ajax_Bdd.php', //toujours la même page qui est appelée
+    url: '../STOCK_REQUETE.php', //toujours la même page qui est appelée
     type: 'POST',
     data: {
-        fonction: 'requete', //fonction à executer
+        fonction: 'select', //fonction à executer
         requete: 'SELECT * FROM commande ' + conditionSelect,
         //add a where EtatCde LIKE 'fini' (cest l'etat de preparation  du cuisto)
     },
     success: function (data) {
         //console.log("success");
+        //console.log(data);
+
         var resultats = JSON.parse(data);
         var string = '';
         //console.log(resultats);
@@ -117,21 +121,23 @@ function setupAdresseCalulItineraire() {
         item.addEventListener('click', async e => {
             //supprime l'ancien itinéraire s'il existe
             if (document.getElementsByClassName("leaflet-control").length > 0) {
-                document.getElementsByClassName("leaflet-control")[0].remove();
-                let boxes = document.querySelectorAll(".leaflet-interactive");
-                boxes.forEach(box => {
-                    box.remove();
-                });
-                let shadows = document.querySelectorAll(".leaflet-marker-shadow");
-                shadows.forEach(shadow => {
-                    shadow.remove();
-                });
-                if (document.getElementsByClassName("ready")[0]) {
-                    document.getElementsByClassName("ready")[0].classList.remove("ready");
+                for (let g = 0; g < document.getElementsByClassName("leaflet-control").length; g++) {
+                    document.getElementsByClassName("leaflet-control")[g].remove();
+                    let boxes = document.querySelectorAll(".leaflet-interactive");
+                    boxes.forEach(box => {
+                        box.remove();
+                    });
+                    let shadows = document.querySelectorAll(".leaflet-marker-shadow");
+                    shadows.forEach(shadow => {
+                        shadow.remove();
+                    });
+                    if (document.getElementsByClassName("ready")[g]) {
+                        document.getElementsByClassName("ready")[g].classList.remove("ready");
+                    }
                 }
-            }
-            if (document.getElementsByClassName("cmd-selected").length > 0) {
-                document.getElementsByClassName("cmd-selected")[0].classList.remove("cmd-selected");
+                if (document.getElementsByClassName("cmd-selected").length > 0) {
+                    document.getElementsByClassName("cmd-selected")[g].classList.remove("cmd-selected");
+                }
             }
             e.target.parentElement.classList.add("notReady");
             console.log("e.target.parent(): ", e.target.parentElement);
@@ -180,10 +186,10 @@ if (!localStorage.getItem("livreurConnected")) {
 //On récupère la liste des livreurs dans la bdd 
 //et on la resort sous forme de liste déroulante qui onChange change le livreur connecté 
 $.ajax({
-    url: 'ajax_Bdd.php', //toujours la même page qui est appelée
+    url: '../STOCK_REQUETE.php', //toujours la même page qui est appelée
     type: 'POST',
     data: {
-        fonction: 'requete', //fonction à executer
+        fonction: 'select', //fonction à executer
         requete: 'SELECT * FROM livreur'
     },
     success: function (data) {
@@ -199,6 +205,7 @@ $.ajax({
             string += ">" + resultats[e]['PrenomLiv'] + " / " + resultats[e]['IdLiv'] + "</option>";
         }
         string += "</select>";
+        console.log(string);
 
         document.getElementById("select_Livreur").innerHTML = string;
         //setupTab(['ncom', 'ncli', 'date', 'iti', 'prix', 'statut']);
