@@ -71,7 +71,7 @@
           data: {
             fonction: "select", //fonction à executer
             requete:
-              "SELECT IdProd, Quant FROM `detail` WHERE NumCom LIKE " +
+              "SELECT IdProd_Produit, Quant FROM `detail` WHERE NumCom LIKE " +
               numCom,
           },
           success: function (data) {
@@ -186,9 +186,9 @@
         type: "POST",
         data: {
           fonction: "select", //fonction à executer
-          requete: "SELECT NumCom, IdProd, Quant, NomProd FROM detail WHERE NumCom LIKE " +
+          requete: "SELECT NumCom, IdProd_Produit, Quant, NomProd FROM detail WHERE NumCom LIKE " +
             allCommandeDiv[i].id +
-            " GROUP BY IdProd"
+            " GROUP BY IdProd_Produit"
           ,
         },
 

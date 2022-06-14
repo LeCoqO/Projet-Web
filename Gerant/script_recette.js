@@ -285,7 +285,7 @@ function addToBase() {
                 " `IngBase1`, `IngBase2`, `IngBase3`, `IngBase4`, `IngBase5`, `IngOpti1`, `IngOpti2`, `IngOpti3`," +
                 " `IngOpti4`, `IngOpti5`, `IngOpti6`, `NbOptMax`, `Incontournable`)" +
                 " VALUES ('" + json['nom'] + "', '" + json['taille'] + "', '" + json['nbr_ingr_principaux'] + "', '"
-                + json['nbr_ingr_secondaires'] + "', '" + json['prix'] + "', '" + json['img'] + "'"
+                + json['nbr_ingr_secondaires'] + "', '" + json['prix'] + "', '../img/" + json['img'] + "'"
                 + stringIngrPrinc + stringIngrSecond + ", '" + json['nombreOptionMax'] + "', '" + estIncontounable + "')",
         },
         success: function (data) {

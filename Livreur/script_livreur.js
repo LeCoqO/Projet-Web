@@ -23,9 +23,9 @@ function go() {
 //le tableau les commandes déjà livrées
 var conditionSelect;
 if (localStorage.getItem('cmd_livree') == 'true') {
-    conditionSelect = "";
+    conditionSelect = "WHERE AdrCom IS NOT null";
 } else {
-    conditionSelect = "WHERE EtatLivraison NOT LIKE 'T'";
+    conditionSelect = "WHERE EtatLivraison NOT LIKE 'T' AND AdrCom IS NOT null";
 }
 //console.log(conditionSelect);
 //récupere les commandes dans la bdd et l'affiche dans un tableau
