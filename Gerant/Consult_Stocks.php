@@ -87,7 +87,7 @@ if (!$_SESSION['valid']) {
                 <h2 class="text-center">Interface Gérant</h2>
                 <div class="row text-center">
                     <div class="column4">
-                        <button class="button" onclick=window.location.href='AccueilGerant.php'>Retour</button>
+                        <button class="button" onclick=window.location.href='Index.php'>Retour</button>
                     </div>
                     <div class="column4">
                         <button class="button" onclick=window.location.href='Ajout_stock.php'>Ajouter stocks</button>
