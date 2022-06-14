@@ -1,0 +1,201 @@
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700");
+
+/************************ IHM Gérant ************************/
+
+#tabfournisseur{
+    height: 700px;
+    margin-left: 10%;
+    margin-right: 10%;
+    overflow:auto;
+  }
+  
+  .cacher{
+    display: none;
+  }
+  
+  .roww{
+    margin-left: -15px;
+  }
+  
+  .roww:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  
+  .cat {
+    margin-top: 20%;
+  }
+  
+  .centrer {
+    margin-left: 37%;
+    margin-top: 80px;
+    margin-bottom: 30px;
+  }
+  
+  .inputImage a :hover{
+  background-color: #e54315;
+  }
+  
+  .sign-up-modal {
+      font-family: "Roboto", arial, sans-serif;
+      color: #ffffff;
+      border-style: solid;
+      border-width: 10px;
+      border-color: rgb(0, 0, 0);
+      border-radius: 10px 10px 10px 10px;
+      background-image: -moz-linear-gradient(-90deg, rgb(92, 92, 92) 0%, rgb(155, 155, 155) 100%);
+      background-image: -webkit-linear-gradient(-90deg, rgb(92, 92, 92) 0%, rgb(155, 155, 155) 100%);
+      background-image: -ms-linear-gradient(-90deg, rgb(92, 92, 92) 0%, rrgb(155, 155, 155) 100%);
+      margin: 0 auto;
+      padding: 25px;
+  }
+  
+  label {
+      display: block;
+      width: 150px;
+      float: left;
+  }
+  
+  .form__group {
+      position: relative;
+      padding: 15px 0 0;
+      margin: 10px;
+      
+  }
+  
+  .form__field {
+      font-family: inherit;
+      width: 100%;
+      border: 0;
+      border-bottom: 2px solid #9b9b9b;
+      outline: 0;
+      font-size: 1.3rem;
+      padding: 7px 0;
+      background: transparent;
+      transition: border-color 0.2s;
+  }
+  
+  .form__field::placeholder {
+      color: transparent;
+  }
+  
+  .form__field:placeholder-shown~.form__label {
+      font-size: 1.3rem;
+      cursor: text;
+      top: 20px;
+  }
+  
+  .form__label {
+      position: absolute;
+      top: 0;
+      display: block;
+      transition: 0.2s;
+      font-size: 1rem;
+      color: #5f5f5f;
+  }
+  
+  .form__field:focus {
+      padding-bottom: 6px;
+      font-weight: 700;
+      border-width: 3px;
+      border-image: linear-gradient(to right, #11998e, #38ef7d);
+      border-image-slice: 1;
+  }
+  
+  .form__field:focus~.form__label {
+      position: absolute;
+      top: 0;
+      display: block;
+      transition: 0.2s;
+      font-size: 1rem;
+      color: #11998e;
+      font-weight: 700;
+  }
+  
+  /* reset input */
+  .form__field:required,
+  .form__field:invalid {
+      box-shadow: none;
+  }
+  
+  .colone3 {
+    width: 27%;
+    height: 100px;
+  }
+
+  .block_Menu {
+    height: 700px;
+    position: relative;
+    margin-right: 3%;
+    float: left;
+    width: 28%;
+    min-width: 20%;
+  }
+  
+  .sous_block_Menu {
+    width: 100%;
+    background: #ddc3a5;
+    height: 15%;
+    position: absolute;
+    bottom: 5%;
+  }
+  
+  .BoutonAccueil{
+    width: 100%;
+    height: 100%;
+  }
+  
+  #div_stat {
+    background-image: url(img/Stat.png);
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+  #div_Stocks {
+    background-image: url(img/Stocks.png);
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+  #div_Recettes {
+    background-image: url(img/Recettes.png);
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+  
+  .center-div {
+    margin: 0 auto;
+    width: 99%;
+  }
+
+  .column2{
+    width: 50.00%;
+    float: left;
+  }
+  
+  .column4{
+    width: 25.00%;
+    float: left;
+  }
+  
+  .boutonMenuGerant {
+    width: 100px;
+    height: 50px;
+  
+  }
+  
+  .debug {
+    border: 1px solid red;
+  }
+  
+  .bonCompact{
+    border: 2px solid black;
+    background-color: white;
+  }
+
+  /************************ Fin IHM Gérant ************************/
