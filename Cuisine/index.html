@@ -6,8 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>IHM-Cuisinier</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-  <link rel="stylesheet" href="styleCuisiner.css" />
-  <link rel="stylesheet" href="styleCommun.css" />
+  <link rel="stylesheet" href="../CSS/styleCuisinier.css" />
+  <link rel="stylesheet" href="../CSS/styleCommun.css" />
   <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css" />
   <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
   <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
@@ -29,7 +29,7 @@
 
   function creaCommande() {
     $.ajax({
-      url: "../requette.php", //toujours la même page qui est appelée
+      url: "../STOCK_REQUETE.php", //toujours la même page qui est appelée
       type: "POST",
       data: {
         fonction: "select", //fonction à executer
@@ -54,7 +54,7 @@
 
   function cmdTerminee(numCom) {
     $.ajax({
-      url: "requette.php", //toujours la même page qui est appelée
+      url: "../STOCK_REQUETE.php", //toujours la même page qui est appelée
       type: "POST",
       data: {
         fonction: "Update", //fonction à executer
@@ -66,7 +66,7 @@
         location.reload();
         //getIdsProdAndQtys(numCom);
         $.ajax({
-          url: "requette.php", //toujours la même page qui est appelée
+          url: "../STOCK_REQUETE.php", //toujours la même page qui est appelée
           type: "POST",
           data: {
             fonction: "select", //fonction à executer
@@ -81,7 +81,7 @@
 
               $.ajax({
                 //pour chaque produit
-                url: "requette.php", //toujours la même page qui est appelée
+                url: "../STOCK_REQUETE.php", //toujours la même page qui est appelée
                 type: "POST",
                 data: {
                   fonction: "select", //fonction à executer
@@ -96,7 +96,7 @@
                     let QuantIng = resultats[e]["Quant"];
                     $.ajax({
                       //pour chaque produit
-                      url: "requette.php", //toujours la même page qui est appelée
+                      url: "../STOCK_REQUETE.php", //toujours la même page qui est appelée
                       type: "POST",
                       data: {
                         fonction: "update", //fonction à executer
@@ -144,7 +144,7 @@
       //appel base to get info about cmd
 
       $.ajax({
-        url: "requette.php", //toujours la même page qui est appelée
+        url: "../STOCK_REQUETE.php", //toujours la même page qui est appelée
         type: "POST",
         data: {
           fonction: "select", //fonction à executer
@@ -163,7 +163,7 @@
       });
 
       $.ajax({
-        url: "requette.php", //toujours la même page qui est appelée
+        url: "../STOCK_REQUETE.php", //toujours la même page qui est appelée
         type: "POST",
         data: {
           fonction: "select", //fonction à executer
@@ -182,7 +182,7 @@
       });
 
       $.ajax({
-        url: "requette.php", //toujours la même page qui est appelée
+        url: "../STOCK_REQUETE.php", //toujours la même page qui est appelée
         type: "POST",
         data: {
           fonction: "select", //fonction à executer
@@ -204,7 +204,7 @@
             let nomProd = resultat4[j]["NomProd"];
             console.log("j", resultat4[j]);
             $.ajax({
-              url: "requette.php", //toujours la même page qui est appelée
+              url: "../STOCK_REQUETE.php", //toujours la même page qui est appelée
               type: "POST",
               data: {
                 fonction: "select", //fonction à executer
@@ -311,7 +311,7 @@
                 <a class="nav-link" href="../Livreur/">Livreur</a>
               </li>
             </ul>
-            <img class="imgNavbar" src="./img/logo.png" />
+            <img class="imgNavbar" src="../img/logo.png" />
           </div>
         </div>
       </nav>

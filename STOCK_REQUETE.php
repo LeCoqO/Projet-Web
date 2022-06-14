@@ -56,3 +56,5 @@ function insert($args){
     echo "Une erreur est survenue !";
   }
 }
+
+?>
