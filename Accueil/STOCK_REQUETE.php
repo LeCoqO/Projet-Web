@@ -4,6 +4,59 @@ $fonction = $_POST['fonction'];
 unset($_POST['fonction']);
 $fonction($_POST);
 
+function select($args){
+    $requete = $args['requete'];
+    try{
+        $pdo = new PDO('mysql:host=localhost;dbname=homburger','root','');
+        $pdo -> exec("set names utf8");
+    } catch (PDOException $e) {
+        echo 'Erreur : ' . $e->getMessage() . '<br />';
+        echo 'N° : ' . $e->getCode();
+        die();
+    }
+    $statement = $pdo->query($requete);;
+    $results = $statement->fetchAll(PDO::FETCH_ASSOC);
+    $json = json_encode($results);
+    echo $json;
+}
+
+function update($args){
+    $requete = $args['requete'];
+    try{
+        $pdo = new PDO('mysql:host=localhost;dbname=homburger','root','');
+        $pdo -> exec("set names utf8");
+    } catch (PDOException $e) {
+        echo 'Erreur : ' . $e->getMessage() . '<br />';
+        echo 'N° : ' . $e->getCode();
+        die();
+    }
+    $statement = $pdo->prepare($requete);
+    $statement->execute();
+  if($statement){
+    echo 'Les données ont bien été mises à jour';
+  }else{
+    echo "Une erreur est survenue !";
+  }
+}
+
+function insert($args){
+    $requete = $args['requete'];
+    try{
+        $pdo = new PDO('mysql:host=localhost;dbname=homburger','root','');
+        $pdo -> exec("set names utf8");
+    } catch (PDOException $e) {
+        echo 'Erreur : ' . $e->getMessage() . '<br />';
+        echo 'N° : ' . $e->getCode();
+        die();
+    }
+    $statement = $pdo->prepare($requete);
+    $statement->execute();
+  if($statement){
+    echo 'Les données ont bien été insérés';
+  }else{
+    echo "Une erreur est survenue !";
+  }
+}
 
 function selectProduit2Bdd($args)
 {
@@ -44,76 +97,11 @@ function selectProduit2Bdd($args)
             '</p>' .
             '<p class="prix">Prix : ' . $element['PrixUHT'] . '</p>
                 </div>
-                <img src="./images/panier.png" class="imgpanier ">
+                <img src="../img/panier.png" class="imgpanier ">
             </div>';  //onclick = "RecupPanier(this)"    
     }
 
     echo json_encode($element);
 }
 
-
-function requete($args)
-{
-    $requete = $args['requete'];
-    try {
-        $pdo = new PDO('mysql:host=localhost;dbname=homburger', 'root', '');
-        $pdo->exec("set names utf8");
-    } catch (PDOException $e) {
-        echo 'Erreur : ' . $e->getMessage() . '<br />';
-        echo 'NÂ° : ' . $e->getCode();
-        die();
-    }
-    $statement = $pdo->prepare($requete);
-    $statement->execute();
-    $results = $statement->fetchAll(PDO::FETCH_ASSOC);
-    $json = json_encode($results);
-    echo $json;
-}
-
-function update($args)
-{
-    $requete = $args['requete'];
-    try {
-        $pdo = new PDO('mysql:host=localhost;dbname=homburger', 'root', '');
-        $pdo->exec("set names utf8");
-    } catch (PDOException $e) {
-        echo 'Erreur : ' . $e->getMessage() . '<br />';
-        echo 'NÂ° : ' . $e->getCode();
-        die();
-    }
-    $statement = $pdo->prepare($requete);
-    $statement->execute();
-    $statement->fetchAll(PDO::FETCH_ASSOC);
-    echo $requete;
-}
-
-
-
-
-function updateBdd($args)
-{
-    $table = $args['table'];
-    $base = $args['base'];
-    $set = $args['set'];
-    $condition = $args['condition'];
-
-    //require_once '../connexion.php';
-    try {
-        $connex = new PDO(
-            'mysql:host=' . 'localhost' .
-                ';dbname=' . $base,
-            'root',
-            '',
-            array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION)
-        );
-    } catch (PDOException $e) {
-        echo 'Erreur : ' . $e->getMessage() . '<br />';
-        echo 'N° : ' . $e->getCode();
-        die();
-    }
-    $connex->setAttribute(PDO::ATTR_AUTOCOMMIT, 0);
-    $connex->beginTransaction(); //début
-    $rq = "UPDATE $table SET $set WHERE $condition";
-    $connex->query($rq);
-    $connex->commit();
-}
+?>
