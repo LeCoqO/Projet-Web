@@ -229,5 +229,51 @@
   body {
     background: linear-gradient(to right,#e0a96d,#ddc3a5,#ddc3a5,#e0a96d);
   }
+  .left {
+    float: left;
+  }
+  .right {
+    float: right;
+  }
+  .noFloat {
+    float: none;
+  }
+  .clear {
+    clear: both;
+  }
+
+  /* Bouton */
+  button {
+    overflow: visible;
+  }
+  .button {
+    border: none;
+    display: inline-block;
+    padding: 12px 20px;
+    vertical-align: middle;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    background-color: inherit;
+    text-align: center;
+    cursor: pointer;
+    white-space: nowrap;
+    color: white;
+    background-color: rgb(40, 40, 40);
+  }
+  button {
+    border-radius: 0;
+  }
+  button:focus {
+    outline: 1px dotted;
+    outline: 5px auto -webkit-focus-ring-color;
+  }
+  button {
+    margin: 0;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+  }
+  /* Fin Bouton */
 
 /************************ Fin Partie commune ************************/
