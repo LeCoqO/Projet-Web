@@ -1362,6 +1362,22 @@ Couleur font: noir ou blanc*/
   line-height: 36px;
 }
 
+.ready {
+  background-color: rgba(0, 128, 0, 0.250) !important;
+}
+
+.notReady {
+  background-color: rgba(255, 0, 0, 0.250) !important;
+}
+
+#infoItinéraire {
+  color: white;
+  font-size: 25px;
+  font-weight: bolder;
+  margin: 0 auto;
+  width: 400px;
+}
+
 .item {
   background-color: white;
   margin: 20px;
