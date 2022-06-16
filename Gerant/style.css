@@ -1335,7 +1335,7 @@ Couleur font: noir ou blanc*/
   display: flex;
   cursor: pointer;
   transition: 0.3s all;
-  width: 75%;
+  width: 100%;
 }
 
 .item:hover {
