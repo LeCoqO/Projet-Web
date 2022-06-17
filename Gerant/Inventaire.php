@@ -9,19 +9,35 @@ if (!$_SESSION['valid']) {
 <!DOCTYPE html>
 <html lang="fr">
 
+
 <head>
     <meta charset="UTF-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <meta name="author" content="LUSTIERE Quentin" />
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="styleTemp.css">
+    <link rel="stylesheet" href="../CSS/styleGerant.css">
+    <link rel="stylesheet" href="../CSS/styleCommun.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css" />
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" />
     <title>HOMBURGER - GERANT</title>
+
+    <style>
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+
+        th,
+        td {
+            padding: 10px 20px;
+            border: 1px solid #000;
+        }
+    </style>
+
 </head>
+
 <header>
     <div class="fixed-top">
         <nav class="navbar navbar-expand-lg navbar-dark mx-background-top-linear">
@@ -85,16 +101,17 @@ if (!$_SESSION['valid']) {
                 </div>
             </section>
             <br>
-            <div class="containert text-center"> <!---//container content-container row text-center--->
-                <div id=requete class="leftt">
+            <div class="containert text-center">
+                <!---//container content-container row text-center--->
+                <div id=requete class="column3">
 
                 </div>
-                <div class="rightt">
+                <div class="column3">
                     <div id="qte" class="">
                         <label>Quantité théorique : </label>
                     </div>
                 </div>
-                <div class="centerr contenuu">
+                <div class="column3">
                     <label>Quantité réelle : </label>
                     <input id='qteReelle' class="petitInput" type="number" value="200" maxlength="4" style="width: 55px">
                     <label id='unite2'>Grammes</label>

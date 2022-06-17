@@ -10,11 +10,13 @@ if (!$_SESSION['valid']) {
 <!DOCTYPE html>
 <html lang="fr">
 
+
 <head>
     <meta charset="UTF-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <meta name="author" content="LUSTIERE Quentin" />
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../CSS/styleGerant.css">
+    <link rel="stylesheet" href="../CSS/styleCommun.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css" />
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
@@ -36,62 +38,64 @@ if (!$_SESSION['valid']) {
     </style>
 
 </head>
-<header>
-    <div class="fixed-top">
-        <nav class="navbar navbar-expand-lg navbar-dark mx-background-top-linear">
-            <div class="container">
-                <a class="navbar-brand" style="text-transform: uppercase">
-                    Hom'Burger
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="#">
-                                Home
-                                <span class="sr-only">(current)</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="../Accueil/">Acceuil</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="../Cuisine/">Cusinier</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="../Gerant/">Gérant</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="../Livreur/">Livreur</a>
-                        </li>
-                    </ul>
-                    <img class="imgNavbar" src="../img/logo.png" />
-                </div>
-            </div>
-        </nav>
-    </div>
-</header>
-
-<br>
-<br>
-<br>
 
 <body>
+    <header>
+        <div class="fixed-top">
+            <nav class="navbar navbar-expand-lg navbar-dark mx-background-top-linear">
+                <div class="container">
+                    <a class="navbar-brand" style="text-transform: uppercase">
+                        Hom'Burger
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarResponsive">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="#">
+                                    Home
+                                    <span class="sr-only">(current)</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="../Accueil/">Acceuil</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="../Cuisine/">Cusinier</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="../Gerant/">Gérant</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="../Livreur/">Livreur</a>
+                            </li>
+                        </ul>
+                        <img class="imgNavbar" src="../img/logo.png" />
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <br>
+    <br>
+    <br>
+
+
     <hr>
     <div class="container content-container">
         <main role="main">
             <section>
                 <h2 class="text-center">Interface Gérant</h2>
                 <div class="row text-center">
-                    <div class="column">
+                    <div class="column3">
                         <button class="button" onclick=window.location.href='commande_fournisseur.php'>Retour</button>
                     </div>
-                    <div class="column">
+                    <div class="column3">
                         <button class="button" id='commander'>Commander</button>
                     </div>
-                    <div class="column">
+                    <div class="column3">
                         <button class="button" id='supprimer'>Supprimer</button>
                     </div>
                 </div>

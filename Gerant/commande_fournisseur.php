@@ -14,7 +14,8 @@ if (!$_SESSION['valid']) {
     <meta charset="UTF-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <meta name="author" content="LUSTIERE Quentin" />
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../CSS/styleGerant.css">
+    <link rel="stylesheet" href="../CSS/styleCommun.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css" />
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
@@ -86,14 +87,14 @@ if (!$_SESSION['valid']) {
             <section>
                 <h2 class="text-center">Interface Gérant</h2>
                 <div class="row text-center">
-                    <div class="column">
+                    <div class="column3">
                         <button class="button" onclick=window.location.href='consult_stocks.php'>Retour</button>
                     </div>
-                    <div class="column">
+                    <div class="column3">
                         <button class="button" onclick=window.location.href='bons_de_commandes.php'>Bons de
                             commandes</button>
                     </div>
-                    <div class="column">
+                    <div class="column3">
                         <button id='ok' class="button">Emettre un bon</button>
                     </div>
                 </div>
