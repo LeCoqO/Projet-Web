@@ -121,7 +121,7 @@ function setupAdresseCalulItineraire() {
         item.addEventListener('click', async e => {
             //supprime l'ancien itinéraire s'il existe
             if (document.getElementsByClassName("leaflet-control").length > 0) {
-                for (let g = 0; g < document.getElementsByClassName("leaflet-control").length; g++) {
+                for (let g = 2; g < document.getElementsByClassName("leaflet-control").length; g++) {
                     document.getElementsByClassName("leaflet-control")[g].remove();
                     let boxes = document.querySelectorAll(".leaflet-interactive");
                     boxes.forEach(box => {
@@ -131,8 +131,8 @@ function setupAdresseCalulItineraire() {
                     shadows.forEach(shadow => {
                         shadow.remove();
                     });
-                    if (document.getElementsByClassName("ready")[g]) {
-                        document.getElementsByClassName("ready")[g].classList.remove("ready");
+                    if (document.getElementsByClassName("ready")[g-2]) {
+                        document.getElementsByClassName("ready")[g-2].classList.remove("ready");
                     }
                 }
                 if (document.getElementsByClassName("cmd-selected").length > 0) {

@@ -289,7 +289,7 @@ function addToBase() {
                 + stringIngrPrinc + stringIngrSecond + ", '" + json['nombreOptionMax'] + "', '" + estIncontounable + "')",
         },
         success: function (data) {
-            //location.reload();
+            location.reload();
             //console.log(data)
         },
         error: function (dataSQL, statut) {
