@@ -6,7 +6,7 @@ var waitThree = 0;
 getrecetteFromBdd();
 function getrecetteFromBdd() {
     $.ajax({
-        url: 'STOCK_REQUETE.php', //toujours la même page qui est appelée
+        url: '../STOCK_REQUETE.php', //toujours la même page qui est appelée
         type: 'POST',
         data: {
             fonction: 'select', //fonction à executer
@@ -59,7 +59,7 @@ function getrecetteFromBdd() {
 function getIngrFromBdd() {
     //Cette fonction récupère la liste des pains dans la bdd
     $.ajax({
-        url: 'STOCK_REQUETE.php', //toujours la même page qui est appelée
+        url: '../STOCK_REQUETE.php', //toujours la même page qui est appelée
         type: 'POST',
         data: {
             fonction: 'select', //fonction à executer
@@ -83,7 +83,7 @@ function getIngrFromBdd() {
     });
     //Cette fonction récupère la liste des ingrédients secondaires dans la bdd
     $.ajax({
-        url: 'STOCK_REQUETE.php', //toujours la même page qui est appelée
+        url: '../STOCK_REQUETE.php', //toujours la même page qui est appelée
         type: 'POST',
         data: {
             fonction: 'select', //fonction à executer
@@ -109,7 +109,7 @@ function getIngrFromBdd() {
     });
     //Cette fonction récupère la liste des ingrédients principaux et sans les pains dans la bdd
     $.ajax({
-        url: 'STOCK_REQUETE.php', //toujours la même page qui est appelée
+        url: '../STOCK_REQUETE.php', //toujours la même page qui est appelée
         type: 'POST',
         data: {
             fonction: 'select', //fonction à executer
@@ -277,7 +277,7 @@ function addToBase() {
     //console.log(stringIngrSecond);
     //Ajoute la recette dans la bdd
     $.ajax({
-        url: 'STOCK_REQUETE.php', //toujours la même page qui est appelée
+        url: '../STOCK_REQUETE.php', //toujours la même page qui est appelée
         type: 'POST',
         data: {
             fonction: 'update', //fonction à executer
@@ -285,11 +285,11 @@ function addToBase() {
                 " `IngBase1`, `IngBase2`, `IngBase3`, `IngBase4`, `IngBase5`, `IngOpti1`, `IngOpti2`, `IngOpti3`," +
                 " `IngOpti4`, `IngOpti5`, `IngOpti6`, `NbOptMax`, `Incontournable`)" +
                 " VALUES ('" + json['nom'] + "', '" + json['taille'] + "', '" + json['nbr_ingr_principaux'] + "', '"
-                + json['nbr_ingr_secondaires'] + "', '" + json['prix'] + "', '" + json['img'] + "'"
+                + json['nbr_ingr_secondaires'] + "', '" + json['prix'] + "', '../img/" + json['img'] + "'"
                 + stringIngrPrinc + stringIngrSecond + ", '" + json['nombreOptionMax'] + "', '" + estIncontounable + "')",
         },
         success: function (data) {
-            //location.reload();
+            location.reload();
             //console.log(data)
         },
         error: function (dataSQL, statut) {
@@ -298,7 +298,7 @@ function addToBase() {
     });
     //Récupere l'id de la recette que l'on vient de créer 
     $.ajax({
-        url: 'ajax_Bdd.php', //toujours la même page qui est appelée
+        url: '../STOCK_REQUETE.php', //toujours la même page qui est appelée
         type: 'POST',
         data: {
             fonction: 'select', //fonction à executer
@@ -316,7 +316,7 @@ function addToBase() {
     //Ajoute toutes les quantités associées à la recette et aux ingrédients principaux
     for (let i = 0; i < json['nbr_ingr_principaux']; i++) {
         $.ajax({
-            url: 'STOCK_REQUETE.php', //toujours la même page qui est appelée
+            url: '../STOCK_REQUETE.php', //toujours la même page qui est appelée
             type: 'POST',
             data: {
                 fonction: 'select', //fonction à executer
@@ -337,7 +337,7 @@ function addToBase() {
     //Ajoute toutes les quantités associées à la recette et aux ingrédients principaux
     for (let i = 0; i < json['nbr_ingr_secondaires']; i++) {
         $.ajax({
-            url: 'STOCK_REQUETE.php', //toujours la même page qui est appelée
+            url: '../STOCK_REQUETE.php', //toujours la même page qui est appelée
             type: 'POST',
             data: {
                 fonction: 'select', //fonction à executer
@@ -364,7 +364,7 @@ function addToBase() {
 function pushToBdd(ingId, prodId, i, json, type) {
     console.log("pushTo: " + ingId, prodId, i);
     $.ajax({
-        url: 'STOCK_REQUETE.php', //toujours la même page qui est appelée
+        url: '../STOCK_REQUETE.php', //toujours la même page qui est appelée
         type: 'POST',
         data: {
             fonction: 'update', //fonction à executer
