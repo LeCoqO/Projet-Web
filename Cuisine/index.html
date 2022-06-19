@@ -6,8 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>IHM-Cuisinier</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-  <link rel="stylesheet" href="styleCuisiner.css" />
-  <link rel="stylesheet" href="styleCommun.css" />
+  <link rel="stylesheet" href="../CSS/styleCuisinier.css" />
+  <link rel="stylesheet" href="../CSS/styleCommun.css" />
   <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css" />
   <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
   <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
@@ -29,7 +29,7 @@
 
   function creaCommande() {
     $.ajax({
-      url: "requette.php", //toujours la même page qui est appelée
+      url: "../STOCK_REQUETE.php", //toujours la même page qui est appelée
       type: "POST",
       data: {
         fonction: "select", //fonction à executer
@@ -53,30 +53,25 @@
   }
 
   function cmdTerminee(numCom) {
-
-    let laDate = new Date();
-    laDate = laDate.getFullYear() + "-" + (laDate.getMonth() + 1) + "-" + laDate.getDate();
-    console.log("test34","UPDATE commande SET EtatCde = 'A Livrer', DateArchiveCom = '"+ laDate +"' WHERE NumCom LIKE " +
-          numCom);
     $.ajax({
-      url: "requette.php", //toujours la même page qui est appelée
+      url: "../STOCK_REQUETE.php", //toujours la même page qui est appelée
       type: "POST",
       data: {
-        fonction: "update", //fonction à executer
+        fonction: "Update", //fonction à executer
         requete:
-          "UPDATE commande SET EtatCde = 'A Livrer', DateArchivCom = '"+ laDate +"' WHERE NumCom LIKE " +
+          'UPDATE commande SET EtatCde = "A Livrer" WHERE NumCom LIKE ' +
           numCom,
       },
       success: function (data) {
         location.reload();
         //getIdsProdAndQtys(numCom);
         $.ajax({
-          url: "requette.php", //toujours la même page qui est appelée
+          url: "../STOCK_REQUETE.php", //toujours la même page qui est appelée
           type: "POST",
           data: {
             fonction: "select", //fonction à executer
             requete:
-              "SELECT IdProd_Produit, Quant FROM `detail` WHERE NumCom LIKE " +
+              "SELECT IdProd, Quant FROM `detail` WHERE NumCom LIKE " +
               numCom,
           },
           success: function (data) {
@@ -86,7 +81,7 @@
 
               $.ajax({
                 //pour chaque produit
-                url: "requette.php", //toujours la même page qui est appelée
+                url: "../STOCK_REQUETE.php", //toujours la même page qui est appelée
                 type: "POST",
                 data: {
                   fonction: "select", //fonction à executer
@@ -101,7 +96,7 @@
                     let QuantIng = resultats[e]["Quant"];
                     $.ajax({
                       //pour chaque produit
-                      url: "requette.php", //toujours la même page qui est appelée
+                      url: "../STOCK_REQUETE.php", //toujours la même page qui est appelée
                       type: "POST",
                       data: {
                         fonction: "update", //fonction à executer
@@ -116,7 +111,6 @@
                         alert("error sqlConnect.js : " + dataSQL.erreur);
                       },
                     });
-                    
                   }
                 },
                 error: function (dataSQL, statut) {
@@ -150,7 +144,7 @@
       //appel base to get info about cmd
 
       $.ajax({
-        url: "requette.php", //toujours la même page qui est appelée
+        url: "../STOCK_REQUETE.php", //toujours la même page qui est appelée
         type: "POST",
         data: {
           fonction: "select", //fonction à executer
@@ -169,7 +163,7 @@
       });
 
       $.ajax({
-        url: "requette.php", //toujours la même page qui est appelée
+        url: "../STOCK_REQUETE.php", //toujours la même page qui est appelée
         type: "POST",
         data: {
           fonction: "select", //fonction à executer
@@ -188,13 +182,13 @@
       });
 
       $.ajax({
-        url: "requette.php", //toujours la même page qui est appelée
+        url: "../STOCK_REQUETE.php", //toujours la même page qui est appelée
         type: "POST",
         data: {
           fonction: "select", //fonction à executer
-          requete: "SELECT NumCom, IdProd_Produit, Quant, NomProd FROM detail WHERE NumCom LIKE " +
+          requete: "SELECT NumCom, IdProd, Quant, NomProd FROM detail WHERE NumCom LIKE " +
             allCommandeDiv[i].id +
-            " GROUP BY IdProd_Produit"
+            " GROUP BY IdProd"
           ,
         },
 
@@ -210,13 +204,13 @@
             let nomProd = resultat4[j]["NomProd"];
             console.log("j", resultat4[j]);
             $.ajax({
-              url: "requette.php", //toujours la même page qui est appelée
+              url: "../STOCK_REQUETE.php", //toujours la même page qui est appelée
               type: "POST",
               data: {
                 fonction: "select", //fonction à executer
                 requete:
                   "SELECT * FROM produit WHERE IdProd LIKE " +
-                  resultat4[j]["IdProd_Produit"],
+                  resultat4[j]["IdProd"],
               },
               success: function (data) {
                 let res = JSON.parse(data);
@@ -278,7 +272,7 @@
         "</div>" +
         "</div>" +
         "<br />" +
-        '<button class="cmdFinie" onClick="creaCommande();cmdTerminee('+ allCommandeDiv[i].id +');">Commande Finie</button>';
+        '<button class="cmdFinie" onClick="creaCommande();cmdTerminee(' + allCommandeDiv[i].id + ');">Commande Finie</button>';
     }
   }
 </script>
@@ -317,7 +311,7 @@
                 <a class="nav-link" href="../Livreur/">Livreur</a>
               </li>
             </ul>
-            <img class="imgNavbar" src="./img/logo.png" />
+            <img class="imgNavbar" src="../img/logo.png" />
           </div>
         </div>
       </nav>

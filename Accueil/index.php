@@ -69,7 +69,7 @@
         </div>
     </div>
     <div>
-        <section id="burger" class="burger">
+        <section id="burger" class="burger ">
             <h2 class="text-center">Nos Incontournables </h2>
             <div id='ListeBurgerIncontournable'></div> <!-- Burger incontournable-->
         </section>
@@ -270,7 +270,7 @@ function checkBox_closePanier() {
 
 //Liste BURGER
 $.ajax({
-    url: '../STOCK_REQUETE.php', //toujours la même page qui est appelée
+    url: 'ajax_Bdd.php', //toujours la même page qui est appelée
     type: 'POST',
     data: {
         fonction: 'selectProduit2Bdd', //fonction à executer
@@ -300,7 +300,7 @@ $.ajax({
 
 //Burger Incontournable
 $.ajax({
-    url: '../STOCK_REQUETE.php', //toujours la même page qui est appelée
+    url: 'ajax_Bdd.php', //toujours la même page qui est appelée
     type: 'POST',
     data: {
         fonction: 'selectProduit2Bdd', //fonction à executer
@@ -329,10 +329,10 @@ $.ajax({
 
 function SelectIngredOptiS() {
     $.ajax({
-        url: '../STOCK_REQUETE.php', //toujours la même page qui est appelée
+        url: 'ajax_Bdd.php', //toujours la même page qui est appelée
         type: 'POST',
         data: {
-            fonction: 'select', //fonction à executer
+            fonction: 'requete', //fonction à executer
             requete: "SELECT NomIng,Type FROM ingredient WHERE Type = 'S'"
         },
         success: function(data) {
@@ -368,10 +368,10 @@ function SelectIngredOptiS() {
 
 function SelectIngredOptiP() {
     $.ajax({
-        url: '../STOCK_REQUETE.php', //toujours la même page qui est appelée
+        url: 'ajax_Bdd.php', //toujours la même page qui est appelée
         type: 'POST',
         data: {
-            fonction: 'select', //fonction à executer
+            fonction: 'requete', //fonction à executer
             requete: "SELECT NomIng,Type FROM ingredient WHERE Type = 'P'"
         },
         success: function(data) {
