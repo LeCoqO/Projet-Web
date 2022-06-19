@@ -6,11 +6,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>IHM-Cuisinier</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-  <link rel="stylesheet" href="styleCuisiner.css" />
-  <link rel="stylesheet" href="styleCommun.css" />
+  <link rel="stylesheet" href="../CSS/styleCuisinier.css" />
+  <link rel="stylesheet" href="../CSS/styleCommun.css" />
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
   <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css" />
   <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
   <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" />
 </head>
 <script>
@@ -29,7 +29,7 @@
 
   function creaCommande() {
     $.ajax({
-      url: "requette.php", //toujours la même page qui est appelée
+      url: "../STOCK_REQUETE.php", //toujours la même page qui est appelée
       type: "POST",
       data: {
         fonction: "select", //fonction à executer
@@ -56,22 +56,36 @@
 
     let laDate = new Date();
     laDate = laDate.getFullYear() + "-" + (laDate.getMonth() + 1) + "-" + laDate.getDate();
-    console.log("test34","UPDATE commande SET EtatCde = 'A Livrer', DateArchiveCom = '"+ laDate +"' WHERE NumCom LIKE " +
-          numCom);
     $.ajax({
-      url: "requette.php", //toujours la même page qui est appelée
+      url: "../STOCK_REQUETE.php", //toujours la même page qui est appelée
       type: "POST",
       data: {
         fonction: "update", //fonction à executer
         requete:
-          "UPDATE commande SET EtatCde = 'A Livrer', DateArchivCom = '"+ laDate +"' WHERE NumCom LIKE " +
+          "UPDATE detail SET DateArchivDet = '" + laDate + "' WHERE NumCom LIKE " + numCom,
+      },
+      success: function (data) {
+
+      },
+      error: function (dataSQL, statut) {
+        alert("error sqlConnect.js : " + dataSQL.erreur);
+      },
+    });
+
+    $.ajax({
+      url: "../STOCK_REQUETE.php", //toujours la même page qui est appelée
+      type: "POST",
+      data: {
+        fonction: "update", //fonction à executer
+        requete:
+          "UPDATE commande SET EtatCde = 'A Livrer', DateArchivCom = '" + laDate + "' WHERE NumCom LIKE " +
           numCom,
       },
       success: function (data) {
         location.reload();
         //getIdsProdAndQtys(numCom);
         $.ajax({
-          url: "requette.php", //toujours la même page qui est appelée
+          url: "../STOCK_REQUETE.php", //toujours la même page qui est appelée
           type: "POST",
           data: {
             fonction: "select", //fonction à executer
@@ -86,7 +100,7 @@
 
               $.ajax({
                 //pour chaque produit
-                url: "requette.php", //toujours la même page qui est appelée
+                url: "../STOCK_REQUETE.php", //toujours la même page qui est appelée
                 type: "POST",
                 data: {
                   fonction: "select", //fonction à executer
@@ -101,7 +115,7 @@
                     let QuantIng = resultats[e]["Quant"];
                     $.ajax({
                       //pour chaque produit
-                      url: "requette.php", //toujours la même page qui est appelée
+                      url: "../STOCK_REQUETE.php", //toujours la même page qui est appelée
                       type: "POST",
                       data: {
                         fonction: "update", //fonction à executer
@@ -116,7 +130,7 @@
                         alert("error sqlConnect.js : " + dataSQL.erreur);
                       },
                     });
-                    
+
                   }
                 },
                 error: function (dataSQL, statut) {
@@ -150,7 +164,7 @@
       //appel base to get info about cmd
 
       $.ajax({
-        url: "requette.php", //toujours la même page qui est appelée
+        url: "../STOCK_REQUETE.php", //toujours la même page qui est appelée
         type: "POST",
         data: {
           fonction: "select", //fonction à executer
@@ -169,7 +183,7 @@
       });
 
       $.ajax({
-        url: "requette.php", //toujours la même page qui est appelée
+        url: "../STOCK_REQUETE.php", //toujours la même page qui est appelée
         type: "POST",
         data: {
           fonction: "select", //fonction à executer
@@ -188,7 +202,7 @@
       });
 
       $.ajax({
-        url: "requette.php", //toujours la même page qui est appelée
+        url: "../STOCK_REQUETE.php", //toujours la même page qui est appelée
         type: "POST",
         data: {
           fonction: "select", //fonction à executer
@@ -199,18 +213,15 @@
         },
 
         success: function (data) {
-          console.log("pute", allCommandeDiv);
           let resultat4 = JSON.parse(data);
-
-          console.log(resultat4);
           var fin = "";
           for (j = 0; j < resultat4.length; j++) {
 
             let quant = resultat4[j]["Quant"];
             let nomProd = resultat4[j]["NomProd"];
-            console.log("j", resultat4[j]);
+
             $.ajax({
-              url: "requette.php", //toujours la même page qui est appelée
+              url: "../STOCK_REQUETE.php", //toujours la même page qui est appelée
               type: "POST",
               data: {
                 fonction: "select", //fonction à executer
@@ -219,9 +230,8 @@
                   resultat4[j]["IdProd_Produit"],
               },
               success: function (data) {
+
                 let res = JSON.parse(data);
-                console.log(res);
-                let string = "";
                 let fin = "";
                 fin +=
                   '<img style="width:100px" src="' +
@@ -230,21 +240,33 @@
                   quant +
                   " " +
                   nomProd;
-                console.log("nbingbase", res[0]['NbIngBase']);
-                for (
-                  j = 1;
-                  j < parseInt(res[0]["NbIngBase"]) + 1;
-                  j++
-                ) {
-                  string += res[0]["IngBase" + j] + ", ";
-                }
-                for (k = 1; k < parseInt(res[0]["NbIngOpt"]) + 1; k++) {
-                  string += res[0]["IngOpti" + k] + ", ";
-                }
-                fin += string;
-                console.log("fin", fin);
-                //console.log(i);
-                $("#nbBurgers" + i).append(fin);
+
+                $.ajax({
+                  url: "../STOCK_REQUETE.php", //toujours la même page qui est appelée
+                  type: "POST",
+                  data: {
+                    fonction: "select", //fonction à executer
+                    requete:
+                      "SELECT * FROM detail WHERE NumCom LIKE " + allCommandeDiv[i].id,
+                  },
+                  success: function (data) {
+                    let res = JSON.parse(data);
+                    if (res[0]['IngBase1'] !== "NULL") { fin += ("\n" + res[0]['IngBase1']); }
+                    if (res[0]['IngBase2'] !== "NULL") { fin += ("\n" + res[0]['IngBase2']); }
+                    if (res[0]['IngBase3'] !== "NULL") { fin += ("\n" + res[0]['IngBase3']); }
+                    if (res[0]['IngBase4'] !== "NULL") { fin += ("\n" + res[0]['IngBase4']); }
+                    if (res[0]['IngOpt1'] !== "NULL") { fin += ("\n" + res[0]['IngOpt1']); }
+                    if (res[0]['IngOpt2'] !== "NULL") { fin += ("\n" + res[0]['IngOpt2']); }
+                    if (res[0]['IngOpt3'] !== "NULL") { fin += ("\n" + res[0]['IngOpt3']); }
+                    if (res[0]['IngOpt4'] !== "NULL") { fin += ("\n" + res[0]['IngOpt4']); }
+
+                    $("#nbBurgers" + i).append(fin);
+                  },
+                  error: function (dataSQL, statut) {
+                    alert("error sqlConnect.js : " + dataSQL.erreur);
+                  },
+                });
+
               },
               error: function (dataSQL, statut) {
                 alert("error sqlConnect.js : " + dataSQL.erreur);
@@ -278,7 +300,7 @@
         "</div>" +
         "</div>" +
         "<br />" +
-        '<button class="cmdFinie" onClick="creaCommande();cmdTerminee('+ allCommandeDiv[i].id +');">Commande Finie</button>';
+        '<button class="cmdFinie" onClick="creaCommande();cmdTerminee(' + allCommandeDiv[i].id + ');">Commande Finie</button>';
     }
   }
 </script>
@@ -317,7 +339,7 @@
                 <a class="nav-link" href="../Livreur/">Livreur</a>
               </li>
             </ul>
-            <img class="imgNavbar" src="./img/logo.png" />
+            <img class="imgNavbar" src="../img/logo.png" />
           </div>
         </div>
       </nav>
