@@ -122,7 +122,7 @@ function getIngrFromBdd() {
             //console.log(resultats);
             for (let i = 0; i < resultats.length; i++) {
                 string += '<div class="container_test"><h3 class="text-center ingr_principaux " id="' + resultats[i]['NomIng'] + '">' + resultats[i]['NomIng'] +
-                    '</h3><input style="display: none" class="qty_selector" type="number" id="' + resultats[i]['NomIng'] + '_qty"> </div>';
+                    '</h3><input style="display: none" min="0" class="qty_selector" type="number" id="' + resultats[i]['NomIng'] + '_qty"> </div>';
 
             }
             document.getElementById("ingr_princ").innerHTML = string;

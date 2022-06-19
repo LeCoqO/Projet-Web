@@ -142,7 +142,7 @@
             <div class="row">
                 <div class="column2">
                     <h2 class="gras">Nombres d'option maximum</h2>
-                    <input class="text-center button" type="number" id="maximumOption" value="3" required>
+                    <input class="text-center button" type="number" id="maximumOption" value="3" min="0" max="4"required>
 
                 </div>
                 <div class="column2">
