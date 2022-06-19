@@ -24,16 +24,16 @@ if (!$_SESSION['valid']) {
     <title>HOMBURGER - GERANT</title>
 
     <style>
-    table {
-        border-collapse: collapse;
-        border-spacing: 0;
-    }
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
 
-    th,
-    td {
-        padding: 10px 20px;
-        border: 1px solid #000;
-    }
+        th,
+        td {
+            padding: 10px 20px;
+            border: 1px solid #000;
+        }
     </style>
 
 </head>
@@ -44,8 +44,7 @@ if (!$_SESSION['valid']) {
                 <a class="navbar-brand" style="text-transform: uppercase">
                     Hom'Burger
                 </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
-                    aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
@@ -123,121 +122,121 @@ if (!$_SESSION['valid']) {
                 </div>
             </div>
             <script>
-            //RECUPERATION DES INGREDIENTS POUR LES PROPOSER DANS UN SELECT
-            var laFonction = $.ajax({
-                url: 'STOCK_REQUETE.php', //toujours la même page qui est appelée
-                type: 'POST',
-                data: {
-                    fonction: 'select', //fonction à executer
-                    requete: 'SELECT IdIng,NomIng FROM ingredient',
-                }
-            });
-
-            laFonction.done(function(msg) {
-                let resultats = JSON.parse(msg);
-                selectIng = document.createElement('select');
-                selectIng[0] = new Option("--Ingrédient--", "", false, false);
-                for (i = 0; i < resultats.length; i++) {
-                    selectIng[i + 1] = new Option(resultats[i]['NomIng'], resultats[i]['IdIng'], false, false);
-                };
-                selectIng.id = 'selectIng';
-                selectIng.class = 'column';
-                selectIng.onChange = 'appel(this.value)';
-                document.getElementById('requete').appendChild(selectIng);
-            });
-            laFonction.fail(function(dataSQL, statut) {
-                alert("error sqlConnect.js : " + dataSQL.erreur);
-            });
-
-
-            //LISTENERS EN VUE D'UN CHANGEMENT DE QTE OU DE PRODUIT, POUR CALCULER LE PRIX DYNAMIQUEMENT
-            //ET POUR VALIDER LA CREATION DE COMMANDE
-            function listeners() {
-                $(document).on("click change", "#qte, #selectIng", function() {
-                    calculPrix($("#selectIng").val(), $("#qte").val());
-                })
-                $(document).on('click', '#ok', function() {
-                    creationCommande();
-                })
-            }
-
-            //FONCTION QUI CREE UNE COMMANDE DANS LA BASE, AVEC LES CHAMPS DE LA PAGE
-            function creationCommande() {
-                let dateAjd = new Date();
-                dateAjd = dateAjd.getFullYear() + "-" + (dateAjd.getMonth() + 1) + "-" + dateAjd.getDate();
-                var dateLiv = document.getElementById('livraison').value;
-                var ing = document.getElementById('selectIng').value;
-                //var fourn = document.getElementById('selectFourn').value;
-                var qte = document.getElementById('qte').value;
-
+                //RECUPERATION DES INGREDIENTS POUR LES PROPOSER DANS UN SELECT
                 var laFonction = $.ajax({
-                    url: 'STOCK_REQUETE.php', //toujours la même page qui est appelée
+                    url: '../STOCK_REQUETE.php', //toujours la même page qui est appelée
                     type: 'POST',
                     data: {
-                        fonction: 'insert', //fonction à executer
-                        requete: 'INSERT INTO commandefournisseur (`IdIng`, `NomFourn`, `QteComFourn`,`DateLivFourn`,`DateComFourn`) VALUES (' +
-                            ing + ',' + '"MyFoodnisseur"' + ',' + qte + ',"' + dateLiv + '","' + dateAjd +
-                            '");',
+                        fonction: 'select', //fonction à executer
+                        requete: 'SELECT IdIng,NomIng FROM ingredient',
                     }
                 });
-                laFonction.done(function(data) {
-                    alert('Commande passée!');
+
+                laFonction.done(function(msg) {
+                    let resultats = JSON.parse(msg);
+                    selectIng = document.createElement('select');
+                    selectIng[0] = new Option("--Ingrédient--", "", false, false);
+                    for (i = 0; i < resultats.length; i++) {
+                        selectIng[i + 1] = new Option(resultats[i]['NomIng'], resultats[i]['IdIng'], false, false);
+                    };
+                    selectIng.id = 'selectIng';
+                    selectIng.class = 'column';
+                    selectIng.onChange = 'appel(this.value)';
+                    document.getElementById('requete').appendChild(selectIng);
                 });
                 laFonction.fail(function(dataSQL, statut) {
                     alert("error sqlConnect.js : " + dataSQL.erreur);
                 });
 
-            }
 
-            //FONCTION METTANT A JOUR LE PRIX
-            function calculPrix($id, $qte) {
-                var id = $id;
-                var qte = $qte;
-                if (id != 0) {
+                //LISTENERS EN VUE D'UN CHANGEMENT DE QTE OU DE PRODUIT, POUR CALCULER LE PRIX DYNAMIQUEMENT
+                //ET POUR VALIDER LA CREATION DE COMMANDE
+                function listeners() {
+                    $(document).on("click change", "#qte, #selectIng", function() {
+                        calculPrix($("#selectIng").val(), $("#qte").val());
+                    })
+                    $(document).on('click', '#ok', function() {
+                        creationCommande();
+                    })
+                }
+
+                //FONCTION QUI CREE UNE COMMANDE DANS LA BASE, AVEC LES CHAMPS DE LA PAGE
+                function creationCommande() {
+                    let dateAjd = new Date();
+                    dateAjd = dateAjd.getFullYear() + "-" + (dateAjd.getMonth() + 1) + "-" + dateAjd.getDate();
+                    var dateLiv = document.getElementById('livraison').value;
+                    var ing = document.getElementById('selectIng').value;
+                    //var fourn = document.getElementById('selectFourn').value;
+                    var qte = document.getElementById('qte').value;
+
                     var laFonction = $.ajax({
-                        url: 'STOCK_REQUETE.php', //toujours la même page qui est appelée
+                        url: '../STOCK_REQUETE.php', //toujours la même page qui est appelée
                         type: 'POST',
                         data: {
-                            fonction: 'select', //fonction à executer
-                            requete: 'SELECT PrixUHT_Moyen FROM ingredient WHERE IdIng = ' + id + ';',
+                            fonction: 'insert', //fonction à executer
+                            requete: 'INSERT INTO commandefournisseur (`IdIng`, `NomFourn`, `QteComFourn`,`DateLivFourn`,`DateComFourn`) VALUES (' +
+                                ing + ',' + '"MyFoodnisseur"' + ',' + qte + ',"' + dateLiv + '","' + dateAjd +
+                                '");',
                         }
                     });
                     laFonction.done(function(data) {
-                        let resultats = JSON.parse(data);
-                        let prix = resultats[0]['PrixUHT_Moyen'] * qte;
-                        document.getElementById('total').value = prix;
+                        alert('Commande passée!');
                     });
                     laFonction.fail(function(dataSQL, statut) {
                         alert("error sqlConnect.js : " + dataSQL.erreur);
                     });
-                }
-            }
 
-            //FONCTION APPELALNT LES RESTES D'INFORMATION SUR UN INGREDIENT
-            function appel($id) {
-                var id = $id;
-                if (id != 0) {
-                    var laFonction = $.ajax({
-                        url: 'STOCK_REQUETE.php', //toujours la même page qui est appelée
-                        type: 'POST',
-                        data: {
-                            fonction: 'select', //fonction à executer
-                            requete: 'SELECT StockMin,Unite FROM ingredient WHERE IdIng = ' + id + ';',
-                        }
-                    });
-                    laFonction.done(function(data) {
-                        let resultats = JSON.parse(data);
-                        document.getElementById('unite2').innerHTML = resultats[0]['Unite'];
-                        document.getElementById('qte').value = resultats[0]['StockMin']
-                    });
-                    laFonction.fail(function(dataSQL, statut) {
-                        alert("error sqlConnect.js : " + dataSQL.erreur);
-                    });
                 }
-            }
 
-            //APPEL DES LISTENERS
-            listeners();
+                //FONCTION METTANT A JOUR LE PRIX
+                function calculPrix($id, $qte) {
+                    var id = $id;
+                    var qte = $qte;
+                    if (id != 0) {
+                        var laFonction = $.ajax({
+                            url: '../STOCK_REQUETE.php', //toujours la même page qui est appelée
+                            type: 'POST',
+                            data: {
+                                fonction: 'select', //fonction à executer
+                                requete: 'SELECT PrixUHT_Moyen FROM ingredient WHERE IdIng = ' + id + ';',
+                            }
+                        });
+                        laFonction.done(function(data) {
+                            let resultats = JSON.parse(data);
+                            let prix = resultats[0]['PrixUHT_Moyen'] * qte;
+                            document.getElementById('total').value = prix;
+                        });
+                        laFonction.fail(function(dataSQL, statut) {
+                            alert("error sqlConnect.js : " + dataSQL.erreur);
+                        });
+                    }
+                }
+
+                //FONCTION APPELALNT LES RESTES D'INFORMATION SUR UN INGREDIENT
+                function appel($id) {
+                    var id = $id;
+                    if (id != 0) {
+                        var laFonction = $.ajax({
+                            url: '../STOCK_REQUETE.php', //toujours la même page qui est appelée
+                            type: 'POST',
+                            data: {
+                                fonction: 'select', //fonction à executer
+                                requete: 'SELECT StockMin,Unite FROM ingredient WHERE IdIng = ' + id + ';',
+                            }
+                        });
+                        laFonction.done(function(data) {
+                            let resultats = JSON.parse(data);
+                            document.getElementById('unite2').innerHTML = resultats[0]['Unite'];
+                            document.getElementById('qte').value = resultats[0]['StockMin']
+                        });
+                        laFonction.fail(function(dataSQL, statut) {
+                            alert("error sqlConnect.js : " + dataSQL.erreur);
+                        });
+                    }
+                }
+
+                //APPEL DES LISTENERS
+                listeners();
             </script>
         </main>
     </div>

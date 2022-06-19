@@ -123,7 +123,7 @@ if (!$_SESSION['valid']) {
                 */
 
                 var laFonction = $.ajax({
-                    url: 'STOCK_REQUETE.php', //toujours la même page qui est appelée
+                    url: '../STOCK_REQUETE.php', //toujours la même page qui est appelée
                     type: 'POST',
                     data: {
                         fonction: 'select', //fonction à executer
@@ -175,7 +175,7 @@ if (!$_SESSION['valid']) {
                     var produit = $produit;
                     var qte = $qte;
                     var laFonction = $.ajax({
-                        url: 'STOCK_REQUETE.php', //toujours la même page qui est appelée
+                        url: '../STOCK_REQUETE.php', //toujours la même page qui est appelée
                         type: 'POST',
                         data: {
                             fonction: 'update', //fonction à executer
@@ -198,7 +198,7 @@ if (!$_SESSION['valid']) {
                 function appel($id) {
                     var id = $id;
                     $.ajax({
-                        url: 'STOCK_REQUETE.php', //toujours la même page qui est appelée
+                        url: '../STOCK_REQUETE.php', //toujours la même page qui est appelée
                         type: 'POST',
                         data: {
                             fonction: 'select', //fonction à executer

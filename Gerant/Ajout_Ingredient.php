@@ -102,7 +102,7 @@ if (!$_SESSION['valid']) {
                     <script>
                         //RECUPERATION DES FOURNISSEURS DANS LA BDD, POUR LES METTRE EN TANT QU'OPTION DANS UN SELECT
                         var laFonction = $.ajax({
-                            url: 'STOCK_REQUETE.php', //toujours la même page qui est appelée
+                            url: '../STOCK_REQUETE.php', //toujours la même page qui est appelée
                             type: 'POST',
                             data: {
                                 fonction: 'select', //fonction à executer
@@ -148,8 +148,7 @@ if (!$_SESSION['valid']) {
                     <script>
                         //RECUP DES UNITE POUR EN FAIRE LE MEME USAGE QUE LES FOURNISSEURS
                         var laFonction = $.ajax({
-                            url: 'STOCK_REQUETE.php', //toujours la même page qui est appelée
-                            type: 'POST',
+                            url: '../STOCK_REQUETE.php', //toujours la même page qui est appelée                            type: 'POST',
                             data: {
                                 fonction: 'select', //fonction à executer
                                 requete: 'SELECT DISTINCT unite FROM ingredient',
@@ -209,8 +208,7 @@ if (!$_SESSION['valid']) {
                     var puht = $puht;
 
                     var laFonction = $.ajax({
-                        url: 'STOCK_REQUETE.php', //toujours la même page qui est appelée
-                        type: 'POST',
+                        url: '../STOCK_REQUETE.php', //toujours la même page qui est appelée                        type: 'POST',
                         data: {
                             fonction: 'update', //fonction à executer
                             requete: 'INSERT INTO ingredient(NomIng,Frais,Type,Unite,StockMin,StockReel,PrixUHT_Moyen,Q_A_Com,DateArchivIng) VALUES (' +

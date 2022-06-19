@@ -109,8 +109,8 @@ if (!$_SESSION['valid']) {
                 <script text/javascript>
                     //DMD A LA BASE DES LES PRODUITS ET LEUR STOCK VIA AJAX->PHP->MySQL 
                     $.ajax({
-                        url: 'STOCK_REQUETE.php', //toujours la même page qui est appelée
-                        type: 'POST',
+                        url: '../STOCK_REQUETE.php', //toujours la même page qui est appelée
+                                                type: 'POST',
                         data: {
                             fonction: 'select', //fonction à executer
                             requete: 'SELECT NomIng,StockReel,Unite FROM ingredient',

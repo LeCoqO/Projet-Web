@@ -120,7 +120,7 @@ if (!$_SESSION['valid']) {
             </div>
             <script>
                 var laFonction = $.ajax({ //DMD A LA BASE LA LISTE DES ID ING ET DE LEUR NOM
-                    url: 'STOCK_REQUETE.php', //toujours la même page qui est appelée
+                    url: '../STOCK_REQUETE.php', //toujours la même page qui est appelée
                     type: 'POST',
                     data: {
                         fonction: 'select', //fonction à executer
@@ -168,7 +168,7 @@ if (!$_SESSION['valid']) {
                     var produit = $produit;
                     var qte = parseInt(parseInt($qte) + parseInt($('#qteActuelle').text()));
                     var laFonction = $.ajax({
-                        url: 'STOCK_REQUETE.php', //toujours la même page qui est appelée
+                        url: '../STOCK_REQUETE.php', //toujours la même page qui est appelée                    
                         type: 'POST',
                         data: {
                             fonction: 'update', //fonction à executer
@@ -203,7 +203,7 @@ if (!$_SESSION['valid']) {
                 function appel($id) {
                     var id = $id;
                     $.ajax({
-                        url: 'STOCK_REQUETE.php', //toujours la même page qui est appelée
+                        url: '../STOCK_REQUETE.php', //toujours la même page qui est appelée                  
                         type: 'POST',
                         data: {
                             fonction: 'select', //fonction à executer

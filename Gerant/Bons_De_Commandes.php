@@ -117,7 +117,7 @@ if (!$_SESSION['valid']) {
                 var resultats3;
                 //APPEL DE TTES LES DONNES NECESSAIRES A LA REDACTION D'UN BON DE COMMANDE, POINT DE VUE FOURNISSEUR
                 var laFonctionn = $.ajax({
-                    url: 'STOCK_REQUETE.php', //toujours la même page qui est appelée
+                    url: '../STOCK_REQUETE.php', //toujours la même page qui est appelée
                     type: 'POST',
                     data: {
                         fonction: 'select', //fonction à executer
@@ -133,7 +133,7 @@ if (!$_SESSION['valid']) {
 
                 //APPEL DE TTES LES DONNES NECESSAIRES A LA REDACTION D'UN BON DE COMMANDE, POINT DE VUE BON DE COMMANDE
                 var laFonction = $.ajax({
-                    url: 'STOCK_REQUETE.php', //toujours la même page qui est appelée
+                    url: '../STOCK_REQUETE.php', //toujours la même page qui est appelée
                     type: 'POST',
                     data: {
                         fonction: 'select', //fonction à executer
@@ -149,7 +149,7 @@ if (!$_SESSION['valid']) {
                     }
                     //APPEL DE TTES LES DONNES NECESSAIRES A LA REDACTION D'UN BON DE COMMANDE, POINT DE VUE INGREDIENT
                     var laFonction2 = $.ajax({
-                        url: 'STOCK_REQUETE.php', //toujours la même page qui est appelée
+                        url: '../STOCK_REQUETE.php', //toujours la même page qui est appelée
                         type: 'POST',
                         data: {
                             fonction: 'select', //fonction à executer
@@ -313,7 +313,7 @@ if (!$_SESSION['valid']) {
                             if ($(this).is(":checked")) {
                                 selection = true; //VERIFICATION QU'IL Y A AU MOINS UNE SELECTION
                                 $.ajax({ //SUPPRESSION DE LA COMMANDE DE LA BASE
-                                    url: 'STOCK_REQUETE.php', //toujours la même page qui est appelée
+                                    url: '../STOCK_REQUETE.php', //toujours la même page qui est appelée
                                     type: 'POST',
                                     data: {
                                         fonction: 'update', //fonction à executer
