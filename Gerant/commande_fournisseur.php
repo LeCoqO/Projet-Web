@@ -170,10 +170,6 @@ if (!$_SESSION['valid']) {
                 //var fourn = document.getElementById('selectFourn').value;
                 var qte = document.getElementById('qte').value;
 
-                console.log(
-                    'INSERT INTO commandefournisseur (`IdIng`, `NomFourn`, `QteComFourn`,`DateLivFourn`,`DateComFourn`) VALUES (' +
-                    ing + ',' + '"MyFoodnisseur"' + ',' + qte + ',"' + dateLiv + '","' + dateAjd + '");');
-
                 var laFonction = $.ajax({
                     url: 'STOCK_REQUETE.php', //toujours la même page qui est appelée
                     type: 'POST',

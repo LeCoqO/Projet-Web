@@ -250,11 +250,10 @@ if (!$_SESSION['valid']) {
                                         },
                                     });
                                     setTimeout(function() {
-                                            javascipt: window.open('commandes/PDF' + resultats[
-                                                i]['IdComFourn'] + '.pdf');
+                                            javascipt: window.open('commandes/PDF' + resultats[i]['IdComFourn'] + '.pdf');
                                         },
                                         500
-                                    ); //On attend 500ms avant d'ouvrir le PDF, le temps que se dernier se génère/mette  à jour
+                                    ); //On attend 500ms avant d'ouvrir le PDF, le temps que se dernier se génère/mette à jour
                                 }
                             });
                         }
