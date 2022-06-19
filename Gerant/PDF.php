@@ -35,6 +35,7 @@ for ($i = 0; $i < count($_POST['commandefournisseur']); $i++) {
     $table_commande = $_POST['commandefournisseur'][$i];
   }
 }
+
 $table_fournisseur = $_POST['fournisseur'];
 
 $table_ingredient = $_POST['ingredient'];

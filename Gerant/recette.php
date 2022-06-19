@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <meta name="author" content="Diego TORRES" />
-    <link href="./style.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
@@ -258,7 +258,7 @@ function updateLine(idProd, bool) {
         laDate = "NULL";
     }
     $.ajax({
-        url: '../STOCK_REQUETE.php',
+        url: 'STOCK_REQUETE.php',
         type: 'POST',
         data: {
             fonction: 'update',
@@ -281,7 +281,7 @@ function afficherSuppri() {
         document.getElementById("tableau_Recettes_Supprimees").innerHTML = "";
     } else {
         $.ajax({
-            url: '../STOCK_REQUETE.php', //toujours la même page qui est appelée
+            url: 'STOCK_REQUETE.php', //toujours la même page qui est appelée
             type: 'POST',
             data: {
                 fonction: 'select', //fonction à executer
