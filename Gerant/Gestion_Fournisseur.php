@@ -12,7 +12,8 @@ if (!$_SESSION['valid']) {
 <head>
     <title>Gestions des fournisseurs</title>
     <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="../CSS/styleCommun.css">
+    <link rel="stylesheet" type="text/css" href="../CSS/styleLivreur.css">
     <meta name="author" content="PAGE Lilian" />
     <meta name="description" content="Statistique" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -63,18 +64,19 @@ if (!$_SESSION['valid']) {
     </header>
     <br><br><br><br><br><br>
     <div>
+        <h2 class="text-center">Interface Gérant</h2>
         <div id="tabfournisseur">
 
         </div>
         <div>
-            <button type='button' class="button titre text-center" style="margin: 40px; margin-left: 40%;"
-                id='NewFournisseur' onclick="location.href = 'Creation_Fournisseur.php'">
+            <button type='button' class="button text-center" style="margin: 40px; margin-left: 40%;" id='NewFournisseur'
+                onclick="location.href = 'Creation_Fournisseur.php'">
                 Créé un nouveau fournisseur</input>
         </div>
     </div>
     <script>
     $.ajax({
-        url: 'STOCK_REQUETE.php',
+        url: '../STOCK_REQUETE.php',
         type: 'POST',
         data: {
             fonction: 'select',
@@ -113,7 +115,7 @@ if (!$_SESSION['valid']) {
                     "<div class='table-data'>" + resultats[i]['TelFourn'] + "</div>" +
                     "<div class='table-data'>" + resultats[i]['MailFourn'] + "</div>" +
                     "<div class='table-data'> <input type='image' id='image' class='inputImage' src = '../img/engrenage.png' width = '45px' height = '45px' onclick = 'modif(this)' ></input > </div > " +
-                    "<div class='table-data'> <input type='image' id='image' class='inputImage'src = '../img/supprimer.png' width = '45px' height = '45px' onclick = 'suppressionFournisseur(this)' ></input > </div > " +
+                    "<div class='table-data'> <input type='image' id='image' class=''src = '../img/supprimer.png' width = '45px' height = '45px' onclick = 'suppressionFournisseur(this)' ></input > </div > " +
                     "</div > ";
 
             }
@@ -122,7 +124,7 @@ if (!$_SESSION['valid']) {
             document.getElementById("tabfournisseur").innerHTML = string;
         },
         error: function(dataSQL, statut) {
-            alert("error sqlConnect.js : " + dataSQL.erreur);
+            alert("error sqlConinputImagenect.js : " + dataSQL.erreur);
         }
     });
 
@@ -135,7 +137,7 @@ if (!$_SESSION['valid']) {
         let NomFourn = row.firstChild.innerHTML;
 
         $.ajax({
-            url: 'STOCK_REQUETE.php',
+            url: '../STOCK_REQUETE.php',
             type: 'POST',
             data: {
                 fonction: 'Update',
