@@ -14,8 +14,7 @@ if (!$_SESSION['valid']) {
     <meta charset="UTF-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <meta name="author" content="LUSTIERE Quentin" />
-    <link rel="stylesheet" href="../CSS/styleGerant.css">
-    <link rel="stylesheet" href="../CSS/styleCommun.css">
+    <link rel="stylesheet" href="style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css" />
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
@@ -87,14 +86,14 @@ if (!$_SESSION['valid']) {
             <section>
                 <h2 class="text-center">Interface Gérant</h2>
                 <div class="row text-center">
-                    <div class="column3">
+                    <div class="column">
                         <button class="button" onclick=window.location.href='consult_stocks.php'>Retour</button>
                     </div>
-                    <div class="column3">
+                    <div class="column">
                         <button class="button" onclick=window.location.href='bons_de_commandes.php'>Bons de
                             commandes</button>
                     </div>
-                    <div class="column3">
+                    <div class="column">
                         <button id='ok' class="button">Emettre un bon</button>
                     </div>
                 </div>
@@ -169,6 +168,10 @@ if (!$_SESSION['valid']) {
                 var ing = document.getElementById('selectIng').value;
                 //var fourn = document.getElementById('selectFourn').value;
                 var qte = document.getElementById('qte').value;
+
+                console.log(
+                    'INSERT INTO commandefournisseur (`IdIng`, `NomFourn`, `QteComFourn`,`DateLivFourn`,`DateComFourn`) VALUES (' +
+                    ing + ',' + '"MyFoodnisseur"' + ',' + qte + ',"' + dateLiv + '","' + dateAjd + '");');
 
                 var laFonction = $.ajax({
                     url: 'STOCK_REQUETE.php', //toujours la même page qui est appelée

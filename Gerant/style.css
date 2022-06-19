@@ -8,8 +8,6 @@ Couleur fond2(noir-gris):  (40, 40, 40)
 Couleur font: noir ou blanc
 
 */
-
-
 html {
   -ms-text-size-adjust: 100%;
 }
@@ -383,7 +381,7 @@ h6 {
   height: 550px;
   background: rgba(95, 95, 95);
 }
-.column3 {
+.column {
   float: left;
   width: 33.33%;
 }
