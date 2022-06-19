@@ -130,8 +130,6 @@ if (!$_SESSION['valid']) {
 
                 laFonction.done(function(msg) {
 
-                    console.log(msg);
-
                     let resultats = JSON.parse(msg);
 
                     selectIng = document.createElement('select');
@@ -168,7 +166,7 @@ if (!$_SESSION['valid']) {
                 //FONCTION QUI VIENT METTRE LA BASE A JOUR AVEC LE NOUVEAU STOCK
                 function update($produit, $qte) {
                     var produit = $produit;
-                    var qte = $qte;
+                    var qte = parseInt(parseInt($qte) + parseInt($('#qteActuelle').text()));
                     var laFonction = $.ajax({
                         url: 'STOCK_REQUETE.php', //toujours la même page qui est appelée
                         type: 'POST',
@@ -196,6 +194,7 @@ if (!$_SESSION['valid']) {
 
                 let labelQteActuelle = document.createElement('label');
                 let labelUniteActuelle = document.createElement('label');
+                labelQteActuelle.id = 'qteActuelle';
 
                 document.getElementById('qte').appendChild(labelQteActuelle);
                 document.getElementById('qte').appendChild(labelUniteActuelle);
