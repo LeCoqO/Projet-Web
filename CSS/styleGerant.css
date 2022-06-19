@@ -178,6 +178,12 @@
     float: left;
   }
   
+  .column3{
+    width: 33.00%;
+    float: left;
+  }
+  
+  
   .column4{
     width: 25.00%;
     float: left;
