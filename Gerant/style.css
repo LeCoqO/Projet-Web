@@ -8,6 +8,8 @@ Couleur fond2(noir-gris):  (40, 40, 40)
 Couleur font: noir ou blanc
 
 */
+
+
 html {
   -ms-text-size-adjust: 100%;
 }
@@ -381,7 +383,7 @@ h6 {
   height: 550px;
   background: rgba(95, 95, 95);
 }
-.column {
+.column3 {
   float: left;
   width: 33.33%;
 }
@@ -700,23 +702,6 @@ Couleur font: noir ou blanc*/
   background-color: rgb(240, 40, 40);
 }
 
-
-.messageBox {
-  padding: 10%;
-  margin: 0% 10%;
-  display: block;
-  /*position: absolute;*/
-  z-index: 9;
-  position: fixed;
-
-  top: 20%;
-  left: 10%;
-  opacity: 1;
-  background-color: #969292;
-  border: #000 solid;
-  z-index: 99;
-  text-align: center;
-}
 .Choix {
   width: 25%;
   height: 10%;
@@ -727,14 +712,6 @@ Couleur font: noir ou blanc*/
 
 .cat {
   margin-top: 20%;
-}
-
-.ingr_principaux-selected,
-.pain-selected,
-.ingr_secondaire-selected {
-  color: rgb(255, 255, 255);
-  background-color: rgb(192, 68, 19);
-  border: 1px solid rgb(40, 40, 40);
 }
 
 /*Fin IHM Stats*/
@@ -1115,7 +1092,7 @@ label {
 }
 
 .block_Menu {
-  height: 600px;
+  height: 700px;
   position: relative;
   margin-right: 3%;
   float: left;
@@ -1335,7 +1312,7 @@ Couleur font: noir ou blanc*/
   display: flex;
   cursor: pointer;
   transition: 0.3s all;
-  width: 100%;
+  width: 75%;
 }
 
 .item:hover {

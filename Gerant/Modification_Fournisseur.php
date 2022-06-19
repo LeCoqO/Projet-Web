@@ -11,8 +11,7 @@ if (!$_SESSION['valid']) {
 <head>
     <title>Modification Fournisseur</title>
     <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="../CSS/styleCommun.css">
-    <link rel="stylesheet" type="text/css" href="../CSS/styleLivreur.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
     <meta name="author" content="PAGE Lilian" />
     <meta name="description" content="Modification Fournisseur" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -64,35 +63,34 @@ if (!$_SESSION['valid']) {
     <br><br><br><br><br><br>
     <fieldset class="Choix centrer">
         <form>
-            <h2 class="text-center">Interface Gérant</h2>
             <br>
-            <div class="form__group">
+            <div class="form__group field">
                 <input type="input" class="form__field" placeholder="Name" name="name" id='nom' disabled="disabled"
                     required />
                 <label for="nom" class="form__label">Nom : </label>
             </div>
-            <div class="form__group">
+            <div class="form__group field">
                 <input class="form__field" type="text" placeholder="Adresse" id="adr" name="Adresse" value="" size="20"
                     maxlength="20" required>
                 <label for="Adresse" class="form__label">Adresse : </label>
             </div>
-            <div class="form__group">
+            <div class="form__group field">
                 <input class="form__field" type="text" placeholder="CodePostal" id="post" name="CodePostal" value=""
                     size="20" maxlength="5" required>
                 <label for="CodePostal" class="form__label">CodePostal : </label>
             </div>
-            <div class=" form__group">
+            <div class=" form__group field">
                 <input class="form__field" type="input" placeholder="Ville" name="name" id='ville' required />
                 <label class="form__label" for="Ville">Ville : </label>
             </div>
-            <div class="form__group">
+            <div class="form__group field">
                 <input class="form__field" type="tel" placeholder="Tel" id="tel" name="tel" pattern="[0-9]{10}"
                     maxlength="10" required>
                 <label class="form__label" for="tel">Téléphone:</label>
                 <br>
                 <small>Format: 12 34 56 78 90</small>
             </div>
-            <div class=" form__group">
+            <div class=" form__group field">
                 <input class="form__field" type="input" placeholder="mail" name="mail" id='mail' required />
                 <label class="form__label" for="mail">Mail : </label>
             </div>
@@ -117,7 +115,7 @@ if (!$_SESSION['valid']) {
     function modifierFournisseur() {
 
         $.ajax({
-            url: '../STOCK_REQUETE.php', //toujours la même page qui est appelée
+            url: 'STOCK_REQUETE.php', //toujours la même page qui est appelée
             type: 'POST',
             data: {
                 fonction: 'update', //fonction à executer
