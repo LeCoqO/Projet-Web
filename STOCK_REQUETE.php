@@ -4,11 +4,12 @@ $fonction = $_POST['fonction'];
 unset($_POST['fonction']);
 $fonction($_POST);
 
-function select($args){
+function select($args)
+{
     $requete = $args['requete'];
-    try{
-        $pdo = new PDO('mysql:host=localhost;dbname=homburger','root','');
-        $pdo -> exec("set names utf8");
+    try {
+        $pdo = new PDO('mysql:host=localhost;dbname=homburger', 'root', '');
+        $pdo->exec("set names utf8");
     } catch (PDOException $e) {
         echo 'Erreur : ' . $e->getMessage() . '<br />';
         echo 'N° : ' . $e->getCode();
@@ -20,11 +21,12 @@ function select($args){
     echo $json;
 }
 
-function update($args){
+function update($args)
+{
     $requete = $args['requete'];
-    try{
-        $pdo = new PDO('mysql:host=localhost;dbname=homburger','root','');
-        $pdo -> exec("set names utf8");
+    try {
+        $pdo = new PDO('mysql:host=localhost;dbname=homburger', 'root', '');
+        $pdo->exec("set names utf8");
     } catch (PDOException $e) {
         echo 'Erreur : ' . $e->getMessage() . '<br />';
         echo 'N° : ' . $e->getCode();
@@ -32,18 +34,19 @@ function update($args){
     }
     $statement = $pdo->prepare($requete);
     $statement->execute();
-  if($statement){
-    echo 'Les données ont bien été mises à jour';
-  }else{
-    echo "Une erreur est survenue !";
-  }
+    if ($statement) {
+        echo 'Les données ont bien été mises à jour';
+    } else {
+        echo "Une erreur est survenue !";
+    }
 }
 
-function insert($args){
+function insert($args)
+{
     $requete = $args['requete'];
-    try{
-        $pdo = new PDO('mysql:host=localhost;dbname=homburger','root','');
-        $pdo -> exec("set names utf8");
+    try {
+        $pdo = new PDO('mysql:host=localhost;dbname=homburger', 'root', '');
+        $pdo->exec("set names utf8");
     } catch (PDOException $e) {
         echo 'Erreur : ' . $e->getMessage() . '<br />';
         echo 'N° : ' . $e->getCode();
@@ -51,11 +54,11 @@ function insert($args){
     }
     $statement = $pdo->prepare($requete);
     $statement->execute();
-  if($statement){
-    echo 'Les données ont bien été insérés';
-  }else{
-    echo "Une erreur est survenue !";
-  }
+    if ($statement) {
+        echo 'Les données ont bien été insérés';
+    } else {
+        echo "Une erreur est survenue !";
+    }
 }
 
 function selectProduit2Bdd($args)
@@ -84,7 +87,7 @@ function selectProduit2Bdd($args)
     $result = $connex->query($rq);
     foreach ($result as $element) {
         echo '<div id="' . $element['IdProd'] . '|' . $element['NomProd'] . '|' . $element['PrixUHT'] . '|' . $element['Taille'] . '|' . $element['IngBase1'] . '|' . $element['IngBase2'] . '|' . $element['IngBase3'] . '|' . $element['IngBase4'] . '|' . $element['IngOpti1'] . '|' . $element['IngOpti2'] . '|' . $element['IngOpti3'] . '|' . $element['IngOpti4'] . '" class="item">            
-                <img src="' . $element['Image'] . '">' .
+                <img style="max-width : 400px" src="' . $element['Image'] . '">' .
             '<div class="item-infos">' .
             '<h3>' . $element['NomProd'] . '</h3>' .
             '<hr>
@@ -97,7 +100,7 @@ function selectProduit2Bdd($args)
             '</p>' .
             '<p class="prix">Prix : ' . $element['PrixUHT'] . '</p>
                 </div>
-                <img src="../img/panier.png" class="imgpanier ">
+                <img src="../img/panier.png" class="imgpanier">
             </div>';  //onclick = "RecupPanier(this)"    
     }
 }

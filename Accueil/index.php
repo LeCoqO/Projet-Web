@@ -236,9 +236,7 @@ function addToJson() {
     lePanier.classList.add("panier_fermee");
     panierContent.innerHTML = "<span style = 'color: white'><small>P<br>A<br>N<br>I<br>E<br>R</small></span>";
     localStorage.setItem("PanierJson", JSON.stringify(tabJson));
-    console.log(tabJson);
-
-
+    document.getElementById("messageBoxPanier").style.display = "none";
 }
 
 function confChoix() {
