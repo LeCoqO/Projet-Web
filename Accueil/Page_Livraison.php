@@ -198,15 +198,15 @@ function Validationlivraison() {
         },
         success: function(data) {
             var NumComMax = JSON.parse(data);
-            parseInt(NumComMax[0]) == parseInt(NumComMax[0]['MAX(NumCom)'] + 1);
-            console.log(NumComMax);
 
             var Recap = JSON.parse(localStorage.getItem("PanierJson"));
             var strgRecap = "";
             var value = '';
             for (let i = 0; i < Recap.length; i++) {
                 value += "('" + Recap[i]["id"] + "','" + Recap[i]["name"] + "','" + Recap[i]["quantity"] +
-                    "','" + Recap[i]["taille"] + "','" + NumComMax[0]['MAX(NumCom)'] + "','" + Recap[i][
+                    "','" + Recap[i]["taille"] + "','" + (parseInt(NumComMax[0]['MAX(NumCom)']) + 1) +
+                    "','" + Recap[
+                        i][
                         "IngBase1"
                     ] + "','" + Recap[i]["IngBase2"] + "','" + Recap[i]["IngBase3"] + "','" + Recap[i][
                         "IngBase4"
