@@ -27,8 +27,7 @@ session_start();
                     <a class="navbar-brand" style="text-transform: uppercase">
                         Hom'Burger
                     </a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
-                        aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarResponsive">
@@ -64,6 +63,25 @@ session_start();
 
         <?php
         $msg = '';
+        //////////////////////////////
+        $requete = "SELECT * FROM gerant";
+        try {
+            $pdo = new PDO('mysql:host=localhost;dbname=homburger', 'root', '');
+            $pdo->exec("set names utf8");
+        } catch (PDOException $e) {
+            echo 'Erreur : ' . $e->getMessage() . '<br />';
+            echo 'N° : ' . $e->getCode();
+            die();
+        }
+        $statement = $pdo->query($requete);;
+        $results = $statement->fetchAll(PDO::FETCH_ASSOC);
+        //$json = json_encode($results);
+        //echo $results;
+        $IdGerant = $results[0]["Identifient"];
+        $MDPGerant = $results[0]["MDPEmp"];
+        //echo $IdGerant;
+        //echo $MDPGerant;
+        //////////////////////////////
 
         if (
             isset($_POST['login']) && !empty($_POST['username'])
@@ -71,8 +89,8 @@ session_start();
         ) {
 
             if (
-                $_POST['username'] == 'root' &&
-                $_POST['password'] == 'cqfd14sAfe'
+                $_POST['username'] == $IdGerant &&
+                $_POST['password'] == $MDPGerant
             ) {
                 $_SESSION['valid'] = true;
                 $_SESSION['timeout'] = time();
@@ -92,8 +110,7 @@ session_start();
         <form class="form-signin" role="form" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);
                                                         ?>" method="post">
             <h4 class="form-signin-heading"><?php echo $msg; ?></h4>
-            <input type="text" class="form-control" name="username" placeholder="username = tutorialspoint" required
-                autofocus></br>
+            <input type="text" class="form-control" name="username" placeholder="username = tutorialspoint" required autofocus></br>
             <input type="password" class="form-control" name="password" placeholder="password = 1234" required>
             <button class="btn btn-lg btn-primary btn-block" type="submit" name="login">Login</button>
         </form>
