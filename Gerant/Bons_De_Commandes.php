@@ -311,7 +311,8 @@ if (!$_SESSION['valid']) {
                         console.log($(this).is(":checked"));
                         if ($(this).is(":checked")) {
                             selection = true;
-                            $.ajax({
+                            alert('Fonctionnalité pas encore disponible.');
+                            /*$.ajax({
                                 url: 'mailSender.php', //toujours la même page qui est appelée
                                 type: 'POST',
                                 data: {
@@ -327,7 +328,7 @@ if (!$_SESSION['valid']) {
                                 error: function(dataSQL, statut) {
                                     alert("error sqlConnect.js : " + dataSQL.erreur);
                                 }
-                            })
+                            })*/
                         }
                     })
 
