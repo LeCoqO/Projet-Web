@@ -39,8 +39,9 @@ $table_fournisseur = $_POST['fournisseur'];
 
 $table_ingredient = $_POST['ingredient'];
 
-$id_ing = array_search($table_commande['NomFourn'], array_column($table_ingredient, 'IdIng'));
+$id_ing = $table_commande['IdIng'] - 1; //array_search($table_commande['NomFourn'], array_column($table_ingredient, 'IdIng'));
 $id_fourn = array_search($table_commande['IdIng'], array_column($table_fournisseur, 'NomFourn'));
+
 
 $pdf = new PDF();
 $pdf->AliasNbPages();
@@ -117,7 +118,7 @@ $pdf->SetFillColor(255);
 $pdf->SetX(10);
 $pdf->Cell(25, 8, $table_commande['IdIng'], 1, 0, 'C', 1);
 $pdf->SetX(35);
-$pdf->Cell(100, 8, $table_ingredient[$id_ing]['NomIng'], 1, 0, 'C', 1);
+$pdf->Cell(100, 8, utf8_decode($table_ingredient[$id_ing]['NomIng']), 1, 0, 'C', 1);
 $pdf->SetX(135);
 $pdf->Cell(20, 8, $table_ingredient[$id_ing]['PUHT'] . chr(128), 1, 0, 'C', 1);
 $pdf->SetX(155);

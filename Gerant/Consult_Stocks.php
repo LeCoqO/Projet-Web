@@ -24,16 +24,16 @@ if (!$_SESSION['valid']) {
     <title>HOMBURGER - GERANT</title>
 
     <style>
-    table {
-        border-collapse: collapse;
-        border-spacing: 0;
-    }
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
 
-    th,
-    td {
-        padding: 10px 20px;
-        border: 1px solid #000;
-    }
+        th,
+        td {
+            padding: 10px 20px;
+            border: 1px solid #000;
+        }
     </style>
 
 </head>
@@ -110,7 +110,7 @@ if (!$_SESSION['valid']) {
                     //DMD A LA BASE DES LES PRODUITS ET LEUR STOCK VIA AJAX->PHP->MySQL 
                     $.ajax({
                         url: '../STOCK_REQUETE.php', //toujours la même page qui est appelée
-                                                type: 'POST',
+                        type: 'POST',
                         data: {
                             fonction: 'select', //fonction à executer
                             requete: 'SELECT NomIng,StockReel,Unite FROM ingredient',

@@ -180,10 +180,9 @@ if (!$_SESSION['valid']) {
                             dateE.innerHTML = "Date d'émission : " + resultats[i]['DateComFourn'];
                             dateL.innerHTML = "Date livraison prévue : " + resultats[i]['DateLivFourn'];
                             ing.innerHTML = resultats2[indexIng]['NomIng'];
-                            qte.innerHTML = resultats[i]['QteComFourn'] + ' ' + resultats2[i]['Unite'];
+                            qte.innerHTML = resultats[i]['QteComFourn'] + ' ' + resultats2[indexIng]['Unite'];
                             fourn.innerHTML = resultats[i]['NomFourn'];
-                            prix.innerHTML = 'PRIX TOTAL HT : ' + resultats[i]['QteComFourn'] * resultats2[
-                                i]['PUHT'] + ' €';
+                            prix.innerHTML = 'PRIX TOTAL HT : ' + resultats[i]['QteComFourn'] * resultats2[indexIng]['PUHT'] + ' €';
 
                             laCommande.className = 'left container centered-element commande';
                             button.id = i; //resultats[i]['IdComFourn']
