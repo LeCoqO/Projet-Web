@@ -28,18 +28,13 @@ class PDF extends TFPDF
   }
 }
 
-$table_commande = [];
-for ($i = 0; $i < count($_POST['commandefournisseur']); $i++) {
-  if ($_POST['commandefournisseur'][$i]['IdComFourn'] == str_replace("PDF", "", $_POST['id'])) {
-    $table_commande = $_POST['commandefournisseur'][$i];
-  }
-}
+$table_commande = $_POST['commandefournisseur'];
 
 $table_fournisseur = $_POST['fournisseur'];
 
 $table_ingredient = $_POST['ingredient'];
 
-$id_ing = $table_commande['IdIng'] - 1; //array_search($table_commande['NomFourn'], array_column($table_ingredient, 'IdIng'));
+$id_ing =array_search($table_commande['NomFourn'], array_column($table_ingredient, 'IdIng'));// $_POST['i']; //array_search($table_commande['NomFourn'], array_column($table_ingredient, 'IdIng'));
 $id_fourn = array_search($table_commande['IdIng'], array_column($table_fournisseur, 'NomFourn'));
 
 
@@ -61,19 +56,19 @@ $pdf->Cell(60, 6, 'FOURNISSEUR', 0, 1, 'L', 1);
 $pdf->SetX($decalageLiv);
 $pdf->Cell(60, 6, 'HOM\'BURGER', 0, 0, 'L', 1);
 $pdf->SetX($decalageFourn);
-$pdf->Cell(60, 6, utf8_decode($table_fournisseur[$id_fourn]['NomFourn']), 0, 1, 'L', 1);
+$pdf->Cell(60, 6, utf8_decode($table_fournisseur['NomFourn']), 0, 1, 'L', 1);
 $pdf->SetX($decalageLiv);
 $pdf->Cell(60, 6, '59 Grande rue saint Cosme', 0, 0, 'L', 1);
 $pdf->SetX($decalageFourn);
-$pdf->Cell(60, 6, utf8_decode($table_fournisseur[$id_fourn]['AdresseFourn']), 0, 1, 'L', 1);
+$pdf->Cell(60, 6, utf8_decode($table_fournisseur['AdresseFourn']), 0, 1, 'L', 1);
 $pdf->SetX($decalageLiv);
 $pdf->Cell(60, 6, utf8_decode(71100 . " " . 'Chalon s/Saône'), 0, 0, 'L', 1);
 $pdf->SetX($decalageFourn);
-$pdf->Cell(60, 6, utf8_decode($table_fournisseur[$id_fourn]['CPFourn']) . " " . utf8_decode($table_fournisseur[$id_fourn]['VilleFourn']), 0, 1, 'L', 1);
+$pdf->Cell(60, 6, utf8_decode($table_fournisseur['CPFourn']) . " " . utf8_decode($table_fournisseur['VilleFourn']), 0, 1, 'L', 1);
 $pdf->SetX($decalageLiv);
 $pdf->Cell(60, 6, '0771718751', 0, 0, 'L', 1);
 $pdf->SetX($decalageFourn);
-$pdf->Cell(60, 6, utf8_decode($table_fournisseur[$id_fourn]['TelFourn']), 0, 1, 'L', 1);
+$pdf->Cell(60, 6, utf8_decode($table_fournisseur['TelFourn']), 0, 1, 'L', 1);
 $pdf->Ln(10);
 
 function entete_table($position_entete)
@@ -118,13 +113,13 @@ $pdf->SetFillColor(255);
 $pdf->SetX(10);
 $pdf->Cell(25, 8, $table_commande['IdIng'], 1, 0, 'C', 1);
 $pdf->SetX(35);
-$pdf->Cell(100, 8, utf8_decode($table_ingredient[$id_ing]['NomIng']), 1, 0, 'C', 1);
+$pdf->Cell(100, 8, utf8_decode($table_ingredient['NomIng']), 1, 0, 'C', 1);
 $pdf->SetX(135);
-$pdf->Cell(20, 8, $table_ingredient[$id_ing]['PUHT'] . chr(128), 1, 0, 'C', 1);
+$pdf->Cell(20, 8, $table_ingredient['PUHT'] . chr(128), 1, 0, 'C', 1);
 $pdf->SetX(155);
 $pdf->Cell(20, 8, $table_commande['QteComFourn'], 1, 0, 'C', 1);
 $pdf->SetX(175);
-$pdf->Cell(25, 8, $table_commande['QteComFourn'] * $table_ingredient[$id_ing]['PUHT'] . chr(128), 1, 0, 'C', 1);
+$pdf->Cell(25, 8, $table_commande['QteComFourn'] * $table_ingredient['PUHT'] . chr(128), 1, 0, 'C', 1);
 $pdf->Ln();
 
 $pdf->Output('F', ".\\commandes\\" . $_POST['id'] . '.pdf');

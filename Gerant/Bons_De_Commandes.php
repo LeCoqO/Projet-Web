@@ -110,160 +110,198 @@ if (!$_SESSION['valid']) {
                     date.setDate(date.getDate() + days);
                     return date;
                 }
-
                 var date = new Date();
-                var resultats
-                var resultats2;
-                var resultats3;
-                //APPEL DE TTES LES DONNES NECESSAIRES A LA REDACTION D'UN BON DE COMMANDE, POINT DE VUE FOURNISSEUR
-                var laFonctionn = $.ajax({
-                    url: '../STOCK_REQUETE.php', //toujours la même page qui est appelée
-                    type: 'POST',
-                    data: {
-                        fonction: 'select', //fonction à executer
-                        requete: 'SELECT NomFourn,AdresseFourn,CPFourn,VilleFourn,TelFourn FROM fournisseur',
-                    }
-                });
-                laFonctionn.done(function(data) {
-                    resultats3 = JSON.parse(data);
-                });
-                laFonctionn.fail(function(dataSQL, statut) {
-                    alert("error sqlConnect.js : " + dataSQL.erreur);
-                });
-
                 //APPEL DE TTES LES DONNES NECESSAIRES A LA REDACTION D'UN BON DE COMMANDE, POINT DE VUE BON DE COMMANDE
                 var laFonction = $.ajax({
                     url: '../STOCK_REQUETE.php', //toujours la même page qui est appelée
                     type: 'POST',
                     data: {
                         fonction: 'select', //fonction à executer
-                        requete: 'SELECT * FROM commandefournisseur', //On a besoin de TOUS les champs de commandefournisseur, d'ou l'utilisation du * 
+                        requete: 'SELECT * FROM commandefournisseur ORDER BY IdIng ASC', //On a besoin de TOUS les champs de commandefournisseur, d'ou l'utilisation du * 
                     }
                 });
 
                 laFonction.done(function(msg) {
                     resultats = JSON.parse(msg);
-                    let autreReq = [];
-                    for (var IdIng in resultats) {
-                        autreReq.push(IdIng);
-                    }
-                    //APPEL DE TTES LES DONNES NECESSAIRES A LA REDACTION D'UN BON DE COMMANDE, POINT DE VUE INGREDIENT
-                    var laFonction2 = $.ajax({
-                        url: '../STOCK_REQUETE.php', //toujours la même page qui est appelée
-                        type: 'POST',
-                        data: {
-                            fonction: 'select', //fonction à executer
-                            requete: 'SELECT NomIng,IdIng,Unite,PrixUHT_Moyen AS PUHT FROM ingredient', // WHERE IdIng IN (SELECT IdIng FROM commandefournisseur)',
-                        }
-                    });
-                    laFonction2.done(function(msg2) {
-                        resultats2 = JSON.parse(msg2);
-                        for (i = 0; i < resultats
-                            .length; i++) { //AFFICHAGE DE CES DONNEES DE MANIERE STRUCTUREE DANS LA PAGE
+                    var resultats
+                    var resultats2;
+                    var resultats3;
+                    console.log(resultats);
 
-                            let laCommande = document.createElement('article');
-                            let recapEtBouton = document.createElement('div');
-                            let button = document.createElement('button');
-                            let tousLesChamps = document.createElement('div');
-                            let dateE = document.createElement('div');
-                            let dateL = document.createElement('div');
-                            let ing = document.createElement('div');
-                            let qte = document.createElement('div');
-                            let fourn = document.createElement('div');
-                            let prix = document.createElement('div');
-                            let clear = document.createElement('div');
-                            let laCheck = document.createElement('div');
-                            let input = document.createElement('input');
+                    for (let i = 0; i < resultats.length; i++) {
+                        //APPEL DE TTES LES DONNES NECESSAIRES A LA REDACTION D'UN BON DE COMMANDE, POINT DE VUE FOURNISSEUR
+                        var laFonction3 = $.ajax({
+                            url: '../STOCK_REQUETE.php', //toujours la même page qui est appelée
+                            type: 'POST',
+                            data: {
+                                fonction: 'select', //fonction à executer
+                                requete: 'SELECT NomFourn,AdresseFourn,CPFourn,VilleFourn,TelFourn FROM fournisseur WHERE (`NomFourn` = "' + resultats[i]['NomFourn'] + '");',
+                            }
+                        });
+                        laFonction3.done(function(data) {
+                            console.log('SELECT NomFourn,AdresseFourn,CPFourn,VilleFourn,TelFourn FROM fournisseur WHERE NomFourn = ' + resultats[i]['NomFourn'] + ';');
+                            resultats3 = JSON.parse(data);
+                            console.log('fourn');
+                            console.log(resultats3);
 
-                            let indexIng = resultats[i]['IdIng'] - 1;
-                            button.innerHTML = "PDF";
-                            dateE.innerHTML = "Date d'émission : " + resultats[i]['DateComFourn'];
-                            dateL.innerHTML = "Date livraison prévue : " + resultats[i]['DateLivFourn'];
-                            ing.innerHTML = resultats2[indexIng]['NomIng'];
-                            qte.innerHTML = resultats[i]['QteComFourn'] + ' ' + resultats2[indexIng]['Unite'];
-                            fourn.innerHTML = resultats[i]['NomFourn'];
-                            prix.innerHTML = 'PRIX TOTAL HT : ' + resultats[i]['QteComFourn'] * resultats2[indexIng]['PUHT'] + ' €';
 
-                            laCommande.className = 'left container centered-element commande';
-                            button.id = i; //resultats[i]['IdComFourn']
-                            button.className = 'button toPDF left'
-                            tousLesChamps.className = 'bonCompact';
-                            dateE.className = 'left';
-                            dateL.className = 'right';
-                            ing.className = 'clear left';
-                            qte.className = 'right';
-                            fourn.className = 'clear';
-                            prix.className = 'text-center';
-                            clear.className = 'clear';
-                            input.id = i + 'bis';
-                            input.type = 'checkbox';
-                            input.className = 'checkbox';
-                            laCheck.className = 'right vertical-center';
-
-                            tousLesChamps.appendChild(dateE);
-                            tousLesChamps.appendChild(dateL);
-                            tousLesChamps.appendChild(ing);
-                            tousLesChamps.appendChild(qte);
-                            tousLesChamps.appendChild(fourn);
-                            tousLesChamps.appendChild(prix);
-                            recapEtBouton.appendChild(tousLesChamps);
-                            recapEtBouton.appendChild(button);
-                            laCheck.appendChild(input);
-                            laCommande.appendChild(recapEtBouton)
-                            laCommande.appendChild(laCheck);
-                            parent = document.getElementById('parent');
-                            parent.appendChild(laCommande);
-                            parent.appendChild(clear);
-                            button.addEventListener('click', event => {
-                                i = button.id;
-                                var dateLiv = new Date(resultats[i]['DateLivFourn'].substr(0, 4),
-                                    resultats[i]['DateLivFourn'].substr(5, 2) - 1, resultats[i][
-                                        'DateLivFourn'
-                                    ].substr(8, 2)
-                                ); //POIR LES MOIS, il faut -1 car ils vont de 0 à 11.
-                                var dateCom = new Date(resultats[i]['DateComFourn'].substr(0, 4),
-                                    resultats[i]['DateComFourn'].substr(5, 2) - 1, resultats[i][
-                                        'DateComFourn'
-                                    ].substr(8, 2)
-                                ); //POIR LES MOIS, il faut -1 car ils vont de 0 à 11.
-                                if (dateLiv < date || dateCom.addDays(30) <
-                                    date) { //TEST DE LA COMMANDE (30J  MAX)
-                                    alert(
-                                        'Commande trop ancienne, merci d\'en génerer une nouvelle'
-                                    );
-                                } else { //APPEL DE LA CLASSE PDF, GENERANT DES PDF
-                                    $.ajax({
-                                        url: 'PDF.php', //toujours la même page qui est appelée
-                                        type: 'POST',
-                                        data: ({
-                                            commandefournisseur: resultats,
-                                            ingredient: resultats2,
-                                            id: 'PDF' + resultats[i]['IdComFourn'],
-                                            fournisseur: resultats3
-                                        }),
-                                        success: function(data) {},
-                                        error: function() {
-                                            alert(
-                                                'There was some error performing the AJAX call!'
-                                            );
-                                        },
-                                    });
-                                    setTimeout(function() {
-                                            javascipt: window.open('commandes/PDF' + resultats[i]['IdComFourn'] + '.pdf');
-                                        },
-                                        500
-                                    ); //On attend 500ms avant d'ouvrir le PDF, le temps que se dernier se génère/mette à jour
+                            //APPEL DE TTES LES DONNES NECESSAIRES A LA REDACTION D'UN BON DE COMMANDE, POINT DE VUE INGREDIENT
+                            var laFonction2 = $.ajax({
+                                url: '../STOCK_REQUETE.php', //toujours la même page qui est appelée
+                                type: 'POST',
+                                data: {
+                                    fonction: 'select', //fonction à executer
+                                    requete: 'SELECT NomIng,IdIng,Unite,PrixUHT_Moyen AS PUHT FROM ingredient WHERE IdIng IN (SELECT IdIng FROM commandefournisseur);', // WHERE IdIng IN (SELECT IdIng FROM commandefournisseur)',
                                 }
                             });
-                        }
-                        laFonction2.fail(function(dataSQL, statut) {
+
+                            laFonction2.done(function(msg2) {
+                                resultats2 = JSON.parse(msg2);
+                                console.log(resultats2);
+                                //AFFICHAGE DE CES DONNEES DE MANIERE STRUCTUREE DANS LA PAGE
+
+
+                                affichageDiv(resultats, resultats2, resultats3, i);
+
+
+                            });
+                            laFonction2.fail(function(dataSQL, statut) {
+                                alert("error sqlConnect.js : " + dataSQL.erreur);
+                            });
+                        });
+
+                        laFonction3.fail(function(dataSQL, statut) {
                             alert("error sqlConnect.js : " + dataSQL.erreur);
                         });
-                        laFonction.fail(function(dataSQL, statut) {
-                            alert("error sqlConnect.js : " + dataSQL.erreur);
-                        });
-                    });
+
+
+                    }
                 });
+                laFonction.fail(function(dataSQL, statut) {
+                    alert("error sqlConnect.js : " + dataSQL.erreur);
+                });
+
+
+                function affichageDiv($r1, $r2, $r3, $i) {
+                    let resultats = $r1;
+                    let resultats2 = $r2;
+                    let resultats3 = $r3;
+                    let i = $i;
+                    console.log($r1);
+                    console.log($r2);
+                    console.log($r3);
+                    console.log($i);
+                    let laCommande = document.createElement('article');
+                    let recapEtBouton = document.createElement('div');
+                    let button = document.createElement('button');
+                    let tousLesChamps = document.createElement('div');
+                    let dateE = document.createElement('div');
+                    let dateL = document.createElement('div');
+                    let ing = document.createElement('div');
+                    let qte = document.createElement('div');
+                    let fourn = document.createElement('div');
+                    let prix = document.createElement('div');
+                    let clear = document.createElement('div');
+                    let laCheck = document.createElement('div');
+                    let input = document.createElement('input');
+
+                    button.innerHTML = "PDF";
+                    dateE.innerHTML = "Date d'émission : " + resultats[i]['DateComFourn'];
+                    dateL.innerHTML = "Date livraison prévue : " + resultats[i]['DateLivFourn'];
+                    ing.innerHTML = resultats2[i]['NomIng'];
+                    qte.innerHTML = resultats[i]['QteComFourn'] + ' ' + resultats2[i]['Unite'];
+                    fourn.innerHTML = resultats3[0]['NomFourn'];
+                    prix.innerHTML = 'PRIX TOTAL HT : ' + resultats[i]['QteComFourn'] * resultats2[i]['PUHT'] + ' €';
+
+                    console.log(resultats);
+                    console.log(resultats2);
+                    console.log(resultats3);
+
+                    laCommande.className = 'left container centered-element commande';
+                    button.id = i; //resultats[i]['IdComFourn']
+                    button.className = 'button toPDF left'
+                    tousLesChamps.className = 'bonCompact';
+                    dateE.className = 'left';
+                    dateL.className = 'right';
+                    ing.className = 'clear left';
+                    qte.className = 'right';
+                    fourn.className = 'clear';
+                    prix.className = 'text-center';
+                    clear.className = 'clear';
+                    input.type = 'checkbox';
+                    input.className = 'checkbox';
+                    laCheck.className = 'right vertical-center';
+                    input.id = resultats[i]['IdIng'] + "ID";
+
+                    tousLesChamps.appendChild(dateE);
+                    tousLesChamps.appendChild(dateL);
+                    tousLesChamps.appendChild(ing);
+                    tousLesChamps.appendChild(qte);
+                    tousLesChamps.appendChild(fourn);
+                    tousLesChamps.appendChild(prix);
+                    recapEtBouton.appendChild(tousLesChamps);
+                    recapEtBouton.appendChild(button);
+                    laCheck.appendChild(input);
+                    laCommande.appendChild(recapEtBouton)
+                    laCommande.appendChild(laCheck);
+                    parent = document.getElementById('parent');
+                    parent.appendChild(laCommande);
+                    parent.appendChild(clear);
+
+
+
+                    button.addEventListener('click', event => {
+                        i = button.id;
+                        var dateLiv = new Date(resultats[i]['DateLivFourn'].substr(0, 4),
+                            resultats[i]['DateLivFourn'].substr(5, 2) - 1, resultats[i][
+                                'DateLivFourn'
+                            ].substr(8, 2)
+                        ); //POIR LES MOIS, il faut -1 car ils vont de 0 à 11.
+                        var dateCom = new Date(resultats[i]['DateComFourn'].substr(0, 4),
+                            resultats[i]['DateComFourn'].substr(5, 2) - 1, resultats[i][
+                                'DateComFourn'
+                            ].substr(8, 2)
+                        ); //POIR LES MOIS, il faut -1 car ils vont de 0 à 11.
+                        if (dateLiv < date || dateCom.addDays(30) < date) { //TEST DE LA COMMANDE (30J  MAX)
+                            alert(
+                                'Commande trop ancienne, merci d\'en génerer une nouvelle'
+                            );
+                        } else { //APPEL DE LA CLASSE PDF, GENERANT DES PDF
+                            console.log(resultats[i]);
+                            console.log(resultats2[i]);
+                            console.log(resultats3[0]);
+
+                            $.ajax({
+                                url: 'PDF.php', //toujours la même page qui est appelée
+                                type: 'POST',
+                                data: ({
+                                    commandefournisseur: resultats[i],
+                                    ingredient: resultats2[i],
+                                    indexIng: i,
+                                    id: 'PDF' + resultats[i]['IdComFourn'],
+                                    fournisseur: resultats3[0]
+                                }),
+                                success: function(data) {},
+                                error: function() {
+                                    alert(
+                                        'There was some error performing the AJAX call!'
+                                    );
+                                },
+                            });
+                            setTimeout(function() {
+                                    javascipt: window.open('commandes/PDF' + resultats[i]['IdComFourn'] + '.pdf');
+                                },
+                                500
+                            ); //On attend 500ms avant d'ouvrir le PDF, le temps que se dernier se génère/mette à jour
+                        }
+                    })
+                }
+
+
+
+
+
+
 
                 //ENVOI DES BONS DE COMMANDE, PUIS RECHARGEMENT DE LA PAGE
                 // -----------------------OBSOLETE------------------------------
@@ -311,15 +349,15 @@ if (!$_SESSION['valid']) {
                             console.log($(this).is(":checked"));
                             if ($(this).is(":checked")) {
                                 selection = true; //VERIFICATION QU'IL Y A AU MOINS UNE SELECTION
+                                console.log('DELETE FROM commandefournisseur WHERE IdComFourn = ' +
+                                            $(this).attr('id').replace('ID', '') + ';');
                                 $.ajax({ //SUPPRESSION DE LA COMMANDE DE LA BASE
                                     url: '../STOCK_REQUETE.php', //toujours la même page qui est appelée
                                     type: 'POST',
                                     data: {
                                         fonction: 'update', //fonction à executer
-                                        requete: 'DELETE FROM commandefournisseur WHERE IdComFourn = ' +
-                                            resultats[$(this).attr('id').replace('bis', '')][
-                                                'IdComFourn'
-                                            ] + ';',
+                                        requete: 'DELETE FROM commandefournisseur WHERE IdIng = ' +
+                                            $(this).attr('id').replace('ID', '') + ';'
                                     },
                                     success: function(data) {},
                                     error: function(dataSQL, statut) {

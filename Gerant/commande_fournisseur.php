@@ -168,26 +168,52 @@ if (!$_SESSION['valid']) {
                     var ing = document.getElementById('selectIng').value;
                     //var fourn = document.getElementById('selectFourn').value;
                     var qte = document.getElementById('qte').value;
-
+                    console.log('INSERT INTO commandefournisseur (`IdIng`, `NomFourn`, `QteComFourn`,`DateLivFourn`,`DateComFourn`) VALUES (' +
+                        ing + ',' + '"MyFoodnisseur"' + ',' + qte + ',"' + dateLiv + '","' + dateAjd +
+                        '");', );
                     var laFonction = $.ajax({
                         url: '../STOCK_REQUETE.php', //toujours la même page qui est appelée
                         type: 'POST',
                         data: {
-                            fonction: 'insert', //fonction à executer
-                            requete: 'INSERT INTO commandefournisseur (`IdIng`, `NomFourn`, `QteComFourn`,`DateLivFourn`,`DateComFourn`) VALUES (' +
-                                ing + ',' + '"MyFoodnisseur"' + ',' + qte + ',"' + dateLiv + '","' + dateAjd +
-                                '");',
+                            fonction: 'select', //fonction à executer
+                            requete: 'SELECT IdIng FROM commandefournisseur',
                         }
                     });
-                    laFonction.done(function(data) {
-                        alert('Commande passée!');
+
+                    laFonction.done(function(msg) {
+                        let resulatats = JSON.parse(msg);
+                        let ok = true;
+                        resulatats.forEach(element => {
+                            if (ing == element['IdIng']) {
+                                ok = false;
+                            }
+                        });
+                        if (ok) {
+                            var laFonction = $.ajax({
+                                url: '../STOCK_REQUETE.php', //toujours la même page qui est appelée
+                                type: 'POST',
+                                data: {
+                                    fonction: 'insert', //fonction à executer
+                                    requete: 'INSERT INTO commandefournisseur (`IdIng`, `NomFourn`, `QteComFourn`,`DateLivFourn`,`DateComFourn`) VALUES (' +
+                                        ing + ',' + '"MyFoodnisseur"' + ',' + qte + ',"' + dateLiv + '","' + dateAjd +
+                                        '");',
+                                }
+                            });
+                            laFonction.done(function(data) {
+                                alert('Commande passée!');
+                            });
+                            laFonction.fail(function(dataSQL, statut) {
+                                alert("error sqlConnect.js : " + dataSQL.erreur);
+                            });
+
+                        } else {
+                            alert('Une commande a déjà été passée pour ce produit.')
+                        };
                     });
                     laFonction.fail(function(dataSQL, statut) {
                         alert("error sqlConnect.js : " + dataSQL.erreur);
                     });
-
                 }
-
                 //FONCTION METTANT A JOUR LE PRIX
                 function calculPrix($id, $qte) {
                     var id = $id;
@@ -203,6 +229,7 @@ if (!$_SESSION['valid']) {
                         });
                         laFonction.done(function(data) {
                             let resultats = JSON.parse(data);
+                            console.log(resultats);
                             let prix = resultats[0]['PrixUHT_Moyen'] * qte;
                             document.getElementById('total').value = prix;
                         });
@@ -226,6 +253,7 @@ if (!$_SESSION['valid']) {
                         });
                         laFonction.done(function(data) {
                             let resultats = JSON.parse(data);
+                            console.log(resultats);
                             document.getElementById('unite2').innerHTML = resultats[0]['Unite'];
                             document.getElementById('qte').value = resultats[0]['StockMin']
                         });

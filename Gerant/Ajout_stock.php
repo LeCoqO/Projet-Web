@@ -201,21 +201,20 @@ if (!$_SESSION['valid']) {
 
                 //FONCTION QUI VIENT COMPLETER LES CHAMPS UNITE ET QTE, APPELLE AVEC LE BON ID INGREDIENT
                 function appel($id) {
-                    var id = $id;
                     $.ajax({
                         url: '../STOCK_REQUETE.php', //toujours la même page qui est appelée                  
                         type: 'POST',
                         data: {
                             fonction: 'select', //fonction à executer
-                            requete: 'SELECT StockReel,Unite FROM ingredient',
+                            requete: 'SELECT StockReel,Unite FROM ingredient WHERE IdIng =' + $id +';',
                         },
                         success: function(data) {
                             let resultats = JSON.parse(data);
                             try {
                                 labelChampActuelle.innerHTML = "Quantité actuelle :&nbsp;";
-                                labelQteActuelle.innerHTML = resultats[id - 1]['StockReel'];
-                                labelUniteActuelle.innerHTML = '&nbsp;' + resultats[id - 1]['Unite'];
-                                document.getElementById('unite2').innerHTML = resultats[id - 1]['Unite'];
+                                labelQteActuelle.innerHTML = resultats[0]['StockReel'];
+                                labelUniteActuelle.innerHTML = '&nbsp;' + resultats[0]['Unite'];
+                                document.getElementById('unite2').innerHTML = resultats[0]['Unite'];
                             } catch (error) {
                                 console.log(error);
                             }

@@ -148,13 +148,15 @@ if (!$_SESSION['valid']) {
                     <script>
                         //RECUP DES UNITE POUR EN FAIRE LE MEME USAGE QUE LES FOURNISSEURS
                         var laFonction = $.ajax({
-                            url: '../STOCK_REQUETE.php', //toujours la même page qui est appelée                            type: 'POST',
+                            url: '../STOCK_REQUETE.php', //toujours la même page qui est appelée 
+                            type: 'POST',
                             data: {
                                 fonction: 'select', //fonction à executer
                                 requete: 'SELECT DISTINCT unite FROM ingredient',
                             }
                         });
                         laFonction.done(function(msg) {
+                            console.log(msg);
                             let resultats = JSON.parse(msg);
                             selectUnite = document.createElement('select');
                             selectUnite[0] = new Option("--Unités--", "", false, false);
@@ -206,13 +208,13 @@ if (!$_SESSION['valid']) {
                     var unite = $unite;
                     var qte = $qte;
                     var puht = $puht;
-
                     var laFonction = $.ajax({
-                        url: '../STOCK_REQUETE.php', //toujours la même page qui est appelée                        type: 'POST',
+                        url: '../STOCK_REQUETE.php', //toujours la même page qui est appelée             
+                        type: 'POST',
                         data: {
-                            fonction: 'update', //fonction à executer
+                            fonction: 'select', //fonction à executer
                             requete: 'INSERT INTO ingredient(NomIng,Frais,Type,Unite,StockMin,StockReel,PrixUHT_Moyen,Q_A_Com,DateArchivIng) VALUES (' +
-                                nom + ', ' + estFrais + ',' + '"S"' + ',' + "unite" + ',' + qte + ',0,' + puht +
+                                nom + ', ' + estFrais + ',' + '"S"' + ',"' + $unite + '",' + qte + ',0,' + puht +
                                 ',0,NOW());'
                         }
                     });
