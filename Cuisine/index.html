@@ -125,7 +125,21 @@
                           " WHERE IdIng LIKE " +
                           IdIng,
                       },
-                      success: function (data) { },
+                      success: function (data) {
+                        $.ajax({
+                          //pour chaque produit
+                          url: "../update_stocks.php", //toujours la même page qui est appelée
+                          type: "POST",
+
+                          success: function (data) {
+
+                          },
+                          error: function (dataSQL, statut) {
+                            alert("error sqlConnect.js : " + dataSQL.erreur);
+                          },
+                        });
+
+                      },
                       error: function (dataSQL, statut) {
                         alert("error sqlConnect.js : " + dataSQL.erreur);
                       },
