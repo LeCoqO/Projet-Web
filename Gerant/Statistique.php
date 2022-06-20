@@ -159,10 +159,10 @@ if (!$_SESSION['valid']) {
             var where = "WHERE DateArchivDet >= '" +
                 $("#DateDebut").val() + "' And DateArchivDet <= '" +
                 $("#DateFin").val() + "'";
-        } else if ($("#Datation").val() == "ChoixDate1") {
+        } else if ($("#Datation").val() == "ChoixDate2") {
             var where = "WHERE DateArchivDet >= '" +
                 $("#Mois").val() + "-01' And DateArchivDet <= '" +
-                $("#Mois").val() + "'-31";
+                $("#Mois").val() + "-30'";
         } else {
             var where = "WHERE DateArchivDet >= '" +
                 $("#Annee").val() + "-01-01' And DateArchivDet <= '" +
