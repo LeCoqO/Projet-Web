@@ -1,3 +1,12 @@
+<?php
+ob_start();
+session_start();
+if (!$_SESSION['valid']) {
+    header('Location: login.php');
+}
+//pour reset: $_SESSION['valid']=false;
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -33,8 +42,7 @@
                 <a class="navbar-brand" style="text-transform: uppercase">
                     Hom'Burger
                 </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
-                    aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
@@ -69,32 +77,21 @@
 <body>
     <div id="loading">
         <div class="loader loader--style8 posMessage ">
-            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
-                xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="24px" height="30px"
-                viewbox="0 0 24 30" style="enable-background:new 0 0 50 50;" xml:space="preserve">
+            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="24px" height="30px" viewbox="0 0 24 30" style="enable-background:new 0 0 50 50;" xml:space="preserve">
                 <rect x="0" y="10" width="4" height="10" fill="#333" opacity="0.2">
-                    <animate attributename="opacity" attributetype="XML" values="0.2; 1; .2" begin="0s" dur="0.6s"
-                        repeatcount="indefinite" />
-                    <animate attributename="height" attributetype="XML" values="10; 20; 10" begin="0s" dur="0.6s"
-                        repeatcount="indefinite" />
-                    <animate attributename="y" attributetype="XML" values="10; 5; 10" begin="0s" dur="0.6s"
-                        repeatcount="indefinite" />
+                    <animate attributename="opacity" attributetype="XML" values="0.2; 1; .2" begin="0s" dur="0.6s" repeatcount="indefinite" />
+                    <animate attributename="height" attributetype="XML" values="10; 20; 10" begin="0s" dur="0.6s" repeatcount="indefinite" />
+                    <animate attributename="y" attributetype="XML" values="10; 5; 10" begin="0s" dur="0.6s" repeatcount="indefinite" />
                 </rect>
                 <rect x="8" y="10" width="4" height="10" fill="#333" opacity="0.2">
-                    <animate attributename="opacity" attributetype="XML" values="0.2; 1; .2" begin="0.15s" dur="0.6s"
-                        repeatcount="indefinite" />
-                    <animate attributename="height" attributetype="XML" values="10; 20; 10" begin="0.15s" dur="0.6s"
-                        repeatcount="indefinite" />
-                    <animate attributename="y" attributetype="XML" values="10; 5; 10" begin="0.15s" dur="0.6s"
-                        repeatcount="indefinite" />
+                    <animate attributename="opacity" attributetype="XML" values="0.2; 1; .2" begin="0.15s" dur="0.6s" repeatcount="indefinite" />
+                    <animate attributename="height" attributetype="XML" values="10; 20; 10" begin="0.15s" dur="0.6s" repeatcount="indefinite" />
+                    <animate attributename="y" attributetype="XML" values="10; 5; 10" begin="0.15s" dur="0.6s" repeatcount="indefinite" />
                 </rect>
                 <rect x="16" y="10" width="4" height="10" fill="#333" opacity="0.2">
-                    <animate attributename="opacity" attributetype="XML" values="0.2; 1; .2" begin="0.3s" dur="0.6s"
-                        repeatcount="indefinite" />
-                    <animate attributename="height" attributetype="XML" values="10; 20; 10" begin="0.3s" dur="0.6s"
-                        repeatcount="indefinite" />
-                    <animate attributename="y" attributetype="XML" values="10; 5; 10" begin="0.3s" dur="0.6s"
-                        repeatcount="indefinite" />
+                    <animate attributename="opacity" attributetype="XML" values="0.2; 1; .2" begin="0.3s" dur="0.6s" repeatcount="indefinite" />
+                    <animate attributename="height" attributetype="XML" values="10; 20; 10" begin="0.3s" dur="0.6s" repeatcount="indefinite" />
+                    <animate attributename="y" attributetype="XML" values="10; 5; 10" begin="0.3s" dur="0.6s" repeatcount="indefinite" />
                 </rect>
             </svg>
         </div>
@@ -117,8 +114,7 @@
             <div id="tableauProduit"></div>
             <div class="text-center">
                 <div class="text-center inputGroup mediumWidth">
-                    <input type="checkbox" id="recettes_Supprimees" name="recettes_Supprimees"
-                        onclick="afficherSuppri()" />
+                    <input type="checkbox" id="recettes_Supprimees" name="recettes_Supprimees" onclick="afficherSuppri()" />
                     <label for="recettes_Supprimees">Recettes Supprimées</label>
                 </div>
             </div>
@@ -142,7 +138,7 @@
             <div class="row">
                 <div class="column2">
                     <h2 class="gras">Nombres d'option maximum</h2>
-                    <input class="text-center button" type="number" id="maximumOption" value="3" min="0" max="4"required>
+                    <input class="text-center button" type="number" id="maximumOption" value="3" min="0" max="4" required>
 
                 </div>
                 <div class="column2">
@@ -169,8 +165,7 @@
                     <label for="mon_fichier">Sélectionnez le fichier à
                         télécharger <br>(extensions valides :'jpg' , 'jpeg' , 'gif' , 'png' -- max 1
                         Mo) :</label>
-                    <input class="button" type="file" name="picture" id="picture" onchange="previewPicture(this)"
-                        accept=".jpg, .png, .gif" required />
+                    <input class="button" type="file" name="picture" id="picture" onchange="previewPicture(this)" accept=".jpg, .png, .gif" required />
                 </div>
                 <div class="column2">
                     <img class="image" style="max-height:150px;max-width:150px;">
@@ -248,91 +243,91 @@
 <script src="./script_recette.js"></script>
 
 <script>
-//Cette fontion ajoute ou nullifie (en fonction du boolean) la date d'une recette dont l'id est passé en parametre
-function updateLine(idProd, bool) {
-    let laDate;
-    if (!bool) { //false
-        laDate = new Date();
-        laDate = "'" + laDate.getFullYear() + "-" + (laDate.getMonth() + 1) + "-" + laDate.getDate() + "'";
-    } else {
-        laDate = "NULL";
-    }
-    $.ajax({
-        url: '../STOCK_REQUETE.php',
-        type: 'POST',
-        data: {
-            fonction: 'update',
-            requete: "UPDATE produit SET DateArchivProd = " + laDate + " WHERE IdProd = '" + idProd + "'",
-        },
-        success: function(data) {
-            //console.log(data);
-            location.reload();
-        },
-        error: function(dataSQL, statut) {
-            alert("error sqlConnect.js : " + dataSQL.erreur);
+    //Cette fontion ajoute ou nullifie (en fonction du boolean) la date d'une recette dont l'id est passé en parametre
+    function updateLine(idProd, bool) {
+        let laDate;
+        if (!bool) { //false
+            laDate = new Date();
+            laDate = "'" + laDate.getFullYear() + "-" + (laDate.getMonth() + 1) + "-" + laDate.getDate() + "'";
+        } else {
+            laDate = "NULL";
         }
-    });
-}
-
-//Fonction qui récupere la liste des recettes inactives dans la bdd
-//et l'affiche dans un tableau
-function afficherSuppri() {
-    if (document.getElementById("tableau_Recettes_Supprimees").innerHTML) {
-        document.getElementById("tableau_Recettes_Supprimees").innerHTML = "";
-    } else {
         $.ajax({
-            url: '../STOCK_REQUETE.php', //toujours la même page qui est appelée
+            url: '../STOCK_REQUETE.php',
             type: 'POST',
             data: {
-                fonction: 'select', //fonction à executer
-                requete: 'SELECT * FROM produit WHERE DateArchivProd IS NOT NULL'
+                fonction: 'update',
+                requete: "UPDATE produit SET DateArchivProd = " + laDate + " WHERE IdProd = '" + idProd + "'",
             },
             success: function(data) {
-                //console.log("success");
-                var resultats = JSON.parse(data);
-                console.log(resultats);
-
-                var string = "<FONT face='arial'><div class='container'><CENTER>" +
-                    "<div class='table'>" +
-                    "<div class='table-header' bgcolor='grey' align='center'>" +
-                    "<div class='header__item'> <a id='recette' class='filter__link' href='#'>Numéro Recette</a></div>" +
-                    "<div class= 'header__item'> <a id='nom' class='filter__link' href='#'>Nom recette</a></div>" +
-                    "<div class='header__item'> <a id='ingr' class='filter__link' href='#'>Ingrédients</a></div>" +
-                    "<div class='header__item'> <a id='prix' class='filter__link' href='#'>Prix</a></div>" +
-                    "<div class='header__item'> <a id='rajouter' class='filter__link' href='#'>Rajouter</a></div>" +
-                    "</div><div class='table-content'>";
-
-                for (let i = 0; i < resultats.length; i++) {
-                    //console.log('in loop: ' + i);
-                    string += '<div class="table-row">' +
-                        "<div class='table-data'>" + resultats[i]['IdProd'] + "</div>" +
-                        "<div class='table-data'>" + resultats[i]['NomProd'] + "</div>" +
-                        "<div class= 'table-data'> ";
-                    for (j = 1; j < parseInt(resultats[i]['NbIngBase']) + 1; j++) {
-                        string += resultats[i]['IngBase' + j] + ", ";
-                    }
-                    for (k = 1; k < parseInt(resultats[i]['NbIngOpt']) + 1; k++) {
-                        string += resultats[i]['IngOpti' + k] + ", ";
-                    }
-                    string += "</div><div class='table-data'>" + resultats[i]['PrixUHT'] +
-                        "</div><div class='table-data'>" +
-                        "<input type = 'image' id = 'image' onclick = 'checkBox_open(" + resultats[i][
-                            'IdProd'
-                        ] + ", true)'" +
-                        "src = '../img/addButton.png' width = '45px' height = '45px' ></input > " +
-                        "</div ></div>";
-                }
-                string += '</div>' + '</CENTER>' + '</div>' + '</FONT>';
-
-                document.getElementById("tableau_Recettes_Supprimees").innerHTML = string;
-                setupTab(['recette', 'nom', 'ingr', 'heure', 'prix']);
+                //console.log(data);
+                location.reload();
             },
             error: function(dataSQL, statut) {
                 alert("error sqlConnect.js : " + dataSQL.erreur);
             }
         });
     }
-}
+
+    //Fonction qui récupere la liste des recettes inactives dans la bdd
+    //et l'affiche dans un tableau
+    function afficherSuppri() {
+        if (document.getElementById("tableau_Recettes_Supprimees").innerHTML) {
+            document.getElementById("tableau_Recettes_Supprimees").innerHTML = "";
+        } else {
+            $.ajax({
+                url: '../STOCK_REQUETE.php', //toujours la même page qui est appelée
+                type: 'POST',
+                data: {
+                    fonction: 'select', //fonction à executer
+                    requete: 'SELECT * FROM produit WHERE DateArchivProd IS NOT NULL'
+                },
+                success: function(data) {
+                    //console.log("success");
+                    var resultats = JSON.parse(data);
+                    console.log(resultats);
+
+                    var string = "<FONT face='arial'><div class='container'><CENTER>" +
+                        "<div class='table'>" +
+                        "<div class='table-header' bgcolor='grey' align='center'>" +
+                        "<div class='header__item'> <a id='recette' class='filter__link' href='#'>Numéro Recette</a></div>" +
+                        "<div class= 'header__item'> <a id='nom' class='filter__link' href='#'>Nom recette</a></div>" +
+                        "<div class='header__item'> <a id='ingr' class='filter__link' href='#'>Ingrédients</a></div>" +
+                        "<div class='header__item'> <a id='prix' class='filter__link' href='#'>Prix</a></div>" +
+                        "<div class='header__item'> <a id='rajouter' class='filter__link' href='#'>Rajouter</a></div>" +
+                        "</div><div class='table-content'>";
+
+                    for (let i = 0; i < resultats.length; i++) {
+                        //console.log('in loop: ' + i);
+                        string += '<div class="table-row">' +
+                            "<div class='table-data'>" + resultats[i]['IdProd'] + "</div>" +
+                            "<div class='table-data'>" + resultats[i]['NomProd'] + "</div>" +
+                            "<div class= 'table-data'> ";
+                        for (j = 1; j < parseInt(resultats[i]['NbIngBase']) + 1; j++) {
+                            string += resultats[i]['IngBase' + j] + ", ";
+                        }
+                        for (k = 1; k < parseInt(resultats[i]['NbIngOpt']) + 1; k++) {
+                            string += resultats[i]['IngOpti' + k] + ", ";
+                        }
+                        string += "</div><div class='table-data'>" + resultats[i]['PrixUHT'] +
+                            "</div><div class='table-data'>" +
+                            "<input type = 'image' id = 'image' onclick = 'checkBox_open(" + resultats[i][
+                                'IdProd'
+                            ] + ", true)'" +
+                            "src = '../img/addButton.png' width = '45px' height = '45px' ></input > " +
+                            "</div ></div>";
+                    }
+                    string += '</div>' + '</CENTER>' + '</div>' + '</FONT>';
+
+                    document.getElementById("tableau_Recettes_Supprimees").innerHTML = string;
+                    setupTab(['recette', 'nom', 'ingr', 'heure', 'prix']);
+                },
+                error: function(dataSQL, statut) {
+                    alert("error sqlConnect.js : " + dataSQL.erreur);
+                }
+            });
+        }
+    }
 </script>
 
 </html>
