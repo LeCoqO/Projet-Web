@@ -74,7 +74,9 @@ if (!$_SESSION['valid']) {
         </nav>
     </div>
 </header>
-<br><br><br><br><br><br>
+<br>
+<br>
+<br>
 
 <body>
     <hr>
