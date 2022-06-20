@@ -88,7 +88,7 @@ if (!$_SESSION['valid']) {
             </div>
         </div>
         <div class="roww">
-            <div id="ChoixDate1">
+            <div id="ChoixDate1" class="ChoixDate">
                 <div class="colone3 form__group field left">
                     <input type="date" class="form__field" id="DateDebut" name="DateDebut" min="2022-01-01"
                         value="<?php echo choixDate("-2 month"); ?>" max="<?php echo choixDate("-1 days"); ?>">
@@ -100,13 +100,13 @@ if (!$_SESSION['valid']) {
                     <label class="form__label" for="DateFin">Date de fin:</label>
                 </div>
             </div>
-            <div id="ChoixDate2" class="cacher">
+            <div id="ChoixDate2" class="cacher ChoixDate">
                 <div class="colone3 form__group field left">
                     <input type="month" id="Mois" class="form__field" min="2022-01">
                     <label class="form__label" for="Mois">Année et Mois:</label>
                 </div>
             </div>
-            <div id="ChoixDate3" class="cacher">
+            <div id="ChoixDate3" class="cacher ChoixDate">
                 <div class="colone3 form__group field left">
                     <input id="Annee" type="number" class="form__field" min="2022" max="2099" step="1" value="2022" />
                     <label class="form__label" for="Annee">Année:</label>

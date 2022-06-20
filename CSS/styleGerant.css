@@ -124,6 +124,11 @@
     height: 100px;
   }
 
+  .column3{
+    width: 33.32%;
+    float: left;
+  }
+  
   .block_Menu {
     height: 700px;
     position: relative;
@@ -175,11 +180,6 @@
 
   .column2{
     width: 50.00%;
-    float: left;
-  }
-
-    .column3{
-    width: 33.32%;
     float: left;
   }
   

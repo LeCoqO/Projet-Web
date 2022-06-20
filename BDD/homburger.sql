@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : lun. 20 juin 2022 à 08:27
+-- Généré le : lun. 20 juin 2022 à 09:16
 -- Version du serveur :  8.0.21
 -- Version de PHP : 7.3.21
 
@@ -47,7 +47,7 @@ CREATE TABLE IF NOT EXISTS `commande` (
   `IdLiv` int DEFAULT NULL,
   PRIMARY KEY (`NumCom`),
   KEY `Commande_Livreur_FK` (`IdLiv`)
-) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Déchargement des données de la table `commande`
@@ -62,30 +62,32 @@ INSERT INTO `commande` (`NumCom`, `NomCom`, `TelCom`, `AdrCom`, `CPCom`, `VilleC
 (15, 'quentin', '0629584965', NULL, NULL, NULL, NULL, '17:56:00', NULL, NULL, 'Pas Livré', NULL, NULL, 'A Livrer', NULL, NULL),
 (16, 'diego', '0629584965', NULL, NULL, NULL, NULL, '16:15:00', NULL, NULL, 'Pas Livré', NULL, NULL, 'A Livrer', NULL, NULL),
 (17, 'Le COQ', '0123456789', NULL, NULL, NULL, NULL, '01:00:00', NULL, NULL, 'Pas Livré', NULL, '2022-06-19', 'A Livrer', NULL, NULL),
-(18, 'Lilian', '0606060606', NULL, NULL, NULL, NULL, '23:33:00', NULL, NULL, 'Pas Livré', NULL, '2022-06-19', 'A Prepare', NULL, NULL),
+(18, 'Lilian', '0606060606', NULL, NULL, NULL, NULL, '23:33:00', NULL, NULL, 'Pas Livré', NULL, '2022-06-20', 'A Livrer', NULL, NULL),
 (19, 'Lilian', '0123456789', NULL, NULL, NULL, NULL, '23:15:00', NULL, NULL, 'Pas Livré', NULL, '2022-06-19', 'A Livrer', NULL, NULL),
 (20, 'Lilian Page', '0123456789', '9 rue des albizias', '71640', 'Mellecey', NULL, '01:06:00', NULL, NULL, 'Pas Livré', NULL, '2022-06-20', 'A Livrer', NULL, NULL),
 (21, 'eddy', '0606060606', NULL, NULL, NULL, NULL, '00:23:00', NULL, NULL, 'Pas Livré', NULL, '2022-06-19', 'A Livrer', NULL, NULL),
-(22, 'coco', '0123456789', NULL, NULL, NULL, NULL, '00:55:00', NULL, NULL, 'Pas Livré', NULL, NULL, 'A Prepare', NULL, NULL),
-(23, 'Quentin', '0766766969', '6 rue du swag', '66769', 'SwagCity', NULL, '02:56:00', NULL, NULL, 'Pas Livré', NULL, NULL, 'A Prepare', NULL, NULL),
+(22, 'coco', '0123456789', NULL, NULL, NULL, NULL, '00:55:00', NULL, NULL, 'Pas Livré', NULL, '2022-06-20', 'A Livrer', NULL, NULL),
+(23, 'Quentin', '0766766969', '6 rue du swag', '66769', 'SwagCity', NULL, '02:56:00', NULL, NULL, 'Pas Livré', NULL, '2022-06-20', 'A Livrer', NULL, NULL),
 (24, 'Lilian Page', '0606060606', NULL, NULL, NULL, NULL, '01:00:00', NULL, NULL, 'Pas Livré', NULL, '2022-06-20', 'A Livrer', NULL, NULL),
-(25, 'Lilian Page', '0629584965', '9 rue des albizias', '71640', 'Mellecey', NULL, '01:34:00', NULL, NULL, 'Pas Livré', NULL, NULL, 'A Prepare', NULL, NULL),
-(26, '', '', '', '', '', NULL, '00:34:00', NULL, NULL, 'T', NULL, '2022-06-20', 'A Livrer', NULL, 1),
+(25, 'Lilian Page', '0629584965', '9 rue des albizias', '71640', 'Mellecey', NULL, '01:34:00', NULL, NULL, 'Pas Livré', NULL, '2022-06-20', 'A Livrer', NULL, NULL),
 (27, 'Lilian Page', '0629584965', '9 rue des albizias', '71640', 'Mellecey', NULL, '00:34:00', NULL, NULL, 'Pas Livré', NULL, '2022-06-20', 'A Livrer', NULL, NULL),
 (28, 'Lilian Page', '0629584965', '9 rue des albizias', '71640', 'Mellecey', NULL, '00:34:00', NULL, NULL, 'Pas Livré', NULL, '2022-06-20', 'A Livrer', NULL, NULL),
 (29, 'Lilian Page', '0629584965', '9 rue des albizias', '71640', 'Mellecey', NULL, '00:34:00', NULL, NULL, 'Pas Livré', NULL, '2022-06-20', 'A Livrer', NULL, NULL),
-(30, 'Lilian', '0606060606', NULL, NULL, NULL, NULL, '01:31:00', NULL, NULL, 'Pas Livré', NULL, NULL, 'A Prepare', NULL, NULL),
+(30, 'Lilian', '0606060606', NULL, NULL, NULL, NULL, '01:31:00', NULL, NULL, 'Pas Livré', NULL, '2022-06-20', 'A Livrer', NULL, NULL),
 (31, 'Lilian', '0629584965', NULL, NULL, NULL, NULL, '02:18:00', NULL, NULL, 'Pas Livré', NULL, '2022-06-20', 'A Livrer', NULL, NULL),
 (32, 'Lilian', '0606060606', NULL, NULL, NULL, NULL, '01:49:00', NULL, NULL, 'Pas Livré', NULL, '2022-06-20', 'A Livrer', NULL, NULL),
-(33, 'Lilian', '0123456789', NULL, NULL, NULL, NULL, '01:14:00', NULL, NULL, 'Pas Livré', NULL, NULL, 'A Prepare', NULL, NULL),
-(34, 'Lilian', '0123456789', NULL, NULL, NULL, NULL, '01:15:00', NULL, NULL, 'Pas Livré', NULL, NULL, 'A Prepare', NULL, NULL),
+(33, 'Lilian', '0123456789', NULL, NULL, NULL, NULL, '01:14:00', NULL, NULL, 'Pas Livré', NULL, '2022-06-20', 'A Livrer', NULL, NULL),
+(34, 'Lilian', '0123456789', NULL, NULL, NULL, NULL, '01:15:00', NULL, NULL, 'Pas Livré', NULL, '2022-06-20', 'A Livrer', NULL, NULL),
 (35, 'dieg', '0629584965', '9 rue des albizias', '71640', 'Mellecey', NULL, '03:03:00', NULL, NULL, 'Pas Livré', NULL, '2022-06-20', 'A Livrer', NULL, NULL),
-(36, 'Lilian', '0629584965', NULL, NULL, NULL, NULL, '01:21:00', NULL, NULL, 'Pas Livré', NULL, NULL, 'A Prepare', NULL, NULL),
+(36, 'Lilian', '0629584965', NULL, NULL, NULL, NULL, '01:21:00', NULL, NULL, 'Pas Livré', NULL, '2022-06-20', 'A Livrer', NULL, NULL),
 (37, 'Lilian', '0629584965', NULL, NULL, NULL, NULL, '01:27:00', NULL, NULL, 'Pas Livré', NULL, '2022-06-20', 'A Livrer', NULL, NULL),
 (38, 'Lilian', '0629584965', NULL, NULL, NULL, NULL, '01:29:00', NULL, NULL, 'Pas Livré', NULL, '2022-06-20', 'A Livrer', NULL, NULL),
 (39, 'Lilian', '0629584965', NULL, NULL, NULL, NULL, '01:34:00', NULL, NULL, 'Pas Livré', NULL, '2022-06-20', 'A Livrer', NULL, NULL),
-(40, 'Lilian', '0629584965', NULL, NULL, NULL, NULL, '01:37:00', NULL, NULL, 'Pas Livré', NULL, NULL, 'A Prepare', NULL, NULL),
-(41, 'Lilian Page', '0629584965', '9 rue des albizias', '71640', 'Mellecey', NULL, '01:39:00', NULL, NULL, 'Pas Livré', NULL, NULL, 'A Prepare', NULL, NULL);
+(40, 'Lilian', '0629584965', NULL, NULL, NULL, NULL, '01:37:00', NULL, NULL, 'Pas Livré', NULL, '2022-06-20', 'A Livrer', NULL, NULL),
+(41, 'Lilian Page', '0629584965', '9 rue des albizias', '71640', 'Mellecey', NULL, '01:39:00', NULL, NULL, 'Pas Livré', NULL, '2022-06-20', 'A Livrer', NULL, NULL),
+(42, 'Lilian', '0629584965', NULL, NULL, NULL, NULL, '11:49:00', NULL, NULL, 'Pas Livré', NULL, NULL, 'A Prepare', NULL, NULL),
+(43, 'Lilian Page', '0629584965', '9 rue des albizias', '71640', 'Mellecey', NULL, '11:40:00', NULL, NULL, 'Pas Livré', NULL, '2022-06-20', 'A Livrer', NULL, NULL),
+(44, 'Lilian', '0629584965', NULL, NULL, NULL, NULL, '11:10:00', NULL, NULL, 'Pas Livré', NULL, NULL, 'A Prepare', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -104,7 +106,7 @@ CREATE TABLE IF NOT EXISTS `commandefournisseur` (
   PRIMARY KEY (`IdComFourn`),
   KEY `FK_IngredientCommande` (`IdIng`),
   KEY `FK_FournisseurCommande` (`NomFourn`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Déchargement des données de la table `commandefournisseur`
@@ -112,7 +114,7 @@ CREATE TABLE IF NOT EXISTS `commandefournisseur` (
 
 INSERT INTO `commandefournisseur` (`IdComFourn`, `IdIng`, `NomFourn`, `QteComFourn`, `DateLivFourn`, `DateComFourn`) VALUES
 (2, 13, 'MyFoodnisseur', 190, '2022-06-21', '2022-06-19'),
-(4, 6, 'MyFoodnisseur', 9999, '2022-06-21', '2022-06-20');
+(6, 12, 'MyFoodnisseur', 200, '2022-06-21', '2022-06-20');
 
 -- --------------------------------------------------------
 
@@ -140,7 +142,7 @@ CREATE TABLE IF NOT EXISTS `detail` (
   PRIMARY KEY (`Num_OF`),
   KEY `Detail_Commande_FK` (`NumCom`),
   KEY `Detail_Produit0_FK` (`IdProd_Produit`)
-) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Déchargement des données de la table `detail`
@@ -156,28 +158,29 @@ INSERT INTO `detail` (`Num_OF`, `NomProd`, `Taille`, `IngBase1`, `IngBase2`, `In
 (17, 'Oburger', 'L', 'Pain sésame', 'Boeuf', 'Tomate', 'Salade', 'NULL', 'NULL', 'NULL', 'NULL', '2022-06-13', 3, 14, 3),
 (18, 'edyyburger', 'L', 'Pain Ble', 'Boeuf', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', '2022-06-13', 2, 15, 5),
 (19, 'Tac original', 'L', 'Pain sésame', 'Pain tacos', 'Boeuf', 'frite', 'NULL', 'NULL', 'Pain Sesame', 'NULL', '2022-06-19', 4, 17, 4),
-(20, 'pain', 'M', 'Pain Sesame', 'NULL', 'NULL', 'NULL', 'Sauce Algérienne', 'Emmental', 'Poulet', 'NULL', '2022-06-19', 2, 18, 6),
+(20, 'pain', 'M', 'Pain Sesame', 'NULL', 'NULL', 'NULL', 'Sauce Algérienne', 'Emmental', 'Poulet', 'NULL', '2022-06-20', 2, 18, 6),
 (21, 'Tac original', 'L', 'Pain sésame', 'Pain tacos', 'Boeuf', 'frite', 'aaaa', 'NULL', 'NULL', 'NULL', '2022-06-19', 1, 19, 4),
 (22, 'pain', 'M', 'Pain Sesame', 'bbbbbbbbb', 'NULL', 'NULL', 'aaaaaaaaaaaaaaaaaaaa', 'NULL', 'NULL', 'NULL', '2022-06-19', 1, 19, 6),
-(23, 'Pise Burger', 'L', 'Pain Ble', 'Boeuf', 'Salade', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', NULL, 5, 19, 8),
+(23, 'Pise Burger', 'L', 'Pain Ble', 'Boeuf', 'Salade', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', '2021-02-02', 5, 19, 8),
 (24, 'Cheh dessert', 'M', 'Pain Ble', 'Salade', 'NULL', 'NULL', 'Saucisses', 'Emmental', 'Boeuf', 'Poulet', '2022-06-20', 40, 20, 9),
-(25, 'Tac original', 'L', 'Pain sésame', 'Pain tacos', 'Boeuf', 'frite', 'NULL', 'NULL', 'NULL', 'NULL', NULL, 2, 22, 4),
-(26, 'CatBurger', 'L', 'Pain Ble', 'Boeuf', 'Poulet', 'Salade', 'NULL', 'NULL', 'NULL', 'NULL', NULL, 100, 23, 7),
-(27, 'CatBurger', 'L', 'Pain Ble', 'Boeuf', 'Poulet', 'Salade', 'NULL', 'NULL', 'NULL', 'NULL', NULL, 2, 23, 7),
-(28, 'pain', 'M', 'Pain Sesame', 'NULL', 'NULL', 'NULL', 'Barbecue', 'Emmental', 'Pain Sesame', 'Boeuf', NULL, 1, 25, 6),
-(29, 'pain', 'M', 'Pain Sesame', 'NULL', 'NULL', 'NULL', 'Barbecue', 'Emmental', 'Pain Sesame', 'Boeuf', '2022-06-20', 1, 26, 6),
+(25, 'Tac original', 'L', 'Pain sésame', 'Pain tacos', 'Boeuf', 'frite', 'NULL', 'NULL', 'NULL', 'NULL', '2022-06-20', 2, 22, 4),
+(26, 'CatBurger', 'L', 'Pain Ble', 'Boeuf', 'Poulet', 'Salade', 'NULL', 'NULL', 'NULL', 'NULL', '2022-06-20', 100, 23, 7),
+(27, 'CatBurger', 'L', 'Pain Ble', 'Boeuf', 'Poulet', 'Salade', 'NULL', 'NULL', 'NULL', 'NULL', '2022-06-20', 2, 23, 7),
+(28, 'pain', 'M', 'Pain Sesame', 'NULL', 'NULL', 'NULL', 'Barbecue', 'Emmental', 'Pain Sesame', 'Boeuf', '2022-06-20', 1, 25, 6),
 (30, 'pain', 'M', 'Pain Sesame', 'NULL', 'NULL', 'NULL', 'Barbecue', 'Emmental', 'Pain Sesame', 'Boeuf', '2022-06-20', 1, 27, 6),
 (31, 'pain', 'M', 'Pain Sesame', 'NULL', 'NULL', 'NULL', 'Barbecue', 'Emmental', 'Pain Sesame', 'Boeuf', '2022-06-20', 1, 27, 6),
 (32, 'pain', 'M', 'Pain Sesame', 'NULL', 'NULL', 'NULL', 'Barbecue', 'Emmental', 'Pain Sesame', 'Boeuf', '2022-06-20', 1, 28, 6),
-(33, 'CrabZilla', 'L', 'Pain Sesame', 'Boeuf', 'Salade', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', NULL, 1, 29, 10),
-(34, 'Cheh dessert', 'M', 'Pain Ble', 'Salade', 'NULL', 'NULL', 'Sauce Algérienne', 'Sauce Algérienne', 'Tomate', 'Tomate', NULL, 5, 30, 9),
-(35, 'CrabZilla', 'L', 'Pain Sesame', 'Boeuf', 'Salade', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', NULL, 1, 32, 10),
-(36, 'CrabZilla', 'L', 'Pain Sesame', 'Boeuf', 'Salade', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', NULL, 1, 33, 10),
-(37, 'edyyburger', 'L', 'Pain Ble', 'Boeuf', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', NULL, 100, 34, 5),
-(38, 'Pise Burger', 'L', 'Pain Ble', 'Boeuf', 'Salade', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', NULL, 1, 34, 8),
-(39, 'Oburger', 'L', 'Pain sésame', 'Boeuf', 'Tomate', 'Salade', 'NULL', 'NULL', 'NULL', 'NULL', NULL, 1, 36, 3),
-(43, 'CatBurger', 'L', 'Pain Ble', 'Boeuf', 'Poulet', 'Salade', 'NULL', 'NULL', 'NULL', 'NULL', NULL, 1, 40, 7),
-(44, 'CatBurger', 'L', 'Pain Ble', 'Boeuf', 'Poulet', 'Salade', 'NULL', 'NULL', 'NULL', 'NULL', NULL, 1, 41, 7);
+(33, 'CrabZilla', 'L', 'Pain Sesame', 'Boeuf', 'Salade', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', '2022-05-20', 1, 29, 10),
+(34, 'Cheh dessert', 'M', 'Pain Ble', 'Salade', 'NULL', 'NULL', 'Sauce Algérienne', 'Sauce Algérienne', 'Tomate', 'Tomate', '2022-04-30', 5, 30, 9),
+(35, 'CrabZilla', 'L', 'Pain Sesame', 'Boeuf', 'Salade', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', '2022-06-20', 1, 32, 10),
+(36, 'CrabZilla', 'L', 'Pain Sesame', 'Boeuf', 'Salade', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', '2022-06-20', 1, 33, 10),
+(37, 'edyyburger', 'L', 'Pain Ble', 'Boeuf', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', '2022-06-20', 100, 34, 5),
+(38, 'Pise Burger', 'L', 'Pain Ble', 'Boeuf', 'Salade', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', '2022-06-20', 1, 34, 8),
+(39, 'Oburger', 'L', 'Pain sésame', 'Boeuf', 'Tomate', 'Salade', 'NULL', 'NULL', 'NULL', 'NULL', '2022-06-20', 1, 36, 3),
+(43, 'CatBurger', 'L', 'Pain Ble', 'Boeuf', 'Poulet', 'Salade', 'NULL', 'NULL', 'NULL', 'NULL', '2022-06-20', 1, 40, 7),
+(44, 'CatBurger', 'L', 'Pain Ble', 'Boeuf', 'Poulet', 'Salade', 'NULL', 'NULL', 'NULL', 'NULL', '2022-06-20', 1, 41, 7),
+(45, 'edyyburger', 'L', 'Pain Ble', 'Boeuf', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', NULL, 10, 42, 5),
+(47, 'CatBurger', 'L', 'Pain Ble', 'Boeuf', 'Poulet', 'Salade', 'NULL', 'NULL', 'NULL', 'NULL', NULL, 1, 44, 7);
 
 -- --------------------------------------------------------
 
@@ -218,7 +221,8 @@ CREATE TABLE IF NOT EXISTS `fournisseur` (
 INSERT INTO `fournisseur` (`NomFourn`, `AdresseFourn`, `CPFourn`, `VilleFourn`, `TelFourn`, `MailFourn`, `DateArchivFourn`) VALUES
 ('CocoTueur', 'taiwan', '12345', 'taiwan', '0123456678', 'taiwan.taiwan@taiwan', '2022-06-20'),
 ('Diego Torres', '1 rue du cnam', '71100', 'Chalon', '0123456789', 'diego.torres@lecnam.net', '2022-06-16'),
-('Lilian  13', '9 rue des albizias', '71667', 'Mellecey', '0629584965', 'lilian.page7111@gmail.com', NULL),
+('Foodniseur', '9 rue des albizias', '71640', 'Mellecey', '0629584965', 'lilian.page7111@gmail.com', NULL),
+('Lilian  13', '9 rue des albizias', '71111', 'Mellecey', '0629584965', 'lilian.page7111@gmail.com', NULL),
 ('Lilian Page', '9 rue des albizias', '71640', 'Mellecey', '0123456789', 'lilian.page7111@gmail.com', NULL),
 ('Lilian Page10', '9 rue des albizias', '71640', 'Mellecey', '0629584965', 'lilian.page7111@gmail.com', NULL),
 ('Lilian Page11', '9 rue des albizias', '71640', 'Mellecey', '0629584965', 'lilian.page7111@gmail.com', '2022-06-19'),
@@ -232,7 +236,7 @@ INSERT INTO `fournisseur` (`NomFourn`, `AdresseFourn`, `CPFourn`, `VilleFourn`, 
 ('Lilian Page8', '9 rue des albizias', '71640', 'Mellecey', '0629584965', 'lilian.page7111@gmail.com', '2022-06-14'),
 ('Lilian Page9', '9 rue des albizias', '71640', 'Mellecey', '0629584965', 'lilian.page7111@gmail.com', NULL),
 ('MyFoodnisseur', '23 Rue Alphonse Lamartine', '71100', 'Chalon-sur-saône', '0771718751', 'diego.publicmail@gmail.com', '2022-03-18'),
-('Quentin', '9 rue du plouk', '71667', 'Equipe', '0123456789', 'quentin667.auditeur@lecnam.net', NULL);
+('Quentin', '9 rue du plouk', '71667', 'Equipe', '0123456789', 'quentin667.auditeur@lecnam.net', '2022-06-20');
 
 -- --------------------------------------------------------
 
@@ -291,19 +295,19 @@ CREATE TABLE IF NOT EXISTS `ingredient` (
 --
 
 INSERT INTO `ingredient` (`IdIng`, `NomIng`, `Frais`, `Type`, `Unite`, `StockMin`, `StockReel`, `PrixUHT_Moyen`, `Q_A_Com`, `DateArchivIng`) VALUES
-(1, 'Pain Sesame', 'F', 'P', '\"sans\"', 50, 150, 0.4, 0, '2022-03-18'),
-(2, 'Pain Ble', 'F', 'P', '\"sans\"', 50, 150, 0.4, 0, '2022-03-18'),
-(3, 'Boeuf', 'T', 'P', '\"sans\"', 50, 12808, 0.8, 0, '2022-03-18'),
-(4, 'Poulet', 'T', 'P', '\"sans\"', 50, 198, 0.3, 0, '2022-03-18'),
-(5, 'Salade', 'T', 'P', '\"sans\"', 50, 150, 0.2, 0, '2022-03-18'),
-(6, 'Tomate', 'T', 'P', '\"sans\"', 50, 150, 0.2, 0, '2022-03-18'),
-(7, 'Sauce Algérienne', 'F', 'S', '\"sans\"', 50, 150, 0.8, 0, '2022-03-18'),
-(8, 'Sauce Burger', 'F', 'S', '\"sans\"', 50, 150, 0.3, 0, '2022-03-18'),
-(9, 'Sauce Moustache', 'F', 'S', '\"sans\"', 50, 150, 0.2, 0, '2022-03-18'),
-(10, 'Ketchup', 'F', 'S', '\"sans\"', 50, 150, 0.2, 0, '2022-03-18'),
-(11, 'Barbecue', 'F', 'S', '\"sans\"', 50, 150, 0.2, 0, '2022-03-18'),
+(1, 'Pain Sesame', 'F', 'P', 'unite', 50, 154, 0.4, 0, '2022-03-18'),
+(2, 'Pain Ble', 'F', 'P', 'unite', 50, 150, 0.4, 0, '2022-03-18'),
+(3, 'Boeuf', 'T', 'P', 'gramme', 50, 12808, 0.8, 0, '2022-03-18'),
+(4, 'Poulet', 'T', 'P', 'gramme', 50, 198, 0.3, 0, '2022-03-18'),
+(5, 'Salade', 'T', 'P', 'gramme', 50, 150, 0.2, 0, '2022-03-18'),
+(6, 'Tomate', 'T', 'P', 'gramme', 50, 150, 0.2, 0, '2022-03-18'),
+(7, 'Sauce Algérienne', 'F', 'S', 'gramme', 50, 150, 0.8, 0, '2022-03-18'),
+(8, 'Sauce Burger', 'F', 'S', 'gramme', 50, 150, 0.3, 0, '2022-03-18'),
+(9, 'Sauce Moustache', 'F', 'S', 'gramme', 50, 150, 0.2, 0, '2022-03-18'),
+(10, 'Ketchup', 'F', 'S', 'gramme', 50, 150, 0.2, 0, '2022-03-18'),
+(11, 'Barbecue', 'F', 'S', 'gramme', 50, 150, 0.2, 0, '2022-03-18'),
 (12, 'Emmental', 'F', 'S', 'litres', 50, 200, 0.2, 0, '2022-03-18'),
-(13, 'Saucisses', 'T', 'S', '', 50, 500, 5, 0, '2022-06-09');
+(13, 'Saucisses', 'T', 'S', 'unite', 50, 500, 5, 0, '2022-06-09');
 
 -- --------------------------------------------------------
 
