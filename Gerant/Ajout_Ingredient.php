@@ -96,7 +96,7 @@ if (!$_SESSION['valid']) {
             <div class="container content-container row text-center">
                 <div class="column3">
                     <label for="nom">Nom</label>
-                    <input id="nom" type="text" value="Nom">
+                    <input id="nom" type="text" placeholder="Nom">
                 </div>
                 <div id=choixFournisseurs class="column3">
                     <script>
