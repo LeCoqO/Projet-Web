@@ -89,13 +89,10 @@ if (!$_SESSION['valid']) {
             <section>
                 <h2 class="text-center">Interface Gérant</h2>
                 <div class="row text-center">
-                    <div class="column3">
+                    <div class="column2">
                         <button class="button" onclick=window.location.href='commande_fournisseur.php'>Retour</button>
                     </div>
-                    <div class="column3">
-                        <button class="button" id='commander'>Commander</button>
-                    </div>
-                    <div class="column3">
+                    <div class="column2">
                         <button class="button" id='supprimer'>Supprimer</button>
                     </div>
                 </div>
@@ -135,11 +132,11 @@ if (!$_SESSION['valid']) {
                             type: 'POST',
                             data: {
                                 fonction: 'select', //fonction à executer
-                                requete: 'SELECT NomFourn,AdresseFourn,CPFourn,VilleFourn,TelFourn FROM fournisseur WHERE (`NomFourn` = "' + resultats[i]['NomFourn'] + '");',
+                                requete: 'SELECT NomFourn,AdresseFourn,CPFourn,VilleFourn,TelFourn,MailFourn FROM fournisseur WHERE (`NomFourn` = "' + resultats[i]['NomFourn'] + '");',
                             }
                         });
                         laFonction3.done(function(data) {
-                            console.log('SELECT NomFourn,AdresseFourn,CPFourn,VilleFourn,TelFourn FROM fournisseur WHERE NomFourn = ' + resultats[i]['NomFourn'] + ';');
+                            console.log('SELECT NomFourn,AdresseFourn,CPFourn,VilleFourn,TelFourn,MailFourn FROM fournisseur WHERE NomFourn = ' + resultats[i]['NomFourn'] + ';');
                             resultats3 = JSON.parse(data);
                             console.log('fourn');
                             console.log(resultats3);
@@ -194,6 +191,7 @@ if (!$_SESSION['valid']) {
                     let laCommande = document.createElement('article');
                     let recapEtBouton = document.createElement('div');
                     let button = document.createElement('button');
+                    let button2 = document.createElement('button');
                     let tousLesChamps = document.createElement('div');
                     let dateE = document.createElement('div');
                     let dateL = document.createElement('div');
@@ -206,6 +204,7 @@ if (!$_SESSION['valid']) {
                     let input = document.createElement('input');
 
                     button.innerHTML = "PDF";
+                    button2.innerHTML = "Envoi du bon";
                     dateE.innerHTML = "Date d'émission : " + resultats[i]['DateComFourn'];
                     dateL.innerHTML = "Date livraison prévue : " + resultats[i]['DateLivFourn'];
                     ing.innerHTML = resultats2[i]['NomIng'];
@@ -219,6 +218,8 @@ if (!$_SESSION['valid']) {
 
                     laCommande.className = 'left container centered-element commande';
                     button.id = i; //resultats[i]['IdComFourn']
+                    button2.className = 'button toPDF left'
+                    button2.id = i; //resultats[i]['IdComFourn']
                     button.className = 'button toPDF left'
                     tousLesChamps.className = 'bonCompact';
                     dateE.className = 'left';
@@ -241,14 +242,13 @@ if (!$_SESSION['valid']) {
                     tousLesChamps.appendChild(prix);
                     recapEtBouton.appendChild(tousLesChamps);
                     recapEtBouton.appendChild(button);
+                    recapEtBouton.appendChild(button2);
                     laCheck.appendChild(input);
                     laCommande.appendChild(recapEtBouton)
                     laCommande.appendChild(laCheck);
                     parent = document.getElementById('parent');
                     parent.appendChild(laCommande);
                     parent.appendChild(clear);
-
-
 
                     button.addEventListener('click', event => {
                         i = button.id;
@@ -295,6 +295,46 @@ if (!$_SESSION['valid']) {
                             ); //On attend 500ms avant d'ouvrir le PDF, le temps que se dernier se génère/mette à jour
                         }
                     })
+
+                    button2.addEventListener('click', event => {
+                        i = button2.id;
+                        var dateLiv = new Date(resultats[i]['DateLivFourn'].substr(0, 4),
+                            resultats[i]['DateLivFourn'].substr(5, 2) - 1, resultats[i][
+                                'DateLivFourn'
+                            ].substr(8, 2)
+                        ); //POIR LES MOIS, il faut -1 car ils vont de 0 à 11.
+                        var dateCom = new Date(resultats[i]['DateComFourn'].substr(0, 4),
+                            resultats[i]['DateComFourn'].substr(5, 2) - 1, resultats[i][
+                                'DateComFourn'
+                            ].substr(8, 2)
+                        ); //POIR LES MOIS, il faut -1 car ils vont de 0 à 11.
+                        if (dateLiv < date || dateCom.addDays(30) < date) { //TEST DE LA COMMANDE (30J  MAX)
+                            alert(
+                                'Commande trop ancienne, merci d\'en génerer une nouvelle'
+                            );
+                        } else { //APPEL DE LA CLASSE PDF, GENERANT DES PDF
+                            console.log(resultats[i]);
+                            console.log(resultats2[i]);
+                            console.log(resultats3[0]);
+
+                            $.ajax({
+                                url: 'envoi_mail.php', //toujours la même page qui est appelée
+                                type: 'POST',
+                                data: ({
+                                    id: 'PDF' + resultats[i]['IdComFourn'],
+                                    fournisseur: resultats3[0]
+                                }),
+                                success: function(data) {
+                                    alert('Bon de commande envoyé');
+                                },
+                                error: function() {
+                                    alert(
+                                        'There was some error performing the AJAX call!'
+                                    );
+                                },
+                            });
+                        }
+                    })
                 }
 
 
@@ -305,7 +345,7 @@ if (!$_SESSION['valid']) {
 
                 //ENVOI DES BONS DE COMMANDE, PUIS RECHARGEMENT DE LA PAGE
                 // -----------------------OBSOLETE------------------------------
-                document.getElementById('commander').addEventListener('click', event => {
+                /*document.getElementById('commander').addEventListener('click', event => {
                     var selection = false;
                     $(".checkbox").each(function() {
                         console.log($(this).is(":checked"));
@@ -328,7 +368,7 @@ if (!$_SESSION['valid']) {
                                 error: function(dataSQL, statut) {
                                     alert("error sqlConnect.js : " + dataSQL.erreur);
                                 }
-                            })*/
+                            })
                         }
                     })
 
@@ -339,9 +379,7 @@ if (!$_SESSION['valid']) {
                     setTimeout(function() {
                         window.location.reload()
                     }, 100);
-                });
-
-
+                });*/
 
                 //SUPPRESSION DES BONS DE COMMANDE, DE LA BASE PUIS RECHARGEMENT DE LA PAGE
                 document.getElementById('supprimer').addEventListener('click', event => {
@@ -351,7 +389,7 @@ if (!$_SESSION['valid']) {
                             if ($(this).is(":checked")) {
                                 selection = true; //VERIFICATION QU'IL Y A AU MOINS UNE SELECTION
                                 console.log('DELETE FROM commandefournisseur WHERE IdComFourn = ' +
-                                            $(this).attr('id').replace('ID', '') + ';');
+                                    $(this).attr('id').replace('ID', '') + ';');
                                 $.ajax({ //SUPPRESSION DE LA COMMANDE DE LA BASE
                                     url: '../STOCK_REQUETE.php', //toujours la même page qui est appelée
                                     type: 'POST',
